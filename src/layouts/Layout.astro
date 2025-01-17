@@ -1,6 +1,7 @@
 ---
 import Header from "@/components/Header";
 import Footer from "@/components/Footer.astro";
+import {ClientRouter} from 'astro:transitions';
 
 import '@/styles.css';
 
@@ -12,18 +13,26 @@ interface Props {
 const {title, description} = Astro.props;
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:name="root" transition:animate="none">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width"/>
     <meta name="generator" content={Astro.generator}/>
-    <title>{title}</title>
+    <title>{title} - Moriz von Langa</title>
     <meta name="description" content={description}>
+    <ClientRouter/>
+
 </head>
 
 <body class="bg-black text-white">
+
 <Header client:load currentPath={Astro.url.pathname}/>
-<slot/>
+
+<main transition:animate="slide">
+    <slot/>
+</main>
+
 <Footer/>
+
 </body>
 </html>
