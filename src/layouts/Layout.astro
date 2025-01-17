@@ -1,22 +1,29 @@
+---
+import Header from "@/components/Header";
+import Footer from "@/components/Footer.astro";
+
+import '@/styles.css';
+
+interface Props {
+    title: string;
+    description: string;
+}
+
+const {title, description} = Astro.props;
+---
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <meta name="generator" content={Astro.generator}/>
+    <title>{title}</title>
+    <meta name="description" content={description}>
+</head>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<body class="bg-black text-white">
+<Header client:load currentPath={Astro.url.pathname}/>
+<slot/>
+<Footer/>
+</body>
+</html>
