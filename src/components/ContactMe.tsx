@@ -140,6 +140,7 @@ export const ContactMe = () => {
 				</motion.svg>
 			</div>
 			<motion.a
+				title="Contact me via mail"
 				href="mailto:morizvlanga@gmail.com"
 				className="block w-28 h-28 overflow-hidden rounded-full bg-neutral-900"
 				variants={{

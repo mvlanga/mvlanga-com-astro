@@ -27,7 +27,7 @@ const { title, description } = Astro.props;
 
 <body class="bg-black text-white">
 
-<Header client:load currentPath={Astro.url.pathname}/>
+<Header client:idle currentPath={Astro.url.pathname}/>
 
 <main transition:animate="fade">
     <slot/>
