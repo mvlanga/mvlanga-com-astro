@@ -1,17 +1,17 @@
 ---
-import {ClientRouter} from 'astro:transitions';
+import { ClientRouter } from "astro:transitions";
 
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header";
-import '@/styles.css';
-import {ContactMe} from "../components/ContactMe";
+import "@/styles.css";
+import { ContactMe } from "../components/ContactMe";
 
 interface Props {
-    title: string;
-    description: string;
+	title: string;
+	description: string;
 }
 
-const {title, description} = Astro.props;
+const { title, description } = Astro.props;
 ---
 <!doctype html>
 <html lang="en" transition:name="root" transition:animate="none">
@@ -35,7 +35,7 @@ const {title, description} = Astro.props;
 
 <Footer/>
 
-<ContactMe client:load />
+<ContactMe client:visible />
 
 </body>
 </html>
