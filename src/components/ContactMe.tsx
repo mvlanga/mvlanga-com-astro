@@ -20,12 +20,10 @@ export const ContactMe = () => {
 			animate={isContactButtonHidden ? "hidden" : "default"}
 			variants={{
 				default: {
-					visibility: "visible",
 					opacity: 1,
 					scale: 1,
 				},
 				hidden: {
-					visibility: "hidden",
 					opacity: 0,
 					scale: 0.8,
 				},
@@ -159,7 +157,6 @@ export const ContactMe = () => {
 				<video
 					className="object-cover h-full w-full translate-y-1 mix-blend-lighten"
 					src="/mvlanga-memoji.mp4"
-					preload={isContactButtonHidden ? "none" : "auto"}
 					muted
 					autoPlay
 					loop
