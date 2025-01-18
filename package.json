@@ -6,7 +6,8 @@
 		"dev": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"lint": "biome lint --write .",
+		"lint:fix": "biome check --write ."
 	},
 	"dependencies": {
 		"clsx": "^2.1.1",

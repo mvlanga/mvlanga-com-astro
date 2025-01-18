@@ -97,49 +97,48 @@ const resumeEntries: ResumeEntry[] = [
 ---
 
 <Layout title="Resume" description="" className="container flex min-h-[96vh] flex-col justify-center gap-20 py-48">
-<section>
-  <h1 class="mb-5 text-6xl font-bold leading-snug">
-      Moriz von Langa
-  </h1>
-  <p class="text-xl max-w-prose leading">
-      I’m a front-end developer who enjoys approaching ideas with curiosity and an open mind, while paying attention to software architecture. I always keep the user’s perspective in mind to create solutions that genuinely address their needs.
-  </p>
-</section>
-
-        <section>
-            <h2 class="mb-10 text-2xl">Skills</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-                {
-                    skills.map((skill => <span class="p-6 bg-neutral-900 rounded-2xl">{skill}</span>))
-                }
-            </div>
-        </section>
-       
-        <section>
-            <h2 class="mb-10 text-2xl">Experience</h2>
-            <div class="flex flex-col gap-5">
-                {resumeEntries.map(({company, from, to, role, tasks}, index) =>
-                        <>
-                            <div class="grid md:grid-cols-6 gap-5">
-                                <div class="flex flex-col gap-2 md:col-start-1 md:col-end-3">
-                                    <h3 class="text-xl">{company}</h3>
-                                    <p class="text-neutral-400">{from}{to && " - "}{to}</p>
-                                </div>
-                                <div class="flex flex-col gap-5 md:col-start-3 md:col-end-7">
-                                    <h3 class="font-bold">{role}</h3>
-                                    <ul class="flex flex-col gap-2">
-                                        {
-                                            tasks.map(task =>
-                                                    <li class="max-w-prose">{task}</li>
-                                            )
-                                        }
-                                    </ul>
-                                </div>
+    <section>
+        <h1 class="mb-5 text-6xl font-bold leading-snug">
+            Moriz von Langa
+        </h1>
+        <p class="text-xl max-w-prose leading">
+            I’m a front-end developer who enjoys approaching ideas with curiosity and an open mind, while paying attention to software architecture. I always keep the user’s perspective in mind to create solutions that genuinely address their needs.
+        </p>
+    </section>
+    <section>
+        <h2 class="mb-10 text-2xl">Skills</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+            {
+                skills.map((skill => <span class="p-6 bg-neutral-900 rounded-2xl">{skill}</span>))
+            }
+        </div>
+    </section>
+    <section>
+        <h2 class="mb-10 text-2xl">Experience</h2>
+        <div class="flex flex-col gap-5">
+            {resumeEntries.map(({company, from, to, role, tasks}, index) =>
+                    <>
+                        <div class="grid md:grid-cols-6 gap-5">
+                            <div class="flex flex-col gap-2 md:col-start-1 md:col-end-3">
+                                <h3 class="text-xl">{company}</h3>
+                                <p class="text-neutral-400">{from}{to && " - "}{to}</p>
                             </div>
-                            {index !== resumeEntries.length - 1 &&
-                                    <hr class="my-10 border-neutral-800"/>}
-                        </>
-                )}
-            </div>
-        </section>
+                            <div class="flex flex-col gap-5 md:col-start-3 md:col-end-7">
+                                <h3 class="font-bold">{role}</h3>
+                                <ul class="flex flex-col gap-2">
+                                    {
+                                        tasks.map(task =>
+                                                <li class="max-w-prose">{task}</li>
+                                        )
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        {index !== resumeEntries.length - 1 &&
+                                <hr class="my-10 border-neutral-800"/>
+                        }
+                    </>
+            )}
+        </div>
+    </section>
 </Layout>

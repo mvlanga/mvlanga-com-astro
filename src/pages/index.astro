@@ -1,5 +1,9 @@
 ---
 import Layout from "../layouts/layout.astro";
+
+const workPages = Object.values(
+	import.meta.glob("./work/*.md", { eager: true }),
+);
 ---
 
 <Layout title="Frontend Developer" description="">
@@ -12,5 +16,10 @@ import Layout from "../layouts/layout.astro";
             lot of questions to really build solutions that truly solve the users
             problems.
         </p>
+        {workPages.length}
+        {workPages.map((work) => <div>
+            <a href={work.url}>{work.frontmatter.title}</a>
+            <img src={work.frontmatter.previewImage}>
+        </div>)}
     </section>
 </Layout>
