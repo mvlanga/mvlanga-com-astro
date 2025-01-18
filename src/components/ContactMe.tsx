@@ -159,6 +159,7 @@ export const ContactMe = () => {
 				<video
 					className="object-cover h-full w-full translate-y-1 mix-blend-lighten"
 					src="/mvlanga-memoji.mp4"
+					preload={isContactButtonHidden ? "none" : "auto"}
 					muted
 					autoPlay
 					loop
