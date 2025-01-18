@@ -5,53 +5,54 @@ export const ContactMe = () => {
         <motion.div className="fixed bottom-10 right-10" initial="default" whileHover="hover" whileTap="tap">
             <div
                 className="absolute -left-8 -top-8 -right-8 -bottom-8 -z-10 tracking-widest animate-spin">
+                <motion.div className="absolute top-0 left-0 right-0 bottom-0"
+                            variants={{
+                                default: {
+                                    scale: 1
+                                },
+                                hover: {
+                                    scale: 0.95
+                                },
+                                tap: {
+                                    scale: 0
+                                }
+
+                            }}>
+                    <svg
+                        className="rotate-[72.5deg]"
+                        viewBox="0 0 100 100"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <text>
+                            <textPath href="#circlePath" startOffset="0%" className="fill-neutral-600 text-[0.5rem]">
+                                -
+                            </textPath>
+                            <textPath href="#circlePath" startOffset="25%" className="fill-neutral-600 text-[0.5rem]">
+                                -
+                            </textPath>
+                            <textPath href="#circlePath" startOffset="50%" className="fill-neutral-600 text-[0.5rem]">
+                                -
+                            </textPath>
+                            <textPath href="#circlePath" startOffset="75%" className="fill-neutral-600 text-[0.5rem]">
+                                -
+                            </textPath>
+                        </text>
+                    </svg>
+                </motion.div>
+
                 <motion.svg
                     variants={{
-                    default: {
-                        scale: 1
-                    },
-                    hover: {
-                        scale: 0.95
-                    },
-                    tap: {
-                        scale: 1.1
-                    }
+                        default: {
+                            scale: 1
+                        },
+                        hover: {
+                            scale: 0.95
+                        },
+                        tap: {
+                            scale: 0
+                        }
 
-                }}
-
-                    className="absolute rotate-[72.5deg]"
-                    viewBox="0 0 100 100"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <text>
-                        <textPath href="#circlePath" startOffset="0%" className="fill-neutral-600 text-[0.5rem]">
-                            -
-                        </textPath>
-                        <textPath href="#circlePath" startOffset="25%" className="fill-neutral-600 text-[0.5rem]">
-                            -
-                        </textPath>
-                        <textPath href="#circlePath" startOffset="50%" className="fill-neutral-600 text-[0.5rem]">
-                            -
-                        </textPath>
-                        <textPath href="#circlePath" startOffset="75%" className="fill-neutral-600 text-[0.5rem]">
-                            -
-                        </textPath>
-                    </text>
-                </motion.svg>
-                <motion.svg
-                    variants={{
-                    default: {
-                        scale: 1
-                    },
-                    hover: {
-                        scale: 0.95
-                    },
-                    tap: {
-                        scale: 1.1
-                    }
-
-                }}
-
+                    }}
                     className=""
                     viewBox="0 0 100 100"
                     xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +92,7 @@ export const ContactMe = () => {
                         scale: 0.9
                     },
                     tap: {
-                        scale: 0.8
+                        scale: 1.2
                     }
 
                 }}>
