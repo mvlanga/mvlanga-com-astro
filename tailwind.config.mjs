@@ -31,6 +31,9 @@ export default {
                     600: '#4b29af',
                 },
             },
+            animation: {
+                'spin': 'spin 10s linear infinite',
+            }
         },
     },
     plugins: [],

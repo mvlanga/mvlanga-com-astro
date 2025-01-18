@@ -1,0 +1,97 @@
+---
+import Layout from '../layouts/layout.astro';
+
+type ResumeEntry = {
+    company: string;
+    from: string;
+    to?: string;
+    role: string;
+    tasks: string[]
+}
+
+const resumeEntries: ResumeEntry[] = [
+    {
+        company: "SENEC",
+        from: "2023",
+        to: "now",
+        role: "Frontend Developer",
+        tasks: [
+            "Enhancement of an existing Angular application",
+            "Migrating / rewriting webapps from Angular to React and embedding them as a micro-frontend",
+            "Planning and implementation of the migration/rewrite",
+            "Working closely with designers",
+            "Further development of the UI component library",
+            "Further development of the specialist partners platform",
+        ]
+    },
+    {
+        company: "Mohr",
+        from: "2022",
+        role: "Freelance 3D Designer",
+        tasks: [
+            "Creation of \"Apple like\" 3D product rendering animations used in scroll based animations"
+        ]
+    },
+    {
+        company: "SCHACHZUG",
+        from: "2020",
+        to: "2022",
+        role: "Technical Director",
+        tasks: [
+            "Maintenance of existing IT infrastructure (network, storage, firewall, user directory)",
+            "Setting up a completely new IT infrastructure (network, storage)",
+            "Teamlead IT & Development",
+            "ISMS representative & TISAX certification",
+            "Coordination of external technical service providers (livestreaming, 3D designers)",
+            "Technical customer consulting & presentations",
+            "On-site support and installation of trade fair exhibits",
+            "Full Stack Development using Angular, Node, PHP, AWS/Firebase",
+        ]
+    },
+    {
+        company: "SCHACHZUG",
+        from: "2020",
+        to: "2022",
+        role: "Design",
+        tasks: [
+            "Webdesign using Adobe XD",
+            "2D/3D motion design",
+            "3D Design for Augmented Reality",
+            "Instruction in 3D design for our apprentice",
+            "Coordination of external service providers (3D designers)",
+        ]
+    }
+]
+---
+
+<Layout title="Work" description="">
+    <section class="container flex min-h-[96vh] flex-col justify-center py-48">
+        <h1 class="mb-40 text-6xl font-bold leading-snug">
+            Resume
+        </h1>
+        <div class="flex flex-col gap-5">
+            {resumeEntries.map(({company, from, to, role, tasks}, index) =>
+                    <>
+                        <div class="grid grid-cols-6 gap-5">
+                            <div class="flex flex-col gap-2 col-start-1 col-end-2">
+                                <h3 class="text-2xl font-bold">{company}</h3>
+                                <p>{from}{to && " - "}{to}</p>
+                            </div>
+                            <div class="flex flex-col gap-5 col-start-3 col-end-7">
+                                <h3 class="font-bold">{role}</h3>
+                                <ul class="flex flex-col gap-2">
+                                    {
+                                        tasks.map(task =>
+                                                <li>{task}</li>
+                                        )
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        {index !== resumeEntries.length - 1 &&
+                                <hr class="my-10 border-neutral-800"/>}
+                    </>
+            )}
+        </div>
+    </section>
+</Layout>

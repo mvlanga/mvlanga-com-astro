@@ -1,9 +1,9 @@
-import {useState} from 'react';
-import {useEscapeKey} from '@/utils/useEscapeKey';
-import {AnimatePresence, motion} from 'motion/react';
-import {useComponentSize} from 'react-use-size';
 import {Button} from '@/components/Button';
+import {useEscapeKey} from '@/utils/useEscapeKey';
 import {clsx} from 'clsx';
+import {AnimatePresence, type Variants, motion, useMotionValueEvent, useScroll, useTransform} from 'motion/react';
+import {useCallback, useEffect, useState} from 'react';
+import {useComponentSize} from 'react-use-size';
 
 type NavigationItems = { label: string; url: string }[];
 
@@ -15,7 +15,27 @@ export default function Header({currentPath}: { currentPath: string }) {
         height: menuButtonElementHeight,
     } = useComponentSize();
 
+    const {scrollY} = useScroll();
+    const [isHeaderHidden, setIsHeaderHidden] = useState(scrollY.get() > 100)
+
+    useMotionValueEvent(scrollY, "change", (current) => {
+        setIsMenuOpen(false);
+        const diff = current - (scrollY.getPrevious() ?? 0);
+        const direction = diff > 0 ? "down" : "up";
+        setIsHeaderHidden(direction === "down" && scrollY.get() > 100);
+    })
+
     useEscapeKey(() => isMenuOpen && setIsMenuOpen(false));
+
+    const onAfterRouteChange = useCallback(() => {
+        setIsHeaderHidden(false);
+    }, []);
+
+    useEffect(() => {
+        document.addEventListener('astro:after-swap', onAfterRouteChange);
+
+        return () => document.removeEventListener("astro:after-swap", onAfterRouteChange)
+    }, [onAfterRouteChange])
 
     function toggleMenu() {
         setIsMenuOpen((s) => !s);
@@ -51,25 +71,52 @@ export default function Header({currentPath}: { currentPath: string }) {
         },
     ];
 
+    const currentVariant = isHeaderHidden ? "hidden" : "visible";
+    const variants: Variants = {
+        visible: {
+            opacity: 1,
+            pointerEvents: "all",
+            scale: 1,
+            translateY: "0",
+        },
+        hidden: {
+            opacity: 0,
+            pointerEvents: "none",
+            scale: 0.8,
+            translateY: "-100%",
+        }
+    }
+
     return (
         <>
-            <header className="fixed left-10 top-10 z-10">
+            {
+                isHeaderHidden && <div className="fixed left-0 right-0 top-0 h-5 z-50"
+                                       onMouseEnter={() => setIsHeaderHidden(false)}/>
+            }
+
+            <motion.header className="fixed left-10 top-10 z-10" initial="visible"
+                           animate={currentVariant} variants={variants}
+            >
                 <a aria-label="Moriz von Langa wordmark" href="/">
                     <Button text="mvlanga"/>
                 </a>
-            </header>
-            <Button
-                ref={menuButtonElement}
-                level="secondary"
-                aria-expanded={isMenuOpen}
-                aria-controls="main-menu"
-                className="fixed right-10 top-10 z-40"
-                isActive={isMenuOpen}
-                onClick={toggleMenu}
-                text="menu"
-                activeText="close"
-                aria-label={isMenuOpen ? 'close main menu' : 'open main menu'}
-            />
+            </motion.header>
+            <motion.div initial="visible" className="fixed right-10 top-10 z-40"
+                        animate={currentVariant} variants={variants}>
+
+                <Button
+                    ref={menuButtonElement}
+                    level="secondary"
+                    aria-expanded={isMenuOpen}
+                    aria-controls="main-menu"
+                    className=""
+                    isActive={isMenuOpen}
+                    onClick={toggleMenu}
+                    text="menu"
+                    activeText="close"
+                    aria-label={isMenuOpen ? 'close main menu' : 'open main menu'}
+                />
+            </motion.div>
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.nav
@@ -87,7 +134,6 @@ export default function Header({currentPath}: { currentPath: string }) {
                         initial="initial"
                         animate="open"
                         exit="closed"
-                        role="navigation"
                         aria-label="Main Menu"
                         className="fixed left-5 right-5 top-5 z-30 flex max-h-[calc(100%-2.5rem)] flex-col gap-10 overflow-y-auto rounded-2xl bg-neutral-800 px-8 py-10 md:left-auto md:w-72"
                         id="main-menu"
@@ -137,7 +183,7 @@ export default function Header({currentPath}: { currentPath: string }) {
                                                     url === currentPath && 'opacity-100',
                                                     url === currentPath && 'scale-x-100'
                                                 )}
-                                            ></div>
+                                            />
                                             {label}
                                         </a>
                                     </motion.li>
@@ -180,7 +226,7 @@ export default function Header({currentPath}: { currentPath: string }) {
                                             href={url}
                                             referrerPolicy="no-referrer"
                                             target="_blank"
-                                            onClick={() => setIsMenuOpen(false)}
+                                            onClick={() => setIsMenuOpen(false)} rel="noreferrer"
                                         >
                                             {label}
                                         </a>
@@ -192,10 +238,11 @@ export default function Header({currentPath}: { currentPath: string }) {
                 )}
             </AnimatePresence>
             {isMenuOpen && (
+                // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
                 <div
                     className="fixed bottom-0 left-0 right-0 top-0 z-20"
                     onClick={() => setIsMenuOpen(false)}
-                ></div>
+                />
             )}
         </>
     );

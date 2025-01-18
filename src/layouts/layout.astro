@@ -1,10 +1,10 @@
 ---
 import {ClientRouter} from 'astro:transitions';
 
-import Header from "@/components/Header";
 import Footer from "@/components/Footer.astro";
-
+import Header from "@/components/Header";
 import '@/styles.css';
+import {ContactMe} from "../components/ContactMe";
 
 interface Props {
     title: string;
@@ -29,11 +29,13 @@ const {title, description} = Astro.props;
 
 <Header client:load currentPath={Astro.url.pathname}/>
 
-<main transition:animate="slide">
+<main transition:animate="fade">
     <slot/>
 </main>
 
 <Footer/>
+
+<ContactMe client:load />
 
 </body>
 </html>
