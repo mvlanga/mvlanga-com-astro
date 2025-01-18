@@ -96,7 +96,7 @@ export const ContactMe = () => {
                     }
 
                 }}>
-                <video className="object-cover h-full w-full translate-y-1 mix-blend-lighten" src="./mvlanga-memoji.mp4"
+                <video className="object-cover h-full w-full translate-y-1 mix-blend-lighten" src="/mvlanga-memoji.mp4"
                        muted autoPlay loop
                        playsInline/>
 
