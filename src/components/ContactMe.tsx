@@ -20,10 +20,12 @@ export const ContactMe = () => {
 			animate={isContactButtonHidden ? "hidden" : "default"}
 			variants={{
 				default: {
+					visibility: "visible",
 					opacity: 1,
 					scale: 1,
 				},
 				hidden: {
+					visibility: "hidden",
 					opacity: 0,
 					scale: 0.8,
 				},
