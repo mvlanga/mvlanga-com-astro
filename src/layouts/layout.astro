@@ -1,17 +1,20 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import HeadFavicon from "../components/HeadFavicon.astro";
+
+import "@/styles.css";
 
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header";
-import "@/styles.css";
-import { ContactMe } from "../components/ContactMe";
+import ContactMe from "../components/ContactMe";
 
 interface Props {
 	title: string;
 	description: string;
+	className: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, className } = Astro.props;
 ---
 <!doctype html>
 <html lang="en" transition:name="root" transition:animate="none">
@@ -19,17 +22,19 @@ const { title, description } = Astro.props;
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width"/>
     <meta name="generator" content={Astro.generator}/>
+    
     <title>{title} - Moriz von Langa</title>
     <meta name="description" content={description}>
-    <ClientRouter/>
 
+    <HeadFavicon />
+    <ClientRouter/>
 </head>
 
 <body class="bg-black text-white">
 
 <Header client:idle currentPath={Astro.url.pathname}/>
 
-<main transition:animate="fade">
+<main transition:animate="fade" class={className}>
     <slot/>
 </main>
 

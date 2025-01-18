@@ -1,28 +1,28 @@
 {
-  "name": "mvlanga-com",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "motion": "^11.18.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-use-size": "^5.0.0",
-    "tailwind-merge": "^2.6.0",
-    "clsx": "^2.1.1"
-  },
-  "devDependencies": {
-    "@astrojs/react": "^4.1.5",
-    "@astrojs/tailwind": "^5.1.4",
-    "@biomejs/biome": "1.9.4",
-    "@types/react": "^19.0.7",
-    "@types/react-dom": "^19.0.3",
-    "astro": "^5.1.7",
-    "tailwindcss": "^3.4.17"
-  }
+	"name": "mvlanga-com",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"clsx": "^2.1.1",
+		"motion": "^11.18.0",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"react-use-size": "^5.0.0",
+		"tailwind-merge": "^2.6.0"
+	},
+	"devDependencies": {
+		"@astrojs/react": "^4.1.5",
+		"@astrojs/tailwind": "^5.1.4",
+		"@biomejs/biome": "1.9.4",
+		"@types/react": "^19.0.7",
+		"@types/react-dom": "^19.0.3",
+		"astro": "^5.1.7",
+		"tailwindcss": "^3.4.17"
+	}
 }

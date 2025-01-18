@@ -23,13 +23,13 @@ export default function Header({ currentPath }: { currentPath: string }) {
 	} = useComponentSize();
 
 	const { scrollY } = useScroll();
-	const [isHeaderHidden, setIsHeaderHidden] = useState(scrollY.get() > 100);
+	const [isHeaderHidden, setIsHeaderHidden] = useState(scrollY.get() >= 100);
 
 	useMotionValueEvent(scrollY, "change", (current) => {
 		setIsMenuOpen(false);
 		const diff = current - (scrollY.getPrevious() ?? 0);
 		const direction = diff > 0 ? "down" : "up";
-		setIsHeaderHidden(direction === "down" && scrollY.get() > 100);
+		setIsHeaderHidden(direction === "down" && scrollY.get() >= 100);
 	});
 
 	useEscapeKey(() => isMenuOpen && setIsMenuOpen(false));
@@ -151,7 +151,7 @@ export default function Header({ currentPath }: { currentPath: string }) {
 						animate="open"
 						exit="closed"
 						aria-label="Main Menu"
-						className="fixed left-5 right-5 top-5 z-30 flex max-h-[calc(100%-2.5rem)] flex-col gap-10 overflow-y-auto rounded-2xl bg-neutral-900 px-8 py-10 md:left-auto md:w-72"
+						className="fixed left-5 right-5 top-5 z-30 flex max-h-[calc(100%-2.5rem)] flex-col gap-10 overflow-y-auto rounded-2xl bg-neutral-900 px-8 py-10 sm:left-auto sm:w-72"
 						id="main-menu"
 					>
 						<div className="flex flex-col gap-4">
