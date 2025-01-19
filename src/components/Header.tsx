@@ -7,7 +7,6 @@ import {
 	motion,
 	useMotionValueEvent,
 	useScroll,
-	useTransform,
 } from "motion/react";
 import { useCallback, useEffect, useState } from "react";
 import { useComponentSize } from "react-use-size";

@@ -1,4 +1,6 @@
 ---
+import ResumeEntries from "../components/ResumeEntries";
+import ResumeEntry from "../components/ResumeEntry";
 import Layout from "../layouts/layout.astro";
 
 const skills = [
@@ -20,7 +22,7 @@ const skills = [
 	"Photoshop",
 ];
 
-type ResumeEntry = {
+type ResumeEntryType = {
 	company: string;
 	from: string;
 	to?: string;
@@ -28,7 +30,7 @@ type ResumeEntry = {
 	tasks: string[];
 };
 
-const resumeEntries: ResumeEntry[] = [
+const resumeEntries: ResumeEntryType[] = [
 	{
 		company: "SENEC",
 		from: "2023",
@@ -102,7 +104,7 @@ const resumeEntries: ResumeEntry[] = [
             Moriz von Langa
         </h1>
         <p class="text-xl max-w-prose leading">
-            I’m a front-end developer who enjoys approaching ideas with curiosity and an open mind, while paying attention to software architecture. I always keep the user’s perspective in mind to create solutions that genuinely address their needs.
+            I'm a front-end developer who enjoys approaching ideas with curiosity and an open mind, while paying attention to software architecture. I always keep the user's perspective in mind to create solutions that really solve their problems.
         </p>
     </section>
     <section>
@@ -115,30 +117,32 @@ const resumeEntries: ResumeEntry[] = [
     </section>
     <section>
         <h2 class="mb-10 text-2xl">Experience</h2>
-        <div class="flex flex-col gap-5">
-            {resumeEntries.map(({company, from, to, role, tasks}, index) =>
-                    <>
-                        <div class="grid md:grid-cols-6 gap-5">
-                            <div class="flex flex-col gap-2 md:col-start-1 md:col-end-3">
-                                <h3 class="text-xl">{company}</h3>
-                                <p class="text-neutral-400">{from}{to && " - "}{to}</p>
-                            </div>
-                            <div class="flex flex-col gap-5 md:col-start-3 md:col-end-7">
-                                <h3 class="font-bold">{role}</h3>
-                                <ul class="flex flex-col gap-2">
-                                    {
-                                        tasks.map(task =>
-                                                <li class="max-w-prose">{task}</li>
-                                        )
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                        {index !== resumeEntries.length - 1 &&
-                                <hr class="my-10 border-neutral-800"/>
-                        }
-                    </>
-            )}
+        <div class="relative">
+            {
+                resumeEntries.map(({company, from, to, role, tasks}) => (
+                                <div class="sticky top-0 bg-black grid md:grid-cols-6 gap-5 py-10 [&:not(:first-child)]:border-t-2 border-neutral-700 shadow-2xl">
+                                    <div class="flex flex-col gap-2 md:col-start-1 md:col-end-3">
+                                        <h3 class="text-xl">{company}</h3>
+                                        <p class="text-neutral-400">
+                                            {from}
+                                            {to && " - "}
+                                            {to}
+                                        </p>
+                                    </div>
+                                    <div class="flex flex-col gap-5 md:col-start-3 md:col-end-7">
+                                        <h3 class="font-bold">{role}</h3>
+                                        <ul class="flex flex-col gap-2">
+                                            {tasks.map((task) => (
+                                                    <li class="max-w-prose">
+                                                        {task}
+                                                    </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                    )
+                )
+            }
         </div>
     </section>
 </Layout>
