@@ -1,25 +1,61 @@
 ---
+import { Image } from "astro:assets";
+import fujitsuCxLabPreviewImage from "../assets/work/fujitsu-cx-lab/fujitsu-cx-lab-thumbnail_01.jpg";
+import skodaEnyaqCoupePreviewImage from "../assets/work/skoda-enyaq-coupe/skoda-enyaq-coupe-thumbnail_01.jpg";
 import Layout from "../layouts/layout.astro";
 
 const workPages = Object.values(
 	import.meta.glob("./work/*.md", { eager: true }),
 );
+
+const workItems = [
+	{
+		title: "Digital World Premiere of the new Škoda Enyaq Coupé",
+		customer: "Škoda",
+		year: "2022",
+		image: skodaEnyaqCoupePreviewImage,
+	},
+	{
+		title:
+			"Customer Experience Lab, eine neue virtuelle Co-Creation-Plattform ",
+		customer: "Fujitsu",
+		year: "2022",
+		image: fujitsuCxLabPreviewImage,
+	},
+	{
+		title: "Digital World Premiere of the new Škoda Enyaq Coupé",
+		customer: "Škoda",
+		year: "2022",
+		image: skodaEnyaqCoupePreviewImage,
+	},
+];
 ---
 
-<Layout title="Frontend Developer" description="">
-    <section class="container flex min-h-[96vh] flex-col justify-center py-48">
-        <h1 class="mb-10 text-6xl font-bold leading-snug">
-            Hi, I’m Moriz.
-        </h1>
-        <p class="max-w-[60ch] text-3xl font-light">
-            Frontend Developer based in Leipzig. On daily routine, I try to ask a
-            lot of questions to really build solutions that truly solve the users
-            problems.
-        </p>
-        {workPages.length}
-        {workPages.map((work) => <div>
-            <a href={work.url}>{work.frontmatter.title}</a>
-            <img src={work.frontmatter.previewImage}>
-        </div>)}
-    </section>
+<Layout title="Frontend Developer" description="" className="container flex min-h-[96vh] flex-col justify-center gap-20 py-48">
+    <h1 class="mb-10 text-6xl font-bold leading-snug">
+        Hi, I’m Moriz.
+    </h1>
+    <p class="max-w-[60ch] text-3xl font-light">
+        Frontend Developer based in Leipzig. On daily routine, I try to ask a
+        lot of questions to really build solutions that truly solve the users
+        problems.
+    </p>
+    <div class="relative grid grid-cols-2 gap-10">
+        {
+            workItems.map(({title, customer, year, image}) => (
+                    <div class="flex flex-col gap-3 justify-center">
+                        <span class="text-neutral-400 text-xl">{customer}, {year}</span>
+                        <h3 class="text-3xl">{title}</h3>
+                    </div>
+                    <div class="sticky top-0 flex items-center py-20 h-[90vh]">
+                        <Image class="rounded-2xl h-full w-full object-cover" src={image} alt="" />
+                    </div>
+            ))
+        }
+    </div>
+    {workPages.length}
+    {workPages.map((work) => <div>
+        <a href={work.url}>{work.frontmatter.title}</a>
+        <Image src={skodaEnyaqCoupePreviewImage} alt="" />
+    </div>)}
 </Layout>
