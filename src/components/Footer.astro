@@ -1,5 +1,5 @@
 ---
-import CarbonBadge from "./carbonBadge.astro";
+import CarbonBadge from "@/components/CarbonBadge.astro";
 const year = new Date().getFullYear();
 ---
 
@@ -17,7 +17,7 @@ const year = new Date().getFullYear();
         >
             Privacy Policy
         </a>
-        <CarbonBadge client:visible />
+        <CarbonBadge />
     </div>
     <a
             href="/"
