@@ -1,0 +1,31 @@
+---
+import {getCollection, render} from 'astro:content';
+
+export async function getStaticPaths() {
+    const workItems = await getCollection('workItems');
+
+    return workItems.map(post => ({
+        params: {id: post.id},
+        props: {post},
+    }));
+}
+
+const {post: workItem} = Astro.props;
+
+const {Content} = await render(workItem);
+const {title, description, customer, year} = workItem.data
+
+import Layout from "../../layouts/layout.astro";
+---
+
+<Layout title={title} description={description}
+        className="container flex min-h-[96vh] flex-col justify-center gap-40 py-48">
+    <section>
+        <h1 class="mb-10 text-6xl font-bold leading-snug">
+            {title}
+        </h1>
+        <p class="max-w-[60ch] font-light">
+            {description}
+        </p>
+    </section>
+</Layout>

@@ -10,6 +10,7 @@
 		"lint:fix": "biome check --write ."
 	},
 	"dependencies": {
+		"@astrojs/mdx": "^4.0.8",
 		"clsx": "^2.1.1",
 		"motion": "^11.18.2",
 		"react": "^19.0.0",
