@@ -51,15 +51,19 @@ export default function Header({ currentPath }: { currentPath: string }) {
 	const navItems: NavigationItems = [
 		{
 			label: "Home",
-			url: "/",
+			url: "#",
 		},
 		{
 			label: "Work",
-			url: "/work",
+			url: "#work",
 		},
 		{
-			label: "Resume",
-			url: "/resume",
+			label: "Skills",
+			url: "#skills",
+		},
+		{
+			label: "Experience",
+			url: "#experience",
 		},
 		{
 			label: "Contact",

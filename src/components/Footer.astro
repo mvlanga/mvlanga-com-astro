@@ -1,6 +1,10 @@
 ---
+import {getCollection} from "astro:content";
+
 import CarbonBadge from "@/components/CarbonBadge.astro";
+
 const year = new Date().getFullYear();
+const isProduction = import.meta.env.PROD
 ---
 
 <footer class="container flex flex-wrap justify-between gap-x-4 gap-y-2 pb-6 text-sm">
@@ -11,13 +15,15 @@ const year = new Date().getFullYear();
         >
             Imprint
         </a>
+
         <a
                 href="/legal/privacy-policy"
                 class="text-neutral-400 transition-colors hover:text-purple"
         >
             Privacy Policy
         </a>
-        <CarbonBadge />
+
+        {isProduction && <CarbonBadge />}
     </div>
     <a
             href="/"
