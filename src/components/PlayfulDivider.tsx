@@ -1,104 +1,111 @@
-import {mix} from "motion/react";
-import {useEffect, useRef} from "react";
-
-interface MouseEvent {
-    movementY: number;
-    clientX: number;
-}
+import { mix, useReducedMotion } from "motion/react";
+import { type MouseEvent, useEffect, useRef } from "react";
 
 export const PlayfulDivider = () => {
-    const containerEl = useRef<HTMLDivElement>(null);
-    const pathEl = useRef<SVGPathElement>(null);
+	const shouldReduceMotion = useReducedMotion() ?? true;
 
-    let progress = 0;
-    let x = 0.5;
-    let time = Math.PI / 2;
-    let reqId: number | null = null;
+	return shouldReduceMotion ? (
+		<hr className="border-neutral-800" />
+	) : (
+		<ReactiveLine />
+	);
+};
 
-    // biome-ignore lint/correctness/useExhaustiveDependencies: hook is used to run on mount
-    useEffect(() => {
-        setPath(progress);
+const ReactiveLine = () => {
+	const containerEl = useRef<HTMLDivElement>(null);
+	const pathEl = useRef<SVGPathElement>(null);
 
-        window.addEventListener('resize', () => {
-            setPath(progress);
-        })
-    }, [])
+	let progress = 0;
+	let x = 0.5;
+	let time = Math.PI / 2;
+	let reqId: number | null = null;
 
-    const setPath = (progress: number) => {
-        if (containerEl.current === null || pathEl.current === null) {
-            return
-        }
+	// biome-ignore lint/correctness/useExhaustiveDependencies: hook is only used to run on mount
+	useEffect(() => {
+		console.log("ABC");
+		setPath(progress);
 
-        const width = containerEl.current.offsetWidth ?? 0;
+		window.addEventListener("resize", () => {
+			setPath(progress);
+		});
+	}, []);
 
-        pathEl.current.setAttribute(
-            "d",
-            `M0 250 Q${width * x} ${250 + progress}, ${width} 250`
-        );
-    };
+	const setPath = (progress: number) => {
+		if (containerEl.current === null || pathEl.current === null) {
+			return;
+		}
 
-    const manageMouseEnter = () => {
-        if (reqId) {
-            cancelAnimationFrame(reqId);
-            resetAnimation();
-        }
-    };
+		const width = containerEl.current.offsetWidth ?? 0;
 
-    const manageMouseMove = (e: MouseEvent) => {
-        if (pathEl.current === null) {
-            return
-        }
+		pathEl.current.setAttribute(
+			"d",
+			`M0 250 Q${width * x} ${250 + progress}, ${width} 250`,
+		);
+	};
 
-        const {movementY, clientX} = e;
+	const manageMouseEnter = () => {
+		if (reqId) {
+			cancelAnimationFrame(reqId);
+			resetAnimation();
+		}
+	};
 
-        const pathBound = pathEl.current.getBoundingClientRect();
+	const manageMouseMove = (e: MouseEvent) => {
+		if (pathEl.current === null) {
+			return;
+		}
 
-        if (pathBound) {
-            x = (clientX - pathBound.left) / pathBound.width;
-            progress += movementY;
-            setPath(progress);
-        }
-    };
+		const { movementY, clientX } = e;
 
-    const manageMouseLeave = () => {
-        animateOut();
-    };
+		const pathBound = pathEl.current.getBoundingClientRect();
 
-    const animateOut = () => {
-        const newProgress = progress * Math.sin(time);
+		if (pathBound) {
+			x = (clientX - pathBound.left) / pathBound.width;
+			progress += movementY;
+			setPath(progress);
+		}
+	};
 
-        progress = mix(progress, 0, 0.05)
+	const manageMouseLeave = () => {
+		animateOut();
+	};
 
-        time += 0.2;
+	const animateOut = () => {
+		const newProgress = progress * Math.sin(time);
 
-        setPath(newProgress);
+		progress = mix(progress, 0, 0.05);
 
-        if (Math.abs(progress) > 0.75) {
-            reqId = requestAnimationFrame(animateOut);
-        } else {
-            resetAnimation();
-        }
-    };
+		time += 0.2;
 
-    const resetAnimation = () => {
-        time = Math.PI / 2;
-        progress = 0;
-    };
+		setPath(newProgress);
 
-    return (
-        <div ref={containerEl} className="relative w-full h-px">
-            <div
-                onMouseEnter={manageMouseEnter}
-                onMouseMove={manageMouseMove}
-                onMouseLeave={manageMouseLeave}
-                className="relative z-10 h-10 w-full -top-5 hover:h-40 hover:-top-20"/>
+		if (Math.abs(progress) > 0.75) {
+			reqId = requestAnimationFrame(animateOut);
+		} else {
+			resetAnimation();
+		}
+	};
 
-            <svg className="absolute w-full h-[500px] top-[-250px]">
-                <path
-                    ref={pathEl}
-                    className="stroke-neutral-800 stroke-[1px] fill-none"
-                />
-            </svg>
-        </div>
-    );
-}
+	const resetAnimation = () => {
+		time = Math.PI / 2;
+		progress = 0;
+	};
+
+	return (
+		<div ref={containerEl} className="relative h-px w-full">
+			<div
+				onMouseEnter={manageMouseEnter}
+				onMouseMove={manageMouseMove}
+				onMouseLeave={manageMouseLeave}
+				className="-top-5 hover:-top-20 relative z-10 h-10 w-full hover:h-40"
+			/>
+
+			<svg className="absolute top-[-250px] h-[500px] w-full">
+				<path
+					ref={pathEl}
+					className="fill-none stroke-[1px] stroke-neutral-800"
+				/>
+			</svg>
+		</div>
+	);
+};

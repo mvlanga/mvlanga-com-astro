@@ -1,12 +1,13 @@
 ---
-import {Image} from "astro:assets";
-import {getCollection} from "astro:content";
-import {PlayfulDivider} from "../components/PlayfulDivider";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { PlayfulDivider } from "../components/PlayfulDivider";
 import Layout from "../layouts/layout.astro";
+import { sortExperiences, sortWorkItems } from "../utils/sortCollection";
 
-const skills = (await getCollection('skills'))[0].data;
-const experiences = (await getCollection('experiences')).sort((a, b) => b.data.from - a.data.from);
-const workItems = await getCollection('workItems')
+const skills = (await getCollection("skills"))[0].data;
+const experiences = sortExperiences(await getCollection("experiences"));
+const workItems = sortWorkItems(await getCollection("workItems"));
 ---
 
 <Layout title="Frontend Developer" description=""
@@ -15,7 +16,7 @@ const workItems = await getCollection('workItems')
         <h1 class="mb-10 text-6xl font-bold leading-snug">
             Hi, I’m Moriz.
         </h1>
-        <p class="max-w-[60ch] text-3xl font-light">
+        <p class="max-w-prose text-3xl font-light">
             Frontend Developer based in Leipzig. On daily routine, I try to ask a
             lot of questions to really build solutions that truly solve the users
             problems.
@@ -24,14 +25,22 @@ const workItems = await getCollection('workItems')
 
     <section class="relative grid grid-cols-1 md:grid-cols-2 gap-10" id="work">
         {
-            workItems.map(({id, data: {title, customer, year, cover}}) => (
-                    <div class="flex flex-col gap-6 justify-center">
-                        <span class="text-neutral-400 text-xl">{customer}, {year}</span>
-                        <h3 class="text-4xl">{title}</h3>
+            workItems.map(({id, data: {title, customer, year, cover, coverOnHover}}, index) => (
+                    <div class="flex flex-col justify-center">
+                        <a href=`work/${id}` class="flex flex-col gap-6">
+                            <span class="text-neutral-400 text-xl">{customer}, {year}</span>
+                            <h3 class="text-4xl">{title}</h3>
+                        </a>
                     </div>
-                    <a class="sticky top-0 flex items-center py-20 h-svh" href=`work/${id}`>
-                        <Image class="rounded-2xl h-full w-full object-cover" src={cover} alt={title}/>
-                    </a>
+                    <div class="md:sticky md:top-0 flex items-center py-20 md:h-svh" >
+                        <a class="relative overflow-hidden rounded-2xl" href=`work/${id}`>
+                            <Image src={cover} alt={title}/>
+                            <Image
+                                    class="absolute transition-all duration-500 opacity-0 left-0 top-0 bottom-0 right-0 hover:opacity-100 hover:scale-110 z-10"
+                                    src={coverOnHover}
+                                    alt={title}/>
+                        </a>
+                    </div>
             ))
         }
     </section>

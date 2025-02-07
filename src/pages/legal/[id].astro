@@ -1,0 +1,25 @@
+---
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+	const workItems = await getCollection("legalPages");
+
+	return workItems.map((post) => ({
+		params: { id: post.id },
+		props: { post },
+	}));
+}
+
+const { post: workItem } = Astro.props;
+
+const { Content } = await render(workItem);
+const { title } = workItem.data;
+
+import Layout from "../../layouts/layout.astro";
+---
+
+<Layout title={title} description="" className="container pt-64 pb-48">
+    <section class="prose prose-invert">
+        <Content/>
+    </section>
+</Layout>

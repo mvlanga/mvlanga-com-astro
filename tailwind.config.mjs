@@ -8,9 +8,6 @@ export default {
 			fontFamily: {
 				sans: ["Averta", ...defaultTheme.fontFamily.sans],
 			},
-			fontSize: {
-				base: "1.1rem",
-			},
 			container: {
 				center: true,
 				screens: {
@@ -44,5 +41,5 @@ export default {
 			},
 		},
 	},
-	plugins: [],
+	plugins: [require("@tailwindcss/typography")],
 };
