@@ -1,10 +1,8 @@
 ---
-import {getCollection} from "astro:content";
-
 import CarbonBadge from "@/components/CarbonBadge.astro";
 
 const year = new Date().getFullYear();
-const isProduction = import.meta.env.PROD
+const isProduction = import.meta.env.PROD;
 ---
 
 <footer class="container flex flex-wrap justify-between gap-x-4 gap-y-2 pb-6 text-sm">

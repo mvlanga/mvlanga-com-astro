@@ -102,13 +102,13 @@ export default function Header({ currentPath }: { currentPath: string }) {
 		<>
 			{isHeaderHidden && (
 				<div
-					className="fixed left-0 right-0 top-0 h-5 z-50"
+					className="fixed top-0 right-0 left-0 z-50 h-5"
 					onMouseEnter={() => setIsHeaderHidden(false)}
 				/>
 			)}
 
 			<motion.header
-				className="fixed left-10 top-10 z-10"
+				className="fixed top-4 left-4 z-10 sm:top-10 sm:left-10"
 				initial="visible"
 				animate={currentVariant}
 				variants={variants}
@@ -119,7 +119,7 @@ export default function Header({ currentPath }: { currentPath: string }) {
 			</motion.header>
 			<motion.div
 				initial="visible"
-				className="fixed right-10 top-10 z-40"
+				className="fixed top-4 right-4 z-40 sm:top-10 sm:right-10"
 				animate={currentVariant}
 				variants={variants}
 			>
@@ -154,7 +154,7 @@ export default function Header({ currentPath }: { currentPath: string }) {
 						animate="open"
 						exit="closed"
 						aria-label="Main Menu"
-						className="fixed left-5 right-5 top-5 z-30 flex max-h-[calc(100%-2.5rem)] flex-col gap-10 overflow-y-auto rounded-2xl bg-neutral-900 px-8 py-10 sm:left-auto sm:w-72"
+						className="fixed top-2 right-2 left-2 z-30 flex max-h-[calc(100%-1rem)] flex-col gap-10 overflow-y-auto rounded-2xl bg-neutral-900 px-8 py-10 sm:top-5 sm:right-5 sm:left-5 sm:left-auto sm:w-72"
 						id="main-menu"
 					>
 						<div className="flex flex-col gap-4">
@@ -198,7 +198,7 @@ export default function Header({ currentPath }: { currentPath: string }) {
 											<div
 												aria-hidden="true"
 												className={clsx(
-													"absolute h-0.5 w-10 -translate-x-14 scale-x-0 rounded-xl bg-neutral-500 opacity-0 transition-all group-hover:scale-x-100 group-hover:opacity-100",
+													"-translate-x-14 absolute h-0.5 w-10 scale-x-0 rounded-xl bg-neutral-500 opacity-0 transition-all group-hover:scale-x-100 group-hover:opacity-100",
 													url === currentPath && "opacity-100",
 													url === currentPath && "scale-x-100",
 												)}
@@ -260,7 +260,7 @@ export default function Header({ currentPath }: { currentPath: string }) {
 			{isMenuOpen && (
 				// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
 				<div
-					className="fixed bottom-0 left-0 right-0 top-0 z-20"
+					className="fixed top-0 right-0 bottom-0 left-0 z-20"
 					onClick={() => setIsMenuOpen(false)}
 				/>
 			)}
