@@ -2,18 +2,18 @@
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-	const workItems = await getCollection("legalPages");
+	const legalPages = await getCollection("legalPages");
 
-	return workItems.map((post) => ({
+	return legalPages.map((post) => ({
 		params: { id: post.id },
 		props: { post },
 	}));
 }
 
-const { post: workItem } = Astro.props;
+const { post: legalPage } = Astro.props;
 
-const { Content } = await render(workItem);
-const { title } = workItem.data;
+const { Content } = await render(legalPage);
+const { title } = legalPage.data;
 
 import Layout from "../../layouts/layout.astro";
 ---

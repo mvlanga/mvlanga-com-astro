@@ -2,24 +2,24 @@
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-	const workItems = await getCollection("workItems");
+	const projects = await getCollection("projects");
 
-	return workItems.map((post) => ({
+	return projects.map((post) => ({
 		params: { id: post.id },
 		props: { post },
 	}));
 }
 
-const { post: workItem } = Astro.props;
+const { post: projects } = Astro.props;
 
-const { Content } = await render(workItem);
-const { title, description, customer, year } = workItem.data;
+const { Content } = await render(projects);
+const { title, description, customer, year } = projects.data;
 
 import Layout from "@/layouts/layout.astro";
-import { sortWorkItems } from "@/utils/sortCollection";
+import { sortProjects } from "@/utils/sortCollection";
 
-const relatedWorkItems = sortWorkItems(
-	await getCollection("workItems", ({ id }) => id !== workItem.id),
+const relatedProjects = sortProjects(
+	await getCollection("projects", ({ id }) => id !== projects.id),
 );
 ---
 
@@ -42,8 +42,8 @@ const relatedWorkItems = sortWorkItems(
     </section>
 
     <section>
-        {relatedWorkItems.map(({id, data: {title}}) => (
-                <a href=`/work/${id}`>{title}</a>
+        {relatedProjects.map(({id, data: {title}}) => (
+                <a href=`/project/${id}`>{title}</a>
                 <br />
         ))}
     </section>

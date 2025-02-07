@@ -3,11 +3,11 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { PlayfulDivider } from "../components/PlayfulDivider";
 import Layout from "../layouts/layout.astro";
-import { sortExperiences, sortWorkItems } from "../utils/sortCollection";
+import { sortExperiences, sortProjects } from "../utils/sortCollection";
 
 const skills = (await getCollection("skills"))[0].data;
 const experiences = sortExperiences(await getCollection("experiences"));
-const workItems = sortWorkItems(await getCollection("workItems"));
+const projects = sortProjects(await getCollection("projects"));
 ---
 
 <Layout title="Frontend Developer" description=""
@@ -23,35 +23,8 @@ const workItems = sortWorkItems(await getCollection("workItems"));
         </p>
     </section>
 
-    <section class="relative grid grid-cols-1 md:grid-cols-2 gap-10" id="work">
-        {
-            workItems.map(({id, data: {title, customer, year, cover, coverOnHover}}, index) => (
-                    <div class="flex flex-col justify-center">
-                        <a href=`work/${id}` class="flex flex-col gap-6">
-                            <span class="text-neutral-400 text-xl">{customer}, {year}</span>
-                            <h3 class="text-4xl">{title}</h3>
-                        </a>
-                    </div>
-                    <div class="md:sticky md:top-0 flex items-center py-20 md:h-svh" >
-                        <a class="relative overflow-hidden rounded-2xl" href=`work/${id}`>
-                            <Image src={cover} alt={title}/>
-                            <Image
-                                    class="absolute transition-all duration-500 opacity-0 left-0 top-0 bottom-0 right-0 hover:opacity-100 hover:scale-110 z-10"
-                                    src={coverOnHover}
-                                    alt={title}/>
-                        </a>
-                    </div>
-            ))
-        }
-    </section>
-
-    <section id="skills">
-        <h2 class="mb-20 text-3xl">Skills</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-            {
-                skills.map((skill => <span class="p-6 bg-neutral-900 rounded-2xl">{skill}</span>))
-            }
-        </div>
+    <section id="about">
+        <h2 class="mb-20 text-3xl">About</h2>
     </section>
 
     <section id="experience">
@@ -90,4 +63,38 @@ const workItems = sortWorkItems(await getCollection("workItems"));
             }
         </div>
     </section>
+    
+    <section class="relative grid grid-cols-1 md:grid-cols-2 gap-10" id="work">
+        {
+            projects.map(({id, data: {title, customer, year, cover, coverOnHover}}, index) => (
+                    <div class="flex flex-col justify-center">
+                        <a href=`project/${id}` class="flex flex-col gap-6">
+                            <span class="text-neutral-400 text-xl">{customer}, {year}</span>
+                            <h3 class="text-4xl">{title}</h3>
+                        </a>
+                    </div>
+                    <div class="md:sticky md:top-0 flex items-center py-20 md:h-svh" >
+                        <a class="relative overflow-hidden rounded-2xl" href=`project/${id}`>
+                            <Image src={cover} alt={title}/>
+                            <Image
+                                    class="absolute transition-all duration-500 opacity-0 left-0 top-0 bottom-0 right-0 hover:opacity-100 hover:scale-110 z-10"
+                                    src={coverOnHover}
+                                    alt={title}/>
+                        </a>
+                    </div>
+            ))
+        }
+    </section>
+
+
+
+
+    <section id="skills">
+    <h2 class="mb-20 text-3xl">Skills</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+        {
+            skills.map((skill => <span class="p-6 bg-neutral-900 rounded-2xl">{skill}</span>))
+        }
+    </div>
+</section>
 </Layout>

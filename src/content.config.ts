@@ -20,9 +20,9 @@ const experiences = defineCollection({
 	}),
 });
 
-const workItems = defineCollection({
+const projects = defineCollection({
 	loader: glob({
-		base: "src/content/work",
+		base: "src/content/projects",
 		pattern: "**/*.mdx",
 	}),
 	schema: ({ image }) =>
@@ -46,4 +46,4 @@ const legalPages = defineCollection({
 	}),
 });
 
-export const collections = { skills, experiences, workItems, legalPages };
+export const collections = { skills, experiences, projects, legalPages };
