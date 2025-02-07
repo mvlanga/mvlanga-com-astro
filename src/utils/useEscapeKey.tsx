@@ -11,10 +11,10 @@ export function useEscapeKey(handleClose: () => void) {
 	);
 
 	useEffect(() => {
-		document.addEventListener("keyup", handleEscKey, false);
+		document.addEventListener("keyup", handleEscKey);
 
 		return () => {
-			document.removeEventListener("keyup", handleEscKey, false);
+			document.removeEventListener("keyup", handleEscKey);
 		};
 	}, [handleEscKey]);
 }

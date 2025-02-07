@@ -1,5 +1,5 @@
 import { mix, useReducedMotion } from "motion/react";
-import { type MouseEvent, useEffect, useRef } from "react";
+import { type MouseEvent, useCallback, useEffect, useRef } from "react";
 
 export const PlayfulDivider = () => {
 	const shouldReduceMotion = useReducedMotion() ?? true;
@@ -20,14 +20,17 @@ const ReactiveLine = () => {
 	let time = Math.PI / 2;
 	let reqId: number | null = null;
 
+	const updatePath = useCallback(() => {
+		setPath(progress);
+	}, [progress]);
+
 	// biome-ignore lint/correctness/useExhaustiveDependencies: hook is only used to run on mount
 	useEffect(() => {
-		console.log("ABC");
-		setPath(progress);
+		updatePath();
 
-		window.addEventListener("resize", () => {
-			setPath(progress);
-		});
+		window.addEventListener("resize", updatePath);
+
+		return () => window.removeEventListener("resize", updatePath);
 	}, []);
 
 	const setPath = (progress: number) => {

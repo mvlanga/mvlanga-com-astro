@@ -82,7 +82,7 @@ const workItems = sortWorkItems(await getCollection("workItems"));
                                     </div>
 
                                     {index !== experiences.length - 1 &&
-                                            <PlayfulDivider client:visible/>
+                                            <PlayfulDivider client:only="react"/>
                                     }
                                 </>
                     )

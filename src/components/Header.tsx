@@ -13,7 +13,7 @@ import { useComponentSize } from "react-use-size";
 
 type NavigationItems = { label: string; url: string }[];
 
-export default function Header({ currentPath }: { currentPath: string }) {
+export const Header = ({ currentPath }: { currentPath: string }) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const {
 		ref: menuButtonElement,
@@ -266,4 +266,4 @@ export default function Header({ currentPath }: { currentPath: string }) {
 			)}
 		</>
 	);
-}
+};

@@ -5,7 +5,7 @@ import HeadFavicon from "../components/HeadFavicon.astro";
 import "@/styles.css";
 
 import Footer from "@/components/Footer.astro";
-import Header from "@/components/Header";
+import { Header } from "@/components/Header";
 
 interface Props {
 	title: string;
@@ -27,6 +27,8 @@ const { title, description, className } = Astro.props;
 
     <HeadFavicon />
     <ClientRouter/>
+
+    <script is:inline src="https://cloud.umami.is/script.js" data-website-id="e72a415f-684f-4ff0-bd2c-062e0ef8c366" />
 </head>
 
 <body class="bg-black text-white">
