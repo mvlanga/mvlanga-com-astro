@@ -23,8 +23,10 @@ const relatedProjects = sortProjects(
 );
 ---
 
-<Layout title={title} description={description}
-        className="container flex min-h-[96vh] flex-col justify-center gap-40 py-48">
+<Layout className="container flex min-h-[96vh] flex-col justify-center gap-40 py-48">
+    <title slot="head">{title} — Moriz von Langa</title>
+    <meta slot="head" name="description" content="" />
+    
     <section>
         <h3>
             {customer}, {year}

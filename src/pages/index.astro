@@ -10,8 +10,10 @@ const experiences = sortExperiences(await getCollection("experiences"));
 const projects = sortProjects(await getCollection("projects"));
 ---
 
-<Layout title="Frontend Developer" description=""
-        className="container flex min-h-[96vh] flex-col justify-center gap-40 py-48">
+<Layout className="container flex min-h-[96vh] flex-col justify-center gap-40 py-48">
+    <title slot="head">Frontend Developer — Moriz von Langa</title>
+    <meta slot="head" name="description" content="" />
+
     <section>
         <h1 class="mb-10 text-6xl font-bold leading-snug">
             Hi, I’m Moriz.

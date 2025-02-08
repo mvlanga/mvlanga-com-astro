@@ -18,7 +18,10 @@ const { title } = legalPage.data;
 import Layout from "../../layouts/layout.astro";
 ---
 
-<Layout title={title} description="" className="container py-48">
+<Layout className="container py-48">
+    <title slot="head">{title} — Moriz von Langa</title>
+    <meta slot="head" name="description" content="" />
+    
     <section class="prose prose-invert">
         <Content/>
     </section>

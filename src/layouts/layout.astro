@@ -1,6 +1,5 @@
 ---
 import { ClientRouter } from "astro:transitions";
-import HeadFavicon from "../components/HeadFavicon.astro";
 
 import "@/styles.css";
 
@@ -8,12 +7,10 @@ import Footer from "@/components/Footer.astro";
 import { Header } from "@/components/Header";
 
 interface Props {
-	title: string;
-	description: string;
 	className: string;
 }
 
-const { title, description, className } = Astro.props;
+const { className } = Astro.props;
 ---
 <!doctype html>
 <html lang="en" transition:name="root" transition:animate="none" class="relative">
@@ -21,11 +18,39 @@ const { title, description, className } = Astro.props;
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width"/>
     <meta name="generator" content={Astro.generator}/>
-    
-    <title>{title} - Moriz von Langa</title>
-    <meta name="description" content={description}>
 
-    <HeadFavicon />
+    <script is:inline type="application/ld+json"> {
+        "@context": "https://schema.org/",
+        "@type": "WebPage",
+        "name": "Moriz von Langa",
+        "mainEntity": {
+            "@type": "Person",
+            "name": "Moriz von Langa",
+            "email": "mailto:copycat248@posteo.de",
+            "nationality": "German",
+            "knowsLanguage": "de-DE, en-US",
+            "jobTitle": "Frontend Developer",
+            "worksFor": "SENEC",
+            "workLocation": "Leipzig",
+            "image": "https://mvlanga.com/profile-picture-mvl_01.jpg",
+            "url": "https://mvlanga.com"
+        }
+    } </script>
+
+    <slot name="head" />
+
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    <meta name="theme-color" content="#000000">
+    
     <ClientRouter/>
 
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e72a415f-684f-4ff0-bd2c-062e0ef8c366" />
