@@ -28,9 +28,13 @@ const { className } = Astro.props;
             "name": "Moriz von Langa",
             "email": "mailto:copycat248@posteo.de",
             "nationality": "German",
-            "knowsLanguage": "de-DE, en-US",
+            "knowsLanguage": ["de-DE", "en-US"],
             "jobTitle": "Frontend Developer",
-            "worksFor": "SENEC",
+            "worksFor": {
+                "@type": "Organization",
+                "name": "SENEC",
+                "url": "https://senec.com/de"
+            },
             "workLocation": "Leipzig",
             "image": "https://mvlanga.com/profile-picture-mvl_01.jpg",
             "url": "https://mvlanga.com"
