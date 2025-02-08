@@ -3,9 +3,9 @@ import { useOnResize } from "@/utils/useOnResize.ts";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
-export const Projects = ({
-	projects,
-}: { projects: CollectionEntry<"projects">[] }) => {
+type ProjectsProp = { projects: CollectionEntry<"projects">[] };
+
+export const Projects = ({ projects }: ProjectsProp) => {
 	const targetRef = useRef<HTMLDivElement>(null);
 	const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -45,7 +45,7 @@ export const Projects = ({
 
 	return (
 		<section ref={targetRef}>
-			<div className="relative h-[300vh]">
+			<div className="relative" style={{ height: `${projects.length * 30}vw` }}>
 				<div className="sticky top-0 flex h-svh items-center overflow-hidden px-32">
 					<motion.div
 						ref={scrollContainerRef}
@@ -59,19 +59,19 @@ export const Projects = ({
 							) => (
 								<div
 									key={title}
-									className="flex max-w-[50vw] flex-[0_0_auto] flex-col gap-8"
+									className="flex w-1/2 flex-[0_0_auto] flex-col gap-8"
 								>
 									<a
-										className="relative overflow-hidden rounded-2xl"
+										className="relative h-full max-h-[60vh] w-full overflow-hidden rounded-2xl"
 										href={`project/${id}`}
 									>
 										<img
-											className="h-full max-h-[60vh] w-full object-cover"
+											className="h-full w-full object-cover"
 											src={cover.src}
 											alt={title}
 										/>
 										<img
-											className="absolute top-0 right-0 bottom-0 left-0 z-10 opacity-0 transition-all duration-500 hover:scale-110 hover:opacity-100"
+											className="absolute top-0 left-0 z-10 h-full w-full object-cover opacity-0 transition-all duration-500 hover:scale-110 hover:opacity-100"
 											src={coverOnHover.src}
 											alt={title}
 										/>

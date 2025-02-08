@@ -1,29 +1,19 @@
 ---
-import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { PlayfulDivider } from "../components/PlayfulDivider";
-import { Projects } from "../components/Projects";
 import Layout from "../layouts/layout.astro";
-import { sortExperience, sortProjects } from "../utils/sortCollection";
+import { sortExperience } from "../utils/sortCollection";
 
 const skills = (await getCollection("resumeSkills"))[0].data;
-const experience = sortExperience(await getCollection("experience"));
-const projects = sortProjects(await getCollection("projects"));
+const experience = sortExperience(await getCollection("resumeExperience"));
 ---
 
-<Layout className="container flex min-h-[96vh] flex-col justify-center gap-40 py-48">
-    <title slot="head">Frontend Developer — Moriz von Langa</title>
-    <meta slot="head" name="description" content="" />
-
+<Layout title="Frontend Developer" description=""
+        className="flex min-h-[96vh] flex-col justify-center gap-40 py-48">
     <section class="px-32">
         <h1 class="mb-10 text-6xl font-bold leading-snug">
-            Hi, I’m Moriz.
+            Resume
         </h1>
-        <p class="max-w-prose text-3xl font-light">
-            Frontend Developer based in Leipzig. On daily routine, I try to ask a
-            lot of questions to really build solutions that truly solve the users
-            problems.
-        </p>
     </section>
 
     <section class="px-32" id="about">
@@ -67,19 +57,12 @@ const projects = sortProjects(await getCollection("projects"));
         </div>
     </section>
 
-    <section id="projects">
-        <div class="px-32">
-            <h2 class="mb-20 text-3xl">Projects</h2>
-        </div>
-        <Projects projects={projects} client:load />
-    </section>
-
     <section class="px-32" id="skills">
-    <h2 class="mb-20 text-3xl">Skills</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-        {
-            skills.map((skill => <span class="p-6 bg-neutral-900 rounded-2xl">{skill}</span>))
-        }
-    </div>
-</section>
+        <h2 class="mb-20 text-3xl">Skills</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+            {
+                skills.map((skill => <span class="p-6 bg-neutral-900 rounded-2xl">{skill}</span>))
+            }
+        </div>
+    </section>
 </Layout>
