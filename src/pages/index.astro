@@ -13,7 +13,7 @@ const projects = sortProjects(await getCollection("projects"));
 
 <Layout className="flex min-h-[96vh] flex-col justify-center gap-64 py-48">
     <title slot="head">Frontend Developer — Moriz von Langa</title>
-    <meta slot="head" name="description" content="" />
+    <meta slot="head" name="description" content=""/>
 
     <section class="container">
         <h1 class="mb-10 text-6xl font-bold leading-snug">
@@ -26,46 +26,52 @@ const projects = sortProjects(await getCollection("projects"));
         </p>
     </section>
 
-    <section class="container" id="about">
+    <section class="container scroll-mt-16" id="about">
         <h2 class="mb-16 text-5xl">About</h2>
-        <PlayfulDivider client:only="react" />
+        <PlayfulDivider client:only="react"/>
         <div class="flex flex-col lg:grid gap-16 lg:grid-cols-3 mt-16">
 
             <div class="max-w-prose lg:col-start-1 lg:col-end-3 text-3xl leading-relaxed row-span-full">
-                I love exploring ideas with curiosity and an open mind, all while focusing on software architecture. I make sure to always consider the user's perspective to develop solutions that truly address their needs.
+                I love exploring ideas with curiosity and an open mind, all while focusing on software architecture. I
+                make sure to always consider the user's perspective to develop solutions that truly address their needs.
             </div>
 
             <p class="lg:col-start-3 col-end-3 max-w-prose text-neutral-400">
-                Self-taught frontend developer with strong expertise in TypeScript, JavaScript, HTML5, and CSS. I am passionate about working on meaningful projects that have a positive impact on people's lives.
+                Self-taught frontend developer with strong expertise in TypeScript, JavaScript, HTML5, and CSS. I am
+                passionate about working on meaningful projects that have a positive impact on people's lives.
                 <br/><br/>
-                With hands-on experience building user-friendly, high-performance web applications, I prioritize writing clean, maintainable code that enables continuous improvement and scalability. I have a particular interest in UX/UI design, always striving to optimize the user experience and create intuitive, user-centered designs.
+                With hands-on experience building user-friendly, high-performance web applications, I prioritize writing
+                clean, maintainable code that enables continuous improvement and scalability. I have a particular
+                interest in UX/UI design, always striving to optimize the user experience and create intuitive,
+                user-centered designs.
                 <br/><br/>
-                I have previously worked on projects with high user engagement and interactivity, blending technical knowledge with an eye for design and clear user navigation.
+                I have previously worked on projects with high user engagement and interactivity, blending technical
+                knowledge with an eye for design and clear user navigation.
                 <br/><br/>
                 I am fluent in both German and English and have experience working in international environments.
             </p>
 
             <div class="flex lg:col-start-1 lg:col-end-3 row-span-full items-end">
-               <div class="flex items-start gap-y-6 gap-x-12 flex-wrap-reverse leading-relaxed">
-                   <p>
-                       Frontend Development
-                       <br/>
-                       UX / UI Design
-                   </p>
-                   <p>
-                       Say hello
-                       <br/>
-                       <a>morizvlanga@gmail.com</a>
-                   </p>
-               </div>
+                <div class="flex items-start gap-y-6 gap-x-12 flex-wrap-reverse leading-relaxed">
+                    <p>
+                        Frontend Development
+                        <br/>
+                        UX / UI Design
+                    </p>
+                    <p>
+                        Say hello
+                        <br/>
+                        <a>morizvlanga@gmail.com</a>
+                    </p>
+                </div>
             </div>
-            
+
         </div>
     </section>
 
-    <section class="container" id="experience">
+    <section class="container scroll-mt-16" id="experience">
         <h2 class="mb-16 text-5xl">Experience</h2>
-        <PlayfulDivider client:only="react" />
+        <PlayfulDivider client:only="react"/>
         <div class="flex flex-col gap-14 relative mt-16">
             {
                 experience.map(({data: {company, from, to, role, tasks}}, index) => (
@@ -97,21 +103,12 @@ const projects = sortProjects(await getCollection("projects"));
         </div>
     </section>
 
-    <section id="projects">
+    <section class="scroll-mt-16" id="projects">
         <div class="container ">
             <h2 class="mb-16 text-5xl">Projects</h2>
-            <PlayfulDivider client:only="react" />
+            <PlayfulDivider client:only="react"/>
         </div>
-        <Projects projects={projects} client:load />
+        <Projects projects={projects} client:load/>
     </section>
 
-    <section class="container" id="skills">
-        <h2 class="mb-16 text-5xl">Skills</h2>
-        <PlayfulDivider client:only="react" />
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mt-16">
-        {
-            skills.map((skill => <span class="p-6 bg-neutral-900 rounded-2xl">{skill}</span>))
-        }
-    </div>
-</section>
 </Layout>

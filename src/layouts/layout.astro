@@ -13,7 +13,7 @@ interface Props {
 const { className } = Astro.props;
 ---
 <!doctype html>
-<html lang="en" transition:name="root" transition:animate="none" class="relative">
+<html lang="en" transition:name="root" transition:animate="none" class="relative scroll-smooth">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width"/>
@@ -28,7 +28,10 @@ const { className } = Astro.props;
             "name": "Moriz von Langa",
             "email": "mailto:morizvlanga@gmail.com",
             "nationality": "German",
-            "knowsLanguage": ["de-DE", "en-US"],
+            "knowsLanguage": [
+                "de-DE",
+                "en-US"
+            ],
             "jobTitle": "Frontend Developer",
             "worksFor": {
                 "@type": "Organization",
@@ -41,7 +44,7 @@ const { className } = Astro.props;
         }
     } </script>
 
-    <slot name="head" />
+    <slot name="head"/>
 
     <link rel="apple-touch-icon" sizes="180x180"
           href="/apple-touch-icon.png">
@@ -54,10 +57,10 @@ const { className } = Astro.props;
     <meta name="msapplication-TileColor" content="#000000">
     <meta name="msapplication-config" content="/browserconfig.xml">
     <meta name="theme-color" content="#000000">
-    
+
     <ClientRouter/>
 
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="e72a415f-684f-4ff0-bd2c-062e0ef8c366" />
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e72a415f-684f-4ff0-bd2c-062e0ef8c366"/>
 </head>
 
 <body class="bg-black text-white">

@@ -13,6 +13,44 @@ import { useComponentSize } from "react-use-size";
 
 type NavigationItems = { label: string; url: string }[];
 
+const navItems: NavigationItems = [
+	{
+		label: "Home",
+		url: "/",
+	},
+	{
+		label: "About",
+		url: "/#about",
+	},
+	{
+		label: "Experience",
+		url: "/#experience",
+	},
+	{
+		label: "Projects",
+		url: "/#projects",
+	},
+	{
+		label: "Resume",
+		url: "/resume",
+	},
+	{
+		label: "Contact",
+		url: "mailto:morizvlanga@gmail.com",
+	},
+];
+
+const socialItems: NavigationItems = [
+	{
+		label: "LinkedIn",
+		url: "https://www.linkedin.com/in/mvlanga",
+	},
+	{
+		label: "GitHub",
+		url: "https://github.com/mvlanga",
+	},
+];
+
 export const Header = ({ currentPath }: { currentPath: string }) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const {
@@ -47,40 +85,6 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 	function toggleMenu() {
 		setIsMenuOpen((s) => !s);
 	}
-
-	const navItems: NavigationItems = [
-		{
-			label: "Home",
-			url: "#",
-		},
-		{
-			label: "Work",
-			url: "#work",
-		},
-		{
-			label: "Skills",
-			url: "#skills",
-		},
-		{
-			label: "Experience",
-			url: "#experience",
-		},
-		{
-			label: "Contact",
-			url: "mailto:morizvlanga@gmail.com",
-		},
-	];
-
-	const socialItems: NavigationItems = [
-		{
-			label: "LinkedIn",
-			url: "https://www.linkedin.com/in/mvlanga",
-		},
-		{
-			label: "GitHub",
-			url: "https://github.com/mvlanga",
-		},
-	];
 
 	const currentVariant = isHeaderHidden ? "hidden" : "visible";
 	const variants: Variants = {
