@@ -9,7 +9,7 @@ Jahnallee 65
 04177 Leipzig
 \
 \
-Email: mvlanga+web[at]posteo.de  
+Email: morizvlanga[at]gmail.com  
 Phone: 015751212916
 \
 \

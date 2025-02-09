@@ -112,7 +112,7 @@ The data processing controller on this website is:
 Moriz von Langa, Jahnallee 65, 04177 Leipzig
 \
 \
-Phone: 015751212916 E-Mail: mvlanga+web[at]posteo.de
+Phone: 015751212916 E-Mail: morizvlanga[at]gmail.com
 \
 \
 The controller is the natural person or legal entity that single-handedly or jointly with others makes decisions as to
