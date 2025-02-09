@@ -1,32 +1,45 @@
 ---
 import CarbonBadge from "@/components/CarbonBadge.astro";
+import { PlayfulDivider } from "@/components/PlayfulDivider";
 
 const year = new Date().getFullYear();
 const isProduction = import.meta.env.PROD;
 ---
 
-<footer class="container flex flex-wrap justify-between gap-x-4 gap-y-2 pb-6 text-sm">
-    <div class="flex flex-wrap gap-x-4 gap-y-2">
-        <a
-                href="/legal/imprint"
-                class="text-neutral-400 transition-colors hover:text-purple"
-        >
-            Imprint
-        </a>
+<footer class="container flex flex-col gap-y-24 pb-12">
+    <PlayfulDivider client:only="react" />
 
-        <a
-                href="/legal/privacy-policy"
-                class="text-neutral-400 transition-colors hover:text-purple"
-        >
-            Privacy Policy
-        </a>
-
-        {isProduction && <CarbonBadge />}
+    <div class="flex flex-col md:flex-row justify-between gap-x-12 gap-y-6 md:items-end text-neutral-200">
+        <h5 class="text-6xl">Let’s collaborate</h5>
+        <a class="text-3xl underline" href="mailto:mvlanga+web@posteo.de">mvlanga+web@posteo.de</a>
     </div>
-    <a
-            href="/"
-            class="text-neutral-400 transition-colors hover:text-purple"
-    >
-        &copy; 2023 - {year} Moriz von Langa
-    </a>
+
+    <div class="flex flex-wrap items-end justify-between  gap-x-4 gap-y-6 text-neutral-500">
+        {isProduction ? <CarbonBadge /> : "<CarbonBadge />"}
+
+        <div class="flex flex-wrap gap-x-4 gap-y-2">
+            <a href="https://github.com/mvlanga/mvlanga-com-astro" target="blank"
+               class="transition-colors hover:text-purple"
+            >
+                Source code
+            </a>
+            <a
+                    href="/legal/imprint"
+                    class="transition-colors hover:text-purple"
+            >
+                Imprint
+            </a>
+
+            <a
+                    href="/legal/privacy-policy"
+                    class="transition-colors hover:text-purple"
+            >
+                Privacy Policy
+            </a>
+            <span>
+                &copy; Moriz von Langa 2023 - {year}
+            </span>
+        </div>
+    </div>
+
 </footer>

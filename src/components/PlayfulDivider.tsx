@@ -95,7 +95,7 @@ const ReactiveLine = () => {
 	};
 
 	return (
-		<div ref={containerEl} className="relative h-px w-full">
+		<div ref={containerEl} className="group relative h-px w-full">
 			<div
 				onMouseEnter={manageMouseEnter}
 				onMouseMove={manageMouseMove}
@@ -103,10 +103,10 @@ const ReactiveLine = () => {
 				className="-top-5 hover:-top-20 relative z-10 h-10 w-full hover:h-40"
 			/>
 
-			<svg className="absolute top-[-250px] h-[500px] w-full">
+			<svg className="pointer-events-none absolute top-[-250px] h-[500px] w-full">
 				<path
 					ref={pathEl}
-					className="fill-none stroke-[1px] stroke-neutral-800"
+					className="fill-none stroke-[1px] stroke-neutral-800 transition-colors duration-300 group-hover:stroke-neutral-700"
 				/>
 			</svg>
 		</div>

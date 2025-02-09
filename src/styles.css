@@ -11,8 +11,6 @@
 	--color-purple-500: #8860ff;
 	--color-purple-600: #4b29af;
 	--color-purple: #8860ff;
-
-	--animate-spin: spin 15s linear infinite;
 }
 
 @layer base {
@@ -79,5 +77,3 @@
 		padding-inline: 12rem;
 	}
 }
-
-/* @custom-variant dark (&:where(.dark, .dark *)); */
