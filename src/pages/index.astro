@@ -11,11 +11,11 @@ const experience = sortExperience(await getCollection("experience"));
 const projects = sortProjects(await getCollection("projects"));
 ---
 
-<Layout className="container flex min-h-[96vh] flex-col justify-center gap-40 py-48">
+<Layout className="flex min-h-[96vh] flex-col justify-center gap-40 py-48">
     <title slot="head">Frontend Developer — Moriz von Langa</title>
     <meta slot="head" name="description" content="" />
 
-    <section class="px-32">
+    <section class="container">
         <h1 class="mb-10 text-6xl font-bold leading-snug">
             Hi, I’m Moriz.
         </h1>
@@ -26,11 +26,11 @@ const projects = sortProjects(await getCollection("projects"));
         </p>
     </section>
 
-    <section class="px-32" id="about">
+    <section class="container" id="about">
         <h2 class="mb-20 text-3xl">About</h2>
     </section>
 
-    <section class="px-32" id="experience">
+    <section class="container" id="experience">
         <h2 class="mb-20 text-3xl">Experience</h2>
         <div class="flex flex-col gap-14 relative">
             {
@@ -68,13 +68,13 @@ const projects = sortProjects(await getCollection("projects"));
     </section>
 
     <section id="projects">
-        <div class="px-32">
+        <div class="container">
             <h2 class="mb-20 text-3xl">Projects</h2>
         </div>
         <Projects projects={projects} client:load />
     </section>
 
-    <section class="px-32" id="skills">
+    <section class="container" id="skills">
     <h2 class="mb-20 text-3xl">Skills</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
         {

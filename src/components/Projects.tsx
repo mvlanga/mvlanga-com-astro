@@ -46,7 +46,7 @@ export const Projects = ({ projects }: ProjectsProp) => {
 	return (
 		<section ref={targetRef}>
 			<div className="relative" style={{ height: `${projects.length * 30}vw` }}>
-				<div className="sticky top-0 flex h-svh items-center overflow-hidden px-32">
+				<div className="container sticky top-0 flex h-svh items-center overflow-hidden">
 					<motion.div
 						ref={scrollContainerRef}
 						className="flex gap-32"
@@ -80,7 +80,7 @@ export const Projects = ({ projects }: ProjectsProp) => {
 										<span className="text-neutral-400 text-xl">
 											{customer}, {year}
 										</span>
-										<h3 className="text-4xl">{title}</h3>
+										<h3 className="max-w-prose text-4xl">{title}</h3>
 									</a>
 								</div>
 							),
