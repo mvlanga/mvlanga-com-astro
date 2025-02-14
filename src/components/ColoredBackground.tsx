@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { twMerge } from "tailwind-merge";
 
 export const ColoredBackground = ({ className }: { className?: string }) => {
-	const ref = useRef<HTMLDivElement | null>(null);
+	const ref = useRef<HTMLDivElement>(null);
 
 	const { scrollYProgress } = useScroll({
 		target: ref,
