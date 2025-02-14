@@ -1,10 +1,16 @@
 {
-	"company": "SCHACHZUG",
-	"from": 2017,
-	"to": "2022",
-	"role": "Technical Director",
-	"tasks": [
-		"As a member of the Frontend Foundations team working on the Online Bank, I develop customer-facing features and integrate the design system to ensure a seamless and accessible user experience. As a member of the Frontend Foundations team working on the Online Bank, I develop customer-facing features and integrate the design system to ensure a seamless and accessible user experience.",
-		"Starling Bank is an award-winning, digital challenger bank disrupting the financial services industry with its transparent and customer-focused approach to banking."
-	]
+  "company": "SCHACHZUG",
+  "from": 2017,
+  "to": "2022",
+  "role": "Technical Director",
+  "tasks": [
+    "Maintenance of existing IT infrastructure (network, storage, firewall, user directory)",
+    "Setting up a completely new IT infrastructure (network, storage)",
+    "Teamlead IT & Development",
+    "ISMS representative & TISAX certification",
+    "Coordination of external technical service providers (livestreaming, 3D designers)",
+    "Technical customer consulting & presentations",
+    "On-site support and installation of trade fair exhibits",
+    "Full Stack Development using Angular, Node, PHP, AWS/Firebase"
+  ]
 }

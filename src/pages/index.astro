@@ -1,12 +1,11 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import { ColoredBackground } from "../components/ColoredBackground";
 import { PlayfulDivider } from "../components/PlayfulDivider";
-import { Projects } from "../components/Projects";
 import Layout from "../layouts/layout.astro";
 import { sortExperience, sortProjects } from "../utils/sortCollection";
 
-const skills = (await getCollection("resumeSkills"))[0].data;
 const experience = sortExperience(await getCollection("experience"));
 const projects = sortProjects(await getCollection("projects"));
 ---
@@ -26,12 +25,67 @@ const projects = sortProjects(await getCollection("projects"));
         </p>
     </section>
 
-    <section class="container scroll-mt-16" id="about">
+    <section class="relative grid gap-16 container scroll-mt-16" id="about">
+        <ColoredBackground client:only="react" className="-bottom-32 -top-32"/>
+        <h2 class="text-5xl">About</h2>
+        <PlayfulDivider client:only="react"/>
+        <div class="grid md:justify-end gap-16">
+            <p class="text-xl md:col-span-1">
+                I love exploring ideas with curiosity and an open mind, all while focusing on software architecture. I
+                make sure to always consider the user's perspective to develop solutions that truly address their needs.
+            </p>
+            <img src="https://mvlanga.com/assets/img/profile-picture/profile-picture-mvl_01.jpg"
+                 class="md:col-start-2 md:col-end-6 overflow-hidden max-w-none max-h-none" alt="Portrait photo of Moriz von Langa"/>
+        </div>
+        <h2 class="text-4xl">
+            I can help you with ...
+        </h2>
+        <div class="grid md:grid-cols-3 gap-16">
+            <div class="flex flex-col gap-6">
+                <p class="text-neutral-500">01</p>
+                <hr class="border-neutral-800"/>
+                <p class="text-2xl">Design</p>
+                <p class="text-neutral-400">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti facilis fugit impedit mollitia
+                    pariatur. Ab aspernatur autem molestias quo. Assumenda consectetur harum in nobis repellendus?
+                </p>
+            </div>
+            <div class="flex flex-col gap-6">
+                <p class="text-neutral-500">02</p>
+                <hr class="border-neutral-800"/>
+                <p class="text-2xl">Design</p>
+                <p class="text-neutral-400">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti facilis fugit impedit mollitia
+                    pariatur. Ab aspernatur autem molestias q
+                </p>
+            </div>
+            <div class="flex flex-col gap-6">
+                <p class="text-neutral-500">03</p>
+                <hr class="border-neutral-800"/>
+                <p class="text-2xl">Design</p>
+                <p class="text-neutral-400">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias excepturi explicabo reprehenderit
+                    sit vel. Cupiditate eaque eius error, hic illum iusto labore laborum nemo nulla, officiis pariatur
+                    sed ullam voluptatum?
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!--<section class="container scroll-mt-16" id="about">
         <h2 class="mb-16 text-5xl">About</h2>
         <PlayfulDivider client:only="react"/>
-        <div class="flex flex-col lg:grid gap-16 lg:grid-cols-3 mt-16">
+        <div class="grid justify-end mt-16 gap-16">
+            <p class="text-xl col-span-1">
+                I love exploring ideas with curiosity and an open mind, all while focusing on software architecture. I
+                make sure to always consider the user's perspective to develop solutions that truly address their needs.
+            </p>
+            <img src="https://mvlanga.com/assets/img/profile-picture/profile-picture-mvl_02.jpg"
+                 class="rounded-2xl col-start-2 col-end-6 overflow-hidden max-w-none max-h-none"/>
+        </div>
+        <div class="relative flex flex-col lg:grid gap-16 mt-16">
 
-            <div class="max-w-prose lg:col-start-1 lg:col-end-3 text-3xl leading-relaxed row-span-full">
+            <div class="sticky top-0 max-w-prose lg:col-start-1 lg:col-end-3 row-start-1 row-end-2 text-3xl leading-relaxed">
                 I love exploring ideas with curiosity and an open mind, all while focusing on software architecture. I
                 make sure to always consider the user's perspective to develop solutions that truly address their needs.
             </div>
@@ -51,7 +105,7 @@ const projects = sortProjects(await getCollection("projects"));
                 I am fluent in both German and English and have experience working in international environments.
             </p>
 
-            <div class="flex lg:col-start-1 lg:col-end-3 row-span-full items-end">
+            <div class="flex lg:col-start-1 lg:col-end-3 row-start-1 row-end-2 items-end">
                 <div class="flex items-start gap-y-6 gap-x-12 flex-wrap-reverse leading-relaxed">
                     <p>
                         Frontend Development
@@ -67,7 +121,7 @@ const projects = sortProjects(await getCollection("projects"));
             </div>
 
         </div>
-    </section>
+    </section>-->
 
     <section class="container scroll-mt-16" id="experience">
         <h2 class="mb-16 text-5xl">Experience</h2>
@@ -103,12 +157,30 @@ const projects = sortProjects(await getCollection("projects"));
         </div>
     </section>
 
-    <section class="scroll-mt-16" id="projects">
-        <div class="container ">
-            <h2 class="mb-16 text-5xl">Projects</h2>
-            <PlayfulDivider client:only="react"/>
+    <section class="container scroll-mt-16" id="projects">
+        <h2 class="mb-16 text-5xl">Projects</h2>
+        <PlayfulDivider client:only="react"/>
+        <div class="relative grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
+            {
+                projects.map(({id, data: {title, customer, year, cover, coverOnHover}}, index) => (
+                        <div class="flex flex-col justify-center">
+                            <a href=`project/${id}` class="flex flex-col gap-6">
+                                <span class="text-neutral-400 text-xl">{customer}, {year}</span>
+                                <h3 class="text-4xl">{title}</h3>
+                            </a>
+                        </div>
+                        <div class="md:sticky md:top-0 flex items-center py-20 md:h-svh">
+                            <a class="relative overflow-hidden rounded-2xl" href=`project/${id}`>
+                                <Image src={cover} alt={title}/>
+                                <Image
+                                        class="absolute transition-all duration-500 opacity-0 left-0 top-0 bottom-0 right-0 hover:opacity-100 hover:scale-110 z-10"
+                                        src={coverOnHover}
+                                        alt={title}/>
+                            </a>
+                        </div>
+                ))
+            }
         </div>
-        <Projects projects={projects} client:load/>
     </section>
 
 </Layout>
