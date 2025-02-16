@@ -8,19 +8,18 @@ const skills = (await getCollection("resumeSkills"))[0].data;
 const experience = sortExperience(await getCollection("resumeExperience"));
 ---
 
-<Layout title="Frontend Developer" description=""
-        className="flex min-h-[96vh] flex-col justify-center gap-40 py-48">
-    <section class="container">
+<Layout className="container">
+    <section>
         <h1 class="mb-10 text-6xl font-bold leading-snug">
             Resume
         </h1>
     </section>
 
-    <section class="container" id="about">
+    <section id="about">
         <h2 class="mb-20 text-3xl">About</h2>
     </section>
 
-    <section class="container" id="experience">
+    <section id="experience">
         <h2 class="mb-20 text-3xl">Experience</h2>
         <div class="flex flex-col gap-14 relative">
             {
@@ -57,7 +56,7 @@ const experience = sortExperience(await getCollection("resumeExperience"));
         </div>
     </section>
 
-    <section class="container" id="skills">
+    <section id="skills">
         <h2 class="mb-20 text-3xl">Skills</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
             {

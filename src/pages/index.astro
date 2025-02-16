@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import { Button } from "../components/Button";
 import { ColoredBackground } from "../components/ColoredBackground";
 import { PlayfulDivider } from "../components/PlayfulDivider";
 import { PortraitVideo } from "../components/PortraitVideo";
@@ -10,7 +11,7 @@ const experience = sortExperience(await getCollection("experience"));
 const projects = sortProjects(await getCollection("projects"));
 ---
 
-<Layout className="flex min-h-[96vh] flex-col justify-center gap-64 py-48">
+<Layout>
     <title slot="head">Frontend Developer — Moriz von Langa</title>
     <meta slot="head" name="description" content=""/>
 
@@ -37,13 +38,13 @@ const projects = sortProjects(await getCollection("projects"));
             <PortraitVideo client:idle />
         </div>
         <h2 class="text-4xl">
-            I can help you with ...
+            I can help you with...
         </h2>
         <div class="grid md:grid-cols-3 gap-16">
             <div class="flex flex-col gap-6">
                 <p class="text-neutral-500">01</p>
                 <hr class="border-neutral-800"/>
-                <p class="text-2xl">Define requirements</p>
+                <p class="text-2xl">Design</p>
                 <p class="text-neutral-400">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti facilis fugit impedit mollitia
                     pariatur. Ab aspernatur autem molestias quo. Assumenda consectetur harum in nobis repellendus?
@@ -52,7 +53,7 @@ const projects = sortProjects(await getCollection("projects"));
             <div class="flex flex-col gap-6">
                 <p class="text-neutral-500">02</p>
                 <hr class="border-neutral-800"/>
-                <p class="text-2xl">Design</p>
+                <p class="text-2xl">Development</p>
                 <p class="text-neutral-400">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti facilis fugit impedit mollitia
                     pariatur. Ab aspernatur autem molestias q
@@ -61,7 +62,7 @@ const projects = sortProjects(await getCollection("projects"));
             <div class="flex flex-col gap-6">
                 <p class="text-neutral-500">03</p>
                 <hr class="border-neutral-800"/>
-                <p class="text-2xl">Development</p>
+                <p class="text-2xl">Build solutions that truly solve the users problems</p>
                 <p class="text-neutral-400">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias excepturi explicabo reprehenderit
                     sit vel. Cupiditate eaque eius error, hic illum iusto labore laborum nemo nulla, officiis pariatur
@@ -71,37 +72,40 @@ const projects = sortProjects(await getCollection("projects"));
         </div>
     </section>
 
-    <section class="container scroll-mt-16" id="experience">
-        <h2 class="mb-16 text-5xl">Experience</h2>
+    <section class="grid gap-16 container scroll-mt-16" id="experience">
+        <h2 class="text-5xl">Experience</h2>
+
         <PlayfulDivider client:only="react"/>
-        <div class="flex flex-col gap-14 relative mt-16">
+        <div class="flex flex-col gap-8 relative">
             {
                 experience.map(({data: {company, from, to, role, tasks}}, index) => (
-                                <>
-                                    <div class="grid md:grid-cols-6 gap-5">
-                                        <div class="flex flex-col gap-2 md:col-start-1 md:col-end-3">
-                                            <h3 class="text-3xl">{company}</h3>
-                                            <p class="text-neutral-400">
-                                                {from}
-                                                {to && " - "}
-                                                {to}
-                                            </p>
-                                        </div>
-                                        <div class="flex flex-col gap-5 md:col-start-3 md:col-end-7">
-                                            <h3 class="font-bold">{role}</h3>
-                                            <ul class="flex flex-col gap-2 text-neutral-400">
-                                                {tasks.map((task) => (
-                                                        <li class="max-w-prose">
-                                                            {task}
-                                                        </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </>
-                    )
-                )
+                    <div class="grid md:grid-cols-6 gap-5 bg-neutral-900 p-12 rounded-xl">
+                        <div class="flex flex-col gap-2 md:col-start-1 md:col-end-3">
+                            <h3 class="text-3xl">{company}</h3>
+                            <p class="text-neutral-400">
+                                {from}
+                                {to && " - "}
+                                {to}
+                            </p>
+                        </div>
+                        <div class="flex flex-col gap-5 md:col-start-3 md:col-end-7">
+                            <h3 class="font-bold">{role}</h3>
+                            <ul class="flex flex-col gap-2 text-neutral-400">
+                                {tasks.map((task) => (
+                                        <li class="max-w-prose">
+                                            {task}
+                                        </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                ))
             }
+            <div class="w-full text-end">
+                <a href="/resume">
+                    <Button client:idle text="See full resume" level="primary" />
+                </a>
+            </div>
         </div>
     </section>
 
