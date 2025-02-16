@@ -3,9 +3,9 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { ColoredBackground } from "../components/ColoredBackground";
 import { PlayfulDivider } from "../components/PlayfulDivider";
+import { PortraitVideo } from "../components/PortraitVideo";
 import Layout from "../layouts/layout.astro";
 import { sortExperience, sortProjects } from "../utils/sortCollection";
-
 const experience = sortExperience(await getCollection("experience"));
 const projects = sortProjects(await getCollection("projects"));
 ---
@@ -26,16 +26,15 @@ const projects = sortProjects(await getCollection("projects"));
     </section>
 
     <section class="relative grid gap-16 container scroll-mt-16" id="about">
-        <ColoredBackground client:only="react" className="-bottom-32 -top-32"/>
+        <ColoredBackground client:only="react" className="-z-20 -bottom-32 -top-32"/>
         <h2 class="text-5xl">About</h2>
         <PlayfulDivider client:only="react"/>
         <div class="grid md:justify-end gap-16">
-            <p class="text-xl md:col-span-1">
+            <p class="text-xl md:col-span-1 max-w-prose">
                 I love exploring ideas with curiosity and an open mind, all while focusing on software architecture. I
                 make sure to always consider the user's perspective to develop solutions that truly address their needs.
             </p>
-            <img src="https://mvlanga.com/assets/img/profile-picture/profile-picture-mvl_01.jpg"
-                 class="md:col-start-2 md:col-end-6 overflow-hidden max-w-full max-h-none" alt="Portrait photo of Moriz von Langa"/>
+            <PortraitVideo client:idle />
         </div>
         <h2 class="text-4xl">
             I can help you with ...
@@ -44,7 +43,7 @@ const projects = sortProjects(await getCollection("projects"));
             <div class="flex flex-col gap-6">
                 <p class="text-neutral-500">01</p>
                 <hr class="border-neutral-800"/>
-                <p class="text-2xl">Design</p>
+                <p class="text-2xl">Define requirements</p>
                 <p class="text-neutral-400">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti facilis fugit impedit mollitia
                     pariatur. Ab aspernatur autem molestias quo. Assumenda consectetur harum in nobis repellendus?
@@ -62,7 +61,7 @@ const projects = sortProjects(await getCollection("projects"));
             <div class="flex flex-col gap-6">
                 <p class="text-neutral-500">03</p>
                 <hr class="border-neutral-800"/>
-                <p class="text-2xl">Design</p>
+                <p class="text-2xl">Development</p>
                 <p class="text-neutral-400">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias excepturi explicabo reprehenderit
                     sit vel. Cupiditate eaque eius error, hic illum iusto labore laborum nemo nulla, officiis pariatur
@@ -71,57 +70,6 @@ const projects = sortProjects(await getCollection("projects"));
             </div>
         </div>
     </section>
-
-    <!--<section class="container scroll-mt-16" id="about">
-        <h2 class="mb-16 text-5xl">About</h2>
-        <PlayfulDivider client:only="react"/>
-        <div class="grid justify-end mt-16 gap-16">
-            <p class="text-xl col-span-1">
-                I love exploring ideas with curiosity and an open mind, all while focusing on software architecture. I
-                make sure to always consider the user's perspective to develop solutions that truly address their needs.
-            </p>
-            <img src="https://mvlanga.com/assets/img/profile-picture/profile-picture-mvl_02.jpg"
-                 class="rounded-2xl col-start-2 col-end-6 overflow-hidden max-w-none max-h-none"/>
-        </div>
-        <div class="relative flex flex-col lg:grid gap-16 mt-16">
-
-            <div class="sticky top-0 max-w-prose lg:col-start-1 lg:col-end-3 row-start-1 row-end-2 text-3xl leading-relaxed">
-                I love exploring ideas with curiosity and an open mind, all while focusing on software architecture. I
-                make sure to always consider the user's perspective to develop solutions that truly address their needs.
-            </div>
-
-            <p class="lg:col-start-3 col-end-3 max-w-prose text-neutral-400">
-                Self-taught frontend developer with strong expertise in TypeScript, JavaScript, HTML5, and CSS. I am
-                passionate about working on meaningful projects that have a positive impact on people's lives.
-                <br/><br/>
-                With hands-on experience building user-friendly, high-performance web applications, I prioritize writing
-                clean, maintainable code that enables continuous improvement and scalability. I have a particular
-                interest in UX/UI design, always striving to optimize the user experience and create intuitive,
-                user-centered designs.
-                <br/><br/>
-                I have previously worked on projects with high user engagement and interactivity, blending technical
-                knowledge with an eye for design and clear user navigation.
-                <br/><br/>
-                I am fluent in both German and English and have experience working in international environments.
-            </p>
-
-            <div class="flex lg:col-start-1 lg:col-end-3 row-start-1 row-end-2 items-end">
-                <div class="flex items-start gap-y-6 gap-x-12 flex-wrap-reverse leading-relaxed">
-                    <p>
-                        Frontend Development
-                        <br/>
-                        UX / UI Design
-                    </p>
-                    <p>
-                        Say hello
-                        <br/>
-                        <a>morizvlanga@gmail.com</a>
-                    </p>
-                </div>
-            </div>
-
-        </div>
-    </section>-->
 
     <section class="container scroll-mt-16" id="experience">
         <h2 class="mb-16 text-5xl">Experience</h2>
