@@ -1,14 +1,23 @@
 {
-	"company": "SENEC",
+	"company": {
+		"title": "SENEC",
+		"claim": "Building PV & Energy Storage Solutions",
+		"description": "Working in the energy industry and developing its own energy storage products for the European marketBuilding PV & Energy Storage Solutions"
+	},
 	"from": 2023,
 	"to": "now",
 	"role": "Frontend Developer",
 	"tasks": [
-		"Enhancement of an existing Angular application",
-		"Migrating / rewriting webapps from Angular to React and embedding them as a micro-frontend",
-		"Planning and implementation of the migration/rewrite",
-		"Working closely with designers",
-		"Further development of the UI component library",
-		"Further development of the specialist partners platform"
+		"I have worked on enhancing an existing Angular application and migrating/rewriting it from Angular to React, embedding them as micro-frontends for improved modularity and performance. This involved careful planning and implementation of the migration process, ensuring a smooth transition.",
+		"I collaborated closely with designers to refine the user experience and further developed the UI component library to improve consistency and usability.",
+		"Additionally, I contributed to the ongoing development of a platform for specialist partners, enhancing its functionality and user interface."
+	],
+	"technologies": [
+		"Microfrontends (SingleSPA)",
+		"React",
+		"Angular",
+		"MUI Core - Material UI",
+		"Tailwind",
+		"Vitest"
 	]
 }

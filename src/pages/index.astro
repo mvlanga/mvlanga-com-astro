@@ -78,25 +78,48 @@ const projects = sortProjects(await getCollection("projects"));
         <PlayfulDivider client:only="react"/>
         <div class="flex flex-col gap-8 relative">
             {
-                experience.map(({data: {company, from, to, role, tasks}}, index) => (
-                    <div class="grid md:grid-cols-6 gap-5 bg-neutral-900 p-12 rounded-xl">
-                        <div class="flex flex-col gap-2 md:col-start-1 md:col-end-3">
-                            <h3 class="text-3xl">{company}</h3>
-                            <p class="text-neutral-400">
-                                {from}
-                                {to && " - "}
-                                {to}
-                            </p>
+                experience.map(({data: {company, from, to, role, tasks, technologies}}, index) => (
+                    <div class="grid md:grid-cols-3 gap-16 lg:gap-32 bg-neutral-900 p-16 rounded-xl">
+
+                        <div class="flex flex-col gap-12 md:col-span-1">
+                            <div class="flex flex-col gap-4">
+                                <h3 class="text-3xl">{company.title}</h3>
+                                <p class="text-xl text-neutral-300">{company.claim}</p>
+                                <p class="text-neutral-400">{company.description}</p>
+                            </div>
+                            <hr class="border-neutral-800"/>
+                            <div class="flex flex-col gap-4">
+                                <div class="grid grid-cols-3 gap-8">
+                                    <span class="col-span-1">Timeframe</span>
+                                    <p class="col-span-2 text-neutral-400">
+                                        {from}
+                                        {" - "}
+                                        {to}
+                                    </p>
+                                </div>
+                                {
+                                    technologies && (
+                                                <div class="grid grid-cols-3 gap-8">
+                                                    <span class="col-span-1">Technologies used</span>
+                                                    <span class="col-span-2 text-neutral-400">
+                                        {technologies.join(", ")}
+                                    </span>
+                                                </div>
+                                    )
+                                }
+                            </div>
                         </div>
-                        <div class="flex flex-col gap-5 md:col-start-3 md:col-end-7">
-                            <h3 class="font-bold">{role}</h3>
-                            <ul class="flex flex-col gap-2 text-neutral-400">
-                                {tasks.map((task) => (
-                                        <li class="max-w-prose">
-                                            {task}
-                                        </li>
-                                ))}
-                            </ul>
+                        <div class="flex flex-col gap-12 md:col-span-2 max-w-prose">
+                            <div class="flex flex-col gap-6">
+                                <h3 class="font-bold">{role}</h3>
+                                <ul class="flex flex-col gap-4 text-neutral-400">
+                                    {tasks.map((task) => (
+                                            <li class="">
+                                                {task}
+                                            </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 ))

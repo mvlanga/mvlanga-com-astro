@@ -1,16 +1,28 @@
 {
-  "company": "SCHACHZUG",
-  "from": 2017,
-  "to": "2022",
-  "role": "Technical Director",
-  "tasks": [
-    "Maintenance of existing IT infrastructure (network, storage, firewall, user directory)",
-    "Setting up a completely new IT infrastructure (network, storage)",
-    "Teamlead IT & Development",
-    "ISMS representative & TISAX certification",
-    "Coordination of external technical service providers (livestreaming, 3D designers)",
-    "Technical customer consulting & presentations",
-    "On-site support and installation of trade fair exhibits",
-    "Full Stack Development using Angular, Node, PHP, AWS/Firebase"
-  ]
+	"company": {
+		"title": "SCHACHZUG",
+		"claim": "Award winning creative agency",
+		"description": "Working in the Automotive & Technology industry for customers like Volkswagen, Škoda, Fujitsu"
+	},
+	"from": 2017,
+	"to": "2022",
+	"role": "Technical Director",
+	"tasks": [
+		"I have done full stack application development, such as ordering systems with logistics functionality and the digitalization of press events by creating immersive 3D environments. These projects allowed customers to explore recreated locations in a 3D world, experiencing the same interactive features as if they were there.",
+		"I was also responsible for the complete conception of digital events, leading the design and development process to ensure a seamless user experience.",
+		"My role also involved managing the IT & Development team, maintaining and setting up a new IT infrastructure (network, storage), coordinating external service vendors such as livestreaming and 3D designers."
+	],
+	"technologies": [
+		"Angular",
+		"Firebase",
+		"PHP (Symfony)",
+		"MySQL",
+		"Synology",
+		"UniFi (Ubiquiti)",
+		"Adobe XD",
+		"Photoshop",
+		"After Effects",
+		"Cinema 4D",
+		"V-Ray"
+	]
 }

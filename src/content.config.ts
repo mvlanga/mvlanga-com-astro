@@ -2,11 +2,16 @@ import { defineCollection, z } from "astro:content";
 import { file, glob } from "astro/loaders";
 
 const experienceSchema = z.object({
-	company: z.string(),
+	company: z.object({
+		title: z.string(),
+		claim: z.string(),
+		description: z.string(),
+	}),
 	from: z.number(),
 	to: z.string().optional(),
 	role: z.string(),
 	tasks: z.array(z.string()),
+	technologies: z.array(z.string()).optional(),
 });
 const experience = defineCollection({
 	loader: glob({
@@ -63,19 +68,19 @@ const resumeLanguages = defineCollection({
 	),
 });
 
-const resumeExperience = defineCollection({
+/*const resumeExperience = defineCollection({
 	loader: glob({
 		base: "src/content/resume/experience",
 		pattern: "*.json",
 	}),
 	schema: experienceSchema,
-});
+});*/
 
 export const collections = {
 	experience,
 	projects,
 	legalPages,
-	resumeExperience,
+	// resumeExperience,
 	resumeSkills,
 	resumeInterests,
 	resumeLanguages,
