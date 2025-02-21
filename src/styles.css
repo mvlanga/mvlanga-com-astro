@@ -62,18 +62,18 @@
 
 @utility container {
 	margin-inline: auto;
-	padding-inline: 2rem;
+	@apply px-6;
 	max-width: unset;
 
 	@media (width >= theme(--breakpoint-sm)) {
-		padding-inline: 4rem;
+		@apply px-12;
 	}
 
 	@media (width >= theme(--breakpoint-xl)) {
-		padding-inline: 8rem;
+		@apply px-16;
 	}
 
 	@media (width >= theme(--breakpoint-2xl)) {
-		padding-inline: 12rem;
+		@apply px-32;
 	}
 }

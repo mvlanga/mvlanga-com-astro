@@ -1,12 +1,12 @@
 ---
-import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
-import { Button } from "../components/Button";
-import { ColoredBackground } from "../components/ColoredBackground";
-import { PlayfulDivider } from "../components/PlayfulDivider";
-import { PortraitVideo } from "../components/PortraitVideo";
+import {Image} from "astro:assets";
+import {getCollection} from "astro:content";
+import {Button} from "../components/Button";
+import {ColoredBackground} from "../components/ColoredBackground";
+import {PlayfulDivider} from "../components/PlayfulDivider";
+import {PortraitVideo} from "../components/PortraitVideo";
 import Layout from "../layouts/layout.astro";
-import { sortExperience, sortProjects } from "../utils/sortCollection";
+import {sortExperience, sortProjects} from "../utils/sortCollection";
 const experience = sortExperience(await getCollection("experience"));
 const projects = sortProjects(await getCollection("projects"));
 ---
@@ -26,48 +26,60 @@ const projects = sortProjects(await getCollection("projects"));
         </p>
     </section>
 
-    <section class="relative grid gap-16 container scroll-mt-16" id="about">
-        <ColoredBackground client:only="react" className="-z-20 -bottom-32 -top-32"/>
-        <h2 class="text-5xl">About</h2>
-        <PlayfulDivider client:only="react"/>
-        <div class="grid md:justify-end gap-16">
-            <p class="text-xl md:col-span-1 max-w-prose">
-                I love exploring ideas with curiosity and an open mind, all while focusing on software architecture. I
-                make sure to always consider the user's perspective to develop solutions that truly address their needs.
-            </p>
-            <PortraitVideo client:idle />
-        </div>
-        <h2 class="text-4xl">
-            I can help you with...
-        </h2>
-        <div class="grid md:grid-cols-3 gap-16">
-            <div class="flex flex-col gap-6">
-                <p class="text-neutral-500">01</p>
-                <hr class="border-neutral-800"/>
-                <p class="text-2xl">Design</p>
-                <p class="text-neutral-400">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti facilis fugit impedit mollitia
-                    pariatur. Ab aspernatur autem molestias quo. Assumenda consectetur harum in nobis repellendus?
-                </p>
+    <section class="relative scroll-mt-16" id="about">
+        <ColoredBackground client:idle className="-z-20 -bottom-32 -top-32"/>
+        <div class="container grid gap-16">
+            <h2 class="text-5xl">About</h2>
+            <PlayfulDivider client:idle/>
+            <div class="grid grid-cols-6 md:justify-end gap-16">
+                <div class="md:col-span-2 ">
+                    <p class="text-xl max-w-prose">
+                        I love exploring ideas with curiosity and an open mind, all while focusing on software
+                        architecture.
+                        I
+                        make sure to always consider the user's perspective to develop solutions that truly address
+                        their
+                        needs.
+                    </p>
+                </div>
+                <PortraitVideo client:idle/>
             </div>
-            <div class="flex flex-col gap-6">
-                <p class="text-neutral-500">02</p>
-                <hr class="border-neutral-800"/>
-                <p class="text-2xl">Development</p>
-                <p class="text-neutral-400">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti facilis fugit impedit mollitia
-                    pariatur. Ab aspernatur autem molestias q
-                </p>
-            </div>
-            <div class="flex flex-col gap-6">
-                <p class="text-neutral-500">03</p>
-                <hr class="border-neutral-800"/>
-                <p class="text-2xl">Build solutions that truly solve the users problems</p>
-                <p class="text-neutral-400">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias excepturi explicabo reprehenderit
-                    sit vel. Cupiditate eaque eius error, hic illum iusto labore laborum nemo nulla, officiis pariatur
-                    sed ullam voluptatum?
-                </p>
+            <h2 class="text-4xl">
+                I can help you with...
+            </h2>
+            <div class="grid md:grid-cols-3 gap-16">
+                <div class="flex flex-col gap-6">
+                    <p class="text-neutral-500">01</p>
+                    <hr class="border-neutral-800"/>
+                    <p class="text-2xl">Design</p>
+                    <p class="text-neutral-400">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti facilis fugit impedit
+                        mollitia
+                        pariatur. Ab aspernatur autem molestias quo. Assumenda consectetur harum in nobis repellendus?
+                    </p>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <p class="text-neutral-500">02</p>
+                    <hr class="border-neutral-800"/>
+                    <p class="text-2xl">Development</p>
+                    <p class="text-neutral-400">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti facilis fugit impedit
+                        mollitia
+                        pariatur. Ab aspernatur autem molestias q
+                    </p>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <p class="text-neutral-500">03</p>
+                    <hr class="border-neutral-800"/>
+                    <p class="text-2xl">Build solutions that truly solve the users problems</p>
+                    <p class="text-neutral-400">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias excepturi explicabo
+                        reprehenderit
+                        sit vel. Cupiditate eaque eius error, hic illum iusto labore laborum nemo nulla, officiis
+                        pariatur
+                        sed ullam voluptatum?
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -75,58 +87,60 @@ const projects = sortProjects(await getCollection("projects"));
     <section class="grid gap-16 container scroll-mt-16" id="experience">
         <h2 class="text-5xl">Experience</h2>
 
-        <PlayfulDivider client:only="react"/>
+        <PlayfulDivider client:idle/>
         <div class="flex flex-col gap-8 relative">
             {
                 experience.map(({data: {company, from, to, role, tasks, technologies}}, index) => (
-                    <div class="grid md:grid-cols-3 gap-16 lg:gap-32 bg-neutral-900 p-16 rounded-xl">
+                        <div class="grid md:grid-cols-3 gap-16 lg:gap-32 bg-neutral-900 p-16 rounded-xl">
 
-                        <div class="flex flex-col gap-12 md:col-span-1">
-                            <div class="flex flex-col gap-4">
-                                <h3 class="text-3xl">{company.title}</h3>
-                                <p class="text-xl text-neutral-300">{company.claim}</p>
-                                <p class="text-neutral-400">{company.description}</p>
-                            </div>
-                            <hr class="border-neutral-800"/>
-                            <div class="flex flex-col gap-4">
-                                <div class="grid grid-cols-3 gap-8">
-                                    <span class="col-span-1">Timeframe</span>
-                                    <p class="col-span-2 text-neutral-400">
-                                        {from}
-                                        {" - "}
-                                        {to}
-                                    </p>
+                            <div class="flex flex-col gap-12 md:col-span-1">
+                                <div class="flex flex-col gap-4">
+                                    <h3 class="text-3xl">{company.title}</h3>
+                                    <p class="text-xl text-neutral-300">{company.claim}</p>
+                                    <p class="text-neutral-400">{company.description}</p>
                                 </div>
-                                {
-                                    technologies && (
-                                                <div class="grid grid-cols-3 gap-8">
-                                                    <span class="col-span-1">Technologies used</span>
-                                                    <span class="col-span-2 text-neutral-400">
+                                <hr class="border-neutral-800"/>
+                                <div class="flex flex-col gap-4">
+                                    <div class="grid grid-cols-3 gap-8">
+                                        <span class="col-span-1">Timeframe</span>
+                                        <p class="col-span-2 text-neutral-400">
+                                            {from}
+                                            {" - "}
+                                            {to}
+                                        </p>
+                                    </div>
+                                    {
+                                        /*
+                                        technologies && (
+                                                    <div class="grid grid-cols-3 gap-8">
+                                                        <span class="col-span-1">Technologies used</span>
+                                                        <span class="col-span-2 text-neutral-400">
                                         {technologies.join(", ")}
                                     </span>
-                                                </div>
-                                    )
-                                }
+                                                    </div>
+                                        )
+                                        */
+                                    }
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-12 md:col-span-2 max-w-prose">
+                                <div class="flex flex-col gap-6">
+                                    <h3 class="font-bold">{role}</h3>
+                                    <ul class="flex flex-col gap-4 text-neutral-400">
+                                        {tasks.map((task) => (
+                                                <li class="">
+                                                    {task}
+                                                </li>
+                                        ))}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <div class="flex flex-col gap-12 md:col-span-2 max-w-prose">
-                            <div class="flex flex-col gap-6">
-                                <h3 class="font-bold">{role}</h3>
-                                <ul class="flex flex-col gap-4 text-neutral-400">
-                                    {tasks.map((task) => (
-                                            <li class="">
-                                                {task}
-                                            </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 ))
             }
             <div class="w-full text-end">
                 <a href="/resume">
-                    <Button client:idle text="See full resume" level="primary" />
+                    <Button client:idle text="See full resume" level="primary"/>
                 </a>
             </div>
         </div>
@@ -134,7 +148,7 @@ const projects = sortProjects(await getCollection("projects"));
 
     <section class="container scroll-mt-16" id="projects">
         <h2 class="mb-16 text-5xl">Projects</h2>
-        <PlayfulDivider client:only="react"/>
+        <PlayfulDivider client:idle/>
         <div class="relative grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
             {
                 projects.map(({id, data: {title, customer, year, cover, coverOnHover}}, index) => (
