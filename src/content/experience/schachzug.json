@@ -1,7 +1,6 @@
 {
 	"company": {
 		"title": "SCHACHZUG",
-		"claim": "Award winning creative agency",
 		"description": "Working in the Automotive & Technology industry for customers like Volkswagen, Škoda, Fujitsu"
 	},
 	"from": 2017,
@@ -15,14 +14,9 @@
 	"technologies": [
 		"Angular",
 		"Firebase",
+		"SCSS",
 		"PHP (Symfony)",
 		"MySQL",
-		"Synology",
-		"UniFi (Ubiquiti)",
-		"Adobe XD",
-		"Photoshop",
-		"After Effects",
-		"Cinema 4D",
-		"V-Ray"
+		"Adobe XD"
 	]
 }

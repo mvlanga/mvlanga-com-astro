@@ -1,12 +1,12 @@
 ---
-import {Image} from "astro:assets";
-import {getCollection} from "astro:content";
-import {Button} from "../components/Button";
-import {ColoredBackground} from "../components/ColoredBackground";
-import {PlayfulDivider} from "../components/PlayfulDivider";
-import {PortraitVideo} from "../components/PortraitVideo";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { Button } from "../components/Button";
+import { ColoredBackground } from "../components/ColoredBackground";
+import { PlayfulDivider } from "../components/PlayfulDivider";
+import { PortraitVideo } from "../components/PortraitVideo";
 import Layout from "../layouts/layout.astro";
-import {sortExperience, sortProjects} from "../utils/sortCollection";
+import { sortExperience, sortProjects } from "../utils/sortCollection";
 const experience = sortExperience(await getCollection("experience"));
 const projects = sortProjects(await getCollection("projects"));
 ---
@@ -15,7 +15,7 @@ const projects = sortProjects(await getCollection("projects"));
     <title slot="head">Frontend Developer — Moriz von Langa</title>
     <meta slot="head" name="description" content=""/>
 
-    <section class="container">
+    <section class="container scroll-mt-96" id="home">
         <h1 class="mb-10 text-6xl font-bold leading-snug">
             Hi, I’m Moriz.
         </h1>
@@ -32,7 +32,7 @@ const projects = sortProjects(await getCollection("projects"));
             <h2 class="text-5xl">About</h2>
             <PlayfulDivider client:idle/>
             <div class="grid grid-cols-6 md:justify-end gap-16">
-                <div class="md:col-span-2 ">
+                <div class="md:col-span-2">
                     <p class="text-xl max-w-prose">
                         I love exploring ideas with curiosity and an open mind, all while focusing on software
                         architecture.
@@ -42,7 +42,7 @@ const projects = sortProjects(await getCollection("projects"));
                         needs.
                     </p>
                 </div>
-                <PortraitVideo client:idle/>
+                <PortraitVideo client:only="react"/>
             </div>
             <h2 class="text-4xl">
                 I can help you with...
@@ -91,49 +91,37 @@ const projects = sortProjects(await getCollection("projects"));
         <div class="flex flex-col gap-8 relative">
             {
                 experience.map(({data: {company, from, to, role, tasks, technologies}}, index) => (
-                        <div class="grid md:grid-cols-3 gap-16 lg:gap-32 bg-neutral-900 p-16 rounded-xl">
-
-                            <div class="flex flex-col gap-12 md:col-span-1">
-                                <div class="flex flex-col gap-4">
-                                    <h3 class="text-3xl">{company.title}</h3>
-                                    <p class="text-xl text-neutral-300">{company.claim}</p>
-                                    <p class="text-neutral-400">{company.description}</p>
-                                </div>
-                                <hr class="border-neutral-800"/>
-                                <div class="flex flex-col gap-4">
-                                    <div class="grid grid-cols-3 gap-8">
-                                        <span class="col-span-1">Timeframe</span>
-                                        <p class="col-span-2 text-neutral-400">
-                                            {from}
-                                            {" - "}
-                                            {to}
-                                        </p>
-                                    </div>
-                                    {
-                                        /*
-                                        technologies && (
-                                                    <div class="grid grid-cols-3 gap-8">
-                                                        <span class="col-span-1">Technologies used</span>
-                                                        <span class="col-span-2 text-neutral-400">
-                                        {technologies.join(", ")}
-                                    </span>
-                                                    </div>
-                                        )
-                                        */
-                                    }
-                                </div>
+                        <div class="grid md:grid-cols-3 gap-x-16 gap-y-8 lg:gap-32 bg-neutral-900 p-8 md:p-16 rounded-xl">
+                            <div class="flex flex-col gap-4 md:col-span-1">
+                                <p class="text-neutral-400">
+                                    {from}
+                                    {" - "}
+                                    {to}
+                                </p>
+                                <h3 class="text-3xl">{company.title}</h3>
+                                <p class="text-xl text-neutral-300">{role}</p>
+                                <p class="text-neutral-400">{company.description}</p>
                             </div>
-                            <div class="flex flex-col gap-12 md:col-span-2 max-w-prose">
-                                <div class="flex flex-col gap-6">
-                                    <h3 class="font-bold">{role}</h3>
-                                    <ul class="flex flex-col gap-4 text-neutral-400">
-                                        {tasks.map((task) => (
-                                                <li class="">
-                                                    {task}
-                                                </li>
-                                        ))}
-                                    </ul>
-                                </div>
+                            <hr class="border-neutral-800 md:hidden"/>
+                            <div class="flex flex-col gap-8 md:col-span-2 max-w-prose">
+                                <ul class="flex flex-col gap-4 text-neutral-400">
+                                    {tasks.map((task) => (
+                                            <li class="">
+                                                {task}
+                                            </li>
+                                    ))}
+                                </ul>
+                                {
+                                    technologies && (
+                                                <div class="flex flex-wrap gap-2">
+                                                    {
+                                                        technologies.map((tech) => (
+                                                                <span class="bg-neutral-800 text-sm text-neutral-400 py-2 px-5 rounded-full">{tech}</span>
+                                                        ))
+                                                    }
+                                                </div>
+                                    )
+                                }
                             </div>
                         </div>
                 ))
@@ -154,8 +142,10 @@ const projects = sortProjects(await getCollection("projects"));
                 projects.map(({id, data: {title, customer, year, cover, coverOnHover}}, index) => (
                         <div class="flex flex-col justify-center">
                             <a href=`project/${id}` class="flex flex-col gap-6">
-                                <span class="text-neutral-400 text-xl">{customer}, {year}</span>
-                                <h3 class="text-4xl">{title}</h3>
+                                <span class="text-neutral-400 text-xl">{customer}</span>
+                                <h3 class="text-4xl">
+                                    <span>{title}</span>
+                                </h3>
                             </a>
                         </div>
                         <div class="md:sticky md:top-0 flex items-center py-20 md:h-svh">
@@ -171,5 +161,4 @@ const projects = sortProjects(await getCollection("projects"));
             }
         </div>
     </section>
-
 </Layout>

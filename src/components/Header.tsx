@@ -1,6 +1,6 @@
 import { Button } from "@/components/Button";
+import { HeaderNavItem } from "@/components/HeaderNavItem.tsx";
 import { useEscapeKey } from "@/utils/useEscapeKey";
-import { clsx } from "clsx";
 import {
 	AnimatePresence,
 	type Variants,
@@ -16,7 +16,7 @@ type NavigationItems = { label: string; url: string }[];
 const navItems: NavigationItems = [
 	{
 		label: "Home",
-		url: "/",
+		url: "/#home",
 	},
 	{
 		label: "About",
@@ -61,6 +61,9 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 
 	const { scrollY } = useScroll();
 	const [isHeaderHidden, setIsHeaderHidden] = useState(scrollY.get() >= 100);
+
+	const [activeNavItems, setActiveNavItems] = useState<string[]>([]);
+	const latestActiveNavItem = activeNavItems[activeNavItems.length - 1];
 
 	useMotionValueEvent(scrollY, "change", (current) => {
 		setIsMenuOpen(false);
@@ -194,21 +197,17 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 										}}
 										className="group relative text-2xl"
 									>
-										<a
-											href={url}
-											onClick={() => setIsMenuOpen(false)}
-											className="flex items-center"
-										>
-											<div
-												aria-hidden="true"
-												className={clsx(
-													"-translate-x-14 absolute h-0.5 w-10 scale-x-0 rounded-xl bg-neutral-500 opacity-0 transition-all group-hover:scale-x-100 group-hover:opacity-100",
-													url === currentPath && "opacity-100",
-													url === currentPath && "scale-x-100",
-												)}
-											/>
-											{label}
-										</a>
+										<HeaderNavItem
+											currentPath={currentPath}
+											label={label}
+											url={url}
+											setIsMenuOpen={setIsMenuOpen}
+											onActiveAnchorLinkChange={setActiveNavItems}
+											isActive={
+												url === currentPath ||
+												latestActiveNavItem === url.substring(1)
+											}
+										/>
 									</motion.li>
 								))}
 							</motion.ul>
