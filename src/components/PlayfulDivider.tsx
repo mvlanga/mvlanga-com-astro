@@ -104,7 +104,11 @@ const ReactiveLine = () => {
 				className="-top-5 hover:-top-20 relative z-10 h-10 w-full hover:h-40"
 			/>
 
-			<svg className="pointer-events-none absolute top-[-250px] h-[500px] w-full">
+			{/* biome-ignore lint/a11y/noSvgWithoutTitle: hidden for screen readers */}
+			<svg
+				className="pointer-events-none absolute top-[-250px] h-[500px] w-full"
+				aria-hidden={false}
+			>
 				<path
 					ref={pathEl}
 					className="fill-none stroke-[1px] stroke-neutral-800 transition-colors duration-300 group-hover:stroke-neutral-700"

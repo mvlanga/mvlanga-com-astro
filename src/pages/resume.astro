@@ -1,8 +1,8 @@
 ---
-import {getCollection} from "astro:content";
-import {PlayfulDivider} from "../components/PlayfulDivider";
+import { getCollection } from "astro:content";
+import { PlayfulDivider } from "../components/PlayfulDivider";
 import Layout from "../layouts/layout.astro";
-import {sortExperience} from "../utils/sortCollection";
+import { sortExperience } from "../utils/sortCollection";
 
 const skills = (await getCollection("resumeSkills"))[0].data;
 const experience = sortExperience(await getCollection("resumeExperience"));

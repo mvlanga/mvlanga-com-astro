@@ -35,12 +35,6 @@
 		"enabled": true,
 		"rules": {
 			"recommended": true,
-			"suspicious": {
-				"noArrayIndexKey": "warn"
-			},
-			"a11y": {
-				"noSvgWithoutTitle": "warn"
-			},
 			"nursery": {
 				"useSortedClasses": {
 					"level": "error",

@@ -65,14 +65,17 @@
 	@apply px-6;
 	max-width: unset;
 
+	/* biome-ignore lint: biome doesn't support this tailwind usage yet */
 	@media (width >= theme(--breakpoint-sm)) {
 		@apply px-12;
 	}
 
+	/* biome-ignore lint: biome doesn't support this tailwind usage yet */
 	@media (width >= theme(--breakpoint-xl)) {
 		@apply px-16;
 	}
 
+	/* biome-ignore lint: biome doesn't support this tailwind usage yet */
 	@media (width >= theme(--breakpoint-2xl)) {
 		@apply px-32;
 	}

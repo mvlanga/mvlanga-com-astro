@@ -55,6 +55,7 @@ export const PerspectiveTextHover = ({
 			>
 				{text.split("").map((char, i) => (
 					<motion.span
+						// biome-ignore lint/suspicious/noArrayIndexKey: splitting text, therefore there is no id available
 						key={`default-text_${char}_${i}`}
 						className={char === " " ? "" : "inline-block"}
 						variants={{
@@ -89,6 +90,7 @@ export const PerspectiveTextHover = ({
 			>
 				{(activeText ?? text).split("").map((char, i) => (
 					<motion.span
+						// biome-ignore lint/suspicious/noArrayIndexKey: splitting text, therefore there is no id available
 						key={`active-text_${char}_${i}`}
 						className={char === " " ? "" : "inline-block"}
 						variants={{
