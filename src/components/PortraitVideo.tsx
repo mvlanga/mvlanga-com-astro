@@ -1,3 +1,4 @@
+import "@/styles.css";
 import mvlPortait from "@/assets/img/moriz-von-langa-portrait.jpg";
 import { motion, useInView, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef } from "react";

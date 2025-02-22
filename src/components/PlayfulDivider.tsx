@@ -1,3 +1,4 @@
+import "@/styles.css";
 import { mix, useReducedMotion } from "motion/react";
 import { type MouseEvent, useCallback, useEffect, useRef } from "react";
 
