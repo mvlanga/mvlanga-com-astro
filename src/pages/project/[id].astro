@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 const { post: projects } = Astro.props;
 
 const { Content } = await render(projects);
-const { title, description, customer, year } = projects.data;
+const { title, description, customer } = projects.data;
 
 import Layout from "@/layouts/layout.astro";
 import { sortProjects } from "@/utils/sortCollection";
