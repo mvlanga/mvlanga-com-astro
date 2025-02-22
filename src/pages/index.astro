@@ -42,7 +42,7 @@ const projects = sortProjects(await getCollection("projects"));
                         needs.
                     </p>
                 </div>
-                <PortraitVideo client:only="react"/>
+                <PortraitVideo client:idle/>
             </div>
             <h2 class="text-4xl">
                 I can help you with...
@@ -65,7 +65,7 @@ const projects = sortProjects(await getCollection("projects"));
                     <p class="text-neutral-400">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti facilis fugit impedit
                         mollitia
-                        pariatur. Ab aspernatur autem molestias q
+                        pariatur. Ab aspernatur autem molestias
                     </p>
                 </div>
                 <div class="flex flex-col gap-6">
@@ -91,7 +91,7 @@ const projects = sortProjects(await getCollection("projects"));
         <div class="flex flex-col gap-8 relative">
             {
                 experience.map(({data: {company, from, to, role, tasks, technologies}}, index) => (
-                        <div class="grid lg:grid-cols-3 gap-x-16 gap-y-8 lg:gap-32 bg-neutral-900 p-8 md:p-16 rounded-xl">
+                        <div class="grid lg:grid-cols-3 gap-x-8 lg:gap-x-16 gap-y-8 lg:gap-32 bg-neutral-900 p-8 md:p-16 rounded-xl">
                             <div class="flex flex-col gap-4 lg:col-span-1">
                                 <p class="text-neutral-400">
                                     {from}
@@ -134,13 +134,13 @@ const projects = sortProjects(await getCollection("projects"));
         </div>
     </section>
 
-    <section class="container scroll-mt-16" id="projects">
-        <h2 class="mb-16 text-5xl">Projects</h2>
+    <section class="container scroll-mt-16 grid gap-16" id="projects">
+        <h2 class="text-5xl">Projects</h2>
         <PlayfulDivider client:idle/>
-        <div class="relative grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
+        <div class="relative grid lg:grid-cols-5 xl:grid-cols-2 gap-20">
             {
-                projects.map(({id, data: {title, customer, cover, coverOnHover}}) => (
-                        <div class="flex flex-col justify-center">
+                projects.map(({id, data: {title, customer, cover, coverOnHover}}, index) => (
+                        <div class="flex flex-col lg:col-span-2 xl:col-span-1 justify-center lg:order-none!" style=`order: ${index + 2}`>
                             <a href=`project/${id}` class="flex flex-col gap-6">
                                 <span class="text-neutral-400 text-xl">{customer}</span>
                                 <h3 class="text-4xl">
@@ -148,11 +148,11 @@ const projects = sortProjects(await getCollection("projects"));
                                 </h3>
                             </a>
                         </div>
-                        <div class="md:sticky md:top-0 flex items-center py-20 md:h-svh">
-                            <a class="relative overflow-hidden rounded-2xl" href=`project/${id}`>
-                                <Image src={cover} alt={title}/>
+                        <div class="lg:sticky lg:top-0 lg:col-span-3 xl:col-span-1 flex items-center lg:order-none! mt-20 lg:mb-0" style=`order: ${index + 1}`>
+                            <a class="block relative overflow-hidden rounded-2xl w-full aspect-square lg:aspect-auto" href=`project/${id}`>
+                                <Image class="w-full h-full object-cover" src={cover} alt={title}/>
                                 <Image
-                                        class="absolute transition-all duration-500 opacity-0 left-0 top-0 bottom-0 right-0 hover:opacity-100 hover:scale-110 z-10"
+                                        class="absolute transition-all object-cover duration-500 opacity-0 left-0 top-0 w-full h-full hover:opacity-100 hover:scale-110 z-10"
                                         src={coverOnHover}
                                         alt={title}/>
                             </a>

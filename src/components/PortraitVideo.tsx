@@ -18,7 +18,7 @@ export const PortraitVideo = () => {
 	const videoOffset = useTransform(
 		scrollYProgress,
 		[0, 1],
-		["calc(var(--spacing) * -16)", "calc(var(--spacing) * 16)"],
+		["calc(var(--spacing) * -32)", "calc(var(--spacing) * 32)"],
 	);
 
 	useEffect(() => {
@@ -44,7 +44,7 @@ export const PortraitVideo = () => {
 		>
 			<motion.video
 				style={{ y: videoOffset }}
-				className="-top-32 absolute right-0 left-0 h-[calc(100%+var(--spacing)*16*2)] object-cover"
+				className="-top-64 absolute right-0 left-0 h-[calc(100%+var(--spacing)*32*2)] object-cover"
 				preload="auto"
 				ref={videoRef}
 				src="moriz-von-langa-portrait.mp4"

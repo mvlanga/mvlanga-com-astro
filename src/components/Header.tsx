@@ -125,9 +125,10 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 					<Button text="mvlanga" />
 				</a>
 			</motion.header>
+
 			<motion.div
 				initial="visible"
-				className="fixed top-4 right-4 z-40 sm:top-10 sm:right-10"
+				className="fixed top-4 right-4 z-40 sm:top-10 sm:right-10 "
 				animate={currentVariant}
 				variants={variants}
 			>
@@ -136,7 +137,6 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 					level="secondary"
 					aria-expanded={isMenuOpen}
 					aria-controls="main-menu"
-					className=""
 					isActive={isMenuOpen}
 					onClick={toggleMenu}
 					text="menu"
@@ -144,6 +144,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 					aria-label={isMenuOpen ? "close main menu" : "open main menu"}
 				/>
 			</motion.div>
+
 			<AnimatePresence>
 				{isMenuOpen && (
 					<motion.nav
@@ -261,6 +262,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 					</motion.nav>
 				)}
 			</AnimatePresence>
+
 			{isMenuOpen && (
 				// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
 				<div

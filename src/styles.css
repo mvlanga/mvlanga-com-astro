@@ -11,6 +11,8 @@
 	--color-purple-500: #8860ff;
 	--color-purple-600: #4b29af;
 	--color-purple: #8860ff;
+
+	--container-8xl: 120rem;
 }
 
 @layer base {
@@ -62,21 +64,6 @@
 
 @utility container {
 	margin-inline: auto;
-	@apply px-6;
-	max-width: unset;
-
-	/* biome-ignore lint: biome doesn't support this tailwind usage yet */
-	@media (width >= theme(--breakpoint-sm)) {
-		@apply px-12;
-	}
-
-	/* biome-ignore lint: biome doesn't support this tailwind usage yet */
-	@media (width >= theme(--breakpoint-xl)) {
-		@apply px-16;
-	}
-
-	/* biome-ignore lint: biome doesn't support this tailwind usage yet */
-	@media (width >= theme(--breakpoint-2xl)) {
-		@apply px-32;
-	}
+	@apply px-6 sm:px-12 md:px-16 lg:px-32 max-w-8xl;
+	/*max-width: unset;*/
 }
