@@ -30,7 +30,6 @@ const projects = defineCollection({
 			title: z.string(),
 			description: z.string(),
 			customer: z.string(),
-			year: z.number(),
 			cover: image(),
 			coverOnHover: image(),
 		}),

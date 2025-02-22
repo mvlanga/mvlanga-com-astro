@@ -40,7 +40,7 @@ export const PortraitVideo = () => {
 		<div
 			ref={containerRef}
 			style={{ aspectRatio }}
-			className="relative col-span-4 overflow-hidden"
+			className="relative overflow-hidden lg:col-span-4"
 		>
 			<motion.video
 				style={{ y: videoOffset }}
