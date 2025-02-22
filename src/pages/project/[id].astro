@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -16,9 +17,11 @@ const { Content } = await render(projects);
 const { title, description, customer } = projects.data;
 
 import Layout from "@/layouts/layout.astro";
-import { sortProjects } from "@/utils/sortCollection";
+import { shuffle } from "@/utils/sortCollection";
+import { PlayfulDivider } from "../../components/common/PlayfulDivider";
+import { OtherProjects } from "../../components/projects/OtherProjects";
 
-const relatedProjects = sortProjects(
+const relatedProjects = shuffle(
 	await getCollection("projects", ({ id }) => id !== projects.id),
 );
 ---
@@ -41,12 +44,16 @@ const relatedProjects = sortProjects(
         </section>
 
         <Content/>
+
+        <section class="grid gap-16">
+            <h2 class="text-5xl">More projects you may like</h2>
+
+            <PlayfulDivider client:only="react">
+                <hr slot="fallback" class="border-neutral-800" />
+            </PlayfulDivider>
+
+            <OtherProjects projects={relatedProjects} />
+        </section>
     </section>
 
-    <section>
-        {relatedProjects.map(({id, data: {title}}) => (
-                <a href=`/project/${id}`>{title}</a>
-                <br />
-        ))}
-    </section>
 </Layout>

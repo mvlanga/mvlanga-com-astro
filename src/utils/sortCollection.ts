@@ -9,3 +9,6 @@ export const sortExperience = (
 
 export const sortProjects = (projects: CollectionEntry<"projects">[]) =>
 	projects.sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+
+export const shuffle = <T>(items: Array<T>) =>
+	items.sort(() => Math.random() - 0.5);
