@@ -1,0 +1,61 @@
+<div class="text-neutral-600">
+    <div id="wcb" class="carbonbadge wcb-d " />
+</div>
+
+<script src="https://unpkg.com/website-carbon-badges@latest/b.min.js" />
+
+<style is:inline>
+    #wcb.carbonbadge{
+        all: unset;
+        --b1: currentColor;
+        --b2: transparent;
+        font-size: var(--text-base);
+        text-align: start;
+        line-height: inherit;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #wcb.carbonbadge sub{
+        all: unset;
+    }
+
+    #wcb #wcb_2,#wcb #wcb_a,#wcb #wcb_g{
+        all: unset;
+    }
+
+    #wcb #wcb_a,#wcb #wcb_g{
+        all: unset;
+    }
+
+    #wcb #wcb_g{
+        all: unset;
+    }
+
+    #wcb #wcb_a{
+        all: unset;
+        cursor: pointer
+    }
+
+    #wcb #wcb_a:hover {
+        color: var(--color-purple)
+    }
+
+    #wcb #wcb_a:before {
+        content: "Source: "
+    }
+
+    #wcb.wcb-d #wcb_a{
+        display: block;
+        cursor: pointer;
+    }
+
+    #wcb #wcb_p{
+        order: 2;
+    }
+
+    #wcb.wcb-d #wcb_2{
+        all: unset;
+        margin-left: -0.4ch;
+    }
+</style>

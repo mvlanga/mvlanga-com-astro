@@ -1,0 +1,46 @@
+---
+import { PlayfulDivider } from "../common/PlayfulDivider";
+import CarbonBadge from "./CarbonBadge.astro";
+
+const year = new Date().getFullYear();
+const isProduction = import.meta.env.PROD;
+---
+
+<footer class="container flex flex-col gap-y-24 pb-12">
+    <PlayfulDivider client:only="react">
+        <hr slot="fallback" class="border-neutral-800" />
+    </PlayfulDivider>
+
+    <div class="flex flex-col md:flex-row justify-between gap-x-12 gap-y-6 md:items-end text-neutral-200">
+        <h5 class="text-6xl">Let’s collaborate</h5>
+        <a class="text-3xl transition-colors hover:text-purple" href="mailto:morizvlanga@gmail.com">morizvlanga@gmail.com</a>
+    </div>
+
+    <div class="flex flex-wrap items-end justify-between mt-12 gap-x-4 gap-y-6 text-neutral-500">
+        {isProduction ? <CarbonBadge /> : "<CarbonBadge />"}
+
+        <div class="flex flex-wrap gap-x-4 gap-y-2">
+            <a href="https://github.com/mvlanga/mvlanga-com-astro" target="blank"
+               class="transition-colors hover:text-purple"
+            >
+                Source code
+            </a>
+            <a
+                    href="/legal/imprint"
+                    class="transition-colors hover:text-purple"
+            >
+                Imprint
+            </a>
+
+            <a
+                    href="/legal/privacy-policy"
+                    class="transition-colors hover:text-purple"
+            >
+                Privacy Policy
+            </a>
+            <span>
+                &copy; Moriz von Langa 2023 - {year}
+            </span>
+        </div>
+    </div>
+</footer>

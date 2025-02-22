@@ -26,20 +26,20 @@ const relatedProjects = sortProjects(
 <Layout className="container">
     <title slot="head">{title} — Moriz von Langa</title>
     <meta slot="head" name="description" content="" />
-    
-    <section>
-        <h3>
-            {customer}, {year}
-        </h3>
-        <h1 class="mb-10 text-6xl font-bold leading-snug">
-            {title}
-        </h1>
-        <p class="max-w-[60ch] font-light">
-            {description}
-        </p>
-    </section>
 
-    <section class="prose prose-invert">
+    <section class="grid gap-16">
+        <section>
+            <h3>
+                {customer}
+            </h3>
+            <h1 class="mb-10 text-6xl font-bold leading-snug">
+                {title}
+            </h1>
+            <p class="max-w-[60ch] font-light">
+                {description}
+            </p>
+        </section>
+
         <Content/>
     </section>
 

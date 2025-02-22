@@ -8,7 +8,7 @@ cover: ./fujitsu-smart-city-thumbnail_01.jpg
 coverOnHover: ./fujitsu-smart-city-thumbnail_02.jpg
 ---
 
-import {PlayfulDivider} from "../../../components/PlayfulDivider";
+import {PlayfulDivider} from "../../../components/common/PlayfulDivider.js";
 
 # test123
 
@@ -16,7 +16,9 @@ import {PlayfulDivider} from "../../../components/PlayfulDivider";
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium aliquam aliquid amet aspernatur assumenda cupiditate debitis dicta, distinctio dolores ducimus eius excepturi fuga fugiat illum ipsa iusto labore laudantium minima modi molestiae natus nisi non omnis provident quisquam tempore veniam? Amet animi at consectetur consequuntur dolorem doloribus eveniet facere fugiat hic id, inventore iure magni maxime nulla odio qui quis rem saepe sed soluta, tempore ut velit voluptas. Ab dignissimos doloribus dolorum eos itaque nam, nulla quos repudiandae saepe veritatis. Consequatur dolorum error harum hic ipsum labore libero nemo porro temporibus totam? Consequatur eum hic nemo nesciunt vel. Ad dolorem, explicabo laboriosam maiores nesciunt quis rem repudiandae velit. A accusamus ad adipisci cum cupiditate delectus, deleniti eveniet exercitationem fugiat ipsa, iste, maxime nam natus neque non nulla obcaecati odio optio porro possimus provident quos ratione sed sequi temporibus ullam voluptatum. Aliquid aperiam deserunt doloribus, ipsam laboriosam magnam molestias necessitatibus numquam odit placeat quisquam soluta. Asperiores aspernatur corporis ea enim esse, explicabo hic in ipsam laudantium magnam magni minus molestiae nam neque, officia pariatur quisquam repellendus rerum temporibus vero. Aut, consectetur consequuntur culpa, debitis dignissimos enim esse illum labore libero minima minus perspiciatis provident quasi rem, rerum! Quibusdam sit, voluptas?
 
-<PlayfulDivider client:idle/>
+<PlayfulDivider client:only="react">
+    <hr slot="fallback" className="border-neutral-800" />
+</PlayfulDivider>
 
 ## Subline
 

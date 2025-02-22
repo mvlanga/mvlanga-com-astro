@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { PlayfulDivider } from "../components/PlayfulDivider";
+import { PlayfulDivider } from "../components/common/PlayfulDivider";
 import Layout from "../layouts/layout.astro";
 import { sortExperience } from "../utils/sortCollection";
 
@@ -48,8 +48,9 @@ const experience = sortExperience(await getCollection("resumeExperience"));
                                     </div>
 
                                     {index !== experience.length - 1 &&
-                                            <PlayfulDivider client:idle/>
-                                    }
+                                            <PlayfulDivider client:only="react">
+                                                <hr slot="fallback" class="border-neutral-800" />
+                                            </PlayfulDivider>                                    }
                                 </>
                     )
                 )
