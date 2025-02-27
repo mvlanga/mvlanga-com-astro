@@ -9,6 +9,7 @@ coverOnHover: ./skoda-enyaq-coupe-thumbnail_02.jpg
 ---
 import MediaRow from "../../../components/projects/MediaRow.astro";
 import MyResponsibilities from "../../../components/projects/MyResponsibilities.astro";
+import {VideoPlayer} from "../../../components/common/VideoPlayer.js";
 import thumbnailOne from "./skoda-enyaq-coupe-thumbnail_01.jpg";
 import thumbnailTwo from "./skoda-enyaq-coupe-thumbnail_02.jpg";
 import beautyThree from "./beauty_03.jpg";
@@ -17,6 +18,8 @@ import beautyFive from "./beauty_05.jpg";
 import beautySix from "./beauty_06.jpg";
 import seatSelection from "./seat-selection.jpg";
 import cameraTransition from "./camera-transition.jpg";
+import runthrough from "./runthrough.jpg";
+import transitionPoser from "./transition-01.jpg";
 
 <MediaRow items={[
     {
@@ -43,8 +46,7 @@ import cameraTransition from "./camera-transition.jpg";
     </div>
 </div>
 
-
-<video src="/projects/skoda-enyaq-coupe/transition-01.mp4" muted controls playsInline/>
+<VideoPlayer client:visible src="/projects/skoda-enyaq-coupe/transition-01.mp4" poster={transitionPoser} />
 
 <MyResponsibilities description="Concept assistance, 3D animation & rendering, interface design, fullstack development."
                     responsibilities={{
@@ -120,4 +122,4 @@ import cameraTransition from "./camera-transition.jpg";
     }
 ]} />
 
-<video src="/projects/skoda-enyaq-coupe/runthrough.mp4" muted controls playsInline/>
+<VideoPlayer client:visible src="/projects/skoda-enyaq-coupe/runthrough.mp4" poster={runthrough} muted={false} />

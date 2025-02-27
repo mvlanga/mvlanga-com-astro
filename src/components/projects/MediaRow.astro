@@ -1,6 +1,7 @@
 ---
-import { clsx } from "clsx";
 import { type ImageMetadata } from "astro";
+import { clsx } from "clsx";
+import { VideoPlayer } from "../common/VideoPlayer";
 
 interface Props {
 	items: (
@@ -8,6 +9,7 @@ interface Props {
 				type: "video";
 				src: string;
 				poster: ImageMetadata;
+				muted: boolean;
 				description?: string;
 		  }
 		| {
@@ -28,14 +30,16 @@ const { items, reverseOffset = false } = Astro.props;
         props.type === "image" ? (
                 <div class="lg:col-span-3 h-fit grid gap-4 text-center">
                     <img class={clsx("rounded-4xl", (reverseOffset ? index % 2 === 0 : index % 2) && "lg:mt-64")}
-                     src={props.image.src} width={props.image.width} height={props.image.height} alt={props.alt}/>
+                         src={props.image.src} width={props.image.width} height={props.image.height} alt={props.alt}/>
+                    
                     {props.description && <p class="text-neutral-300">{props.description}</p>}
                 </div>
         ) : (
                 <div class="lg:col-span-3 h-fit grid gap-4 text-center">
-                    <video class={clsx("rounded-4xl", (reverseOffset ? index % 2 === 0 : index % 2) && "lg:mt-64")}
-                       poster={props.poster.src}
-                       src={props.src} muted controls playsInline/>
+                    <div class={clsx((reverseOffset ? index % 2 === 0 : index % 2) && "lg:mt-64")}>
+                        <VideoPlayer client:visible src={props.src} poster={props.poster}/>
+                    </div>
+
                     {props.description && <p class="text-neutral-300">{props.description}</p>}
                 </div>
         ),

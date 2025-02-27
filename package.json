@@ -13,7 +13,9 @@
 	"dependencies": {
 		"@astrojs/mdx": "^4.0.8",
 		"@tailwindcss/vite": "^4.0.6",
+		"@vidstack/react": "^1.12.13",
 		"clsx": "^2.1.1",
+		"media-icons": "^1.1.5",
 		"motion": "^12.4.2",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
