@@ -13,6 +13,8 @@
 	--color-purple: #8860ff;
 
 	--container-8xl: 120rem;
+
+	--max-width-prose: 84ch;
 }
 
 @layer base {
@@ -66,4 +68,8 @@
 	margin-inline: auto;
 	@apply px-6 sm:px-12 md:px-16 lg:px-32 max-w-8xl;
 	/*max-width: unset;*/
+}
+
+@utility prose {
+	max-width: var(--max-width-prose);
 }

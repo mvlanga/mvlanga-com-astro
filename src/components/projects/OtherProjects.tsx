@@ -1,37 +1,30 @@
 import type { CollectionEntry } from "astro:content";
-import { motion, useDragControls } from "motion/react";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
 
 type OtherProjectsProps = {
 	projects: CollectionEntry<"projects">[];
 };
 
 export const OtherProjects = ({ projects }: OtherProjectsProps) => {
-	const controls = useDragControls();
-
 	return (
-		<div className="overflow-x-hid1den max-w-full">
-			<motion.div
-				className="flex will-change-transform"
-				onPointerDown={(event) => controls.start(event)}
-				drag="x"
-				dragConstraints={{ left: 0, right: 0 }}
-				dragControls={controls}
-			>
-				{projects.map(({ id, data: { title, cover } }) => (
-					<a
-						key={title}
-						href={`/project/${id}`}
-						className="group user-select-none grid w-[400px] gap-6"
-					>
+		<Swiper spaceBetween={48} slidesPerView={"auto"} className="w-full">
+			{projects.map(({ id, data: { title, cover } }, index) => (
+				<SwiperSlide key={id} virtualIndex={index} className="group w-96!">
+					<a href={`/project/${id}`} className="flex flex-col gap-8">
 						<img
+							className="block rounded-3xl transition-opacity group-hover:opacity-50"
+							width={cover.width}
+							height={cover.height}
 							src={cover.src}
 							alt={title}
-							className="user-select-none rounded-xl transition-opacity group-hover:opacity-75"
+							loading="lazy"
 						/>
-						<h5>{title}</h5>
+						<h4 className="text-lg">{title}</h4>
 					</a>
-				))}
-			</motion.div>
-		</div>
+				</SwiperSlide>
+			))}
+		</Swiper>
 	);
 };

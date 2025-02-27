@@ -30,15 +30,15 @@ const relatedProjects = shuffle(
     <title slot="head">{title} — Moriz von Langa</title>
     <meta slot="head" name="description" content="" />
 
-    <section class="grid gap-16">
+    <section class="grid gap-64">
         <section>
-            <h3>
+            <h3 class="text-xl mb-4 text-neutral-400">
                 {customer}
             </h3>
-            <h1 class="mb-10 text-6xl font-bold leading-snug">
+            <h1 class="mb-8 text-4xl font-bold leading-snug">
                 {title}
             </h1>
-            <p class="max-w-[60ch] font-light">
+            <p class="max-w-[60ch] text-lg text-neutral-400">
                 {description}
             </p>
         </section>
@@ -52,7 +52,7 @@ const relatedProjects = shuffle(
                 <hr slot="fallback" class="border-neutral-800" />
             </PlayfulDivider>
 
-            <OtherProjects projects={relatedProjects} />
+            <OtherProjects client:visible projects={relatedProjects} />
         </section>
     </section>
 

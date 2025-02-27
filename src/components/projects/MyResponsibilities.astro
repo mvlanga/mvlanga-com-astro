@@ -1,0 +1,42 @@
+---
+import { PlayfulDivider } from "../common/PlayfulDivider";
+
+interface Props {
+	description: string;
+	responsibilities: {
+		me: string[];
+		colleagues: string;
+	};
+}
+
+const { description, responsibilities } = Astro.props;
+---
+
+
+<section class="grid gap-16">
+    <div class="grid gap-8">
+        <h2 class="text-5xl ">More projects you may like</h2>
+
+        <p class="text-neutral-400 max-w-prose">{description}</p>
+    </div>
+
+    <PlayfulDivider client:only="react">
+        <hr slot="fallback" class="border-neutral-800" />
+    </PlayfulDivider>
+
+    <div class="grid gap-8 max-w-prose">
+        <ul class="grid gap-4">
+            {responsibilities.me.map((responsibility) => <li class="p-8 bg-neutral-900 rounded-3xl">{responsibility}</li>)}
+
+            <li class="p-6 border-solid border-1 border-neutral-800 rounded-3xl">{responsibilities.colleagues}</li>
+        </ul>
+        <div class="flex gap-8 justify-end flex-wrap">
+            <div class="flex items-center gap-4">
+                <span class="inline-block w-4 h-4 rounded-full bg-neutral-900"/> Me
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="inline-block w-4 h-4 rounded-full border-solid border-1 border-neutral-800"/> Colleagues
+            </div>
+        </div>
+    </div>
+</section>
