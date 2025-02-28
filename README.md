@@ -21,13 +21,19 @@ to [mvlanga.com](https://mvlanga.com). Thanks!
 
 ## 🛠 Installation & set up
 
-1. Install dependencies
+1. Install and use the correct version of Node using [NVM](https://github.com/nvm-sh/nvm)
+
+   ```sh
+   nvm install
+   ```
+
+2. Install dependencies
 
    ```sh
    npm install
    ```
 
-2. Start the development server
+3. Start the development server
 
    ```sh
    npm run dev

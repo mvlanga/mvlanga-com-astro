@@ -1,7 +1,7 @@
 interface ImportMetaEnv {
-    readonly MASTODON_USER_ID: string;
+	readonly MASTODON_USER_ID: string;
 }
 
 interface ImportMeta {
-    readonly env: ImportMetaEnv;
+	readonly env: ImportMetaEnv;
 }
