@@ -1,12 +1,12 @@
 ---
-import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
-import { Button } from "../components/common/Button";
-import { ColoredBackground } from "../components/common/ColoredBackground";
-import { PlayfulDivider } from "../components/common/PlayfulDivider";
-import { PortraitVideo } from "../components/common/PortraitVideo";
+import {Image} from "astro:assets";
+import {getCollection} from "astro:content";
+import {Button} from "../components/common/Button";
+import {ColoredBackground} from "../components/common/ColoredBackground";
+import {PlayfulDivider} from "../components/common/PlayfulDivider";
+import {PortraitVideo} from "../components/common/PortraitVideo";
 import Layout from "../layouts/layout.astro";
-import { sortExperience, sortProjects } from "../utils/sortCollection";
+import {sortExperience, sortProjects} from "../utils/sortCollection";
 const experience = sortExperience(await getCollection("experience"));
 const projects = sortProjects(await getCollection("projects"));
 ---
@@ -31,7 +31,7 @@ const projects = sortProjects(await getCollection("projects"));
         <div class="container grid gap-16">
             <h2 class="text-5xl">About</h2>
             <PlayfulDivider client:only="react">
-                <hr slot="fallback" class="border-neutral-800" />
+                <hr slot="fallback" class="border-neutral-800"/>
             </PlayfulDivider>
             <div class="grid lg:grid-cols-6 gap-16">
                 <div class="lg:col-span-2">
@@ -90,7 +90,7 @@ const projects = sortProjects(await getCollection("projects"));
         <h2 class="text-5xl">Experience</h2>
 
         <PlayfulDivider client:only="react">
-            <hr slot="fallback" class="border-neutral-800" />
+            <hr slot="fallback" class="border-neutral-800"/>
         </PlayfulDivider>
 
         <div class="flex flex-col gap-8 relative">
@@ -103,8 +103,8 @@ const projects = sortProjects(await getCollection("projects"));
                                     {" - "}
                                     {to}
                                 </p>
-                                <h3 class="text-3xl">{company.title}</h3>
-                                <p class="text-xl text-neutral-300">{role}</p>
+                                <h3 class="text-3xl">{role}</h3>
+                                <p class="text-xl text-neutral-300">{company.title}</p>
                                 <p class="text-neutral-400">{company.description}</p>
                             </div>
                             <hr class="border-neutral-800 lg:hidden"/>
@@ -143,13 +143,14 @@ const projects = sortProjects(await getCollection("projects"));
         <h2 class="text-5xl">Projects</h2>
 
         <PlayfulDivider client:only="react">
-            <hr slot="fallback" class="border-neutral-800" />
+            <hr slot="fallback" class="border-neutral-800"/>
         </PlayfulDivider>
 
-        <div class="relative grid lg:grid-cols-5 xl:grid-cols-2 gap-20">
+        <div class="relative grid lg:grid-cols-5 xl:grid-cols-2 gap-y-16 lg:gap-y-0 gap-x-16">
             {
                 projects.map(({id, data: {title, customer, cover, coverOnHover}}, index) => (
-                        <div class="flex flex-col lg:col-span-2 xl:col-span-1 justify-center lg:order-none!" style=`order: ${index + 2}`>
+                        <div class="flex flex-col lg:col-span-2 xl:col-span-1 justify-center lg:order-none! lg:py-16"
+                             style=`order: ${index + 2}`>
                             <a href=`project/${id}` class="flex flex-col gap-6">
                                 <span class="text-neutral-400 text-xl">{customer}</span>
                                 <h3 class="text-4xl">
@@ -157,11 +158,13 @@ const projects = sortProjects(await getCollection("projects"));
                                 </h3>
                             </a>
                         </div>
-                        <div class="lg:sticky lg:top-0 lg:col-span-3 xl:col-span-1 flex items-center lg:order-none! mt-20 lg:mb-0" style=`order: ${index + 1}`>
-                            <a class="block relative overflow-hidden rounded-2xl w-full aspect-square lg:aspect-auto" href=`project/${id}`>
+                        <div class="lg:sticky lg:top-0 lg:col-span-3 xl:col-span-1 flex items-center lg:order-none! mt-16 lg:mb-0 lg:py-16"
+                             style=`order: ${index + 1}`>
+                            <a class="block relative overflow-hidden rounded-2xl w-full aspect-square lg:aspect-auto lg:max-h-[calc(100lvh-var(--spacing)*16*2)]"
+                               href=`project/${id}`>
                                 <Image class="w-full h-full object-cover" src={cover} alt={title}/>
                                 <Image
-                                        class="absolute transition-all object-cover duration-500 opacity-0 left-0 top-0 w-full h-full hover:opacity-100 hover:scale-110 z-10"
+                                        class="absolute transition-all object-cover duration-500 opacity-0 inset-0 w-full h-full hover:opacity-100 hover:scale-110 z-10"
                                         src={coverOnHover}
                                         alt={title}/>
                             </a>

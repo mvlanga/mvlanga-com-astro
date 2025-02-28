@@ -44,7 +44,7 @@ export const PortraitVideo = () => {
 		>
 			<motion.video
 				style={{ y: videoOffset }}
-				className="-top-64 absolute right-0 left-0 h-[calc(100%+var(--spacing)*32*2)] object-cover"
+				className="-top-64 absolute inset-0 h-[calc(100%+var(--spacing)*32*2)] object-cover"
 				preload="auto"
 				ref={videoRef}
 				src="moriz-von-langa-portrait.mp4"

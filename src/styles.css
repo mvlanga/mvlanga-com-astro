@@ -5,77 +5,77 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-	--font-sans: Averta, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-sans: Averta, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-	--color-black: #080808;
+    --color-black: #080808;
 
-	--color-purple-500: #8860ff;
-	--color-purple-600: #4b29af;
-	--color-purple: #8860ff;
+    --color-purple-500: #8860ff;
+    --color-purple-600: #4b29af;
+    --color-purple: #8860ff;
 
-	--container-8xl: 120rem;
-	--container-7xl: 90rem;
+    --container-8xl: 120rem;
+    --container-7xl: 60rem;
 
-	--max-width-prose: 84ch;
+    --max-width-prose: 84ch;
 }
 
 @layer base {
-	@font-face {
-		font-family: "Averta";
-		src: url(./assets/fonts/averta-light.eot);
-		src: url(./assets/fonts/averta-light.woff) format("woff");
-		src: url(./assets/fonts/averta-light.woff2) format("woff2");
-		font-weight: 300;
-		font-style: normal;
-		font-display: swap;
-	}
+    @font-face {
+        font-family: "Averta";
+        src: url(./assets/fonts/averta-light.eot);
+        src: url(./assets/fonts/averta-light.woff) format("woff");
+        src: url(./assets/fonts/averta-light.woff2) format("woff2");
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+    }
 
-	@font-face {
-		font-family: "Averta";
-		src: url(./assets/fonts/averta-regular.eot);
-		src: url(./assets/fonts/averta-regular.woff) format("woff");
-		src: url(./assets/fonts/averta-regular.woff2) format("woff2");
-		font-weight: 400;
-		font-style: normal;
-		font-display: swap;
-	}
+    @font-face {
+        font-family: "Averta";
+        src: url(./assets/fonts/averta-regular.eot);
+        src: url(./assets/fonts/averta-regular.woff) format("woff");
+        src: url(./assets/fonts/averta-regular.woff2) format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+    }
 
-	@font-face {
-		font-family: "Averta";
-		src: url(./assets/fonts/averta-semibold.eot);
-		src: url(./assets/fonts/averta-semibold.woff) format("woff");
-		src: url(./assets/fonts/averta-semibold.woff2) format("woff2");
-		font-weight: 600;
-		font-style: normal;
-		font-display: swap;
-	}
+    @font-face {
+        font-family: "Averta";
+        src: url(./assets/fonts/averta-semibold.eot);
+        src: url(./assets/fonts/averta-semibold.woff) format("woff");
+        src: url(./assets/fonts/averta-semibold.woff2) format("woff2");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+    }
 
-	@font-face {
-		font-family: "Averta";
-		src: url(./assets/fonts/averta-bold.eot);
-		src: url(./assets/fonts/averta-bold.woff) format("woff");
-		src: url(./assets/fonts/averta-bold.woff2) format("woff2");
-		font-weight: 700;
-		font-style: normal;
-		font-display: swap;
-	}
+    @font-face {
+        font-family: "Averta";
+        src: url(./assets/fonts/averta-bold.eot);
+        src: url(./assets/fonts/averta-bold.woff) format("woff");
+        src: url(./assets/fonts/averta-bold.woff2) format("woff2");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+    }
 
-	button:not(:disabled),
-	[role="button"]:not(:disabled) {
-		cursor: pointer;
-	}
+    button:not(:disabled),
+    [role="button"]:not(:disabled) {
+        cursor: pointer;
+    }
 }
 
 @utility container {
-	margin-inline: auto;
-	@apply px-6 sm:px-12 md:px-16 lg:px-32 max-w-8xl;
+    margin-inline: auto;
+    @apply px-6 sm:px-12 md:px-16 lg:px-32 max-w-8xl;
 }
 
 @utility container-small {
-	@apply container max-w-7xl;
+    @apply container px-0 max-w-7xl;
 }
 
 @utility prose {
-	max-width: var(--max-width-prose);
+    max-width: var(--max-width-prose);
 }

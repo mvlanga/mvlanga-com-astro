@@ -1,20 +1,43 @@
 ---
-import { ClientRouter } from "astro:transitions";
+import {ClientRouter} from "astro:transitions";
 
 import "@/styles.css";
 
-import { clsx } from "clsx";
-import { Header } from "../components/header/Header";
+import type {
+    TransitionAnimationPair,
+    TransitionDirectionalAnimations,
+} from "astro";
+import {clsx} from "clsx";
+import {Header} from "../components/header/Header";
 import Footer from "../components/static/Footer.astro";
 
+const anim: TransitionAnimationPair = {
+    old: {
+        name: "out",
+        duration: "0.5s",
+        easing: "ease-in",
+    },
+    new: {
+        name: "in",
+        duration: "0.3s",
+        easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+        delay: "0.3s",
+    },
+};
+
+const customTransition: TransitionDirectionalAnimations = {
+    forwards: anim,
+    backwards: anim,
+};
+
 interface Props {
-	className?: string;
+    className?: string;
 }
 
-const { className } = Astro.props;
+const {className} = Astro.props;
 ---
 <!doctype html>
-<html lang="en" transition:name="root" transition:animate="none" class="relative scroll-smooth">
+<html lang="en" transition:name="root" transition:animate={customTransition} class="relative scroll-smooth">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width"/>
@@ -68,7 +91,7 @@ const { className } = Astro.props;
 
 <Header client:idle currentPath={Astro.url.pathname}/>
 
-<main transition:animate="fade" class={clsx("grid gap-64 py-48", className)}>
+<main class={clsx("grid gap-64 py-48", className)}>
     <slot/>
 </main>
 
@@ -76,3 +99,32 @@ const { className } = Astro.props;
 
 </body>
 </html>
+
+<style is:global>
+    @keyframes in {
+        0% {
+            height: 100vh;
+            transform: translateY(100%)
+        }
+        100% {
+            height: 100vh;
+            opacity: 1;
+            transform: translateY(0%)
+        }
+    }
+
+    @keyframes out {
+        0% {
+            height: 100vh;
+            opacity: 1;
+            transform: scale(1);
+            filter: blur(0px);
+        }
+        100% {
+            height: 100vh;
+            opacity: 0;
+            transform: scale(0.9);
+            filter: blur(3px);
+        }
+    }
+</style>

@@ -1,8 +1,8 @@
 ---
-import { getCollection } from "astro:content";
-import { PlayfulDivider } from "../components/common/PlayfulDivider";
+import {getCollection} from "astro:content";
+import {PlayfulDivider} from "../components/common/PlayfulDivider";
 import Layout from "../layouts/layout.astro";
-import { sortExperience } from "../utils/sortCollection";
+import {sortExperience} from "../utils/sortCollection";
 
 const skills = (await getCollection("resumeSkills"))[0].data;
 const experience = sortExperience(await getCollection("resumeExperience"));
@@ -15,11 +15,11 @@ const experience = sortExperience(await getCollection("resumeExperience"));
         </h1>
     </section>
 
-    <section id="about">
+    <section>
         <h2 class="mb-20 text-3xl">About</h2>
     </section>
 
-    <section id="experience">
+    <section>
         <h2 class="mb-20 text-3xl">Experience</h2>
         <div class="flex flex-col gap-14 relative">
             {
@@ -49,8 +49,8 @@ const experience = sortExperience(await getCollection("resumeExperience"));
 
                                     {index !== experience.length - 1 &&
                                             <PlayfulDivider client:only="react">
-                                                <hr slot="fallback" class="border-neutral-800" />
-                                            </PlayfulDivider>                                    }
+                                                <hr slot="fallback" class="border-neutral-800"/>
+                                            </PlayfulDivider>}
                                 </>
                     )
                 )
@@ -59,7 +59,7 @@ const experience = sortExperience(await getCollection("resumeExperience"));
         </div>
     </section>
 
-    <section id="skills">
+    <section>
         <h2 class="mb-20 text-3xl">Skills</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
             {
