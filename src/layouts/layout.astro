@@ -8,6 +8,7 @@ import type {
 	TransitionDirectionalAnimations,
 } from "astro";
 import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 import { Header } from "../components/header/Header";
 import Footer from "../components/static/Footer.astro";
 
@@ -91,7 +92,7 @@ const { className } = Astro.props;
 
 <Header client:idle currentPath={Astro.url.pathname}/>
 
-<main class={clsx("grid gap-64 py-48", className)}>
+<main class={twMerge(clsx("grid gap-64 py-48", className))}>
     <slot/>
 </main>
 
