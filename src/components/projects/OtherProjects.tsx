@@ -11,7 +11,11 @@ export const OtherProjects = ({ projects }: OtherProjectsProps) => {
 	return (
 		<Swiper spaceBetween={48} slidesPerView={"auto"} className="w-full">
 			{projects.map(({ id, data: { title, cover } }, index) => (
-				<SwiperSlide key={id} virtualIndex={index} className="group w-80!">
+				<SwiperSlide
+					key={id}
+					virtualIndex={index}
+					className="group w-80! max-w-3/4"
+				>
 					<a href={`/project/${id}`} className="flex flex-col gap-8">
 						<img
 							className="block rounded-3xl transition-opacity group-hover:opacity-50"

@@ -1,12 +1,12 @@
 ---
-import {Image} from "astro:assets";
-import {getCollection} from "astro:content";
-import {Button} from "../components/common/Button";
-import {ColoredBackground} from "../components/common/ColoredBackground";
-import {PlayfulDivider} from "../components/common/PlayfulDivider";
-import {PortraitVideo} from "../components/common/PortraitVideo";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { Button } from "../components/common/Button";
+import { ColoredBackground } from "../components/common/ColoredBackground";
+import { PlayfulDivider } from "../components/common/PlayfulDivider";
+import { PortraitVideo } from "../components/common/PortraitVideo";
 import Layout from "../layouts/layout.astro";
-import {sortExperience, sortProjects} from "../utils/sortCollection";
+import { sortExperience, sortProjects } from "../utils/sortCollection";
 const experience = sortExperience(await getCollection("experience"));
 const projects = sortProjects(await getCollection("projects"));
 ---

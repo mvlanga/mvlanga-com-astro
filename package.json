@@ -8,6 +8,7 @@
 		"preview": "astro preview",
 		"lint": "biome lint --write .",
 		"lint:fix": "biome check --write .",
+		"lint:fix-unsafe": "biome check --write --unsafe .",
 		"format": "biome format --write ."
 	},
 	"dependencies": {

@@ -1,36 +1,36 @@
 ---
-import {type ImageMetadata} from "astro";
-import {clsx} from "clsx";
-import {VideoPlayer} from "../common/VideoPlayer";
+import { type ImageMetadata } from "astro";
+import { clsx } from "clsx";
+import { VideoPlayer } from "../common/VideoPlayer";
 
 interface Props {
-    items: (
-        | {
-        type: "video";
-        src: string;
-        poster: ImageMetadata;
-        muted: boolean;
-        alt: string;
-        description?: string;
-    }
-        | {
-        type: "image";
-        image: ImageMetadata;
-        alt: string;
-        description?: string;
-    }
-        )[];
-    reverseOffset?: boolean;
+	items: (
+		| {
+				type: "video";
+				src: string;
+				poster: ImageMetadata;
+				muted: boolean;
+				alt: string;
+				description?: string;
+		  }
+		| {
+				type: "image";
+				image: ImageMetadata;
+				alt: string;
+				description?: string;
+		  }
+	)[];
+	reverseOffset?: boolean;
 }
 
-const {items, reverseOffset = false} = Astro.props;
+const { items, reverseOffset = false } = Astro.props;
 ---
 
-<div class="grid lg:grid-cols-6 gap-x-16 xl:gap-x-32 gap-y-32">
+<div class="grid lg:grid-cols-6 gap-x-16 xl:gap-x-32 gap-y-16 lg:gap-y-32">
     {items.map((props, index) =>
         props.type === "image" ? (
                 <div class="lg:col-span-3 h-fit grid gap-4 text-center">
-                    <img class={clsx("rounded-4xl", (reverseOffset ? index % 2 === 0 : index % 2) && "lg:mt-64")}
+                    <img class={clsx("rounded-4xl", (reverseOffset ? index % 2 === 0 : index % 2) && "lg:mt-32")}
                          src={props.image.src} width={props.image.width} height={props.image.height} alt={props.alt}
                          loading="lazy"/>
 

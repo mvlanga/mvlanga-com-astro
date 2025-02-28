@@ -1,40 +1,40 @@
 ---
-import {ClientRouter} from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 
 import "@/styles.css";
 
 import type {
-    TransitionAnimationPair,
-    TransitionDirectionalAnimations,
+	TransitionAnimationPair,
+	TransitionDirectionalAnimations,
 } from "astro";
-import {clsx} from "clsx";
-import {Header} from "../components/header/Header";
+import { clsx } from "clsx";
+import { Header } from "../components/header/Header";
 import Footer from "../components/static/Footer.astro";
 
 const anim: TransitionAnimationPair = {
-    old: {
-        name: "out",
-        duration: "0.5s",
-        easing: "ease-in",
-    },
-    new: {
-        name: "in",
-        duration: "0.3s",
-        easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
-        delay: "0.3s",
-    },
+	old: {
+		name: "out",
+		duration: "0.5s",
+		easing: "ease-in",
+	},
+	new: {
+		name: "in",
+		duration: "0.3s",
+		easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+		delay: "0.3s",
+	},
 };
 
 const customTransition: TransitionDirectionalAnimations = {
-    forwards: anim,
-    backwards: anim,
+	forwards: anim,
+	backwards: anim,
 };
 
 interface Props {
-    className?: string;
+	className?: string;
 }
 
-const {className} = Astro.props;
+const { className } = Astro.props;
 ---
 <!doctype html>
 <html lang="en" transition:name="root" transition:animate={customTransition} class="relative scroll-smooth">

@@ -1,15 +1,15 @@
 ---
-import {PlayfulDivider} from "../common/PlayfulDivider";
+import { PlayfulDivider } from "../common/PlayfulDivider";
 
 interface Props {
-    description: string;
-    responsibilities: {
-        me: string[];
-        colleagues: string;
-    };
+	description: string;
+	responsibilities: {
+		me: string[];
+		colleagues: string;
+	};
 }
 
-const {description, responsibilities} = Astro.props;
+const { description, responsibilities } = Astro.props;
 ---
 
 <section class="container-small grid gap-16">

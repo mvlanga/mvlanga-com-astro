@@ -1,36 +1,36 @@
 ---
-import { Image } from "astro:assets";
-import { getCollection, render } from "astro:content";
+import {Image} from "astro:assets";
+import {getCollection, render} from "astro:content";
 
 export async function getStaticPaths() {
-	const projects = await getCollection("projects");
+    const projects = await getCollection("projects");
 
-	return projects.map((post) => ({
-		params: { id: post.id },
-		props: { post },
-	}));
+    return projects.map((post) => ({
+        params: {id: post.id},
+        props: {post},
+    }));
 }
 
-const { post: projects } = Astro.props;
+const {post: projects} = Astro.props;
 
-const { Content } = await render(projects);
-const { title, description, customer } = projects.data;
+const {Content} = await render(projects);
+const {title, description, customer} = projects.data;
 
 import Layout from "@/layouts/layout.astro";
-import { shuffle } from "@/utils/sortCollection";
-import { PlayfulDivider } from "../../components/common/PlayfulDivider";
-import { OtherProjects } from "../../components/projects/OtherProjects";
+import {shuffle} from "@/utils/sortCollection";
+import {PlayfulDivider} from "../../components/common/PlayfulDivider";
+import {OtherProjects} from "../../components/projects/OtherProjects";
 
 const relatedProjects = shuffle(
-	await getCollection("projects", ({ id }) => id !== projects.id),
+    await getCollection("projects", ({id}) => id !== projects.id),
 );
 ---
 
 <Layout className="container">
-    <title slot="head">{title} — Moriz von Langa</title>
-    <meta slot="head" name="description" content="" />
+    <title slot="head">{title} — {customer} — Moriz von Langa</title>
+    <meta slot="head" name="description" content={description}/>
 
-    <section class="grid gap-64">
+    <section class="grid gap-32 md:gap-48 lg:gap-64">
         <section class="container-small">
             <h3 class="text-xl mb-4 text-neutral-400">
                 {customer}
@@ -49,10 +49,10 @@ const relatedProjects = shuffle(
             <h2 class="text-5xl">More projects you may like</h2>
 
             <PlayfulDivider client:only="react">
-                <hr slot="fallback" class="border-neutral-800" />
+                <hr slot="fallback" class="border-neutral-800"/>
             </PlayfulDivider>
 
-            <OtherProjects client:visible projects={relatedProjects} />
+            <OtherProjects client:visible projects={relatedProjects}/>
         </section>
     </section>
 
