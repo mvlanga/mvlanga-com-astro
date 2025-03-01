@@ -1,0 +1,50 @@
+---
+import DOMPurify from "isomorphic-dompurify";
+import Layout from "../../layouts/layout.astro";
+import { Notes } from "./Notes";
+import { NotesTags } from "./NotesTags";
+import { type Post } from "./types";
+
+const response = await fetch(
+	`https://mastodon.social/api/v1/accounts/${import.meta.env.MASTODON_USER_ID}/statuses`,
+);
+
+const posts = (await response.json()) as Post[];
+
+const postsWithSanitizedContent = posts.map((post) => ({
+	...post,
+	content: DOMPurify.sanitize(post.content, {
+		ALLOWED_TAGS: ["p", "br", "strong"],
+	}),
+}));
+
+const tagCounts: Record<string, number> = {};
+
+for (const post of posts) {
+	for (const tag of post.tags) {
+		tagCounts[tag.name] = (tagCounts[tag.name] || 0) + 1;
+	}
+}
+
+const tags = Object.entries(tagCounts).map(([name, count]) => ({
+	name,
+	count,
+}));
+---
+
+<title slot="head">Notes — Moriz von Langa</title>
+<meta slot="head" name="description" content="A few notes and reminders, usually when I've found a solution to something I was struggling with, discovered the ideal solution to a problem, or tried something new with coffee or my plants."/>
+
+<Layout className="container gap-32">
+    <section class="grid gap-8">
+        <h1 class="text-4xl font-bold leading-snug">
+            Notes
+        </h1>
+        <p class="max-w-prose text-lg text-neutral-400">
+            A few notes and reminders for myself, usually when I've found a solution to something I was struggling with, discovered the ideal solution to a problem, or tried something new with coffee or my plants. It's great to have a place to go back to.
+        </p>
+        <NotesTags client:load availableTags={tags} />
+    </section>
+
+    <Notes client:load notes={postsWithSanitizedContent} />
+</Layout>
