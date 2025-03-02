@@ -8,8 +8,10 @@ export const MediaModal = ({ media, handleClose }: MediaModal) => {
 	useEscapeKey(handleClose);
 
 	return (
-		// biome-ignore lint/a11y/useKeyWithClickEvents: escape dismisses the modal already
-		<div
+		<motion.div
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
 			className="fixed inset-0 z-20 flex h-full w-full cursor-zoom-out items-center justify-center bg-black/50 p-6 md:p-12 xl:p-32"
 			onClick={handleClose}
 		>
@@ -21,6 +23,6 @@ export const MediaModal = ({ media, handleClose }: MediaModal) => {
 				src={media.preview_url}
 				alt={media.alt}
 			/>
-		</div>
+		</motion.div>
 	);
 };

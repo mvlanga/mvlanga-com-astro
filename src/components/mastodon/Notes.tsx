@@ -61,12 +61,14 @@ export const Notes = ({ notes }: { notes: Post[] }) => {
 				</AnimatePresence>
 			</div>
 
-			{openedImage && (
-				<MediaModal
-					media={openedImage}
-					handleClose={() => setOpenedImage(null)}
-				/>
-			)}
+			<AnimatePresence>
+				{openedImage && (
+					<MediaModal
+						media={openedImage}
+						handleClose={() => setOpenedImage(null)}
+					/>
+				)}
+			</AnimatePresence>
 		</>
 	);
 };
