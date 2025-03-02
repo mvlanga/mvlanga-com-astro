@@ -1,9 +1,12 @@
+import { Button } from "@/components/common/Button.tsx";
 import { MediaModal } from "@/components/mastodon/MediaModal.tsx";
+import { NOTES_LIMIT_PER_CALL } from "@/components/mastodon/constants.ts";
 import {
 	SELECTED_TAG_ALL_VALUE,
 	selectedTag,
 } from "@/components/mastodon/selectedTagStore.ts";
 import type { MediaAttachment, Post } from "@/components/mastodon/types.ts";
+import { fetchPostsByUserId } from "@/components/mastodon/utils.ts";
 import { useStore } from "@nanostores/react";
 import { clsx } from "clsx";
 import { AnimatePresence, type Transition, motion } from "motion/react";
@@ -15,17 +18,19 @@ const layoutTransition: Transition = {
 };
 
 export const Notes = ({ notes }: { notes: Post[] }) => {
+	const [rNotes, setRNotes] = useState<Post[]>(notes);
+
 	const $selectedTag = useStore(selectedTag);
 	const [openedImage, setOpenedImage] = useState<MediaAttachment | null>(null);
 
 	const filteredNotes = useMemo(
 		() =>
-			notes.filter(
+			rNotes.filter(
 				(note) =>
 					$selectedTag === SELECTED_TAG_ALL_VALUE ||
 					note.tags.map(({ name }) => name).includes($selectedTag),
 			),
-		[notes, $selectedTag],
+		[rNotes, $selectedTag],
 	);
 
 	const postsGroupedByMonth = useMemo(
@@ -69,6 +74,24 @@ export const Notes = ({ notes }: { notes: Post[] }) => {
 					/>
 				)}
 			</AnimatePresence>
+
+			<Button
+				className={clsx(
+					notes.length > NOTES_LIMIT_PER_CALL &&
+						"cursor-not-allowed opacity-50",
+				)}
+				onClick={() => {
+					console.log("LOAD");
+					fetchPostsByUserId(
+						"113918561827911895",
+						rNotes[rNotes.length - 1].id,
+					).then((data) => {
+						console.log(data);
+						setRNotes((old) => [...old, ...data]);
+					});
+				}}
+				text="Load more"
+			/>
 		</>
 	);
 };

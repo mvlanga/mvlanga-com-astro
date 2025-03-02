@@ -1,10 +1,21 @@
+import { NOTES_LIMIT_PER_CALL } from "@/components/mastodon/constants.ts";
 import type { Post } from "@/components/mastodon/types.ts";
 import DOMPurify from "isomorphic-dompurify";
 
-export const fetchPostsByUserId = async (userId: string): Promise<Post[]> => {
-	const response = await fetch(
+export const fetchPostsByUserId = async (
+	userId: string,
+	minId?: string,
+): Promise<Post[]> => {
+	const url = new URL(
 		`https://mastodon.social/api/v1/accounts/${userId}/statuses`,
 	);
+	url.searchParams.set("limit", `${NOTES_LIMIT_PER_CALL}`);
+
+	if (minId !== undefined) {
+		url.searchParams.set("max_id", minId);
+	}
+
+	const response = await fetch(url);
 
 	const posts = (await response.json()) as Post[];
 
