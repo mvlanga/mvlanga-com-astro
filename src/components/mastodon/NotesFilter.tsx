@@ -1,12 +1,12 @@
 import { Button } from "@/components/common/Button.tsx";
 import { useStore } from "@nanostores/react";
-import { SELECTED_TAG_ALL_VALUE, selectedTag } from "./selectedTagStore";
+import { SELECTED_TAG_ALL_VALUE, selectedTag } from "./selectedTagStore.ts";
 
 type NotesProps = {
 	availableTags: { name: string; count?: number }[];
 };
 
-export const NotesTags = ({ availableTags }: NotesProps) => {
+export const NotesFilter = ({ availableTags }: NotesProps) => {
 	const $selectedTag = useStore(selectedTag);
 
 	return (
