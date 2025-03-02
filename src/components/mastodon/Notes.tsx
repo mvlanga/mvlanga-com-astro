@@ -53,20 +53,18 @@ export const Notes = ({ notes }: { notes: Post[] }) => {
 
 	return (
 		<>
-			<LayoutGroup>
-				<motion.div layout className="grid gap-16">
-					<AnimatePresence>
-						{postsGroupedByMonth.map(([title, posts]) => (
-							<Area
-								key={title}
-								title={title}
-								posts={posts as Post[]}
-								onMediaClick={setOpenedImage}
-							/>
-						))}
-					</AnimatePresence>
-				</motion.div>
-			</LayoutGroup>
+			<div className="grid gap-16">
+				<AnimatePresence propagate>
+					{postsGroupedByMonth.map(([title, posts]) => (
+						<Area
+							key={title}
+							title={title}
+							posts={posts as Post[]}
+							onMediaClick={setOpenedImage}
+						/>
+					))}
+				</AnimatePresence>
+			</div>
 
 			{openedImage && (
 				<MediaModal
@@ -87,7 +85,6 @@ type AreaProps = {
 const Area = ({ title, posts, onMediaClick }: AreaProps) => {
 	return (
 		<motion.div
-			key={title}
 			layout
 			transition={layoutTransition}
 			className="grid gap-8 sm:grid-cols-2 xl:grid-cols-2"
@@ -102,7 +99,7 @@ const Area = ({ title, posts, onMediaClick }: AreaProps) => {
 			>
 				{title}
 			</motion.p>
-			<AnimatePresence>
+			<AnimatePresence propagate>
 				{posts?.map((post) => (
 					<Note key={post.id} post={post} onMediaClick={onMediaClick} />
 				))}
@@ -144,10 +141,10 @@ const Note = ({
 				>
 					{media_attachments.map((media) => (
 						<motion.img
+							key={media.id}
 							layout
 							layoutId={media.id}
 							onClick={() => onMediaClick(media)}
-							key={media.id}
 							className="grid-span-1 max-h-[60vh] cursor-zoom-in rounded-2xl"
 							src={media.preview_url}
 							alt={media.alt}
