@@ -6,12 +6,7 @@ import {
 import type { MediaAttachment, Post } from "@/components/mastodon/types.ts";
 import { useStore } from "@nanostores/react";
 import { clsx } from "clsx";
-import {
-	AnimatePresence,
-	LayoutGroup,
-	type Transition,
-	motion,
-} from "motion/react";
+import { AnimatePresence, type Transition, motion } from "motion/react";
 import { type Dispatch, type SetStateAction, useMemo, useState } from "react";
 
 const layoutTransition: Transition = {
