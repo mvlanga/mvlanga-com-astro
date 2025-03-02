@@ -12,13 +12,7 @@ import {
 	type Transition,
 	motion,
 } from "motion/react";
-import {
-	type Dispatch,
-	type SetStateAction,
-	useEffect,
-	useMemo,
-	useState,
-} from "react";
+import { type Dispatch, type SetStateAction, useMemo, useState } from "react";
 
 const layoutTransition: Transition = {
 	duration: 0.5,
@@ -53,10 +47,7 @@ export const Notes = ({ notes }: { notes: Post[] }) => {
 						...(isThisYear ? {} : { year: "numeric" }),
 					});
 				}),
-			).map(([title, posts]) => ({
-				title,
-				posts,
-			})),
+			),
 		[filteredNotes],
 	);
 
@@ -65,33 +56,13 @@ export const Notes = ({ notes }: { notes: Post[] }) => {
 			<LayoutGroup>
 				<motion.div layout className="grid gap-16">
 					<AnimatePresence>
-						{postsGroupedByMonth.map(({ title, posts }) => (
-							<motion.div
+						{postsGroupedByMonth.map(([title, posts]) => (
+							<Area
 								key={title}
-								layout
-								transition={layoutTransition}
-								className="grid gap-8 sm:grid-cols-2 xl:grid-cols-2"
-							>
-								<motion.p
-									layout
-									className="col-span-full text-2xl"
-									initial={{ opacity: 0 }}
-									animate={{ opacity: 1 }}
-									exit={{ opacity: 0 }}
-									transition={layoutTransition}
-								>
-									{title}
-								</motion.p>
-								<AnimatePresence>
-									{posts?.map((post) => (
-										<Note
-											key={post.id}
-											note={post}
-											onMediaClick={setOpenedImage}
-										/>
-									))}
-								</AnimatePresence>
-							</motion.div>
+								title={title}
+								posts={posts as Post[]}
+								onMediaClick={setOpenedImage}
+							/>
 						))}
 					</AnimatePresence>
 				</motion.div>
@@ -107,13 +78,46 @@ export const Notes = ({ notes }: { notes: Post[] }) => {
 	);
 };
 
+type AreaProps = {
+	title: string;
+	posts: Post[];
+	onMediaClick: Dispatch<SetStateAction<MediaAttachment | null>>;
+};
+
+const Area = ({ title, posts, onMediaClick }: AreaProps) => {
+	return (
+		<motion.div
+			key={title}
+			layout
+			transition={layoutTransition}
+			className="grid gap-8 sm:grid-cols-2 xl:grid-cols-2"
+		>
+			<motion.p
+				layout
+				className="col-span-full text-2xl"
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				exit={{ opacity: 0 }}
+				transition={layoutTransition}
+			>
+				{title}
+			</motion.p>
+			<AnimatePresence>
+				{posts?.map((post) => (
+					<Note key={post.id} post={post} onMediaClick={onMediaClick} />
+				))}
+			</AnimatePresence>
+		</motion.div>
+	);
+};
+
 type NoteProps = {
-	note: Post;
+	post: Post;
 	onMediaClick: Dispatch<SetStateAction<MediaAttachment | null>>;
 };
 
 const Note = ({
-	note: { id, content, created_at, media_attachments, tags },
+	post: { id, content, created_at, media_attachments, tags },
 	onMediaClick,
 }: NoteProps) => {
 	return (
