@@ -1,4 +1,3 @@
-import "@/styles.css";
 import { Button } from "@/components/common/Button.tsx";
 import { HeaderNavItem } from "@/components/header/HeaderNavItem.tsx";
 import { useEscapeKey } from "@/utils/useEscapeKey.tsx";

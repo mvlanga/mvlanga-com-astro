@@ -1,4 +1,3 @@
-import "@/styles.css";
 import { clsx } from "clsx";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";

@@ -19,9 +19,9 @@ export const MediaModal = ({ media, handleClose }: MediaModal) => {
 				layout
 				layoutId={media.id}
 				onClick={(e) => e.stopPropagation()}
-				className="max-h-full max-w-full cursor-default rounded-4xl"
-				src={media.preview_url}
-				alt={media.alt}
+				className="h-full max-h-full max-w-full cursor-default rounded-4xl object-contain"
+				src={media.url}
+				alt={media.description}
 			/>
 		</motion.div>
 	);

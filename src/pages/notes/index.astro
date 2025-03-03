@@ -22,8 +22,8 @@ const tags = getTagsWithCountByPosts(posts);
         <p class="max-w-prose text-lg text-neutral-400">
             A few notes and reminders for myself, usually when I've found a solution to something I was struggling with, discovered the ideal solution to a problem, or tried something new with coffee or my plants. It's great to have a place to go back to.
         </p>
-        <NotesFilter client:load availableTags={tags} />
+        <NotesFilter client:idle availableTags={tags} />
     </section>
 
-    <Notes client:load notes={posts} />
+    <Notes client:idle notes={posts} />
 </Layout>

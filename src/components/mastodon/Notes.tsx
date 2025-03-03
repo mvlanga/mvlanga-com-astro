@@ -144,7 +144,7 @@ const Note = ({
 							onClick={() => onMediaClick(media)}
 							className="grid-span-1 max-h-[60vh] cursor-zoom-in rounded-2xl"
 							src={media.preview_url}
-							alt={media.alt}
+							alt={media.description}
 							loading="lazy"
 						/>
 					))}

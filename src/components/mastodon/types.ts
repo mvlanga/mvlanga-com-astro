@@ -2,7 +2,7 @@ export type MediaAttachment = {
 	id: string;
 	url: string;
 	preview_url: string;
-	alt: string;
+	description: string;
 };
 
 type Tags = {

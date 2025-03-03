@@ -1,4 +1,3 @@
-import "@/styles.css";
 import { useOnResize } from "@/utils/useOnResize.ts";
 import { mix, useReducedMotion } from "motion/react";
 import { type MouseEvent, useCallback, useEffect, useRef } from "react";

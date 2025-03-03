@@ -1,4 +1,3 @@
-import "@/styles.css";
 import { clsx } from "clsx";
 import { scroll } from "motion";
 import { inView } from "motion/react";

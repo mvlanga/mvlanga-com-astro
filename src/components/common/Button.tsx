@@ -1,4 +1,3 @@
-import "@/styles.css";
 import { clsx } from "clsx";
 import { motion } from "motion/react";
 import type { AriaAttributes, Ref, SyntheticEvent } from "react";
