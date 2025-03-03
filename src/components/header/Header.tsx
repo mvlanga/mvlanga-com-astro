@@ -50,6 +50,10 @@ const socialItems: NavigationItems = [
 		label: "GitHub",
 		url: "https://github.com/mvlanga",
 	},
+	{
+		label: "Mastodon",
+		url: "https://mastodon.social/@mvlanga",
+	},
 ];
 
 export const Header = ({ currentPath }: { currentPath: string }) => {
