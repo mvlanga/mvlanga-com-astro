@@ -7,9 +7,9 @@
 	"to": "now",
 	"role": "Frontend Developer",
 	"tasks": [
-		"I have worked on enhancing an existing Angular application and migrating/rewriting it from Angular to React, embedding them as micro-frontends for improved modularity and performance. This involved careful planning and implementation of the migration process, ensuring a smooth transition.",
-		"I collaborated closely with designers to refine the user experience and further developed the UI component library to improve consistency and usability.",
-		"Additionally, I contributed to the ongoing development of a platform for specialist partners, enhancing its functionality and user interface."
+		"I have worked on the development of a platform for specialist partners which were served as many micro frotends and combine the output of several teams, enhancing its functionality and user interface.",
+		"Additionally, I have worked on enhancing an existing Angular application and migrating/rewriting it from Angular to React, embedding them as micro-frontends for improved modularity and performance. This involved careful planning and implementation of the migration process, ensuring a smooth transition.",
+		"I collaborated closely with designers to refine the user experience and further developed the UI component library to improve consistency and usability."
 	],
 	"technologies": [
 		"Microfrontends (SingleSPA)",
