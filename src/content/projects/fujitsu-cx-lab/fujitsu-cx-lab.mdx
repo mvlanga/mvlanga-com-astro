@@ -7,5 +7,113 @@ customer: Fujitsu
 cover: ./fujitsu-cx-lab-thumbnail_01.jpg
 coverOnHover: ./fujitsu-cx-lab-thumbnail_02.jpg
 ---
+import MediaRow from "../../../components/projects/MediaRow.astro";
+import MyResponsibilities from "../../../components/projects/MyResponsibilities.astro";
+import {VideoPlayer} from "../../../components/common/VideoPlayer";
 
-test123
+import thumbnailOne from "./fujitsu-cx-lab-thumbnail_01.jpg";
+import thumbnailTwo from "./fujitsu-cx-lab-thumbnail_02.jpg";
+import beautyOne from "./beauty_01.jpg";
+import beautyTwo from "./beauty_02.jpg";
+import beautyThree from "./beauty_03.jpg";
+import beautyFour from "./beauty_04.jpg";
+import customUploadPoster from "./custom-upload.jpg";
+import presentationPoster from "./presentation.jpg";
+import teaserPoster from "./teaser.jpg";
+
+<VideoPlayer client:visible src="/projects/fujitsu-cx-lab/teaser.mp4" poster={teaserPoster}
+             alt="Example Transition"/>
+
+<div className="container-small">
+    <div className="prose prose-invert">
+        # The origin: Our Smart City exhibit at the Fujitsu Forum 2019
+
+        Explaining products and services in a simplified way using a digital city comes from an idea we had during a
+        previous project with Fujitsu. With our Smart City exhibit, we explained services to Fujitsu Forum 2019 visitors
+        through beamer projections on a 150 cm high model city using personal examples.
+    </div>
+</div>
+
+<MediaRow items={[
+    {
+        type: "image",
+        image: thumbnailOne,
+        alt: "test123"
+    },
+    {
+        type: "image",
+        image: thumbnailTwo,
+        alt: "test123"
+    }
+]}/>
+
+<div className="container-small">
+    <div className="prose prose-invert">
+        # The goals
+
+        Fujitsu's services are often very complex and many potential customers have no concrete examples of how they can
+        benefit from Fujitsu. Our goal was to explain the Smart City not only to visitors of the Fujitsu Forum but to
+        anyone interested via special calls. Within this platform, the presenter has the option to choose between
+        different stories. After selecting, the visitor is experiencing a linear storyline. Here he can switch from the
+        starting point, the Fujitsu Tower, to different parts of the city with camera transitions. In each area, there
+        were opportunities to start different presentations and videos. This replaces a typical salespersons standard
+        PowerPoint presentation with a unified, expandable presentation platform.
+    </div>
+</div>
+
+<MediaRow items={[
+    {
+        type: "image",
+        image: beautyThree,
+        alt: "Example screenshot of the Fujtisu CX Lab Application"
+    },
+    {
+        type: "image",
+        image: beautyFour,
+        alt: "Example screenshot of the Fujtisu CX Lab Application"
+    }
+]} reverseOffset={true}/>
+
+<MyResponsibilities description="User journey, interface design, fullstack development."
+                    responsibilities={{
+                        me: [
+                            "User journey planning",
+                            "Interface design implementation",
+                            "Development of the application using Angular and Firebase",
+                            "Deploying the application using Firebase Hosting.",
+                        ],
+                        colleagues: "Concepts for the various stories and their storyboards, 3D design"
+                    }}/>
+
+<MediaRow items={[
+    {
+        type: "video",
+        src: "/projects/fujitsu-cx-lab/custom-upload.mp4",
+        poster: customUploadPoster,
+        muted: true,
+        alt: "Upload of logos & custom presentations",
+        description: "Upload of logos & custom presentations"
+    },
+    {
+        type: "video",
+        src: "/projects/fujitsu-cx-lab/presentation.mp4",
+        poster: presentationPoster,
+        muted: true,
+        alt: "Presentation controls",
+        description: "Presentation controls"
+    }
+]}/>
+
+<div className="container-small">
+    <div className="prose prose-invert">
+        # Highlights
+
+        In addition to features such as multi-language capability and passwordless e-mail authentication, one had the
+        option of uploading the client's logo and own presentations as PDFs when starting a new session. This way, there
+        is no break during the call, as everything can be opened directly via the CX Lab interface. Another highlight is
+        the self-developed presentation component, which provides the most common Power Point tools and shortcuts.
+
+        Since the Fujitsu CX Lab is an internal application, I can unfortunately not show more pictures and videos at
+        this point.
+    </div>
+</div>
