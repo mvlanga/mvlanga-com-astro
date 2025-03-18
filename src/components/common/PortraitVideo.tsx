@@ -36,24 +36,20 @@ export const PortraitVideo = () => {
 	}, [isInView]);
 
 	return (
-		<div
-			ref={containerRef}
-			style={{ aspectRatio }}
-			className="relative overflow-hidden lg:col-span-4"
-		>
-			<motion.video
-				style={{ y: videoOffset }}
-				className="-top-64 absolute inset-0 h-[calc(100%+var(--spacing)*32*2)] object-cover"
-				preload="auto"
-				ref={videoRef}
-				src="moriz-von-langa-portrait.mp4"
-				width={mvlPortait.width}
-				height={mvlPortait.height}
-				poster={mvlPortait.src}
-				muted
-				playsInline
-				autoPlay
-			/>
+		<div className="lg:col-span-4">
+			<div
+				ref={containerRef}
+				style={{ aspectRatio }}
+				className="relative overflow-hidden md:max-h-lvh lg:ml-auto"
+			>
+				<motion.img
+					style={{ y: videoOffset }}
+					className="-top-64 absolute inset-0 h-[calc(100%+var(--spacing)*32*2)] object-cover"
+					width={mvlPortait.width}
+					height={mvlPortait.height}
+					src="moriz-von-langa-portrait_2.png"
+				/>
+			</div>
 		</div>
 	);
 };

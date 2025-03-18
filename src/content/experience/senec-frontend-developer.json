@@ -15,8 +15,8 @@
 		"Microfrontends (SingleSPA)",
 		"React",
 		"Angular",
-		"MUI Core - Material UI",
-		"Tailwind",
+		"Storybook",
+		"Vite",
 		"Vitest"
 	]
 }
