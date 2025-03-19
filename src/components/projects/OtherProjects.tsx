@@ -6,7 +6,7 @@ type OtherProjectsProps = {
 };
 
 export const OtherProjects = ({ projects }: OtherProjectsProps) => {
-	const [emblaRef, emblaApi] = useEmblaCarousel({});
+	const [emblaRef] = useEmblaCarousel();
 
 	return (
 		<div className="overflow-hidden" ref={emblaRef}>
