@@ -1,34 +1,35 @@
 import type { CollectionEntry } from "astro:content";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/css";
+import useEmblaCarousel from "embla-carousel-react";
 
 type OtherProjectsProps = {
 	projects: CollectionEntry<"projects">[];
 };
 
 export const OtherProjects = ({ projects }: OtherProjectsProps) => {
+	const [emblaRef, emblaApi] = useEmblaCarousel({});
+
 	return (
-		<Swiper spaceBetween={48} slidesPerView={"auto"} className="w-full">
-			{projects.map(({ id, data: { title, cover } }, index) => (
-				<SwiperSlide
-					key={id}
-					virtualIndex={index}
-					className="group w-80! max-w-3/4"
-				>
-					<a href={`/project/${id}`} className="flex flex-col gap-8">
-						<img
-							className="block rounded-3xl transition-opacity group-hover:opacity-50"
-							width={cover.width}
-							height={cover.height}
-							src={cover.src}
-							alt={title}
-							loading="lazy"
-						/>
-						<h4 className="text-lg">{title}</h4>
-					</a>
-				</SwiperSlide>
-			))}
-		</Swiper>
+		<div className="overflow-hidden" ref={emblaRef}>
+			<div className="-ml-8 flex touch-pan-y">
+				{projects.map(({ id, data: { title, cover } }, index) => (
+					<div
+						key={id}
+						className="transform-3d-[0_0_0] min-w-0 flex-[0_0_60%] pl-8 md:flex-[0_0_30%]"
+					>
+						<a href={`/project/${id}`} className="group flex flex-col gap-8">
+							<img
+								className="block rounded-3xl transition-opacity group-hover:opacity-50"
+								width={cover.width}
+								height={cover.height}
+								src={cover.src}
+								alt={title}
+								loading="lazy"
+							/>
+							<h4 className="text-lg">{title}</h4>
+						</a>
+					</div>
+				))}
+			</div>
+		</div>
 	);
 };

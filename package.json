@@ -17,6 +17,7 @@
 		"@tailwindcss/vite": "^4.0.14",
 		"@vidstack/react": "^1.12.13",
 		"clsx": "^2.1.1",
+		"embla-carousel-react": "^8.5.2",
 		"isomorphic-dompurify": "^2.22.0",
 		"media-icons": "^1.1.5",
 		"motion": "^12.5.0",
@@ -24,7 +25,6 @@
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
 		"react-use-size": "^5.0.1",
-		"swiper": "^11.2.5",
 		"tailwind-merge": "^3.0.2"
 	},
 	"devDependencies": {
