@@ -31,10 +31,6 @@ const navItems: NavigationItems = [
 		url: "/#projects",
 	},
 	{
-		label: "Resume",
-		url: "/resume",
-	},
-	{
 		label: "Contact",
 		url: "mailto:morizvlanga@gmail.com",
 	},

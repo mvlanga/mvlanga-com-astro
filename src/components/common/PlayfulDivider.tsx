@@ -1,6 +1,6 @@
 import { useOnResize } from "@/utils/useOnResize.ts";
 import { mix, useReducedMotion } from "motion/react";
-import { type MouseEvent, useCallback, useEffect, useRef } from "react";
+import { type MouseEvent, useEffect, useRef } from "react";
 
 export const PlayfulDivider = () => {
 	const shouldReduceMotion = useReducedMotion();

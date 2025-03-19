@@ -23,7 +23,7 @@ export const HeaderNavItem = (props: HeaderNavItemProps) => {
 };
 
 const AnchorNavItem = (props: NavItemProps) => {
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	// biome-ignore lint/correctness/useExhaustiveDependencies: Should only run on mount
 	useEffect(() => {
 		scroll(() => {
 			inView(props.url.substring(1), () => {
