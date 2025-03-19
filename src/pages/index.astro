@@ -5,6 +5,7 @@ import { Button } from "@/components/common/Button";
 import { ColoredBackground } from "@/components/common/ColoredBackground";
 import { PlayfulDivider } from "@/components/common/PlayfulDivider";
 import { PortraitVideo } from "@/components/common/PortraitVideo";
+import { ExperienceItem } from "../components/home-page/ExperienceItem";
 import Layout from "@/layouts/layout.astro";
 import Ellipsis from "../components/common/Ellipsis.astro";
 import { sortExperience, sortProjects } from "@/utils/sortCollection";
@@ -82,42 +83,10 @@ const projects = sortProjects(await getCollection("projects"));
         </PlayfulDivider>
 
         <div class="flex flex-col gap-8">
-            <div class="relative flex flex-col gap-8">
+            <div class="relative flex flex-col gap-8 z-0">
                 {
-                    experience.map(({data: {company, from, to, role, tasks, technologies}}, index) => (
-                            <div class="lg:top-16 lg:sticky grid lg:grid-cols-3 gap-x-8 lg:gap-x-16 gap-y-8 lg:gap-32 bg-neutral-900 p-8 md:p-16 rounded-xl">
-                                <div class="flex flex-col gap-4 lg:col-span-1">
-                                    <p class="text-neutral-400">
-                                        {from}
-                                        {" - "}
-                                        {to}
-                                    </p>
-                                    <h3 class="text-3xl">{role}</h3>
-                                    <p class="text-xl text-neutral-300">{company.title}</p>
-                                    <p class="text-neutral-400">{company.description}</p>
-                                </div>
-                                <hr class="border-neutral-800 lg:hidden"/>
-                                <div class="flex flex-col gap-8 lg:col-span-2 max-w-prose">
-                                    <ul class="flex flex-col gap-4 text-neutral-400">
-                                        {tasks.map((task) => (
-                                                <li class="">
-                                                    {task}
-                                                </li>
-                                        ))}
-                                    </ul>
-                                    {
-                                        technologies && (
-                                                    <div class="flex flex-wrap gap-2">
-                                                        {
-                                                            technologies.map((tech) => (
-                                                                    <span class="bg-neutral-800 text-sm text-neutral-400 py-2 px-5 rounded-full">{tech}</span>
-                                                            ))
-                                                        }
-                                                    </div>
-                                        )
-                                    }
-                                </div>
-                            </div>
+                    experience.map((exp, index) => (
+                            <ExperienceItem data={exp.data} index={index} client:visible />
                     ))
                 }
             </div>
