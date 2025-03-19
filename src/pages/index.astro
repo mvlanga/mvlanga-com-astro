@@ -86,7 +86,7 @@ const projects = sortProjects(await getCollection("projects"));
             <div class="relative flex flex-col gap-8 z-0">
                 {
                     experience.map((exp, index) => (
-                            <ExperienceItem data={exp.data} index={index} client:visible />
+                            <ExperienceItem data={exp.data} index={index} client:media="(width >= 64rem)" />
                     ))
                 }
             </div>

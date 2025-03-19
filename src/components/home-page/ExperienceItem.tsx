@@ -2,10 +2,15 @@ import type { CollectionEntry } from "astro:content";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 
+export type ExperienceItemProps = Pick<
+	CollectionEntry<"experience">,
+	"data"
+> & { index: number };
+
 export const ExperienceItem = ({
 	data: { from, to, role, technologies, company, tasks },
 	index,
-}: Pick<CollectionEntry<"experience">, "data"> & { index: number }) => {
+}: ExperienceItemProps) => {
 	const refEl = useRef<HTMLDivElement>(null);
 	const { scrollYProgress } = useScroll({
 		target: refEl,
@@ -30,7 +35,7 @@ export const ExperienceItem = ({
 			>
 				<div className="flex flex-col gap-4 lg:col-span-1">
 					<p className="text-neutral-400">
-						{from} test
+						{from}
 						{" - "}
 						{to}
 					</p>
