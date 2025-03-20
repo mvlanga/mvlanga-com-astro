@@ -52,3 +52,7 @@ to [mvlanga.com](https://mvlanga.com). Thanks!
    ```sh
    npm run preview
    ```
+
+## ⏲️ Previous iterations
+
+[**v1** - mvlanga.com](https://v1.mvlanga.com)
