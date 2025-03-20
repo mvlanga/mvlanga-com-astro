@@ -1,9 +1,9 @@
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { visualizer } from "rollup-plugin-visualizer";
-import sitemap from "@astrojs/sitemap";
 import { EnumChangefreq } from "sitemap";
 
 export default defineConfig({
