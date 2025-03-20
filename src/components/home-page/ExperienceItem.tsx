@@ -22,6 +22,7 @@ export const ExperienceItem = ({
 	return (
 		<>
 			<motion.div
+				aria-hidden
 				className="absolute inset-0 bg-black"
 				style={{
 					zIndex: index * 10,
