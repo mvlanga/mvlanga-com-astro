@@ -34,12 +34,7 @@ type VideoPlayerProps = {
 	alt: string;
 };
 
-export const VideoPlayer = ({
-	src,
-	poster,
-	muted = true,
-	alt,
-}: VideoPlayerProps) => {
+export const VideoPlayer = ({ src, poster, muted, alt }: VideoPlayerProps) => {
 	const videoRef = useRef<MediaPlayerInstance>(null);
 	const videoElementRef = useRef<HTMLElement>(null);
 

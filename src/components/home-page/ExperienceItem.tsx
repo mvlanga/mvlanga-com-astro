@@ -37,7 +37,7 @@ export const ExperienceItem = ({
 				<motion.div
 					aria-hidden
 					className={clsx(
-						"pointer-events-none absolute inset-0 bg-black",
+						"pointer-events-none absolute inset-0 hidden bg-black lg:block",
 						isPrevItemOverlayHidden && "hidden",
 					)}
 					style={{
@@ -48,7 +48,7 @@ export const ExperienceItem = ({
 			)}
 			<div
 				ref={refEl}
-				className="grid gap-x-8 gap-y-8 rounded-xl bg-neutral-900 p-8 md:p-16 lg:sticky lg:top-16 lg:grid-cols-3 lg:gap-32 lg:gap-x-16"
+				className="grid gap-8 rounded-xl bg-neutral-900 p-8 md:p-16 lg:sticky lg:top-16 lg:grid-cols-3 lg:gap-16"
 				style={{ zIndex: index * 20 }}
 			>
 				<div className="flex flex-col gap-4 lg:col-span-1">

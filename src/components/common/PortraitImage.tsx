@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 
 const aspectRatio = mvlPortrait.width / mvlPortrait.height;
 
-export const PortraitVideo = () => {
+export const PortraitImage = () => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const isInView = useInView(videoRef);
@@ -48,6 +48,7 @@ export const PortraitVideo = () => {
 					width={mvlPortrait.width}
 					height={mvlPortrait.height}
 					src={mvlPortrait.src}
+					alt="Portrait of Moriz von Langa"
 				/>
 			</div>
 		</div>

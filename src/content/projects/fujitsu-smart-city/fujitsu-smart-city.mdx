@@ -8,18 +8,105 @@ cover: ./fujitsu-smart-city-thumbnail_01.jpg
 coverOnHover: ./fujitsu-smart-city-thumbnail_02.jpg
 ---
 
-import {PlayfulDivider} from "../../../components/common/PlayfulDivider.js";
+import MediaRow from "../../../components/projects/MediaRow.astro";
+import MyResponsibilities from "../../../components/projects/MyResponsibilities.astro";
+import {VideoPlayer} from "../../../components/common/VideoPlayer";
 
-# test123
+import thumbnailOne from "./fujitsu-smart-city-thumbnail_01.jpg";
+import thumbnailTwo from "./fujitsu-smart-city-thumbnail_02.jpg";
+import beautyOne from "./beauty_01.jpg";
+import beautyTwo from "./beauty_02.jpg";
+import beautyThree from "./beauty_03.jpg";
+import beautyFour from "./beauty_04.jpg";
+import beautyFive from "./beauty_05.jpg";
+import beautySix from "./beauty_06.jpg";
+import beautySeven from "./beauty_07.jpg";
+import beautyEight from "./beauty_08.jpg";
+import storyTwoPoster from "./fujitsu-smart-city_story_02.jpg";
+import storyThreePoster from "./fujitsu-smart-city_story_03.jpg";
+import storyFourPoster from "./fujitsu-smart-city_story_04.jpg";
 
-## Subline
+<MediaRow items={[
+    {
+        type: "image",
+        image: beautyOne,
+        alt: "Example picture of the Smart City exhibit at Fujitsu Forum 2019"
+    },
+    {
+        type: "image",
+        image: beautyTwo,
+        alt: "Example picture of the Smart City exhibit at Fujitsu Forum 2019"
+    },
+    {
+        type: "image",
+        image: beautyThree,
+        alt: "Example picture of the Smart City exhibit at Fujitsu Forum 2019"
+    },
+    {
+        type: "image",
+        image: beautyFour,
+        alt: "Example picture of the Smart City exhibit at Fujitsu Forum 2019"
+    }
+]}/>
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium aliquam aliquid amet aspernatur assumenda cupiditate debitis dicta, distinctio dolores ducimus eius excepturi fuga fugiat illum ipsa iusto labore laudantium minima modi molestiae natus nisi non omnis provident quisquam tempore veniam? Amet animi at consectetur consequuntur dolorem doloribus eveniet facere fugiat hic id, inventore iure magni maxime nulla odio qui quis rem saepe sed soluta, tempore ut velit voluptas. Ab dignissimos doloribus dolorum eos itaque nam, nulla quos repudiandae saepe veritatis. Consequatur dolorum error harum hic ipsum labore libero nemo porro temporibus totam? Consequatur eum hic nemo nesciunt vel. Ad dolorem, explicabo laboriosam maiores nesciunt quis rem repudiandae velit. A accusamus ad adipisci cum cupiditate delectus, deleniti eveniet exercitationem fugiat ipsa, iste, maxime nam natus neque non nulla obcaecati odio optio porro possimus provident quos ratione sed sequi temporibus ullam voluptatum. Aliquid aperiam deserunt doloribus, ipsam laboriosam magnam molestias necessitatibus numquam odit placeat quisquam soluta. Asperiores aspernatur corporis ea enim esse, explicabo hic in ipsam laudantium magnam magni minus molestiae nam neque, officia pariatur quisquam repellendus rerum temporibus vero. Aut, consectetur consequuntur culpa, debitis dignissimos enim esse illum labore libero minima minus perspiciatis provident quasi rem, rerum! Quibusdam sit, voluptas?
+<div className="container-small">
+    <div className="prose prose-invert">
+        # The goal
 
-<PlayfulDivider client:only="react">
-    <hr slot="fallback" className="border-neutral-800" />
-</PlayfulDivider>
+        Fujitsu's services are often very complex and many potential customers lack concrete examples of how they can
+        benefit from Fujitsu. Our exhibit and the city it contained showed visitors examples, partly from the personal
+        perspective of a fictional protagonist. In Story 2, we explain how Fujitsu can help a company manufacture and
+        distribute customized products as efficiently and quickly as possible by optimizing ordering, delivery and
+        production processes. Story 3 is about urban infrastructures. More specifically, how Fujitsu optimizes traffic
+        flows in private and public sectors. In Story 4, we showed how Fujitsu can help a company with digitalization.
+        Digitalization helps companies with automatically and meaningfully analyzing data and optimizing processes to
+        sort through immense amounts of information. Visitors to the Fujitsu Forum were able to select and play a story
+        of their choice on a tablet at any time.
+    </div>
+</div>
 
-## Subline
+<MediaRow items={[
+    {
+        type: "image",
+        image: beautyEight,
+        alt: "Example picture of the Smart City exhibit at Fujitsu Forum 2019"
+    },
+    {
+        type: "image",
+        image: thumbnailTwo,
+        alt: "Example picture of the Smart City exhibit at Fujitsu Forum 2019"
+    }
+]}/>
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium aliquam aliquid amet aspernatur assumenda cupiditate debitis dicta, distinctio dolores ducimus eius excepturi fuga fugiat illum ipsa iusto labore laudantium minima modi molestiae natus nisi non omnis provident quisquam tempore veniam? Amet animi at consectetur consequuntur dolorem doloribus eveniet facere fugiat hic id, inventore iure magni maxime nulla odio qui quis rem saepe sed soluta, tempore ut velit voluptas. Ab dignissimos doloribus dolorum eos itaque nam, nulla quos repudiandae saepe veritatis. Consequatur dolorum error harum hic ipsum labore libero nemo porro temporibus totam? Consequatur eum hic nemo nesciunt vel. Ad dolorem, explicabo laboriosam maiores nesciunt quis rem repudiandae velit. A accusamus ad adipisci cum cupiditate delectus, deleniti eveniet exercitationem fugiat ipsa, iste, maxime nam natus neque non nulla obcaecati odio optio porro possimus provident quos ratione sed sequi temporibus ullam voluptatum. Aliquid aperiam deserunt doloribus, ipsam laboriosam magnam molestias necessitatibus numquam odit placeat quisquam soluta. Asperiores aspernatur corporis ea enim esse, explicabo hic in ipsam laudantium magnam magni minus molestiae nam neque, officia pariatur quisquam repellendus rerum temporibus vero. Aut, consectetur consequuntur culpa, debitis dignissimos enim esse illum labore libero minima minus perspiciatis provident quasi rem, rerum! Quibusdam sit, voluptas?
+<section>
+    <VideoPlayer client:visible
+                 src="https://res.cloudinary.com/dobsizufr/video/upload/v1674764844/mvlanga.com/fujitsu-smart-city_story_02.mp4"
+                 poster={storyTwoPoster}
+                 muted={false}
+                 alt="Story 2 - Fujitsu’s Just-In-Time Challenge"/>
+    <p className="text-center text-neutral-300">Story 2 - Fujitsu’s Just-In-Time Challenge</p>
+</section>
+
+<VideoPlayer client:visible
+             src="https://res.cloudinary.com/dobsizufr/video/upload/v1674764757/mvlanga.com/fujitsu-smart-city_story_03.mp4"
+             poster={storyThreePoster}
+             muted={false}
+             alt="Story 3 - Fujitsu Future Mobility Accelerator"/>
+
+<MyResponsibilities description="Design & animation, interface design, fullstack development"
+                    responsibilities={{
+                        me: [
+                            "Assistance in creating the look and feel of the city",
+                            "Helped create the UV maps for the city model",
+                            "Animation of the city in Story 2, Story 3 and - in a later project - in Story 4",
+                            "Creating masks for the city model in Cinema 4D",
+                            "Development of the small control application with Angular",
+                        ],
+                        colleagues: "Concept, city look art direction & design, story 1 animation, backplate animation, sound design"
+                    }}/>
+
+<VideoPlayer client:visible
+             src="https://res.cloudinary.com/dobsizufr/video/upload/v1674764197/mvlanga.com/fujitsu-smart-city_story_04_v3.mp4"
+             poster={storyFourPoster}
+             muted={false}
+             alt="Story 4 - Fujitsu Data-Driven Transformation (Available after an update in 2020 digitally, e.g. with VR glasses)"/>
