@@ -25,16 +25,21 @@ import type { ImageMetadata } from "astro";
 import { useInView } from "motion/react";
 import { useEffect, useRef } from "react";
 
-import "@vidstack/react/player/styles/base.css";
-
 type VideoPlayerProps = {
 	src: string;
 	poster: ImageMetadata;
 	muted: boolean;
 	alt: string;
+	description?: string;
 };
 
-export const VideoPlayer = ({ src, poster, muted, alt }: VideoPlayerProps) => {
+export const VideoPlayer = ({
+	src,
+	poster,
+	muted,
+	alt,
+	description,
+}: VideoPlayerProps) => {
 	const videoRef = useRef<MediaPlayerInstance>(null);
 	const videoElementRef = useRef<HTMLElement>(null);
 
@@ -57,29 +62,35 @@ export const VideoPlayer = ({ src, poster, muted, alt }: VideoPlayerProps) => {
 	}, [isInView]);
 
 	return (
-		<MediaPlayer
-			ref={videoRef}
-			aria-label={alt}
-			src={src}
-			playsInline
-			aspectRatio={`${poster.width / poster.height}`}
-			className="relative w-full overflow-hidden rounded-4xl"
-			muted={muted}
-		>
-			<MediaProvider className="media-started:opacity-100 opacity-50 transition-opacity duration-200">
-				<Poster
-					className="absolute inset-0 block h-full w-full rounded-md bg-neutral-900 opacity-0 transition-opacity data-[loading]:animate-pulse data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
-					src={poster.src}
-					alt={alt}
-				/>
-			</MediaProvider>
+		<div>
+			<MediaPlayer
+				ref={videoRef}
+				aria-label={alt}
+				src={src}
+				playsInline
+				aspectRatio={`${poster.width / poster.height}`}
+				className="relative w-full overflow-hidden rounded-4xl"
+				muted={muted}
+			>
+				<MediaProvider className="media-started:opacity-100 opacity-50 transition-opacity duration-200">
+					<Poster
+						className="absolute inset-0 block h-full w-full rounded-md bg-neutral-900 opacity-0 transition-opacity data-[loading]:animate-pulse data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
+						src={poster.src}
+						alt={alt}
+					/>
+				</MediaProvider>
 
-			<VideoPlayerGestures />
+				<VideoPlayerGestures />
 
-			<VideoPlayerControls muted={muted} />
+				<VideoPlayerControls muted={muted} />
 
-			<MediaAnnouncer />
-		</MediaPlayer>
+				<MediaAnnouncer />
+			</MediaPlayer>
+
+			{description && (
+				<p className="mt-4 text-center text-neutral-300">{description}</p>
+			)}
+		</div>
 	);
 };
 

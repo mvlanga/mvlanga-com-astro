@@ -8,18 +8,151 @@ cover: ./skoda-fabia-thumbnail_01.jpg
 coverOnHover: ./skoda-fabia-thumbnail_02.jpg
 
 ---
-import {PlayfulDivider} from "../../../components/common/PlayfulDivider.js";
+import MediaRow from "../../../components/projects/MediaRow.astro";
+import MyResponsibilities from "../../../components/projects/MyResponsibilities.astro";
+import {VideoPlayer} from "../../../components/common/VideoPlayer";
 
-# test123
+import arCarPoster from "./ar-car.jpg";
+import artWalkPoster from "./art-walk.jpg";
+import cameraTransitionPoster from "./camera-transition.jpg";
+import runthroughPoster from "./skoda-fabia-run-through.jpg";
+import designChatPoster from "./design-chat.jpg";
+import virtualAssistantPoster from "./virtual-assistant.jpg";
+import guidedTourPoster from "./skoda-fabia-guided-tour.jpg";
+import beautyOne from "./part_01.jpg";
+import beautyTwo from "./part_02.jpg";
+import beautyThree from "./part_03.jpg";
+import beautyFour from "./part_04.jpg";
+import tapeArt from "./tapeart.jpg";
+import scannedSkodaEmployees from "./scanned-skoda-employees.jpg";
 
-## Subline
+<MediaRow items={[
+    {
+        type: "image",
+        image: beautyOne,
+        alt: "Example screenshot of the web app of the Škoda Fabia Digital World Premiere"
+    },
+    {
+        type: "image",
+        image: beautyTwo,
+        alt: "Example screenshot of the web app of the Škoda Fabia Digital World Premiere"
+    }
+]}/>
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium aliquam aliquid amet aspernatur assumenda cupiditate debitis dicta, distinctio dolores ducimus eius excepturi fuga fugiat illum ipsa iusto labore laudantium minima modi molestiae natus nisi non omnis provident quisquam tempore veniam? Amet animi at consectetur consequuntur dolorem doloribus eveniet facere fugiat hic id, inventore iure magni maxime nulla odio qui quis rem saepe sed soluta, tempore ut velit voluptas. Ab dignissimos doloribus dolorum eos itaque nam, nulla quos repudiandae saepe veritatis. Consequatur dolorum error harum hic ipsum labore libero nemo porro temporibus totam? Consequatur eum hic nemo nesciunt vel. Ad dolorem, explicabo laboriosam maiores nesciunt quis rem repudiandae velit. A accusamus ad adipisci cum cupiditate delectus, deleniti eveniet exercitationem fugiat ipsa, iste, maxime nam natus neque non nulla obcaecati odio optio porro possimus provident quos ratione sed sequi temporibus ullam voluptatum. Aliquid aperiam deserunt doloribus, ipsam laboriosam magnam molestias necessitatibus numquam odit placeat quisquam soluta. Asperiores aspernatur corporis ea enim esse, explicabo hic in ipsam laudantium magnam magni minus molestiae nam neque, officia pariatur quisquam repellendus rerum temporibus vero. Aut, consectetur consequuntur culpa, debitis dignissimos enim esse illum labore libero minima minus perspiciatis provident quasi rem, rerum! Quibusdam sit, voluptas?
+<div className="container-small">
+    <div className="prose prose-invert">
+        # The story
 
-<PlayfulDivider client:only="react">
-    <hr slot="fallback" className="border-neutral-800" />
-</PlayfulDivider>
+        Due to rising infection rates (COVID) in the Czech Republic, we were unable to hold a live event with
+        journalists as planned, so we created a purely digital world premiere. Consisting of a pre-recorded livestream
+        and the virtual event platform we had been using and developing since 2020 which had already been successfully
+        used for several world premieres. For the 3D environment we chose a replica of the film set where the car
+        release was shot, the DOX Centre for Contemporary Art in Prague. The entire implementation of the virtual event
+        took less than 2 months.
+    </div>
+</div>
 
-## Subline
+<VideoPlayer client:visible
+             src="https://res.cloudinary.com/dobsizufr/video/upload/v1674769362/mvlanga.com/skoda-fabia-guided-tour.mp4"
+             poster={guidedTourPoster}
+             muted={false}
+             alt="Guided Tour"/>
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium aliquam aliquid amet aspernatur assumenda cupiditate debitis dicta, distinctio dolores ducimus eius excepturi fuga fugiat illum ipsa iusto labore laudantium minima modi molestiae natus nisi non omnis provident quisquam tempore veniam? Amet animi at consectetur consequuntur dolorem doloribus eveniet facere fugiat hic id, inventore iure magni maxime nulla odio qui quis rem saepe sed soluta, tempore ut velit voluptas. Ab dignissimos doloribus dolorum eos itaque nam, nulla quos repudiandae saepe veritatis. Consequatur dolorum error harum hic ipsum labore libero nemo porro temporibus totam? Consequatur eum hic nemo nesciunt vel. Ad dolorem, explicabo laboriosam maiores nesciunt quis rem repudiandae velit. A accusamus ad adipisci cum cupiditate delectus, deleniti eveniet exercitationem fugiat ipsa, iste, maxime nam natus neque non nulla obcaecati odio optio porro possimus provident quos ratione sed sequi temporibus ullam voluptatum. Aliquid aperiam deserunt doloribus, ipsam laboriosam magnam molestias necessitatibus numquam odit placeat quisquam soluta. Asperiores aspernatur corporis ea enim esse, explicabo hic in ipsam laudantium magnam magni minus molestiae nam neque, officia pariatur quisquam repellendus rerum temporibus vero. Aut, consectetur consequuntur culpa, debitis dignissimos enim esse illum labore libero minima minus perspiciatis provident quasi rem, rerum! Quibusdam sit, voluptas?
+<MyResponsibilities description="Concept assistance, 3D animation & rendering, interface design, fullstack development."
+                    responsibilities={{
+                        me: [
+                            "Part of the content concept",
+                            "User journey planning & interface design implementation",
+                            "Content coordination of external 3D artist to model the augmented reality vehicle",
+                            "Shading and preparation of the augmented reality vehicle with Substance Designer",
+                            "Modeling, shading and lighting of the DOX building with Cinema 4D and V-Ray",
+                            "Placement & quality control of scanned Škoda employees",
+                            "Rendering post-production and preparing for web",
+                            "Development of the application using Angular and Firebase",
+                            "Deploying the application using Firebase Hosting.",
+                        ],
+                        colleagues: "Concept, graphic walls, light setup, camera movements & placement renderpeople"
+                    }}/>
+
+<div className="container-small">
+    <div className="prose prose-invert">
+        # World Premiere
+
+        The actual world premiere took place via livestream. Users who were online during the show were automatically
+        redirected to a page that embedded the YouTube livestream. No active user of the site could miss the event. The
+        entire system was based on a remote configuration that could update the status of the application for all users
+        in real time.
+    </div>
+</div>
+
+<MediaRow items={[
+    {
+        type: "image",
+        image: beautyThree,
+        alt: "Example screenshot of the web app of the Škoda Fabia Digital World Premiere"
+    },
+    {
+        type: "image",
+        image: beautyFour,
+        alt: "Example screenshot of the web app of the Škoda Fabia Digital World Premiere"
+    }
+]}/>
+
+<div className="container-small">
+    <div className="prose prose-invert">
+        # Highlights
+
+        In addition to the livestream and other video clips, there were numerous features such as the integration of
+        Škoda employees into the environment, insights into an internal chat of the design team, a virtual assistant who
+        showed possible interactions, tapeart throughout the whole building, camera transitions between the different 3D
+        environments, an augmented reality model of the car and much more.
+    </div>
+</div>
+
+<MediaRow items={[
+    {
+        type: "video",
+        src: "/projects/skoda-fabia/ar-car.mp4",
+        poster: arCarPoster,
+        alt: "Augmented Reality Car Model",
+        description: "Augmented Reality Car Model",
+    },
+    {
+        type: "video",
+        src: "/projects/skoda-fabia/virtual-assistant.mp4",
+        poster: virtualAssistantPoster,
+        alt: "Virtual assistant",
+        description: "Virtual assistant"
+    },
+    {
+        type: "image",
+        image: scannedSkodaEmployees,
+        alt: "3D scanned Škoda employees",
+        description: "3D scanned Škoda employees"
+    },
+    {
+        type: "video",
+        src: "/projects/skoda-fabia/design-chat.mp4",
+        poster: designChatPoster,
+        alt: "Chat with the design team",
+        description: "Chat with the design team"
+    },
+    {
+        type: "video",
+        src: "/projects/skoda-fabia/camera-transition.mp4",
+        poster: cameraTransitionPoster,
+        alt: "Camera transitions",
+        description: "Camera transitions"
+    },
+    {
+        type: "image",
+        image: tapeArt,
+        alt: "Tape art",
+        description: "Tape art installations in the whole building"
+    }
+]}/>
+
+<VideoPlayer client:visible
+             src="https://res.cloudinary.com/dobsizufr/video/upload/v1674769734/mvlanga.com/skoda-fabia-run-through.mp4"
+             poster={runthroughPoster} muted={false}
+             alt="run through" description="Complete run through"/>

@@ -7,5 +7,131 @@ customer: CARIAD
 cover: ./cariad-iaa-thumbnail_01.jpg
 coverOnHover: ./cariad-iaa-thumbnail_02.jpg
 ---
+import MediaRow from "../../../components/projects/MediaRow.astro";
+import MyResponsibilities from "../../../components/projects/MyResponsibilities.astro";
+import {VideoPlayer} from "../../../components/common/VideoPlayer";
 
-test123
+import teaserPoster from "./cariad-iaa-2021_teaser.jpg";
+import liveSessionsPoster from "./cariad-iaa-2021_live-sessions.jpg";
+import runthroughPoster from "./runthrough.jpg";
+import hrCornerPoster from "./hr-corner.jpg";
+import quizCornerPoster from "./quiz-corner.jpg";
+import cariadExperiencePoster from "./cariad-experience.jpg";
+import boardTalkPoster from "./board-talk.jpg";
+import beautyOne from "cariad-iaa_beauty-01.jpg";
+import beautyThree from "cariad-iaa_beauty-03.jpg";
+import beautySix from "cariad-iaa_beauty-06.jpg";
+import beautySeven from "cariad-iaa_beauty-07.jpg";
+
+<VideoPlayer client:visible src="/projects/cariad-iaa/cariad-iaa-2021_teaser.mp4" poster={teaserPoster}
+             muted={false}
+             alt="Teaser"/>
+
+<div className="container-small">
+    <div className="prose prose-invert">
+        # The story
+
+        In order to make the event an experience not only for visitors to the IAA 2021, we digitally reproduced the
+        physical trade fair 1:1. In addition to various areas such as the HR or Quiz Corner, there was a live format in
+        which talks were broadcast via livestream. Here, topics such as the importance of AI in the automotive industry
+        were discussed. The press conference was broadcast this way as well. The entire implementation of the virtual
+        trade fair booth was completed in less than 6 weeks.
+    </div>
+</div>
+
+<MediaRow items={[
+    {
+        type: "image",
+        image: beautyOne,
+        alt: "Example screenshot of the CARIAD Digital Booth at IAA 2021"
+    },
+    {
+        type: "image",
+        image: beautySeven,
+        alt: "Example screenshot of the CARIAD Digital Booth at IAA 2021"
+    },
+    {
+        type: "image",
+        image: beautyThree,
+        alt: "Example screenshot of the CARIAD Digital Booth at IAA 2021"
+    }, {
+        type: "image",
+        image: beautySix,
+        alt: "Example screenshot of the CARIAD Digital Booth at IAA 2021"
+    }
+]}/>
+
+<MyResponsibilities description="Concept assistance, 3D animation & rendering, interface design, fullstack development."
+                    responsibilities={{
+                        me: [
+                            "Part of the content concept for the digital booth",
+                            "Planning of the user journey & implementation of the interface design",
+                            "Modeling, shading and lighting of the booth and its environment with Cinema 4D and V-Ray",
+                            "Rendering post-production and preparing for web",
+                            "Development of the application using Angular and Firebase",
+                            "Deploying the application using Firebase Hosting.",
+                        ],
+                        colleagues: "Concept, booth design, graphic walls, camera movements & placement renderpeople"
+                    }}/>
+
+<div className="container-small">
+    <div className="prose prose-invert">
+        # Live Sessions
+
+        During the entire IAA, 7 different topics were broadcast live from the stage of the CARIAD booth. In addition to
+        a classic livestream on all social media channels, visitors had the opportunity to access a 360° camera on stage
+        to get a more immersive feel. We also installed a display showing real-time viewer numbers.
+    </div>
+</div>
+
+<VideoPlayer client:visible src="/projects/cariad-iaa/cariad-iaa-2021_live-sessions.mp4" poster={liveSessionsPoster}
+             muted={false} alt="Livestreams"/>
+
+<div className="container-small">
+    <div className="prose prose-invert">
+        # Highlights
+
+        In addition to the booth and information about CARIAD, we offered many other features, such as the Quiz Corner,
+        where you could create your own CARIAD wallpaper and take part in a raffle after successfully completing the
+        quiz. In the HR corner, guests could read about working at CARIAD and all open positions. This, as well as the
+        CARIAD experience developed by an external service provider, was presented at our booth as well as onsite. Last
+        but not least, we had the Board Talk area where you could ask the management questions in a pre-recorded
+        interview.
+    </div>
+</div>
+
+<MediaRow items={[
+    {
+        type: "video",
+        src: "/projects/cariad-iaa/hr-corner.mp4",
+        poster: hrCornerPoster,
+        alt: "HR Corner",
+        description: "HR Corner"
+    },
+    {
+        type: "video",
+        src: "/projects/cariad-iaa/quiz-corner.mp4",
+        poster: quizCornerPoster,
+        alt: "Quiz Corner",
+        description: "Quiz Corner"
+    },
+    {
+        type: "video",
+        src: "/projects/cariad-iaa/cariad-experience.mp4",
+        poster: cariadExperiencePoster,
+        alt: "CARAID Experience",
+        description: "CARAID Experience"
+    },
+    {
+        type: "video",
+        src: "/projects/cariad-iaa/board-talk.mp4",
+        poster: boardTalkPoster,
+        alt: "Board talk",
+        description: "Board talk"
+    }
+]}/>
+
+<VideoPlayer client:visible
+             src="https://res.cloudinary.com/dobsizufr/video/upload/v1674726303/mvlanga.com/cariad-iaa_run-through.mp4"
+             poster={runthroughPoster} muted={false}
+             alt="run through" description="Complete run through"/>
