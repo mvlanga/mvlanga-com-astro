@@ -1,6 +1,12 @@
 import type { CollectionEntry } from "astro:content";
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import {
+	motion,
+	useMotionValueEvent,
+	useScroll,
+	useTransform,
+} from "motion/react";
+import { useRef, useState } from "react";
+import { clsx } from "clsx";
 
 export type ExperienceItemProps = Pick<
 	CollectionEntry<"experience">,
@@ -17,18 +23,29 @@ export const ExperienceItem = ({
 		offset: ["start end", "start start"],
 	});
 
+	const [isPrevItemOverlayHidden, setIsPrevItemOverlayHidden] = useState(true);
+
 	const opacity = useTransform(scrollYProgress, [0, 1], [0, 0.8]);
+
+	useMotionValueEvent(opacity, "change", (value) =>
+		setIsPrevItemOverlayHidden(value === 0),
+	);
 
 	return (
 		<>
-			<motion.div
-				aria-hidden
-				className="absolute inset-0 bg-black"
-				style={{
-					zIndex: index * 10,
-					opacity,
-				}}
-			/>
+			{index >= 1 && (
+				<motion.div
+					aria-hidden
+					className={clsx(
+						"pointer-events-none absolute inset-0 bg-black",
+						isPrevItemOverlayHidden && "hidden",
+					)}
+					style={{
+						zIndex: index * 10,
+						opacity,
+					}}
+				/>
+			)}
 			<div
 				ref={refEl}
 				className="grid gap-x-8 gap-y-8 rounded-xl bg-neutral-900 p-8 md:p-16 lg:sticky lg:top-16 lg:grid-cols-3 lg:gap-32 lg:gap-x-16"
