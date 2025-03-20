@@ -7,11 +7,11 @@ import sitemap from "@astrojs/sitemap";
 import { EnumChangefreq } from "sitemap";
 
 export default defineConfig({
-	site: "https://astro.mvlanga.com",
+	site: "https://mvlanga.com",
 	integrations: [
 		sitemap({
 			serialize(item) {
-				if (item.url === "https://astro.mvlanga.com/") {
+				if (item.url === "https://mvlanga.com/") {
 					item.changefreq = EnumChangefreq.MONTHLY;
 					item.lastmod = new Date().toDateString();
 					item.priority = 1;
