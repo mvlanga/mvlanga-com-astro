@@ -30,7 +30,7 @@ import "@vidstack/react/player/styles/base.css";
 type VideoPlayerProps = {
 	src: string;
 	poster: ImageMetadata;
-	muted?: boolean;
+	muted: boolean;
 	alt: string;
 };
 
@@ -64,16 +64,16 @@ export const VideoPlayer = ({
 	return (
 		<MediaPlayer
 			ref={videoRef}
-			title={alt}
+			aria-label={alt}
 			src={src}
 			playsInline
 			aspectRatio={`${poster.width / poster.height}`}
-			className="relative overflow-hidden rounded-4xl"
+			className="relative w-full overflow-hidden rounded-4xl"
 			muted={muted}
 		>
 			<MediaProvider className="media-started:opacity-100 opacity-50 transition-opacity duration-200">
 				<Poster
-					className="absolute inset-0 block h-full w-full rounded-md bg-black opacity-0 transition-opacity data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
+					className="absolute inset-0 block h-full w-full rounded-md bg-neutral-900 opacity-0 transition-opacity data-[loading]:animate-pulse data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
 					src={poster.src}
 					alt={alt}
 				/>

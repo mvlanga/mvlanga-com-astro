@@ -1,8 +1,8 @@
-import mvlPortait from "@/assets/img/moriz-von-langa-portrait.jpg";
+import mvlPortrait from "@/assets/img/moriz-von-langa-portrait.webp";
 import { motion, useInView, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef } from "react";
 
-const aspectRatio = mvlPortait.width / mvlPortait.height;
+const aspectRatio = mvlPortrait.width / mvlPortrait.height;
 
 export const PortraitVideo = () => {
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -45,9 +45,9 @@ export const PortraitVideo = () => {
 				<motion.img
 					style={{ y: videoOffset }}
 					className="-top-64 absolute inset-0 h-[calc(100%+var(--spacing)*32*2)] object-cover"
-					width={mvlPortait.width}
-					height={mvlPortait.height}
-					src="moriz-von-langa-portrait_2.png"
+					width={mvlPortrait.width}
+					height={mvlPortrait.height}
+					src={mvlPortrait.src}
 				/>
 			</div>
 		</div>

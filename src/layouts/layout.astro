@@ -38,28 +38,28 @@ const { className } = Astro.props;
                 "url": "https://senec.com/de"
             },
             "workLocation": "Leipzig",
-            "image": "https://mvlanga.com/profile-picture-mvl_01.jpg",
-            "url": "https://mvlanga.com"
+            "image": "https://astro.mvlanga.com/moriz-von-langa-portrait.webp",
+            "url": "https://astro.mvlanga.com"
         }
     } </script>
 
     <slot name="head"/>
 
     <link rel="apple-touch-icon" sizes="180x180"
-          href="/apple-touch-icon.png">
+          href="/meta/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32"
-          href="/favicon-32x32.png">
+          href="/meta/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16"
-          href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="shortcut icon" href="/favicon.ico">
+          href="/meta/favicon-16x16.png">
+    <link rel="manifest" href="/meta/site.webmanifest">
+    <link rel="shortcut icon" href="/meta/favicon.ico">
     <meta name="msapplication-TileColor" content="#000000">
-    <meta name="msapplication-config" content="/browserconfig.xml">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
     <meta name="theme-color" content="#000000">
     
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e72a415f-684f-4ff0-bd2c-062e0ef8c366"/>
 
-    <style>
+    <style is:global>
         @media not (prefers-reduced-motion) {
             @view-transition {
                 navigation: auto;

@@ -6,7 +6,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://mvlanga.com",
+	site: "https://astro.mvlanga.com",
 	integrations: [mdx(), react()],
 	vite: {
 		plugins: [
