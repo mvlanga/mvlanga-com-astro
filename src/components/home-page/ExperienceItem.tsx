@@ -1,4 +1,5 @@
 import type { CollectionEntry } from "astro:content";
+import { clsx } from "clsx";
 import {
 	motion,
 	useMotionValueEvent,
@@ -6,7 +7,6 @@ import {
 	useTransform,
 } from "motion/react";
 import { useRef, useState } from "react";
-import { clsx } from "clsx";
 
 export type ExperienceItemProps = Pick<
 	CollectionEntry<"experience">,
