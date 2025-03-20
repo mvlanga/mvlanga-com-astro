@@ -26,11 +26,11 @@ interface Props {
 const { items, reverseOffset = false } = Astro.props;
 ---
 
-<div class="grid lg:grid-cols-6 gap-x-16 xl:gap-x-32 gap-y-16 lg:gap-y-32">
+<div class="grid lg:grid-cols-6 gap-x-32 lg:gap-x-48 gap-y-16 lg:gap-y-32">
     {items.map((props, index) =>
         props.type === "image" ? (
                 <div class="lg:col-span-3 h-fit grid gap-4 text-center">
-                    <img class={clsx("rounded-4xl", (reverseOffset ? index % 2 === 0 : index % 2) && "lg:mt-32")}
+                    <img class={clsx("bg-neutral-900 rounded-4xl", (reverseOffset ? index % 2 === 0 : index % 2) && "lg:mt-32")}
                          src={props.image.src} width={props.image.width} height={props.image.height} alt={props.alt}
                          loading="lazy"/>
 
@@ -39,7 +39,7 @@ const { items, reverseOffset = false } = Astro.props;
         ) : (
                 <div class="lg:col-span-3 h-fit grid gap-4 text-center">
                     <div class={clsx((reverseOffset ? index % 2 === 0 : index % 2) && "lg:mt-64")}>
-                        <VideoPlayer client:visible src={props.src} poster={props.poster} alt={props.alt}/>
+                        <VideoPlayer client:visible muted={props.muted} src={props.src} poster={props.poster} alt={props.alt}/>
                     </div>
 
                     {props.description && <p class="text-neutral-300">{props.description}</p>}

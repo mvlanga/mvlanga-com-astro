@@ -18,7 +18,7 @@ export const OtherProjects = ({ projects }: OtherProjectsProps) => {
 					>
 						<a href={`/project/${id}`} className="group flex flex-col gap-8">
 							<img
-								className="block rounded-3xl transition-opacity group-hover:opacity-50"
+								className="block rounded-3xl bg-neutral-900 transition-opacity group-hover:opacity-50"
 								width={cover.width}
 								height={cover.height}
 								src={cover.src}
