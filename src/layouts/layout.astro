@@ -8,9 +8,10 @@ import Footer from "../components/common/Footer.astro";
 
 interface Props {
 	className?: string;
+	showSmallFooter?: boolean;
 }
 
-const { className } = Astro.props;
+const { className, showSmallFooter } = Astro.props;
 ---
 <!doctype html>
 <html lang="en" class="relative scroll-smooth">
@@ -79,7 +80,7 @@ const { className } = Astro.props;
     <slot/>
 </main>
 
-<Footer/>
+<Footer showSmallFooter={showSmallFooter}/>
 
 </body>
 </html>
