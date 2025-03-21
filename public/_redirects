@@ -1,27 +1,4 @@
-[[redirects]]
-  from = "/de/*"
-  to = "/"
-  status = 302
-  force = false
-  query = {path = ":path"}
-
-  [[redirects]]
-    from = "/de"
-    to = "/"
-    status = 302
-    force = false
-    query = {path = ":path"}
-
-[[redirects]]
-  from = "/en/*"
-  to = "/"
-  status = 302
-  force = false
-  query = {path = ":path"}
-
-[[redirects]]
-  from = "/en"
-  to = "/"
-  status = 302
-  force = false
-  query = {path = ":path"}
+/en/* / 404
+/en / 404
+/de/* / 404
+/de / 404
