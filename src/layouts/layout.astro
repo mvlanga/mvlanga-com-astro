@@ -1,17 +1,17 @@
 ---
 import "@/styles.css";
 
-import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-import { Header } from "../components/header/Header";
+import {clsx} from "clsx";
+import {twMerge} from "tailwind-merge";
+import {Header} from "../components/header/Header";
 import Footer from "../components/common/Footer.astro";
 
 interface Props {
-	className?: string;
-	showSmallFooter?: boolean;
+    className?: string;
+    showSmallFooter?: boolean;
 }
 
-const { className, showSmallFooter } = Astro.props;
+const {className, showSmallFooter} = Astro.props;
 ---
 <!doctype html>
 <html lang="en" class="relative scroll-smooth">
@@ -20,7 +20,7 @@ const { className, showSmallFooter } = Astro.props;
     <meta name="viewport" content="width=device-width"/>
     <meta name="generator" content={Astro.generator}/>
 
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml"/>
 
     <script is:inline type="application/ld+json"> {
         "@context": "https://schema.org/",
@@ -60,8 +60,9 @@ const { className, showSmallFooter } = Astro.props;
     <meta name="msapplication-TileColor" content="#000000">
     <meta name="msapplication-config" content="/meta/browserconfig.xml">
     <meta name="theme-color" content="#000000">
-    
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="e72a415f-684f-4ff0-bd2c-062e0ef8c366"/>
+
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e72a415f-684f-4ff0-bd2c-062e0ef8c366"
+            data-domains="mvlanga.com,v2.mvlanga.com" data-do-not-track="true"/>
 
     <style is:global>
         @media not (prefers-reduced-motion) {
