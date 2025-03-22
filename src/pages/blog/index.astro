@@ -1,12 +1,12 @@
 ---
+import { getCollection } from "astro:content";
+import { BlogFilter } from "@/components/blog/BlogFilter";
 import Layout from "@/layouts/layout.astro";
-import {getCollection} from "astro:content";
-import {BlogPosts} from "../../components/blog/BlogPosts";
-import {BlogFilter} from "@/components/blog/BlogFilter";
-import {sortBlogPosts} from "@/utils/sortCollection";
+import { sortBlogPosts } from "@/utils/sortCollection";
+import { BlogPosts } from "../../components/blog/BlogPosts";
 
 const blogPosts = sortBlogPosts(await getCollection("blogPosts"));
-const availableTags = blogPosts.flatMap(e => e.data.tags);
+const availableTags = blogPosts.flatMap((e) => e.data.tags);
 ---
 
 <title slot="head">Blog — Moriz von Langa</title>
