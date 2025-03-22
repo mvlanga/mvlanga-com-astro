@@ -1,21 +1,22 @@
 ---
-import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
-import { Button } from "@/components/common/Button";
-import { ColoredBackground } from "@/components/common/ColoredBackground";
-import { PlayfulDivider } from "@/components/common/PlayfulDivider";
-import { PortraitImage } from "../components/common/PortraitImage";
-import { ExperienceItem } from "../components/home-page/ExperienceItem";
+import {Image} from "astro:assets";
+import {getCollection} from "astro:content";
+import {Button} from "@/components/common/Button";
+import {ColoredBackground} from "@/components/common/ColoredBackground";
+import {PlayfulDivider} from "@/components/common/PlayfulDivider";
+import {PortraitImage} from "../components/common/PortraitImage";
+import {ExperienceItem} from "../components/home-page/ExperienceItem";
 import Layout from "@/layouts/layout.astro";
 import Ellipsis from "../components/common/Ellipsis.astro";
-import { sortExperience, sortProjects } from "@/utils/sortCollection";
+import {sortExperience, sortProjects} from "@/utils/sortCollection";
 const experience = sortExperience(await getCollection("experience"));
 const projects = sortProjects(await getCollection("projects"));
 ---
 
 <Layout>
     <title slot="head">Moriz von Langa — Frontend Developer</title>
-    <meta slot="head" name="description" content="I'm a frontend developer who focuses on building solutions that really solve user problems. All while keeping an eye on system architecture and appropriate design."/>
+    <meta slot="head" name="description"
+          content="I'm a frontend developer who focuses on building solutions that really solve user problems. All while keeping an eye on system architecture and appropriate design."/>
 
     <section class="container scroll-mt-96" id="home">
         <h1 class="mb-10 text-6xl font-bold leading-snug">
@@ -38,13 +39,15 @@ const projects = sortProjects(await getCollection("projects"));
             <div class="grid lg:grid-cols-6 gap-16">
                 <div class="lg:col-span-2">
                     <p class="text-xl max-w-prose">
-                        I love exploring ideas with curiosity and an open mind, all while focusing on software architecture.
+                        I love exploring ideas with curiosity and an open mind, all while focusing on software
+                        architecture.
                     </p>
                 </div>
                 <PortraitImage client:idle/>
             </div>
             <h2 class="text-4xl">
-                The way I work <Ellipsis />
+                The way I work
+                <Ellipsis/>
             </h2>
             <div class="grid md:grid-cols-3 gap-16">
                 <div class="flex flex-col gap-6">
@@ -52,7 +55,10 @@ const projects = sortProjects(await getCollection("projects"));
                     <hr class="border-neutral-800"/>
                     <p class="text-2xl">Learning & Problem Solving</p>
                     <p class="text-neutral-400">
-                        With my ability to quickly grasp new systems and their underlying structure, I thrive in environments where I can dive deep and make sense of complex challenges. I approach every problem with a curious mindset, constantly questioning and seeking to understand the root causes, not just the symptoms. This allows me to develop thoughtful and effective solutions.
+                        With my ability to quickly grasp new systems and their underlying structure, I thrive in
+                        environments where I can dive deep and make sense of complex challenges. I approach every
+                        problem with a curious mindset, constantly questioning and seeking to understand the root
+                        causes, not just the symptoms. This allows me to develop thoughtful and effective solutions.
                     </p>
                 </div>
                 <div class="flex flex-col gap-6">
@@ -60,7 +66,9 @@ const projects = sortProjects(await getCollection("projects"));
                     <hr class="border-neutral-800"/>
                     <p class="text-2xl">System Architecture</p>
                     <p class="text-neutral-400">
-                        With a keen eye for how frontend and backend systems work together, I ensure my work is always in sync with the bigger picture. I take pride in creating solutions that align seamlessly with the overall architecture, ensuring efficiency and scalability.
+                        With a keen eye for how frontend and backend systems work together, I ensure my work is always
+                        in sync with the bigger picture. I take pride in creating solutions that align seamlessly with
+                        the overall architecture, ensuring efficiency and scalability.
                     </p>
                 </div>
                 <div class="flex flex-col gap-6">
@@ -68,7 +76,9 @@ const projects = sortProjects(await getCollection("projects"));
                     <hr class="border-neutral-800"/>
                     <p class="text-2xl">User-Centric Design</p>
                     <p class="text-neutral-400">
-                        I’m passionate about understanding the user’s needs and challenges. I dig deep into their pain points to craft solutions that truly make a difference. My focus is always on creating intuitive, accessible experiences that enhance the user journey.
+                        I’m passionate about understanding the user’s needs and challenges. I dig deep into their pain
+                        points to craft solutions that truly make a difference. My focus is always on creating
+                        intuitive, accessible experiences that enhance the user journey.
                     </p>
                 </div>
             </div>
@@ -86,12 +96,13 @@ const projects = sortProjects(await getCollection("projects"));
             <div class="relative flex flex-col gap-8 z-0">
                 {
                     experience.map((exp, index) => (
-                            <ExperienceItem data={exp.data} index={index} client:media="(width >= 64rem)" />
+                            <ExperienceItem data={exp.data} index={index} client:media="(width >= 64rem)"/>
                     ))
                 }
             </div>
             <div class="w-full text-end">
-                <a href="/moriz-von-langa_resume.pdf" class="w-full md:w-auto" target="_blank">
+                <a href="/moriz-von-langa_resume.pdf" class="w-full md:w-auto" target="_blank"
+                   data-umami-event="link-click" data-umami-event-url="/moriz-von-langa_resume.pdf">
                     <Button className="w-full md:w-auto" client:visible text="See full resume" level="primary"/>
                 </a>
             </div>
