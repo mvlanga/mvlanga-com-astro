@@ -1,27 +1,27 @@
 ---
-import { getCollection, render } from "astro:content";
+import {getCollection, render} from "astro:content";
 
 export async function getStaticPaths() {
-	const projects = await getCollection("projects");
+    const projects = await getCollection("projects");
 
-	return projects.map((post) => ({
-		params: { id: post.id },
-		props: { post },
-	}));
+    return projects.map((project) => ({
+        params: {id: project.id},
+        props: {project},
+    }));
 }
 
-const { post: projects } = Astro.props;
+const {project} = Astro.props;
 
-const { Content } = await render(projects);
-const { title, description, customer } = projects.data;
+const {Content} = await render(project);
+const {title, description, customer} = project.data;
 
-import { PlayfulDivider } from "@/components/common/PlayfulDivider";
-import { OtherProjects } from "@/components/projects/OtherProjects";
+import {PlayfulDivider} from "@/components/common/PlayfulDivider";
+import {OtherProjects} from "@/components/projects/OtherProjects";
 import Layout from "@/layouts/layout.astro";
-import { shuffle } from "@/utils/sortCollection";
+import {shuffle} from "@/utils/sortCollection";
 
 const relatedProjects = shuffle(
-	await getCollection("projects", ({ id }) => id !== projects.id),
+    await getCollection("projects", ({id}) => id !== projects.id),
 );
 ---
 
