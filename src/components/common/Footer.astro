@@ -1,36 +1,40 @@
 ---
-import { PlayfulDivider } from "./PlayfulDivider";
+import {PlayfulDivider} from "./PlayfulDivider";
 import CarbonBadge from "./CarbonBadge.astro";
-import { clsx } from "clsx";
+import {clsx} from "clsx";
 
 const year = new Date().getFullYear();
 const isProduction = import.meta.env.PROD;
 
 interface Props {
-	showSmallFooter?: boolean;
+    showSmallFooter?: boolean;
 }
 
-const { showSmallFooter } = Astro.props;
+const {showSmallFooter} = Astro.props;
 ---
 
 <footer class={clsx("container flex flex-col gap-24 pb-12", showSmallFooter && "gap-12!")}>
     <PlayfulDivider client:only="react">
-        <hr slot="fallback" class="border-neutral-800" />
+        <hr slot="fallback" class="border-neutral-800"/>
     </PlayfulDivider>
 
     {!showSmallFooter && (
             <div class="flex flex-row flex-wrap justify-between gap-6 md:gap-12 md:items-end text-neutral-200">
                 <h5 class="text-6xl">Let’s collaborate</h5>
-                <a class="text-3xl transition-colors hover:text-purple" href="mailto:morizvlanga@gmail.com">morizvlanga@gmail.com</a>
+                <a class="text-3xl transition-colors hover:text-purple" href="mailto:morizvlanga@gmail.com"
+                   data-umami-event="link-click" data-umami-event-url="mailto:morizvlanga@gmail.com">morizvlanga@gmail.com</a>
             </div>
     )}
 
     <div class={clsx("flex flex-wrap items-end justify-between gap-6 text-neutral-500", !showSmallFooter && "mt-12")}>
-        {isProduction ? <CarbonBadge /> : "<CarbonBadge />"}
+        {isProduction ?
+                <CarbonBadge/> : "<CarbonBadge />"}
 
         <div class="flex flex-wrap gap-2 md:gap-4">
             <a href="https://github.com/mvlanga/mvlanga-com-astro" target="blank"
                class="transition-colors hover:text-purple"
+               data-umami-event="link-click"
+               data-umami-event-url="https://github.com/mvlanga/mvlanga-com-astro"
             >
                 Source code
             </a>
