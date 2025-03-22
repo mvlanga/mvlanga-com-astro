@@ -1,23 +1,21 @@
-import type {CollectionEntry} from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
-export const sortExperience = <
-    T extends CollectionEntry<"experience">,
->(
-    experience: T[],
+export const sortExperience = <T extends CollectionEntry<"experience">>(
+	experience: T[],
 ) => {
-    return experience.sort((a, b) => b.data.from - a.data.from);
+	return experience.sort((a, b) => b.data.from - a.data.from);
 };
 
 export const sortProjects = (projects: CollectionEntry<"projects">[]) =>
-    projects.sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+	projects.sort((a, b) => a.data.sortOrder - b.data.sortOrder);
 
-export const sortBlogPosts = <
-    T extends CollectionEntry<"blogPosts">,
->(
-    blogPosts: T[],
+export const sortBlogPosts = <T extends CollectionEntry<"blogPosts">>(
+	blogPosts: T[],
 ) => {
-    return blogPosts.sort((a, b) => b.data.createdAt.getTime() - a.data.createdAt.getTime());
+	return blogPosts.sort(
+		(a, b) => b.data.createdAt.getTime() - a.data.createdAt.getTime(),
+	);
 };
 
 export const shuffle = <T>(items: Array<T>) =>
-    items.sort(() => Math.random() - 0.5);
+	items.sort(() => Math.random() - 0.5);
