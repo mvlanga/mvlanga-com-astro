@@ -8,7 +8,11 @@ import {OtherBlogPosts} from "../../components/blog/OtherBlogPosts";
 import {Button} from "../../components/common/Button";
 
 export async function getStaticPaths() {
-    const blogPosts = await getCollection("blogPosts")
+    const blogPosts = await getCollection("blogPosts", ({data}) => {
+        return isProduction
+            ? data.draft === undefined || data.draft === false
+            : true;
+    })
 
     return blogPosts
         .map((post) => ({
