@@ -23,8 +23,6 @@
 @layer base {
     @font-face {
         font-family: "Averta";
-        src: url(./assets/fonts/averta-light.eot);
-        src: url(./assets/fonts/averta-light.woff) format("woff");
         src: url(./assets/fonts/averta-light.woff2) format("woff2");
         font-weight: 300;
         font-style: normal;
@@ -33,8 +31,6 @@
 
     @font-face {
         font-family: "Averta";
-        src: url(./assets/fonts/averta-regular.eot);
-        src: url(./assets/fonts/averta-regular.woff) format("woff");
         src: url(./assets/fonts/averta-regular.woff2) format("woff2");
         font-weight: 400;
         font-style: normal;
@@ -43,8 +39,6 @@
 
     @font-face {
         font-family: "Averta";
-        src: url(./assets/fonts/averta-semibold.eot);
-        src: url(./assets/fonts/averta-semibold.woff) format("woff");
         src: url(./assets/fonts/averta-semibold.woff2) format("woff2");
         font-weight: 600;
         font-style: normal;
@@ -53,8 +47,6 @@
 
     @font-face {
         font-family: "Averta";
-        src: url(./assets/fonts/averta-bold.eot);
-        src: url(./assets/fonts/averta-bold.woff) format("woff");
         src: url(./assets/fonts/averta-bold.woff2) format("woff2");
         font-weight: 700;
         font-style: normal;
@@ -65,11 +57,6 @@
     [role="button"]:not(:disabled) {
         cursor: pointer;
     }
-}
-
-@layer components {
-    /* Wende diese Klasse nur auf .prose in einem Element an, das kein <pre> enthält */
-
 }
 
 @utility container {
