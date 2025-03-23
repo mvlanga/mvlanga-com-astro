@@ -16,9 +16,12 @@ import {PortraitImage} from "../components/common/PortraitImage";
 import {ExperienceItem} from "../components/home-page/ExperienceItem";
 const experience = sortExperience(await getCollection("experience"));
 const projects = sortProjects(await getCollection("projects"));
-const blogPosts = sortBlogPosts(
-    (await getCollection("blogPosts")).slice(0, 5),
-);
+
+const isProduction = import.meta.env.PROD;
+
+const blogPosts = sortBlogPosts(await getCollection("blogPosts", ({data}) => {
+    return isProduction ? data.draft === undefined || data.draft === false : true;
+}));
 ---
 
 <Layout>

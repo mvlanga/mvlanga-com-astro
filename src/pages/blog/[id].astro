@@ -2,13 +2,20 @@
 import {getCollection, render} from "astro:content";
 import {shuffle} from "@/utils/sortCollection";
 
-export async function getStaticPaths() {
-    const blogPosts = await getCollection("blogPosts");
+const isProduction = import.meta.env.PROD;
 
-    return blogPosts.map((post) => ({
-        params: {id: post.id},
-        props: {post},
-    }));
+export async function getStaticPaths() {
+    const blogPosts = await getCollection("blogPosts", ({data}) => {
+        return isProduction
+            ? data.draft === undefined || data.draft === false
+            : true;
+    })
+
+    return blogPosts
+        .map((post) => ({
+            params: {id: post.id},
+            props: {post},
+        }));
 }
 
 const {post} = Astro.props;
