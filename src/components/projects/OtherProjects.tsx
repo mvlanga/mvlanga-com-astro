@@ -11,7 +11,7 @@ export const OtherProjects = ({ projects }: OtherProjectsProps) => {
 	return (
 		<div className="overflow-hidden" ref={emblaRef}>
 			<div className="-ml-8 flex touch-pan-y">
-				{projects.map(({ id, data: { title, cover } }, index) => (
+				{projects.map(({ id, data: { title, cover } }, _index) => (
 					<div
 						key={id}
 						className="transform-3d-[0_0_0] min-w-0 flex-[0_0_60%] pl-8 md:flex-[0_0_30%]"

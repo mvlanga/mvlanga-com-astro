@@ -1,5 +1,6 @@
 ---
 import {getCollection, render} from "astro:content";
+import {shuffle} from "@/utils/sortCollection";
 
 export async function getStaticPaths() {
     const blogPosts = await getCollection("blogPosts");
@@ -15,15 +16,59 @@ const {post} = Astro.props;
 const {Content} = await render(post);
 const {title, description, tags, createdAt} = post.data;
 
-import Layout from "@/layouts/layout.astro";
+const relatedBlogPosts = shuffle(
+    await getCollection("blogPosts", ({id}) => id !== post.id),
+).slice(0, 5);
+
 import Prose from "@/components/common/Prose.astro";
+import Layout from "@/layouts/layout.astro";
+import {PlayfulDivider} from "../../components/common/PlayfulDivider";
+import {OtherBlogPosts} from "../../components/blog/OtherBlogPosts";
+import {Button} from "../../components/common/Button";
 ---
 
 <title slot="head">{title} — Moriz von Langa</title>
 <meta slot="head" name="description" content={description}/>
 
-<Layout className="block container">
-    <Prose>
-        <Content/>
-    </Prose>
+<Layout className="container gap-32">
+    <div class="flex flex-col gap-16">
+        <section class="container-small">
+            <h1 class="mb-8 text-4xl font-bold leading-snug">
+                {title}
+            </h1>
+            <p class="mb-4 text-lg text-neutral-400">
+                {description}
+            </p>
+        </section>
+
+        <section class="flex flex-col gap-4">
+            <p class="flex flex-wrap justify-between text-neutral-500">
+                <span>{tags.map((tag) => `#${tag}`).join(", ")}</span>
+                <span>{createdAt.toLocaleDateString("en-US")}</span>
+            </p>
+            <PlayfulDivider client:only="react">
+                <hr slot="fallback" class="border-neutral-800"/>
+            </PlayfulDivider>
+        </section>
+
+        <Prose>
+            <Content/>
+        </Prose>
+    </div>
+
+    <section class="grid gap-16" id="blogPosts">
+        <h2 class="text-5xl">More blog posts you may like</h2>
+
+        <PlayfulDivider client:only="react">
+            <hr slot="fallback" class="border-neutral-800"/>
+        </PlayfulDivider>
+
+        <OtherBlogPosts client:visible blogPosts={relatedBlogPosts}/>
+
+        <div class="w-full text-end">
+            <a href="/blog" class="w-full md:w-auto">
+                <Button className="w-full md:w-auto" client:visible text="See all blog posts" level="primary"/>
+            </a>
+        </div>
+    </section>
 </Layout>

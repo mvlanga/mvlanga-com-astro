@@ -7,12 +7,6 @@ tags: [ "javascript" ]
 draft: true
 ---
 
-# Organize Arrays of Objects by Month Using JavaScript's groupBy Method (ES2024)
-
-In this post, we'll explore how to efficiently organize arrays of objects containing dates by month in JavaScript.
-Specifically, we'll use the `groupBy` method from ES2024 to group data, displaying each section with the
-full month name using `toLocaleString()`.
-
 ## A Simple and Powerful Use Case
 
 While working on a recent project, I faced a challenge of organizing a collection of blog posts by the month they were
@@ -37,8 +31,9 @@ developers a cleaner and more efficient way to manipulate and organize their dat
 Here's the core of the solution for organizing blog posts by month:
 
 ```javascript
-Object.groupBy(filteredData, ({createdAt}) =>
-    createdAt.toLocaleString("en-US", {month: "long"})
+Object.groupBy(filteredData, ({createdAt}) => {
+        return createdAt.toLocaleString("en-US", {month: "long"})
+    }
 );
 ```
 

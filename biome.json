@@ -43,6 +43,9 @@
 						"functions": ["clsx"]
 					}
 				}
+			},
+			"correctness": {
+				"noUnusedVariables": "error"
 			}
 		}
 	},
