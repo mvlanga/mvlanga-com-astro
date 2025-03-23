@@ -4,7 +4,6 @@ slug: organize-arrays-objects-dates-by-month-javascript-groupby
 description: Learn how to use the JavaScript groupBy method (ES2024) to organise arrays of objects containing dates by month, with each section displaying the full month name using toLocaleString().
 createdAt: 2025-02-28
 tags: [ "javascript" ]
-draft: true
 ---
 
 ## A Simple and Powerful Use Case

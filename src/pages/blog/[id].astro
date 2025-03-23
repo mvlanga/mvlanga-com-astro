@@ -56,19 +56,22 @@ import {Button} from "../../components/common/Button";
         </Prose>
     </div>
 
-    <section class="grid gap-16" id="blogPosts">
-        <h2 class="text-5xl">More blog posts you may like</h2>
+    {relatedBlogPosts.length > 0 && (
+            <section class="grid gap-16" id="blogPosts">
+                <h2 class="text-5xl">More blog posts you may like</h2>
 
-        <PlayfulDivider client:only="react">
-            <hr slot="fallback" class="border-neutral-800"/>
-        </PlayfulDivider>
+                <PlayfulDivider client:only="react">
+                    <hr slot="fallback" class="border-neutral-800"/>
+                </PlayfulDivider>
 
-        <OtherBlogPosts client:visible blogPosts={relatedBlogPosts}/>
+                <OtherBlogPosts client:visible blogPosts={relatedBlogPosts}/>
 
-        <div class="w-full text-end">
-            <a href="/blog" class="w-full md:w-auto">
-                <Button className="w-full md:w-auto" client:visible text="See all blog posts" level="primary"/>
-            </a>
-        </div>
-    </section>
+                <div class="w-full text-end">
+                    <a href="/blog" class="w-full md:w-auto">
+                        <Button className="w-full md:w-auto" client:visible text="See all blog posts" level="primary"/>
+                    </a>
+                </div>
+            </section>
+    )
+    }
 </Layout>
