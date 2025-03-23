@@ -4,6 +4,7 @@ import { BlogFilter } from "@/components/blog/BlogFilter";
 import Layout from "@/layouts/layout.astro";
 import { sortBlogPosts } from "@/utils/sortCollection";
 import { BlogPosts } from "../../components/blog/BlogPosts";
+import { getTagsWithCountByPosts } from "../../components/blog/utils";
 
 const isProduction = import.meta.env.PROD;
 
@@ -15,7 +16,7 @@ const blogPosts = sortBlogPosts(
 	}),
 );
 
-const availableTags = [...new Set(blogPosts.flatMap((e) => e.data.tags))];
+const availableTags = getTagsWithCountByPosts(blogPosts);
 ---
 
 <title slot="head">Blog — Moriz von Langa</title>

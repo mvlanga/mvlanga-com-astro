@@ -3,7 +3,7 @@ import { useStore } from "@nanostores/react";
 import { BLOG_FILTER_TAG_ALL_VALUE, blogFilterTag } from "./blogFilterStore.ts";
 
 type BlogFilterProps = {
-	availableTags: string[];
+	availableTags: { name: string; count: number }[];
 };
 
 export const BlogFilter = ({ availableTags }: BlogFilterProps) => {
@@ -19,12 +19,12 @@ export const BlogFilter = ({ availableTags }: BlogFilterProps) => {
 				onClick={() => blogFilterTag.set(BLOG_FILTER_TAG_ALL_VALUE)}
 			/>
 
-			{availableTags.map((tag) => (
+			{availableTags.map(({ name, count }) => (
 				<Button
-					key={tag}
-					text={`#${tag}`}
-					level={$selectedTag === tag ? "primary" : "secondary"}
-					onClick={() => blogFilterTag.set(tag)}
+					key={name}
+					text={`#${name} (${count})`}
+					level={$selectedTag === name ? "primary" : "secondary"}
+					onClick={() => blogFilterTag.set(name)}
 				/>
 			))}
 		</div>
