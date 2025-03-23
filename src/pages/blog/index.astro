@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+import { BlogFilter } from "@/components/blog/BlogFilter";
+import Layout from "@/layouts/layout.astro";
+import { sortBlogPosts } from "@/utils/sortCollection";
+import { BlogPosts } from "../../components/blog/BlogPosts";
+
+const isProduction = import.meta.env.PROD;
+
+const blogPosts = sortBlogPosts(
+	await getCollection("blogPosts", ({ data }) => {
+		return isProduction
+			? data.draft === undefined || data.draft === false
+			: true;
+	}),
+);
+
+const availableTags = [...new Set(blogPosts.flatMap((e) => e.data.tags))];
+---
+
+<title slot="head">Blog — Moriz von Langa</title>
+<meta slot="head" name="description"
+      content="A few notes and reminders for myself, usually when I've found a solution to something I was struggling with, discovered a good solution to a channeling problem, or tried something new."/>
+
+<Layout className="container gap-32">
+    <section class="grid gap-8">
+        <h1 class="text-4xl font-bold leading-snug">
+            Blog
+        </h1>
+        <p class="max-w-prose text-lg text-neutral-400">
+            A few notes and reminders for myself, usually when I've found a solution to something I was struggling with,
+            discovered a good solution to a channeling problem, or tried something new.
+            <br/><br/>
+            It's just great to have a place to go back to.
+        </p>
+
+        <BlogFilter client:load availableTags={availableTags}/>
+    </section>
+
+    <BlogPosts client:load blogPosts={blogPosts}/>
+</Layout>

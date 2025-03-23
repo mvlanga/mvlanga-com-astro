@@ -10,6 +10,7 @@ coverOnHover: ./skoda-enyaq-coupe-thumbnail_02.jpg
 import MediaRow from "../../../components/projects/MediaRow.astro";
 import MyResponsibilities from "../../../components/projects/MyResponsibilities.astro";
 import {VideoPlayer} from "../../../components/common/VideoPlayer";
+import Prose from "../../../components/common/Prose.astro";
 
 import thumbnailOne from "./skoda-enyaq-coupe-thumbnail_01.jpg";
 import thumbnailTwo from "./skoda-enyaq-coupe-thumbnail_02.jpg";
@@ -36,7 +37,7 @@ import transitionPoster from "./transition-01.jpg";
 ]}/>
 
 <div className="container-small">
-    <div className="prose prose-invert">
+    <Prose>
         # The story
 
         Due to the rising infection levels (COVID) in the Czech Republic we could not hold a live event with
@@ -48,7 +49,7 @@ import transitionPoster from "./transition-01.jpg";
         around a movie set where the World Premiere pre-show was filmed. The implementation of the Virtual Event
         happened in
         under 4 weeks.
-    </div>
+    </Prose>
 </div>
 
 <VideoPlayer client:visible src="/projects/skoda-enyaq-coupe/transition-01.mp4" poster={transitionPoster}
@@ -69,14 +70,14 @@ import transitionPoster from "./transition-01.jpg";
                     }}/>
 
 <div className="container-small">
-    <div className="prose prose-invert">
+    <Prose>
         # World Premiere
 
         The actual world premiere took place via livestream. Users who were online during the show were automatically
         redirected to a page that embedded the YouTube livestream. No active user of the site could miss the event. The
         entire system was based on a remote configuration that could update the status of the application for all users
         in real time.
-    </div>
+    </Prose>
 </div>
 
 <MediaRow items={[
@@ -93,14 +94,14 @@ import transitionPoster from "./transition-01.jpg";
 ]} reverseOffset={true}/>
 
 <div className="container-small">
-    <div className="prose prose-invert">
+    <Prose>
         # Highlights
 
         In addition to the livestream and other video clips such as the making-of of the world premiere, we offered
         multiple
         features such as two mini-games, a seat selection function and camera transitions between the different 3D
         environments.
-    </div>
+    </Prose>
 </div>
 
 <MediaRow items={[

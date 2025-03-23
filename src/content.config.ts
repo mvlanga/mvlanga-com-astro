@@ -1,5 +1,5 @@
 import { defineCollection, z } from "astro:content";
-import { file, glob } from "astro/loaders";
+import { glob } from "astro/loaders";
 
 const experience = defineCollection({
 	loader: glob({
@@ -45,38 +45,17 @@ const legalPages = defineCollection({
 	}),
 });
 
-const resumeSkills = defineCollection({
-	loader: file("src/content/resume/skills.json"),
-	schema: z.array(z.string()),
-});
-
-const resumeInterests = defineCollection({
-	loader: file("src/content/resume/interests.json"),
-	schema: z.array(z.string()),
-});
-
-const resumeLanguages = defineCollection({
-	loader: file("src/content/resume/languages.json"),
-	schema: z.array(
-		z.object({
-			language: z.string(),
-			level: z.string(),
-		}),
-	),
-});
-
-const resumeExperience = defineCollection({
+const blogPosts = defineCollection({
 	loader: glob({
-		base: "src/content/resume/experience",
-		pattern: "*.json",
+		base: "src/content/blog",
+		pattern: "**/**/*.md",
 	}),
 	schema: z.object({
-		company: z.string(),
-		from: z.number(),
-		to: z.string().optional(),
-		role: z.string(),
-		tasks: z.array(z.string()),
-		technologies: z.array(z.string()).optional(),
+		title: z.string(),
+		description: z.string(),
+		createdAt: z.date(),
+		tags: z.array(z.string()),
+		draft: z.boolean().optional(),
 	}),
 });
 
@@ -84,8 +63,5 @@ export const collections = {
 	experience,
 	projects,
 	legalPages,
-	resumeExperience,
-	resumeSkills,
-	resumeInterests,
-	resumeLanguages,
+	blogPosts,
 };

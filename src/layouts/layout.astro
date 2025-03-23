@@ -3,8 +3,8 @@ import "@/styles.css";
 
 import {clsx} from "clsx";
 import {twMerge} from "tailwind-merge";
-import {Header} from "../components/header/Header";
 import Footer from "../components/common/Footer.astro";
+import {Header} from "../components/header/Header";
 
 interface Props {
     className?: string;
@@ -63,7 +63,7 @@ const {className, showSmallFooter} = Astro.props;
 
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e72a415f-684f-4ff0-bd2c-062e0ef8c366"
             data-domains="mvlanga.com,v2.mvlanga.com" data-do-not-track="true"/>
-
+    
     <style is:global>
         @media not (prefers-reduced-motion) {
             @view-transition {
@@ -77,7 +77,7 @@ const {className, showSmallFooter} = Astro.props;
 
 <Header client:idle currentPath={Astro.url.pathname}/>
 
-<main class={twMerge(clsx("grid gap-64 py-48", className))}>
+<main class={twMerge(clsx("flex flex-col gap-64 py-48", className))}>
     <slot/>
 </main>
 

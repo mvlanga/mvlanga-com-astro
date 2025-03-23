@@ -31,6 +31,10 @@ const navItems: NavigationItems = [
 		url: "/#projects",
 	},
 	{
+		label: "Blog",
+		url: "/blog",
+	},
+	{
 		label: "Contact",
 		url: "mailto:morizvlanga@gmail.com",
 	},

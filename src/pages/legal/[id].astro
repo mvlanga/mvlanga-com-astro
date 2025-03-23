@@ -15,13 +15,14 @@ const { post: legalPage } = Astro.props;
 const { Content } = await render(legalPage);
 const { title } = legalPage.data;
 
-import Layout from "../../layouts/layout.astro";
+import Prose from "@/components/common/Prose.astro";
+import Layout from "@/layouts/layout.astro";
 ---
 
 <Layout className="container" showSmallFooter>
     <title slot="head">{title} — Moriz von Langa</title>
-    
-    <section class="prose prose-invert">
+
+    <Prose>
         <Content/>
-    </section>
+    </Prose>
 </Layout>

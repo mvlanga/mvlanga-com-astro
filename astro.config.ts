@@ -7,6 +7,11 @@ import { visualizer } from "rollup-plugin-visualizer";
 import { EnumChangefreq } from "sitemap";
 
 export default defineConfig({
+	markdown: {
+		shikiConfig: {
+			theme: "github-dark-default",
+		},
+	},
 	site: "https://mvlanga.com",
 	integrations: [
 		sitemap({
@@ -27,6 +32,12 @@ export default defineConfig({
 					item.changefreq = EnumChangefreq.DAILY;
 					item.lastmod = new Date().toDateString();
 					item.priority = 0.9;
+				}
+
+				if (/blog/.test(item.url)) {
+					item.changefreq = EnumChangefreq.WEEKLY;
+					item.lastmod = new Date().toDateString();
+					item.priority = 0.8;
 				}
 
 				return item;
