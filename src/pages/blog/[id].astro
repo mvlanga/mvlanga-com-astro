@@ -1,6 +1,6 @@
 ---
 import {getCollection, render} from "astro:content";
-import {shuffle, sortBlogPosts} from "@/utils/sortCollection";
+import {shuffle} from "@/utils/sortCollection";
 import Prose from "@/components/common/Prose.astro";
 import Layout from "@/layouts/layout.astro";
 import {PlayfulDivider} from "../../components/common/PlayfulDivider";
@@ -8,6 +8,8 @@ import {OtherBlogPosts} from "../../components/blog/OtherBlogPosts";
 import {Button} from "../../components/common/Button";
 
 export async function getStaticPaths() {
+    const isProduction = import.meta.env.PROD;
+    
     const blogPosts = await getCollection("blogPosts", ({data}) => {
         return isProduction
             ? data.draft === undefined || data.draft === false
