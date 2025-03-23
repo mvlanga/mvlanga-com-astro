@@ -10,6 +10,7 @@ coverOnHover: ./fujitsu-cx-lab-thumbnail_02.jpg
 import MediaRow from "../../../components/projects/MediaRow.astro";
 import MyResponsibilities from "../../../components/projects/MyResponsibilities.astro";
 import {VideoPlayer} from "../../../components/common/VideoPlayer";
+import Prose from "../../../components/common/Prose.astro";
 
 import beautyOne from "./beauty_01.jpg";
 import beautyTwo from "./beauty_02.jpg";
@@ -23,13 +24,13 @@ import teaserPoster from "./teaser.jpg";
              alt="Example Transition"/>
 
 <div className="container-small">
-    <div className="prose prose-invert">
+    <Prose>
         # The origin: Our Smart City exhibit at the Fujitsu Forum 2019
 
         Explaining products and services in a simplified way using a digital city comes from an idea we had during a
         previous project with Fujitsu. With our Smart City exhibit, we explained services to Fujitsu Forum 2019 visitors
         through beamer projections on a 150 cm high model city using personal examples.
-    </div>
+    </Prose>
 </div>
 
 <MediaRow items={[
@@ -46,7 +47,7 @@ import teaserPoster from "./teaser.jpg";
 ]}/>
 
 <div className="container-small">
-    <div className="prose prose-invert">
+    <Prose>
         # The goals
 
         Fujitsu's services are often very complex and many potential customers have no concrete examples of how they can
@@ -56,7 +57,7 @@ import teaserPoster from "./teaser.jpg";
         starting point, the Fujitsu Tower, to different parts of the city with camera transitions. In each area, there
         were opportunities to start different presentations and videos. This replaces a typical salespersons standard
         PowerPoint presentation with a unified, expandable presentation platform.
-    </div>
+    </Prose>
 </div>
 
 <MediaRow items={[
@@ -103,7 +104,7 @@ import teaserPoster from "./teaser.jpg";
 ]}/>
 
 <div className="container-small">
-    <div className="prose prose-invert">
+    <Prose>
         # Highlights
 
         In addition to features such as multi-language capability and passwordless e-mail authentication, one had the
@@ -113,5 +114,5 @@ import teaserPoster from "./teaser.jpg";
 
         Since the Fujitsu CX Lab is an internal application, I can unfortunately not show more pictures and videos at
         this point.
-    </div>
+    </Prose>
 </div>

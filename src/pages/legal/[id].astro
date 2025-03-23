@@ -1,27 +1,28 @@
 ---
-import { getCollection, render } from "astro:content";
+import {getCollection, render} from "astro:content";
 
 export async function getStaticPaths() {
-	const legalPages = await getCollection("legalPages");
+    const legalPages = await getCollection("legalPages");
 
-	return legalPages.map((post) => ({
-		params: { id: post.id },
-		props: { post },
-	}));
+    return legalPages.map((post) => ({
+        params: {id: post.id},
+        props: {post},
+    }));
 }
 
-const { post: legalPage } = Astro.props;
+const {post: legalPage} = Astro.props;
 
-const { Content } = await render(legalPage);
-const { title } = legalPage.data;
+const {Content} = await render(legalPage);
+const {title} = legalPage.data;
 
-import Layout from "../../layouts/layout.astro";
+import Layout from "@/layouts/layout.astro";
+import Prose from "@/components/common/Prose.astro";
 ---
 
 <Layout className="container" showSmallFooter>
     <title slot="head">{title} — Moriz von Langa</title>
-    
-    <section class="prose prose-invert">
+
+    <Prose>
         <Content/>
-    </section>
+    </Prose>
 </Layout>

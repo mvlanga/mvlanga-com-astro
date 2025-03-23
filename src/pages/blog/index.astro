@@ -1,11 +1,20 @@
 ---
-import {getCollection} from "astro:content";
-import {BlogFilter} from "@/components/blog/BlogFilter";
+import { getCollection } from "astro:content";
+import { BlogFilter } from "@/components/blog/BlogFilter";
 import Layout from "@/layouts/layout.astro";
-import {sortBlogPosts} from "@/utils/sortCollection";
-import {BlogPosts} from "../../components/blog/BlogPosts";
+import { sortBlogPosts } from "@/utils/sortCollection";
+import { BlogPosts } from "../../components/blog/BlogPosts";
 
-const blogPosts = sortBlogPosts(await getCollection("blogPosts"));
+const isProduction = import.meta.env.PROD;
+
+const blogPosts = sortBlogPosts(
+	await getCollection("blogPosts", ({ data }) => {
+		return isProduction
+			? data.draft === undefined || data.draft === false
+			: true;
+	}),
+);
+
 const availableTags = [...new Set(blogPosts.flatMap((e) => e.data.tags))];
 ---
 

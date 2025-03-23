@@ -16,22 +16,14 @@ const {Content} = await render(post);
 const {title, description, tags, createdAt} = post.data;
 
 import Layout from "@/layouts/layout.astro";
+import Prose from "@/components/common/Prose.astro";
 ---
 
 <title slot="head">{title} — Moriz von Langa</title>
 <meta slot="head" name="description" content={description}/>
 
 <Layout className="container gap-32 md:gap-48 lg:gap-64">
-    <section class="container-small">
-        <h1 class="mb-8 text-4xl font-bold leading-snug">
-            {title}
-        </h1>
-        <p class="max-w-prose text-lg text-neutral-400">
-            {description}
-        </p>
-    </section>
-
-    <section>
+    <Prose>
         <Content/>
-    </section>
+    </Prose>
 </Layout>

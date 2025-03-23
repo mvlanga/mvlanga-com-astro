@@ -5,12 +5,18 @@ import { Button } from "@/components/common/Button";
 import { ColoredBackground } from "@/components/common/ColoredBackground";
 import { PlayfulDivider } from "@/components/common/PlayfulDivider";
 import Layout from "@/layouts/layout.astro";
-import { sortExperience, sortProjects } from "@/utils/sortCollection";
+import {
+	sortBlogPosts,
+	sortExperience,
+	sortProjects,
+} from "@/utils/sortCollection";
+import { OtherBlogPosts } from "../components/blog/OtherBlogPosts";
 import Ellipsis from "../components/common/Ellipsis.astro";
 import { PortraitImage } from "../components/common/PortraitImage";
 import { ExperienceItem } from "../components/home-page/ExperienceItem";
 const experience = sortExperience(await getCollection("experience"));
 const projects = sortProjects(await getCollection("projects"));
+const blogPosts = sortBlogPosts((await getCollection("blogPosts")).slice(0, 5));
 ---
 
 <Layout>
@@ -141,6 +147,29 @@ const projects = sortProjects(await getCollection("projects"));
                         </div>
                 ))
             }
+        </div>
+    </section>
+
+    <section class="container scroll-mt-16 grid gap-16" id="blogPosts">
+        <div class="grid gap-8">
+            <h2 class="text-5xl">Latest blog posts</h2>
+
+            <p class="text-neutral-400 max-w-prose">
+                Just a few notes and reminders for myself, usually when I've found a solution to something I was
+                struggling with, discovered a good solution to a channeling problem, or tried something new.
+            </p>
+        </div>
+
+        <PlayfulDivider client:only="react">
+            <hr slot="fallback" class="border-neutral-800"/>
+        </PlayfulDivider>
+
+        <OtherBlogPosts client:visible blogPosts={blogPosts}/>
+
+        <div class="w-full text-end">
+            <a href="/blog" class="w-full md:w-auto">
+                <Button className="w-full md:w-auto" client:visible text="See all blog posts" level="primary"/>
+            </a>
         </div>
     </section>
 </Layout>

@@ -48,13 +48,14 @@ const legalPages = defineCollection({
 const blogPosts = defineCollection({
 	loader: glob({
 		base: "src/content/blog",
-		pattern: "*.md",
+		pattern: "**/**/*.md",
 	}),
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
 		createdAt: z.date(),
 		tags: z.array(z.string()),
+		draft: z.boolean().optional(),
 	}),
 });
 

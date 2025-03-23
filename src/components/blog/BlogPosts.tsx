@@ -1,11 +1,17 @@
 import type { CollectionEntry } from "astro:content";
 import {
-	SELECTED_TAG_ALL_VALUE,
-	selectedTag,
-} from "@/components/blog/selectedTagStore.ts";
+	BLOG_FILTER_TAG_ALL_VALUE,
+	blogFilterTag,
+} from "@/components/blog/blogFilterStore.ts";
 import { useStore } from "@nanostores/react";
-import { AnimatePresence, type Transition, motion } from "motion/react";
-import { useMemo } from "react";
+import {
+	AnimatePresence,
+	LayoutGroup,
+	type Transition,
+	motion,
+} from "motion/react";
+import { useMemo, useState } from "react";
+import { set } from "zod";
 
 const layoutTransition: Transition = {
 	duration: 0.5,
@@ -15,13 +21,13 @@ const layoutTransition: Transition = {
 type BlogPostsProps = { blogPosts: CollectionEntry<"blogPosts">[] };
 
 export const BlogPosts = ({ blogPosts }: BlogPostsProps) => {
-	const $selectedTag = useStore(selectedTag);
+	const $selectedTag = useStore(blogFilterTag);
 
 	const filteredBlogPosts = useMemo(
 		() =>
 			blogPosts.filter(
 				(post) =>
-					$selectedTag === SELECTED_TAG_ALL_VALUE ||
+					$selectedTag === BLOG_FILTER_TAG_ALL_VALUE ||
 					post.data.tags.includes($selectedTag),
 			),
 		[blogPosts, $selectedTag],
@@ -45,15 +51,17 @@ export const BlogPosts = ({ blogPosts }: BlogPostsProps) => {
 
 	return (
 		<section className="grid gap-16">
-			<AnimatePresence propagate>
-				{postsGroupedByMonth.map(
-					([title, posts]) =>
-						posts &&
-						posts.length > 0 && (
-							<Area key={title} title={title} posts={posts} />
-						),
-				)}
-			</AnimatePresence>
+			<LayoutGroup>
+				<AnimatePresence propagate>
+					{postsGroupedByMonth.map(
+						([title, posts]) =>
+							posts &&
+							posts.length > 0 && (
+								<Area key={title} title={title} posts={posts} />
+							),
+					)}
+				</AnimatePresence>
+			</LayoutGroup>
 		</section>
 	);
 };
@@ -93,7 +101,7 @@ type PostProps = {
 	post: CollectionEntry<"blogPosts">;
 };
 
-const Post = ({
+export const Post = ({
 	post: {
 		id,
 		data: { title, createdAt, tags, description },
@@ -106,7 +114,7 @@ const Post = ({
 			animate={{ opacity: 1, scale: 1 }}
 			exit={{ opacity: 0, scale: 0.8 }}
 			transition={layoutTransition}
-			className="@container col-span-1 flex w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 p-12 transition-colors hover:bg-neutral-800"
+			className="@container col-span-1 flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 p-12 transition-colors hover:bg-neutral-800"
 			href={`/blog/${id}`}
 		>
 			<div className="flex flex-col items-start gap-6">
@@ -119,7 +127,7 @@ const Post = ({
 			</div>
 
 			<div className="flex flex-wrap justify-between gap-2 text-neutral-400 text-xs">
-				{tags.map((tag) => `#${tag}`).join(", ")}
+				<p>{tags.map((tag) => `#${tag}`).join(", ")}</p>
 				<p>{createdAt.toLocaleDateString("en-US")}</p>
 			</div>
 		</motion.a>

@@ -1,23 +1,22 @@
 import { Button } from "@/components/common/Button.tsx";
 import { useStore } from "@nanostores/react";
-import { SELECTED_TAG_ALL_VALUE, selectedTag } from "./selectedTagStore.ts";
+import { BLOG_FILTER_TAG_ALL_VALUE, blogFilterTag } from "./blogFilterStore.ts";
 
 type BlogFilterProps = {
 	availableTags: string[];
 };
 
 export const BlogFilter = ({ availableTags }: BlogFilterProps) => {
-	const $selectedTag = useStore(selectedTag);
+	const $selectedTag = useStore(blogFilterTag);
 
 	return (
 		<div className="flex flex-wrap gap-2">
 			<Button
-				key={SELECTED_TAG_ALL_VALUE}
 				text="All"
 				level={
-					$selectedTag === SELECTED_TAG_ALL_VALUE ? "primary" : "secondary"
+					$selectedTag === BLOG_FILTER_TAG_ALL_VALUE ? "primary" : "secondary"
 				}
-				onClick={() => selectedTag.set(SELECTED_TAG_ALL_VALUE)}
+				onClick={() => blogFilterTag.set(BLOG_FILTER_TAG_ALL_VALUE)}
 			/>
 
 			{availableTags.map((tag) => (
@@ -25,7 +24,7 @@ export const BlogFilter = ({ availableTags }: BlogFilterProps) => {
 					key={tag}
 					text={`#${tag}`}
 					level={$selectedTag === tag ? "primary" : "secondary"}
-					onClick={() => selectedTag.set(tag)}
+					onClick={() => blogFilterTag.set(tag)}
 				/>
 			))}
 		</div>
