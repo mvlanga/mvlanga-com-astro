@@ -1,6 +1,6 @@
 ---
 import {getCollection, render} from "astro:content";
-import {shuffle} from "@/utils/sortCollection";
+import {shuffle, sortBlogPosts} from "@/utils/sortCollection";
 import Prose from "@/components/common/Prose.astro";
 import Layout from "@/layouts/layout.astro";
 import {PlayfulDivider} from "../../components/common/PlayfulDivider";
@@ -22,8 +22,14 @@ const {post} = Astro.props;
 const {Content} = await render(post);
 const {title, description, tags, createdAt} = post.data;
 
+const isProduction = import.meta.env.PROD;
+
 const relatedBlogPosts = shuffle(
-    await getCollection("blogPosts", ({id}) => id !== post.id),
+    await getCollection("blogPosts", ({data}) => {
+        return isProduction
+            ? data.draft === undefined || data.draft === false
+            : true;
+    }),
 ).slice(0, 5);
 ---
 
