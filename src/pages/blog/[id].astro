@@ -1,15 +1,14 @@
 ---
 import {getCollection, render} from "astro:content";
 import {shuffle} from "@/utils/sortCollection";
-
-const isProduction = import.meta.env.PROD;
+import Prose from "@/components/common/Prose.astro";
+import Layout from "@/layouts/layout.astro";
+import {PlayfulDivider} from "../../components/common/PlayfulDivider";
+import {OtherBlogPosts} from "../../components/blog/OtherBlogPosts";
+import {Button} from "../../components/common/Button";
 
 export async function getStaticPaths() {
-    const blogPosts = await getCollection("blogPosts", ({data}) => {
-        return isProduction
-            ? data.draft === undefined || data.draft === false
-            : true;
-    })
+    const blogPosts = await getCollection("blogPosts")
 
     return blogPosts
         .map((post) => ({
@@ -26,12 +25,6 @@ const {title, description, tags, createdAt} = post.data;
 const relatedBlogPosts = shuffle(
     await getCollection("blogPosts", ({id}) => id !== post.id),
 ).slice(0, 5);
-
-import Prose from "@/components/common/Prose.astro";
-import Layout from "@/layouts/layout.astro";
-import {PlayfulDivider} from "../../components/common/PlayfulDivider";
-import {OtherBlogPosts} from "../../components/blog/OtherBlogPosts";
-import {Button} from "../../components/common/Button";
 ---
 
 <title slot="head">{title} — Moriz von Langa</title>
