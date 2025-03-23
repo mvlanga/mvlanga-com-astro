@@ -31,7 +31,7 @@ import {Button} from "../../components/common/Button";
 <meta slot="head" name="description" content={description}/>
 
 <Layout className="container gap-32">
-    <div class="flex flex-col gap-16">
+    <article class="flex flex-col gap-16">
         <section>
             <h1 class="mb-8 text-4xl font-bold leading-snug">
                 {title}
@@ -54,7 +54,7 @@ import {Button} from "../../components/common/Button";
         <Prose>
             <Content/>
         </Prose>
-    </div>
+    </article>
 
     {relatedBlogPosts.length > 0 && (
             <section class="grid gap-16" id="blogPosts">
