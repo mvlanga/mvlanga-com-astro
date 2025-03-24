@@ -1,17 +1,17 @@
 ---
 import "@/styles.css";
 
-import {clsx} from "clsx";
-import {twMerge} from "tailwind-merge";
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 import Footer from "../components/common/Footer.astro";
-import {Header} from "../components/header/Header";
+import { Header } from "../components/header/Header";
 
 interface Props {
-    className?: string;
-    showSmallFooter?: boolean;
+	className?: string;
+	showSmallFooter?: boolean;
 }
 
-const {className, showSmallFooter} = Astro.props;
+const { className, showSmallFooter } = Astro.props;
 ---
 <!doctype html>
 <html lang="en" class="relative scroll-smooth">

@@ -1,27 +1,31 @@
 ---
-import {Image} from "astro:assets";
-import {getCollection} from "astro:content";
-import {Button} from "@/components/common/Button";
-import {ColoredBackground} from "@/components/common/ColoredBackground";
-import {PlayfulDivider} from "@/components/common/PlayfulDivider";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { Button } from "@/components/common/Button";
+import { ColoredBackground } from "@/components/common/ColoredBackground";
+import { PlayfulDivider } from "@/components/common/PlayfulDivider";
 import Layout from "@/layouts/layout.astro";
 import {
-    sortBlogPosts,
-    sortExperience,
-    sortProjects,
+	sortBlogPosts,
+	sortExperience,
+	sortProjects,
 } from "@/utils/sortCollection";
-import {OtherBlogPosts} from "../components/blog/OtherBlogPosts";
+import { OtherBlogPosts } from "../components/blog/OtherBlogPosts";
 import Ellipsis from "../components/common/Ellipsis.astro";
-import {PortraitImage} from "../components/common/PortraitImage";
-import {ExperienceItem} from "../components/home-page/ExperienceItem";
+import { PortraitImage } from "../components/common/PortraitImage";
+import { ExperienceItem } from "../components/home-page/ExperienceItem";
 const experience = sortExperience(await getCollection("experience"));
 const projects = sortProjects(await getCollection("projects"));
 
 const isProduction = import.meta.env.PROD;
 
-const blogPosts = sortBlogPosts(await getCollection("blogPosts", ({data}) => {
-    return isProduction ? data.draft === undefined || data.draft === false : true;
-}));
+const blogPosts = sortBlogPosts(
+	await getCollection("blogPosts", ({ data }) => {
+		return isProduction
+			? data.draft === undefined || data.draft === false
+			: true;
+	}),
+);
 ---
 
 <Layout>

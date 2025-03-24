@@ -1,8 +1,8 @@
 ---
 import { getCollection, render } from "astro:content";
+import { PlayfulDivider } from "@/components/common/PlayfulDivider";
 import Prose from "@/components/common/Prose.astro";
 import Layout from "@/layouts/layout.astro";
-import { PlayfulDivider } from "@/components/common/PlayfulDivider";
 
 export async function getStaticPaths() {
 	const isProduction = import.meta.env.PROD;
