@@ -67,7 +67,7 @@ export const Button = ({
 
 type PerspectiveTextHoverProps = {
 	text: string;
-	activeText?: string;
+	activeText?: undefined | string;
 	isActive?: boolean;
 	className?: string;
 };

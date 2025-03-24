@@ -10,6 +10,7 @@
 			"@/*": ["./src/*"]
 		},
 		"strictNullChecks": true,
-		"allowJs": true
+		"allowJs": true,
+		"exactOptionalPropertyTypes": false
 	}
 }

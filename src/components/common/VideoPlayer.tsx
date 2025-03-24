@@ -25,7 +25,7 @@ import type { ImageMetadata } from "astro";
 import { useInView } from "motion/react";
 import { useEffect, useRef } from "react";
 
-type VideoPlayerProps = {
+export type VideoPlayerProps = {
 	src: string;
 	poster: ImageMetadata;
 	muted: boolean;
