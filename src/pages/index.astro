@@ -10,10 +10,10 @@ import {
 	sortExperience,
 	sortProjects,
 } from "@/utils/sortCollection";
-import { OtherBlogPosts } from "../components/blog/OtherBlogPosts";
-import Ellipsis from "../components/common/Ellipsis.astro";
-import { PortraitImage } from "../components/common/PortraitImage";
-import { ExperienceItem } from "../components/home-page/ExperienceItem";
+import { OtherBlogPosts } from "@/components/blog/OtherBlogPosts";
+import Ellipsis from "@/components/common/Ellipsis.astro";
+import { PortraitImage } from "@/components/common/PortraitImage";
+import { ExperienceItem } from "@/components/home-page/ExperienceItem";
 const experience = sortExperience(await getCollection("experience"));
 const projects = sortProjects(await getCollection("projects"));
 
