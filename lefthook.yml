@@ -8,4 +8,4 @@ pre-push:
   commands:
     check:
       glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
-      run: npm run build
+      run: npm run check
