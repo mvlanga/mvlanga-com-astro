@@ -1,5 +1,5 @@
 ---
-title: Organise arrays of objects, including dates, by month using JavaScript's GroupBy method
+title: Organise arrays of objects, including dates, by month using JavaScript's groupBy method
 slug: organize-arrays-objects-dates-by-month-javascript-groupby
 description: Learn how to use the JavaScript groupBy method (ES2024) to organise arrays of objects containing dates by month, with each section displaying the full month name using toLocaleString().
 createdAt: 2025-02-28
@@ -12,7 +12,7 @@ While working on a recent project, I faced a challenge of organizing a collectio
 created. The goal was to display each month in a structured way, with a headline showing the full month name, making it
 easier for users to navigate the posts over time.
 
-This might sound complex, but with the new `groupBy` method in JavaScript (introduced in ES2024), this task becomes a
+This might sound complex, but with the `groupBy` method in JavaScript (introduced in ES2024), this task becomes a
 breeze. In this blog post, I’ll walk you through how to use this feature to simplify the process of grouping data by
 month and presenting it in a user-friendly format.
 
@@ -40,7 +40,7 @@ Let's walk through how this code works:
 
 - `filteredData`: This is the array of blog post objects, each containing a `createdAt` javascript date object.
 
-- `Object.groupBy()`: This new method is used to group the array of blog posts. It accepts a callback function, which
+- `Object.groupBy()`: This method is used to group the array of blog posts. It accepts a callback function, which
   extracts the month from each blog post’s `createdAt` date.
 
 - `toLocaleString("en-US", { month: "long" })`: Formats the Date object to return the full name of the month (e.g., "
@@ -111,12 +111,12 @@ tasks that would otherwise require complex loops or additional libraries. By usi
 organize
 and manipulate arrays of objects in an intuitive and efficient manner.
 
-In this case, organizing blog posts by month is a perfect example of how powerful this new feature can be. By combining
+In this case, organizing blog posts by month is a perfect example of how powerful this feature can be. By combining
 groupBy with `toLocaleString()`, we can display time-based data in a way that’s both clean and user-friendly.
 
 ## Conclusion
 
-In summary, JavaScript's new groupBy method in ES2024 makes organizing arrays of objects by specific properties (like
+In summary, JavaScript's groupBy method in ES2024 makes organizing arrays of objects by specific properties (like
 dates) much simpler. By using `toLocaleString()` to format the month name, we can display data in a structured and
 readable way, whether it’s for blog posts or any other time-based data.
 
