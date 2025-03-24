@@ -1,6 +1,25 @@
-<div class="prose prose-invert prose-a:text-purple
-prose-code:px-2  prose-code:py-1 prose-code:rounded prose-code:bg-neutral-900 prose-code:font-normal
-prose-code:before:content-none prose-code:after:content-none
-[&>pre>code]:p-0 [&>pre>code]:bg-transparent">
+---
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+interface Props {
+	additionalClasses?: string;
+}
+
+const { additionalClasses } = Astro.props;
+---
+
+<div class={
+        twMerge(
+            clsx(
+                "prose prose-invert",
+                "prose-a:text-purple prose-a:hover:text-purple-400 prose-a:transition-colors",
+                "prose-code:px-2  prose-code:py-1 prose-code:rounded prose-code:bg-neutral-900 prose-code:font-normal",
+                "prose-code:before:content-none prose-code:after:content-none",
+                "[&>pre>code]:p-0 [&>pre>code]:bg-transparent",
+                additionalClasses
+            )
+        )
+}>
     <slot/>
 </div>

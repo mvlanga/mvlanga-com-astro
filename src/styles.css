@@ -10,6 +10,7 @@
 
 	--color-black: #080808;
 
+	--color-purple-400: #8860ff;
 	--color-purple-500: #8860ff;
 	--color-purple-600: #4b29af;
 	--color-purple: #8860ff;
@@ -17,7 +18,9 @@
 	--container-8xl: 120rem;
 	--container-7xl: 60rem;
 
-	--max-width-prose: 84ch;
+	--max-width-prose: 64ch;
+	--max-width-prose-l: 84ch;
+	--max-width-prose-xl: 112ch;
 }
 
 @layer base {
@@ -64,10 +67,18 @@
 	@apply px-6 sm:px-12 md:px-16 lg:px-32 max-w-8xl;
 }
 
-@utility container-small {
-	@apply container px-0 max-w-7xl;
-}
-
 @utility prose {
 	max-width: var(--max-width-prose);
+}
+
+@utility max-w-prose {
+	@apply w-full;
+}
+
+@utility max-w-prose-l {
+	@apply w-full;
+}
+
+@utility max-w-prose-xl {
+	@apply w-full;
 }

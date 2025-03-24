@@ -1,5 +1,5 @@
 ---
-import { PlayfulDivider } from "../common/PlayfulDivider";
+import { PlayfulDivider } from "@/components/common/PlayfulDivider";
 
 interface Props {
 	description: string;
@@ -12,7 +12,7 @@ interface Props {
 const { description, responsibilities } = Astro.props;
 ---
 
-<section class="container-small grid gap-16">
+<section class="max-w-prose-l mx-auto grid gap-16">
     <div class="grid gap-8">
         <h2 class="text-5xl">My responsibilities</h2>
 
@@ -23,13 +23,14 @@ const { description, responsibilities } = Astro.props;
         <hr slot="fallback" class="border-neutral-800"/>
     </PlayfulDivider>
 
-    <div class="grid gap-8 max-w-prose">
+    <div class="grid gap-8">
         <ul class="grid gap-4">
             {responsibilities.me.map((responsibility) =>
-                    <li class="p-8 bg-neutral-900 rounded-3xl">{responsibility}</li>)}
-
+                    <li class="p-8 bg-neutral-900 rounded-3xl">{responsibility}</li>
+            )}
             <li class="p-6 border-solid border-1 border-neutral-800 rounded-3xl">{responsibilities.colleagues}</li>
         </ul>
+
         <div class="flex gap-8 justify-end flex-wrap">
             <div class="flex items-center gap-4">
                 <span class="inline-block w-4 h-4 rounded-full bg-neutral-900"/> Me
