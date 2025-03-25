@@ -4,7 +4,7 @@
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "astro dev",
-		"build": "npm run check && astro build",
+		"build": "npm run check && astro build --remote",
 		"check": "astro check",
 		"preview": "astro preview",
 		"lint": "biome lint --write .",
@@ -13,6 +13,8 @@
 		"format": "biome format --write ."
 	},
 	"dependencies": {
+		"@astrojs/db": "^0.14.8",
+		"@astrojs/netlify": "^6.2.3",
 		"@nanostores/react": "^0.8.4",
 		"@vidstack/react": "^1.12.13",
 		"clsx": "^2.1.1",

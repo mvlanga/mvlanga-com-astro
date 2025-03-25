@@ -6,53 +6,63 @@ import { defineConfig } from "astro/config";
 import { visualizer } from "rollup-plugin-visualizer";
 import { EnumChangefreq } from "sitemap";
 
+import db from "@astrojs/db";
+
+import netlify from "@astrojs/netlify";
+
 export default defineConfig({
-	markdown: {
-		shikiConfig: {
-			theme: "github-dark-default",
-		},
+  markdown: {
+      shikiConfig: {
+          theme: "github-dark-default",
+      },
 	},
-	site: "https://mvlanga.com",
-	integrations: [
-		sitemap({
-			serialize(item) {
-				if (item.url === "https://mvlanga.com/") {
-					item.changefreq = EnumChangefreq.MONTHLY;
-					item.lastmod = new Date().toDateString();
-					item.priority = 1;
-				}
 
-				if (/legal/.test(item.url)) {
-					item.changefreq = EnumChangefreq.YEARLY;
-					item.lastmod = new Date().toDateString();
-					item.priority = 0.2;
-				}
+  site: "https://mvlanga.com",
 
-				if (/project/.test(item.url)) {
-					item.changefreq = EnumChangefreq.DAILY;
-					item.lastmod = new Date().toDateString();
-					item.priority = 0.9;
-				}
+  integrations: [
+      sitemap({
+          serialize(item) {
+              if (item.url === "https://mvlanga.com/") {
+                  item.changefreq = EnumChangefreq.MONTHLY;
+                  item.lastmod = new Date().toDateString();
+                  item.priority = 1;
+              }
 
-				if (/blog/.test(item.url)) {
-					item.changefreq = EnumChangefreq.WEEKLY;
-					item.lastmod = new Date().toDateString();
-					item.priority = 0.8;
-				}
+              if (/legal/.test(item.url)) {
+                  item.changefreq = EnumChangefreq.YEARLY;
+                  item.lastmod = new Date().toDateString();
+                  item.priority = 0.2;
+              }
 
-				return item;
-			},
-		}),
-		mdx(),
-		react(),
+              if (/project/.test(item.url)) {
+                  item.changefreq = EnumChangefreq.DAILY;
+                  item.lastmod = new Date().toDateString();
+                  item.priority = 0.9;
+              }
+
+              if (/blog/.test(item.url)) {
+                  item.changefreq = EnumChangefreq.WEEKLY;
+                  item.lastmod = new Date().toDateString();
+                  item.priority = 0.8;
+              }
+
+              return item;
+          },
+      }),
+      mdx(),
+      react(),
+      db(),
 	],
-	vite: {
-		plugins: [
-			tailwindcss(),
-			visualizer({
-				emitFile: true,
-				filename: "stats.html",
-			}),
-		],
+
+  vite: {
+      plugins: [
+          tailwindcss(),
+          visualizer({
+              emitFile: true,
+              filename: "stats.html",
+          }),
+      ],
 	},
+
+  adapter: netlify(),
 });
