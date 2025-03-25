@@ -1,6 +1,6 @@
 import { column, defineDb, defineTable } from "astro:db";
 
-const BlogPostViews = defineTable({
+const PageViews = defineTable({
 	columns: {
 		id: column.text({ unique: true, primaryKey: true }),
 		count: column.number({
@@ -11,6 +11,6 @@ const BlogPostViews = defineTable({
 
 export default defineDb({
 	tables: {
-		BlogPostViews,
+		PageViews,
 	},
 });

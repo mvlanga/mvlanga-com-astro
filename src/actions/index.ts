@@ -1,30 +1,35 @@
 import { ActionError, defineAction } from "astro:actions";
+import { PageViews, db, eq, sql } from "astro:db";
 import { z } from "astro:schema";
-import { BlogPostViews, db, sql } from "astro:db";
 
 export const server = {
-	blogPostViews: defineAction({
+	updatePageView: defineAction({
 		input: z.object({
 			id: z.string(),
+			shouldIncrease: z.boolean(),
 		}),
-		handler: async ({ id }) => {
+		handler: async ({ id, shouldIncrease }) => {
 			try {
+				if (shouldIncrease === false) {
+					return await db.select().from(PageViews).where(eq(PageViews.id, id));
+				}
+
 				return await db
-					.insert(BlogPostViews)
+					.insert(PageViews)
 					.values({
 						id,
 					})
 					.onConflictDoUpdate({
-						target: BlogPostViews.id,
+						target: PageViews.id,
 						set: { count: sql`count + 1` },
 					})
-					.returning({ count: BlogPostViews.count });
+					.returning({ count: PageViews.count });
 			} catch (e) {
 				console.error(e);
 
 				throw new ActionError({
 					code: "BAD_REQUEST",
-					message: "Error updating views",
+					message: "Error updating `PageViews`",
 				});
 			}
 		},

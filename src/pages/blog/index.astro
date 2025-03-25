@@ -1,10 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import { BlogFilter } from "@/components/blog/BlogFilter";
-import Layout from "@/layouts/layout.astro";
-import { sortBlogPosts } from "@/utils/sortCollection";
 import { BlogPosts } from "@/components/blog/BlogPosts";
 import { getTagsWithCountByPosts } from "@/components/blog/utils";
+import Layout from "@/layouts/layout.astro";
+import { sortBlogPosts } from "@/utils/sortCollection";
 
 const isProduction = import.meta.env.PROD;
 

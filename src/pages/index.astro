@@ -1,19 +1,19 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import { OtherBlogPosts } from "@/components/blog/OtherBlogPosts";
 import { Button } from "@/components/common/Button";
 import { ColoredBackground } from "@/components/common/ColoredBackground";
+import Ellipsis from "@/components/common/Ellipsis.astro";
 import { PlayfulDivider } from "@/components/common/PlayfulDivider";
+import { PortraitImage } from "@/components/common/PortraitImage";
+import { ExperienceItem } from "@/components/home-page/ExperienceItem";
 import Layout from "@/layouts/layout.astro";
 import {
 	sortBlogPosts,
 	sortExperience,
 	sortProjects,
 } from "@/utils/sortCollection";
-import { OtherBlogPosts } from "@/components/blog/OtherBlogPosts";
-import Ellipsis from "@/components/common/Ellipsis.astro";
-import { PortraitImage } from "@/components/common/PortraitImage";
-import { ExperienceItem } from "@/components/home-page/ExperienceItem";
 const experience = sortExperience(await getCollection("experience"));
 const projects = sortProjects(await getCollection("projects"));
 

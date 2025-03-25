@@ -14,7 +14,6 @@
 	},
 	"dependencies": {
 		"@astrojs/db": "^0.14.8",
-		"@astrojs/netlify": "^6.2.3",
 		"@nanostores/react": "^0.8.4",
 		"@vidstack/react": "^1.12.13",
 		"clsx": "^2.1.1",
