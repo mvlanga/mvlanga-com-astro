@@ -10,42 +10,67 @@ import {
 	type Transition,
 	motion,
 } from "motion/react";
-import { useMemo } from "react";
-import { ViewCounter } from "@/components/common/ViewCounter.tsx";
+import { useMemo, useState } from "react";
+import { useOnMount } from "@/utils/useOnMount.ts";
+import { actions } from "astro:actions";
+import { groupPostsByMonth } from "@/components/blog/utils.ts";
 
 const layoutTransition: Transition = {
 	duration: 0.5,
 	ease: [0.27, 0.99, 0.25, 0.99],
 };
 
-type BlogPostsProps = { blogPosts: CollectionEntry<"blogPosts">[] };
+type BlogPost = CollectionEntry<"blogPosts"> & { viewCount?: number };
+
+type BlogPostsProps = { blogPosts: BlogPost[] };
 
 export const BlogPosts = ({ blogPosts }: BlogPostsProps) => {
 	const $selectedTag = useStore(blogFilterTag);
 
+	const [isLoading, setIsLoading] = useState(true);
+	const [blogPostsWithViewCount, setBlogPostsWithViewCount] = useState<
+		BlogPost[]
+	>([]);
+
+	useOnMount(() => {
+		const fetchData = async () => {
+			const { data, error } = await actions.getPageViews(
+				blogPosts.map((post) => post.id),
+			);
+
+			setIsLoading(false);
+
+			if (error) {
+				throw new Error("Unable to run `blogPostViews` action");
+			}
+
+			if (data === undefined) {
+				throw new Error("Returned data of `blogPostViews` action is unusable");
+			}
+
+			setBlogPostsWithViewCount(
+				blogPosts.map((post) => ({
+					...post,
+					viewCount: data.find(({ id }) => id === post.id)?.count ?? 0,
+				})),
+			);
+		};
+
+		fetchData().catch(console.error);
+	});
+
 	const filteredBlogPosts = useMemo(
 		() =>
-			blogPosts.filter(
+			blogPostsWithViewCount.filter(
 				(post) =>
 					$selectedTag === BLOG_FILTER_TAG_ALL_VALUE ||
 					post.data.tags.includes($selectedTag),
 			),
-		[blogPosts, $selectedTag],
+		[blogPostsWithViewCount, $selectedTag],
 	);
 
 	const postsGroupedByMonth = useMemo(
-		() =>
-			Object.entries(
-				Object.groupBy(filteredBlogPosts, ({ data: { createdAt } }) => {
-					const isThisYear =
-						createdAt.getFullYear() === new Date().getFullYear();
-
-					return createdAt.toLocaleString("en-US", {
-						month: "long",
-						...(isThisYear ? {} : { year: "numeric" }),
-					});
-				}),
-			),
+		() => groupPostsByMonth(filteredBlogPosts),
 		[filteredBlogPosts],
 	);
 
@@ -57,7 +82,12 @@ export const BlogPosts = ({ blogPosts }: BlogPostsProps) => {
 						([title, posts]) =>
 							posts &&
 							posts.length > 0 && (
-								<Area key={title} title={title} posts={posts} />
+								<Area
+									key={title}
+									title={title}
+									posts={posts}
+									isLoading={isLoading}
+								/>
 							),
 					)}
 				</AnimatePresence>
@@ -68,10 +98,11 @@ export const BlogPosts = ({ blogPosts }: BlogPostsProps) => {
 
 type AreaProps = {
 	title: string;
-	posts: CollectionEntry<"blogPosts">[];
+	posts: BlogPost[];
+	isLoading: boolean;
 };
 
-const Area = ({ title, posts }: AreaProps) => {
+const Area = ({ title, posts, isLoading }: AreaProps) => {
 	return (
 		<motion.div
 			layout
@@ -90,7 +121,7 @@ const Area = ({ title, posts }: AreaProps) => {
 			</motion.p>
 			<AnimatePresence propagate>
 				{posts?.map((post) => (
-					<Post key={post.id} post={post} />
+					<Post key={post.id} post={post} isLoading={isLoading} />
 				))}
 			</AnimatePresence>
 		</motion.div>
@@ -98,14 +129,17 @@ const Area = ({ title, posts }: AreaProps) => {
 };
 
 type PostProps = {
-	post: CollectionEntry<"blogPosts">;
+	post: BlogPost;
+	isLoading: boolean;
 };
 
 export const Post = ({
 	post: {
 		id,
 		data: { title, createdAt, tags, description },
+		viewCount,
 	},
+	isLoading,
 }: PostProps) => {
 	return (
 		<motion.a
@@ -114,7 +148,7 @@ export const Post = ({
 			animate={{ opacity: 1, scale: 1 }}
 			exit={{ opacity: 0, scale: 0.8 }}
 			transition={layoutTransition}
-			className="group @container col-span-1 flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 p-12 transition-colors hover:bg-neutral-800"
+			className="group col-span-1 flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 p-12 transition-colors hover:bg-neutral-800"
 			href={`/blog/${id}`}
 		>
 			<div className="flex flex-col items-start gap-6">
@@ -130,10 +164,16 @@ export const Post = ({
 
 			<div className="flex flex-wrap justify-between gap-4 text-neutral-400 text-xs">
 				<p>{tags.map((tag) => `#${tag}`).join(", ")}</p>
-				<p className="flex flex-wrap gap-4">
-					<ViewCounter id={id} />
-					<span>{createdAt.toLocaleDateString("en-US")}</span>
-				</p>
+
+				<div className="flex flex-wrap gap-4">
+					{isLoading ? (
+						<div className="inline-block h-[1lh] w-[8ch] animate-pulse rounded-lg bg-neutral-800" />
+					) : (
+						<span>{viewCount} views</span>
+					)}
+
+					<p>{createdAt.toLocaleDateString("en-US")}</p>
+				</div>
 			</div>
 		</motion.a>
 	);

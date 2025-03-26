@@ -1,0 +1,25 @@
+---
+import { db, eq, PageViews, sql } from "astro:db";
+
+interface Props {
+	id: string;
+	shouldIncrease?: boolean;
+}
+
+const { id, shouldIncrease = false } = Astro.props;
+
+const count = shouldIncrease
+	? await db
+			.insert(PageViews)
+			.values({
+				id,
+			})
+			.onConflictDoUpdate({
+				target: PageViews.id,
+				set: { count: sql`count + 1` },
+			})
+			.returning({ count: PageViews.count })
+	: await db.select().from(PageViews).where(eq(PageViews.id, id));
+---
+
+<p class="inline-block">{count?.[0]?.count.toLocaleString()} views</p>

@@ -2,8 +2,8 @@
 import { getCollection, render } from "astro:content";
 import { PlayfulDivider } from "@/components/common/PlayfulDivider";
 import Prose from "@/components/common/Prose.astro";
+import ViewCounter from "../../components/common/ViewCounter.astro";
 import Layout from "@/layouts/layout.astro";
-import { ViewCounter } from "@/components/common/ViewCounter";
 
 export async function getStaticPaths() {
 	const isProduction = import.meta.env.PROD;
@@ -45,7 +45,9 @@ const { title, description, tags, createdAt } = post.data;
                 <span>{tags.map((tag) => `#${tag}`).join(", ")}</span>
 
                 <div class="flex flex-wrap gap-4">
-                    <ViewCounter client:load id={post.id} shouldIncrease={true} />
+                    <ViewCounter server:defer id={post.id} shouldIncrease={true}>
+                        <div slot="fallback" class="inline-block h-[1lh] w-[8ch] animate-pulse rounded-lg bg-neutral-900" />
+                    </ViewCounter>
                     <p>{createdAt.toLocaleDateString("en-US")}</p>
                 </div>
             </div>

@@ -16,3 +16,16 @@ export const getTagsWithCountByPosts = (
 		count,
 	}));
 };
+
+export const groupPostsByMonth = (posts: CollectionEntry<"blogPosts">[]) => {
+	return Object.entries(
+		Object.groupBy(posts, ({ data: { createdAt } }) => {
+			const isThisYear = createdAt.getFullYear() === new Date().getFullYear();
+
+			return createdAt.toLocaleString("en-US", {
+				month: "long",
+				...(isThisYear ? {} : { year: "numeric" }),
+			});
+		}),
+	);
+};
