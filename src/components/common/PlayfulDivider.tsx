@@ -1,6 +1,7 @@
 import { useOnResize } from "@/utils/useOnResize.ts";
 import { mix, useReducedMotion } from "motion/react";
-import { type MouseEvent, useEffect, useRef } from "react";
+import { type MouseEvent, useRef } from "react";
+import { useOnMount } from "@/utils/useOnMount.ts";
 
 export const PlayfulDivider = () => {
 	const shouldReduceMotion = useReducedMotion();
@@ -34,12 +35,8 @@ const ReactiveLine = () => {
 		);
 	};
 
+	useOnMount(() => setPath(progress));
 	useOnResize(() => setPath(progress));
-
-	// biome-ignore lint/correctness/useExhaustiveDependencies: hook is only used to run on mount
-	useEffect(() => {
-		setPath(progress);
-	}, []);
 
 	const manageMouseEnter = () => {
 		if (reqId) {

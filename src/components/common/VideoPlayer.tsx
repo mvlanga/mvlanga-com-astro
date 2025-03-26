@@ -24,6 +24,7 @@ import {
 import type { ImageMetadata } from "astro";
 import { useInView } from "motion/react";
 import { useEffect, useRef } from "react";
+import { useOnMount } from "@/utils/useOnMount.ts";
 
 export type VideoPlayerProps = {
 	src: string;
@@ -43,11 +44,11 @@ export const VideoPlayer = ({
 	const videoRef = useRef<MediaPlayerInstance>(null);
 	const videoElementRef = useRef<HTMLElement>(null);
 
-	useEffect(() => {
+	useOnMount(() => {
 		if (videoRef.current?.el) {
 			videoElementRef.current = videoRef.current.el;
 		}
-	}, []);
+	});
 
 	const isInView = useInView(videoElementRef);
 

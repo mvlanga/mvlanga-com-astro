@@ -1,7 +1,8 @@
 import { clsx } from "clsx";
 import { scroll } from "motion";
 import { inView } from "motion/react";
-import { type Dispatch, type SetStateAction, useEffect } from "react";
+import type { Dispatch, SetStateAction } from "react";
+import { useOnMount } from "@/utils/useOnMount.ts";
 
 type HeaderNavItemProps = {
 	currentPath: string;
@@ -23,8 +24,7 @@ export const HeaderNavItem = (props: HeaderNavItemProps) => {
 };
 
 const AnchorNavItem = (props: NavItemProps) => {
-	// biome-ignore lint/correctness/useExhaustiveDependencies: Should only run on mount
-	useEffect(() => {
+	useOnMount(() =>
 		scroll(() => {
 			inView(props.url.substring(1), () => {
 				const anchorEl = props.url.substring(1);
@@ -43,8 +43,8 @@ const AnchorNavItem = (props: NavItemProps) => {
 					});
 				};
 			});
-		});
-	}, []);
+		}),
+	);
 
 	return <NavItem {...props} />;
 };
