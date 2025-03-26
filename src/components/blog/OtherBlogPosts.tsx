@@ -1,6 +1,6 @@
 import type { CollectionEntry } from "astro:content";
-import useEmblaCarousel from "embla-carousel-react";
 import { useBlogPosts } from "@/components/blog/utils.ts";
+import useEmblaCarousel from "embla-carousel-react";
 
 type OtherBlogPostsProps = {
 	blogPosts: CollectionEntry<"blogPosts">[];
@@ -42,7 +42,7 @@ export const OtherBlogPosts = ({ blogPosts }: OtherBlogPostsProps) => {
 										{isLoading ? (
 											<div className="inline-block h-[1lh] w-[8ch] animate-pulse rounded-lg bg-neutral-800" />
 										) : (
-											<span>{viewCount} views</span>
+											<span>{viewCount?.toLocaleString()} views</span>
 										)}
 
 										<p>{createdAt.toLocaleDateString("en-US")}</p>

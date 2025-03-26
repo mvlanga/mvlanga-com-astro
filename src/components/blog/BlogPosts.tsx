@@ -2,6 +2,7 @@ import {
 	BLOG_FILTER_TAG_ALL_VALUE,
 	blogFilterTag,
 } from "@/components/blog/blogFilterStore.ts";
+import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
 import { groupPostsByMonth, useBlogPosts } from "@/components/blog/utils.ts";
 import { useStore } from "@nanostores/react";
 import {
@@ -11,7 +12,6 @@ import {
 	motion,
 } from "motion/react";
 import { useMemo } from "react";
-import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
 
 const layoutTransition: Transition = {
 	duration: 0.5,
