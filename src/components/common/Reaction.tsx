@@ -1,6 +1,6 @@
+import { clsx } from "clsx";
 import { motion } from "motion/react";
 import { useState } from "react";
-import { clsx } from "clsx";
 
 const possibleReactions = ["❤️", "😎", "👌", "😁"];
 
