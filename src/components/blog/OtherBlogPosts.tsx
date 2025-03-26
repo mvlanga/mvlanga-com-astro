@@ -25,7 +25,7 @@ export const OtherBlogPosts = ({ blogPosts }: OtherBlogPostsProps) => {
 							className="transform-3d-[0_0_0] min-w-0 flex-[0_0_75%] pl-8 md:flex-[0_0_40%] lg:flex-[0_0_45%]"
 						>
 							<a
-								className="flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 p-12 transition-colors hover:bg-neutral-800"
+								className="group flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 p-12 transition-colors hover:bg-neutral-800"
 								href={`/blog/${id}`}
 							>
 								<div className="flex flex-col items-start gap-6">

@@ -3,7 +3,8 @@ import { getCollection, render } from "astro:content";
 import { PlayfulDivider } from "@/components/common/PlayfulDivider";
 import Prose from "@/components/common/Prose.astro";
 import Layout from "@/layouts/layout.astro";
-import ViewCounter from "../../components/common/ViewCounter.astro";
+import ViewCounter from "@/components/common/ViewCounter.astro";
+import { Reaction } from "@/components/common/Reaction";
 
 export async function getStaticPaths() {
 	const isProduction = import.meta.env.PROD;
@@ -29,7 +30,7 @@ const { title, description, tags, createdAt } = post.data;
 <title slot="head">{title} — Moriz von Langa</title>
 <meta slot="head" name="description" content={description}/>
 
-<Layout className="container gap-32">
+<Layout className="container gap-32" footerType="regular">
     <article class="max-w-prose mx-auto flex flex-col gap-16">
         <section>
             <h1 class="mb-8 text-3xl font-bold leading-snug">
@@ -45,7 +46,7 @@ const { title, description, tags, createdAt } = post.data;
                 <span>{tags.map((tag) => `#${tag}`).join(", ")}</span>
 
                 <div class="flex flex-wrap gap-4">
-                    <ViewCounter server:defer id={post.id} shouldIncrease={true}>
+                    <ViewCounter server:defer id={post.id}>
                         <div slot="fallback" class="inline-block h-[1lh] w-[8ch] animate-pulse rounded-lg bg-neutral-900" />
                     </ViewCounter>
                     <p>{createdAt.toLocaleDateString("en-US")}</p>

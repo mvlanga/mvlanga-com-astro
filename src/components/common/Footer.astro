@@ -2,23 +2,32 @@
 import { clsx } from "clsx";
 import CarbonBadge from "./CarbonBadge.astro";
 import { PlayfulDivider } from "./PlayfulDivider";
+import { Reaction } from "./Reaction";
 
 const year = new Date().getFullYear();
 const isProduction = import.meta.env.PROD;
 
 interface Props {
-	showSmallFooter?: boolean;
+	type?: "regular" | "small" | "reaction";
 }
 
-const { showSmallFooter } = Astro.props;
+const { type = "regular" } = Astro.props;
 ---
 
-<footer class={clsx("container flex flex-col gap-24 pb-12", showSmallFooter && "gap-12!")}>
+<footer class={
+    clsx(
+            "container flex flex-col pb-12",
+            type === "regular" && "gap-24",
+            type === "small" && "gap-12",
+            type === "reaction" && "gap-12"
+        )
+    }
+>
     <PlayfulDivider client:only="react">
         <hr slot="fallback" class="border-neutral-800"/>
     </PlayfulDivider>
 
-    {!showSmallFooter && (
+    {type === "regular" && (
             <div class="flex flex-row flex-wrap justify-between gap-6 md:gap-12 md:items-end text-neutral-200">
                 <h5 class="text-6xl">Let’s collaborate</h5>
                 <a class="text-3xl transition-colors hover:text-purple" href="mailto:morizvlanga@gmail.com"
@@ -26,7 +35,13 @@ const { showSmallFooter } = Astro.props;
             </div>
     )}
 
-    <div class={clsx("flex flex-wrap items-end justify-between gap-6 text-neutral-500", !showSmallFooter && "mt-12")}>
+    {type === "reaction" && (
+        <div class="flex flex-col gap-6 md:gap-12 text-neutral-200">
+            <Reaction client:visible />
+        </div>
+    )}
+
+    <div class={clsx("flex flex-wrap items-end justify-between gap-6 text-neutral-500", type !== "small" && "mt-12")}>
         {isProduction ?
                 <CarbonBadge/> : "<CarbonBadge />"}
 

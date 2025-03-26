@@ -1,25 +1,24 @@
 ---
-import { PageViews, db, eq, sql } from "astro:db";
+export const prerender = false;
+
+import { PageViews, db, sql } from "astro:db";
 
 interface Props {
 	id: string;
-	shouldIncrease?: boolean;
 }
 
-const { id, shouldIncrease = false } = Astro.props;
+const { id } = Astro.props;
 
-const count = shouldIncrease
-	? await db
-			.insert(PageViews)
-			.values({
-				id,
-			})
-			.onConflictDoUpdate({
-				target: PageViews.id,
-				set: { count: sql`count + 1` },
-			})
-			.returning({ count: PageViews.count })
-	: await db.select().from(PageViews).where(eq(PageViews.id, id));
+const count = await db
+	.insert(PageViews)
+	.values({
+		id,
+	})
+	.onConflictDoUpdate({
+		target: PageViews.id,
+		set: { count: sql`count + 1` },
+	})
+	.returning({ count: PageViews.count });
 ---
 
 <p class="inline-block">{count?.[0]?.count.toLocaleString()} views</p>
