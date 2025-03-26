@@ -8,10 +8,10 @@ import { Header } from "../components/header/Header";
 
 interface Props {
 	className?: string;
-	showSmallFooter?: boolean;
+	footerType?: "regular" | "small";
 }
 
-const { className, showSmallFooter } = Astro.props;
+const { className, footerType = "regular" } = Astro.props;
 ---
 <!doctype html>
 <html lang="en" class="relative scroll-smooth">
@@ -81,7 +81,7 @@ const { className, showSmallFooter } = Astro.props;
     <slot/>
 </main>
 
-<Footer showSmallFooter={Boolean(showSmallFooter)}/>
+<Footer type={footerType} />
 
 </body>
 </html>

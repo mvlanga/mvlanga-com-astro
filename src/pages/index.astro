@@ -1,19 +1,19 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import { OtherBlogPosts } from "@/components/blog/OtherBlogPosts";
 import { Button } from "@/components/common/Button";
 import { ColoredBackground } from "@/components/common/ColoredBackground";
+import Ellipsis from "@/components/common/Ellipsis.astro";
 import { PlayfulDivider } from "@/components/common/PlayfulDivider";
+import { PortraitImage } from "@/components/common/PortraitImage";
+import { ExperienceItem } from "@/components/home-page/ExperienceItem";
 import Layout from "@/layouts/layout.astro";
 import {
 	sortBlogPosts,
 	sortExperience,
 	sortProjects,
 } from "@/utils/sortCollection";
-import { OtherBlogPosts } from "@/components/blog/OtherBlogPosts";
-import Ellipsis from "@/components/common/Ellipsis.astro";
-import { PortraitImage } from "@/components/common/PortraitImage";
-import { ExperienceItem } from "@/components/home-page/ExperienceItem";
 const experience = sortExperience(await getCollection("experience"));
 const projects = sortProjects(await getCollection("projects"));
 
@@ -173,7 +173,44 @@ const blogPosts = sortBlogPosts(
             <hr slot="fallback" class="border-neutral-800"/>
         </PlayfulDivider>
 
-        <OtherBlogPosts client:visible blogPosts={blogPosts}/>
+        <OtherBlogPosts client:only="react" blogPosts={blogPosts}>
+            <div slot="fallback" class="overflow-hidden">
+                <div class="-ml-8 flex touch-pan-y">
+                    {blogPosts.map(
+                        ({
+                             id,
+                             data: { title, description, tags, createdAt },
+                         }) => (
+                                <div
+                                        class="transform-3d-[0_0_0] min-w-0 flex-[0_0_75%] pl-8 md:flex-[0_0_40%] lg:flex-[0_0_45%]"
+                                >
+                                    <a
+                                            class="group flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 p-12 transition-colors hover:bg-neutral-800"
+                                            href={`/blog/${id}`}
+                                    >
+                                        <div class="flex flex-col items-start gap-6">
+                                            <h5 class="text-lg">{title}</h5>
+                                            <p class="text-neutral-300">{description}</p>
+                                        </div>
+
+                                        <hr class="border-neutral-800 transition-colors group-hover:border-neutral-700" />
+
+                                        <div class="flex flex-wrap justify-between gap-4 text-neutral-400 text-xs">
+                                            <p>{tags.map((tag) => `#${tag}`).join(", ")}</p>
+
+                                            <div class="flex flex-wrap gap-4">
+                                                <div class="inline-block h-[1lh] w-[8ch] animate-pulse rounded-lg bg-neutral-800" />
+
+                                                <p>{createdAt.toLocaleDateString("en-US")}</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                        ),
+                    )}
+                </div>
+            </div>
+        </OtherBlogPosts>
 
         <div class="w-full text-end">
             <a href="/blog" class="w-full md:w-auto">

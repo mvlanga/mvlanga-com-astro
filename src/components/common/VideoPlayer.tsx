@@ -1,3 +1,4 @@
+import { useOnMount } from "@/utils/useOnMount.ts";
 import {
 	Controls,
 	FullscreenButton,
@@ -43,11 +44,11 @@ export const VideoPlayer = ({
 	const videoRef = useRef<MediaPlayerInstance>(null);
 	const videoElementRef = useRef<HTMLElement>(null);
 
-	useEffect(() => {
+	useOnMount(() => {
 		if (videoRef.current?.el) {
 			videoElementRef.current = videoRef.current.el;
 		}
-	}, []);
+	});
 
 	const isInView = useInView(videoElementRef);
 

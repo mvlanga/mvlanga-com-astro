@@ -1,8 +1,12 @@
-import type { CollectionEntry } from "astro:content";
 import {
 	BLOG_FILTER_TAG_ALL_VALUE,
 	blogFilterTag,
 } from "@/components/blog/blogFilterStore.ts";
+import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
+import {
+	groupPostsByMonth,
+	useBlogPostsWithViewCount,
+} from "@/components/blog/utils.ts";
 import { useStore } from "@nanostores/react";
 import {
 	AnimatePresence,
@@ -17,34 +21,26 @@ const layoutTransition: Transition = {
 	ease: [0.27, 0.99, 0.25, 0.99],
 };
 
-type BlogPostsProps = { blogPosts: CollectionEntry<"blogPosts">[] };
+type BlogPostsProps = { blogPosts: BlogPostWithViewCount[] };
 
 export const BlogPosts = ({ blogPosts }: BlogPostsProps) => {
 	const $selectedTag = useStore(blogFilterTag);
 
+	const { isLoading, blogPostsWithViewCount } =
+		useBlogPostsWithViewCount(blogPosts);
+
 	const filteredBlogPosts = useMemo(
 		() =>
-			blogPosts.filter(
+			blogPostsWithViewCount.filter(
 				(post) =>
 					$selectedTag === BLOG_FILTER_TAG_ALL_VALUE ||
 					post.data.tags.includes($selectedTag),
 			),
-		[blogPosts, $selectedTag],
+		[blogPostsWithViewCount, $selectedTag],
 	);
 
 	const postsGroupedByMonth = useMemo(
-		() =>
-			Object.entries(
-				Object.groupBy(filteredBlogPosts, ({ data: { createdAt } }) => {
-					const isThisYear =
-						createdAt.getFullYear() === new Date().getFullYear();
-
-					return createdAt.toLocaleString("en-US", {
-						month: "long",
-						...(isThisYear ? {} : { year: "numeric" }),
-					});
-				}),
-			),
+		() => groupPostsByMonth(filteredBlogPosts),
 		[filteredBlogPosts],
 	);
 
@@ -56,7 +52,12 @@ export const BlogPosts = ({ blogPosts }: BlogPostsProps) => {
 						([title, posts]) =>
 							posts &&
 							posts.length > 0 && (
-								<Area key={title} title={title} posts={posts} />
+								<Area
+									key={title}
+									title={title}
+									posts={posts}
+									isLoading={isLoading}
+								/>
 							),
 					)}
 				</AnimatePresence>
@@ -67,10 +68,11 @@ export const BlogPosts = ({ blogPosts }: BlogPostsProps) => {
 
 type AreaProps = {
 	title: string;
-	posts: CollectionEntry<"blogPosts">[];
+	posts: BlogPostWithViewCount[];
+	isLoading: boolean;
 };
 
-const Area = ({ title, posts }: AreaProps) => {
+const Area = ({ title, posts, isLoading }: AreaProps) => {
 	return (
 		<motion.div
 			layout
@@ -89,7 +91,7 @@ const Area = ({ title, posts }: AreaProps) => {
 			</motion.p>
 			<AnimatePresence propagate>
 				{posts?.map((post) => (
-					<Post key={post.id} post={post} />
+					<Post key={post.id} post={post} isLoading={isLoading} />
 				))}
 			</AnimatePresence>
 		</motion.div>
@@ -97,14 +99,17 @@ const Area = ({ title, posts }: AreaProps) => {
 };
 
 type PostProps = {
-	post: CollectionEntry<"blogPosts">;
+	post: BlogPostWithViewCount;
+	isLoading: boolean;
 };
 
 export const Post = ({
 	post: {
 		id,
 		data: { title, createdAt, tags, description },
+		viewCount,
 	},
+	isLoading,
 }: PostProps) => {
 	return (
 		<motion.a
@@ -113,7 +118,7 @@ export const Post = ({
 			animate={{ opacity: 1, scale: 1 }}
 			exit={{ opacity: 0, scale: 0.8 }}
 			transition={layoutTransition}
-			className="@container col-span-1 flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 p-12 transition-colors hover:bg-neutral-800"
+			className="group col-span-1 flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 p-12 transition-colors hover:bg-neutral-800"
 			href={`/blog/${id}`}
 		>
 			<div className="flex flex-col items-start gap-6">
@@ -125,9 +130,20 @@ export const Post = ({
 				</motion.p>
 			</div>
 
-			<div className="flex flex-wrap justify-between gap-2 text-neutral-400 text-xs">
+			<hr className="border-neutral-800 transition-colors group-hover:border-neutral-700" />
+
+			<div className="flex flex-wrap justify-between gap-4 text-neutral-400 text-xs">
 				<p>{tags.map((tag) => `#${tag}`).join(", ")}</p>
-				<p>{createdAt.toLocaleDateString("en-US")}</p>
+
+				<div className="flex flex-wrap gap-4">
+					{isLoading ? (
+						<div className="inline-block h-[1lh] w-[8ch] animate-pulse rounded-lg bg-neutral-800" />
+					) : (
+						<p className="inline-block">{viewCount?.toLocaleString()} views</p>
+					)}
+
+					<p>{createdAt.toLocaleDateString("en-US")}</p>
+				</div>
 			</div>
 		</motion.a>
 	);
