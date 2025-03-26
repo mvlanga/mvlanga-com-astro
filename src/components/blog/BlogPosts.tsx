@@ -1,11 +1,8 @@
-import { actions } from "astro:actions";
-import type { CollectionEntry } from "astro:content";
 import {
 	BLOG_FILTER_TAG_ALL_VALUE,
 	blogFilterTag,
 } from "@/components/blog/blogFilterStore.ts";
-import { groupPostsByMonth } from "@/components/blog/utils.ts";
-import { useOnMount } from "@/utils/useOnMount.ts";
+import { groupPostsByMonth, useBlogPosts } from "@/components/blog/utils.ts";
 import { useStore } from "@nanostores/react";
 import {
 	AnimatePresence,
@@ -13,50 +10,20 @@ import {
 	type Transition,
 	motion,
 } from "motion/react";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
 
 const layoutTransition: Transition = {
 	duration: 0.5,
 	ease: [0.27, 0.99, 0.25, 0.99],
 };
 
-type BlogPost = CollectionEntry<"blogPosts"> & { viewCount?: number };
-
-type BlogPostsProps = { blogPosts: BlogPost[] };
+type BlogPostsProps = { blogPosts: BlogPostWithViewCount[] };
 
 export const BlogPosts = ({ blogPosts }: BlogPostsProps) => {
 	const $selectedTag = useStore(blogFilterTag);
 
-	const [isLoading, setIsLoading] = useState(true);
-	const [blogPostsWithViewCount, setBlogPostsWithViewCount] =
-		useState<BlogPost[]>(blogPosts);
-
-	useOnMount(() => {
-		const fetchData = async () => {
-			const { data, error } = await actions.getPageViews(
-				blogPosts.map((post) => post.id),
-			);
-
-			setIsLoading(false);
-
-			if (error) {
-				throw new Error("Unable to run `blogPostViews` action");
-			}
-
-			if (data === undefined) {
-				throw new Error("Returned data of `blogPostViews` action is unusable");
-			}
-
-			setBlogPostsWithViewCount(
-				blogPosts.map((post) => ({
-					...post,
-					viewCount: data.find(({ id }) => id === post.id)?.count ?? 0,
-				})),
-			);
-		};
-
-		fetchData().catch(console.error);
-	});
+	const { isLoading, blogPostsWithViewCount } = useBlogPosts(blogPosts);
 
 	const filteredBlogPosts = useMemo(
 		() =>
@@ -97,7 +64,7 @@ export const BlogPosts = ({ blogPosts }: BlogPostsProps) => {
 
 type AreaProps = {
 	title: string;
-	posts: BlogPost[];
+	posts: BlogPostWithViewCount[];
 	isLoading: boolean;
 };
 
@@ -128,7 +95,7 @@ const Area = ({ title, posts, isLoading }: AreaProps) => {
 };
 
 type PostProps = {
-	post: BlogPost;
+	post: BlogPostWithViewCount;
 	isLoading: boolean;
 };
 
@@ -168,7 +135,7 @@ export const Post = ({
 					{isLoading ? (
 						<div className="inline-block h-[1lh] w-[8ch] animate-pulse rounded-lg bg-neutral-800" />
 					) : (
-						<span>{viewCount} views</span>
+						<p className="inline-block">{viewCount?.toLocaleString()} views</p>
 					)}
 
 					<p>{createdAt.toLocaleDateString("en-US")}</p>
