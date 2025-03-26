@@ -1,8 +1,11 @@
+import { actions } from "astro:actions";
 import type { CollectionEntry } from "astro:content";
 import {
 	BLOG_FILTER_TAG_ALL_VALUE,
 	blogFilterTag,
 } from "@/components/blog/blogFilterStore.ts";
+import { groupPostsByMonth } from "@/components/blog/utils.ts";
+import { useOnMount } from "@/utils/useOnMount.ts";
 import { useStore } from "@nanostores/react";
 import {
 	AnimatePresence,
@@ -11,9 +14,6 @@ import {
 	motion,
 } from "motion/react";
 import { useMemo, useState } from "react";
-import { useOnMount } from "@/utils/useOnMount.ts";
-import { actions } from "astro:actions";
-import { groupPostsByMonth } from "@/components/blog/utils.ts";
 
 const layoutTransition: Transition = {
 	duration: 0.5,
