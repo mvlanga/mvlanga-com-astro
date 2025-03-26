@@ -28,9 +28,8 @@ export const BlogPosts = ({ blogPosts }: BlogPostsProps) => {
 	const $selectedTag = useStore(blogFilterTag);
 
 	const [isLoading, setIsLoading] = useState(true);
-	const [blogPostsWithViewCount, setBlogPostsWithViewCount] = useState<
-		BlogPost[]
-	>([]);
+	const [blogPostsWithViewCount, setBlogPostsWithViewCount] =
+		useState<BlogPost[]>(blogPosts);
 
 	useOnMount(() => {
 		const fetchData = async () => {
