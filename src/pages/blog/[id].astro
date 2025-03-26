@@ -1,4 +1,5 @@
 ---
+
 import { getCollection, render } from "astro:content";
 import { PlayfulDivider } from "@/components/common/PlayfulDivider";
 import Prose from "@/components/common/Prose.astro";
@@ -29,7 +30,7 @@ const { title, description, tags, createdAt } = post.data;
 <title slot="head">{title} — Moriz von Langa</title>
 <meta slot="head" name="description" content={description}/>
 
-<Layout className="container gap-32" footerType="regular">
+<Layout className="container gap-32">
     <article class="max-w-prose mx-auto flex flex-col gap-16">
         <section>
             <h1 class="mb-8 text-3xl font-bold leading-snug">

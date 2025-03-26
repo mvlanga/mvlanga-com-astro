@@ -2,13 +2,12 @@
 import { clsx } from "clsx";
 import CarbonBadge from "./CarbonBadge.astro";
 import { PlayfulDivider } from "./PlayfulDivider";
-import { Reaction } from "./Reaction";
 
 const year = new Date().getFullYear();
 const isProduction = import.meta.env.PROD;
 
 interface Props {
-	type?: "regular" | "small" | "reaction";
+	type?: "regular" | "small";
 }
 
 const { type = "regular" } = Astro.props;
@@ -19,7 +18,6 @@ const { type = "regular" } = Astro.props;
             "container flex flex-col pb-12",
             type === "regular" && "gap-24",
             type === "small" && "gap-12",
-            type === "reaction" && "gap-12"
         )
     }
 >
@@ -35,13 +33,7 @@ const { type = "regular" } = Astro.props;
             </div>
     )}
 
-    {type === "reaction" && (
-        <div class="flex flex-col gap-6 md:gap-12 text-neutral-200">
-            <Reaction client:visible />
-        </div>
-    )}
-
-    <div class={clsx("flex flex-wrap items-end justify-between gap-6 text-neutral-500", type !== "small" && "mt-12")}>
+    <div class={clsx("flex flex-wrap items-end justify-between gap-6 text-neutral-500", type === "regular" && "mt-12")}>
         {isProduction ?
                 <CarbonBadge/> : "<CarbonBadge />"}
 

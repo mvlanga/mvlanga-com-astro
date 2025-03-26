@@ -3,7 +3,10 @@ import {
 	blogFilterTag,
 } from "@/components/blog/blogFilterStore.ts";
 import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
-import { groupPostsByMonth, useBlogPosts } from "@/components/blog/utils.ts";
+import {
+	groupPostsByMonth,
+	useBlogPostsWithViewCount,
+} from "@/components/blog/utils.ts";
 import { useStore } from "@nanostores/react";
 import {
 	AnimatePresence,
@@ -23,7 +26,8 @@ type BlogPostsProps = { blogPosts: BlogPostWithViewCount[] };
 export const BlogPosts = ({ blogPosts }: BlogPostsProps) => {
 	const $selectedTag = useStore(blogFilterTag);
 
-	const { isLoading, blogPostsWithViewCount } = useBlogPosts(blogPosts);
+	const { isLoading, blogPostsWithViewCount } =
+		useBlogPostsWithViewCount(blogPosts);
 
 	const filteredBlogPosts = useMemo(
 		() =>

@@ -1,5 +1,5 @@
 import type { CollectionEntry } from "astro:content";
-import { useBlogPosts } from "@/components/blog/utils.ts";
+import { useBlogPostsWithViewCount } from "@/components/blog/utils.ts";
 import useEmblaCarousel from "embla-carousel-react";
 
 type OtherBlogPostsProps = {
@@ -9,7 +9,8 @@ type OtherBlogPostsProps = {
 export const OtherBlogPosts = ({ blogPosts }: OtherBlogPostsProps) => {
 	const [emblaRef] = useEmblaCarousel();
 
-	const { isLoading, blogPostsWithViewCount } = useBlogPosts(blogPosts);
+	const { isLoading, blogPostsWithViewCount } =
+		useBlogPostsWithViewCount(blogPosts);
 
 	return (
 		<div className="overflow-hidden" ref={emblaRef}>

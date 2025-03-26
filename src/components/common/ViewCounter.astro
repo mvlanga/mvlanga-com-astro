@@ -1,6 +1,4 @@
 ---
-export const prerender = false;
-
 import { PageViews, db, sql } from "astro:db";
 
 interface Props {
@@ -9,7 +7,7 @@ interface Props {
 
 const { id } = Astro.props;
 
-const count = await db
+const dbResponse = await db
 	.insert(PageViews)
 	.values({
 		id,
@@ -18,7 +16,6 @@ const count = await db
 		target: PageViews.id,
 		set: { count: sql`count + 1` },
 	})
-	.returning({ count: PageViews.count });
+	.returning();
 ---
-
-<p class="inline-block">{count?.[0]?.count.toLocaleString()} views</p>
+<p class="inline-block">{dbResponse?.[0]?.count.toLocaleString()} views</p>

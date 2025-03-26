@@ -34,7 +34,9 @@ export const groupPostsByMonth = (posts: CollectionEntry<"blogPosts">[]) => {
 	);
 };
 
-export const useBlogPosts = (blogPosts: CollectionEntry<"blogPosts">[]) => {
+export const useBlogPostsWithViewCount = (
+	blogPosts: CollectionEntry<"blogPosts">[],
+) => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [blogPostsWithViewCount, setBlogPostsWithViewCount] =
 		useState<BlogPostWithViewCount[]>(blogPosts);
