@@ -59,5 +59,13 @@ export default defineConfig({
 			}),
 		],
 	},
-	adapter: netlify(),
+	adapter: netlify({
+		edgeMiddleware: true,
+	}),
+	redirects: {
+		"/en/*": "/",
+		"/en": "/",
+		"/de/*": "/",
+		"/de": "/",
+	},
 });
