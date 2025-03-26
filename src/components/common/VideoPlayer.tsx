@@ -1,3 +1,4 @@
+import { useOnMount } from "@/utils/useOnMount.ts";
 import {
 	Controls,
 	FullscreenButton,
@@ -24,7 +25,6 @@ import {
 import type { ImageMetadata } from "astro";
 import { useInView } from "motion/react";
 import { useEffect, useRef } from "react";
-import { useOnMount } from "@/utils/useOnMount.ts";
 
 export type VideoPlayerProps = {
 	src: string;
