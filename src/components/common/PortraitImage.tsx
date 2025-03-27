@@ -17,7 +17,7 @@ export const PortraitImage = () => {
 	const videoOffset = useTransform(
 		scrollYProgress,
 		[0, 1],
-		["calc(var(--spacing) * -20)", "calc(var(--spacing) * 20)"],
+		["calc(var(--spacing) * -24)", "calc(var(--spacing) * 24)"],
 	);
 
 	useEffect(() => {
@@ -44,7 +44,7 @@ export const PortraitImage = () => {
 			>
 				<motion.img
 					style={{ y: videoOffset }}
-					className="-top-40 absolute inset-0 h-[calc(100%+var(--spacing)*32*2)] object-cover"
+					className="-top-48 absolute inset-0 h-[calc(100%+var(--spacing)*32*2)] object-cover"
 					width={mvlPortrait.width}
 					height={mvlPortrait.height}
 					src={mvlPortrait.src}
