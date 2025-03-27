@@ -36,11 +36,11 @@ export const PortraitImage = () => {
 	}, [isInView]);
 
 	return (
-		<div className="lg:col-span-4">
+		<div className="md:col-span-4">
 			<div
 				ref={containerRef}
 				style={{ aspectRatio }}
-				className="relative overflow-hidden rounded-2xl md:max-h-lvh lg:ml-auto"
+				className="relative overflow-hidden rounded-2xl md:ml-auto md:max-h-lvh"
 			>
 				<motion.img
 					style={{ y: videoOffset }}
