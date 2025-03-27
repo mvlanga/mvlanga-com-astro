@@ -6,6 +6,7 @@ import {
 	getTagsWithCountByPosts,
 	groupPostsByMonth,
 } from "@/components/blog/utils";
+import Skeleton from "@/components/common/Skeleton.astro";
 import Layout from "@/layouts/layout.astro";
 import { sortBlogPosts } from "@/utils/sortCollection";
 
@@ -69,7 +70,8 @@ const availableTags = getTagsWithCountByPosts(blogPosts);
                                         <p>{tags.map((tag) => `#${tag}`).join(", ")}</p>
 
                                         <div class="flex flex-wrap gap-4">
-                                            <div class="inline-block h-[1lh] w-[8ch] animate-pulse rounded-lg bg-neutral-800" />
+                                            <Skeleton className="w-[8ch]" />
+
                                             <p>{createdAt.toLocaleDateString("en-US")}</p>
                                         </div>
                                     </div>
