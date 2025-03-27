@@ -39,18 +39,20 @@ to [mvlanga.com](https://mvlanga.com). Thanks!
    npm run dev
    ```
 
+## Prepare database for deploying to production 
+
+I use [Turso](https://turso.tech/) for the database as Astro suggests for [Astro DB](https://docs.astro.build/en/guides/astro-db/).
+
+To connect the database for production, refer to the [official guide on configuring and connecting the database](https://docs.astro.build/en/guides/astro-db/#connect-a-libsql-database-for-production) from Astro. Additionally, the `.env.example` file in the root directory will guide you in setting up the environment variables.
+
 ## 🚀 Building and running for production
 
-1. Generate a full static production build
+For hosting this hybrid Astro app, I chose [Netlify](https://www.netlify.com/).
+
+1. Generate the hybrid production build
 
    ```sh
    npm run build
-   ```
-
-1. Preview the site as it will appear once deployed
-
-   ```sh
-   npm run preview
    ```
 
 ## ⏲️ Previous iterations
