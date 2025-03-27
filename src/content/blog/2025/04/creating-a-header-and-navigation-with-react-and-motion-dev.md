@@ -9,12 +9,6 @@ draft: true
 
 ## What makes great UX?
 
-```d2
-direction: right
-
-Astro.Markdown -> Fluppp -> SVG -> Browser.Diagrams -> Astro.Markdown: {style.animated: true}
-```
-
 Over the years of exploring the web — seeing it through the eyes of both a designer and a developer — I’ve come across a
 few details that I absolutely fell in love with. Some are subtle, almost imperceptible, while others feel fundamental to
 what I believe defines a great user experience.
