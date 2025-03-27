@@ -1,13 +1,13 @@
 import db from "@astrojs/db";
 import mdx from "@astrojs/mdx";
+import netlify from "@astrojs/netlify";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
+import d2 from "astro-d2";
 import { defineConfig } from "astro/config";
 import { visualizer } from "rollup-plugin-visualizer";
 import { EnumChangefreq } from "sitemap";
-
-import netlify from "@astrojs/netlify";
 
 export default defineConfig({
 	markdown: {
@@ -49,6 +49,11 @@ export default defineConfig({
 		mdx(),
 		react(),
 		db(),
+		d2({
+			layout: "elk",
+			sketch: true,
+			pad: 50,
+		}),
 	],
 	vite: {
 		plugins: [
