@@ -6,8 +6,8 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { visualizer } from "rollup-plugin-visualizer";
 import { EnumChangefreq } from "sitemap";
-
 import netlify from "@astrojs/netlify";
+import d2 from "astro-d2";
 
 export default defineConfig({
 	markdown: {
@@ -49,6 +49,11 @@ export default defineConfig({
 		mdx(),
 		react(),
 		db(),
+		d2({
+			layout: "elk",
+			sketch: true,
+			pad: 50,
+		}),
 	],
 	vite: {
 		plugins: [
