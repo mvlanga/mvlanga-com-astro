@@ -1,3 +1,8 @@
+commit-msg:
+  commands:
+    validate:
+      run: npx --no -- commitlint --edit
+
 pre-commit:
   commands:
     check:
