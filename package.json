@@ -17,6 +17,7 @@
 		"@astrojs/netlify": "^6.2.4",
 		"@nanostores/react": "^0.8.4",
 		"@vidstack/react": "^1.12.13",
+		"astro-d2": "^0.7.0",
 		"clsx": "^2.1.1",
 		"embla-carousel-react": "^8.5.2",
 		"media-icons": "^1.1.5",
