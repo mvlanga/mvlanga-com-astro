@@ -7,6 +7,7 @@ import {
 	groupPostsByMonth,
 	useBlogPostsWithViewCount,
 } from "@/components/blog/utils.ts";
+import { Skeleton } from "@/components/common/Skeleton.tsx";
 import { useStore } from "@nanostores/react";
 import {
 	AnimatePresence,
@@ -137,7 +138,7 @@ export const Post = ({
 
 				<div className="flex flex-wrap gap-4">
 					{isLoading ? (
-						<div className="inline-block h-[1lh] w-[8ch] animate-pulse rounded-lg bg-neutral-800" />
+						<Skeleton className="w-[8ch]" />
 					) : (
 						<p className="inline-block">{viewCount?.toLocaleString()} views</p>
 					)}
