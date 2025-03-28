@@ -30,7 +30,7 @@ export const OtherBlogPosts = ({ blogPosts }: OtherBlogPostsProps) => {
 								href={`/blog/${id}`}
 							>
 								<div className="flex flex-col items-start gap-6">
-									<h5 className="text-lg">{title}</h5>
+									<h3 className="text-lg">{title}</h3>
 									<p className="text-neutral-300">{description}</p>
 								</div>
 
