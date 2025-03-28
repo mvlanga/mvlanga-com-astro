@@ -22,7 +22,9 @@ import Layout from "@/layouts/layout.astro";
 <Layout className="container" footerType="small">
     <title slot="head">{title} — Moriz von Langa</title>
 
-    <Prose additionalClasses="max-w-prose mx-auto">
-        <Content/>
-    </Prose>
+    <section role="main">
+        <Prose additionalClasses="max-w-prose mx-auto">
+            <Content/>
+        </Prose>
+    </section>
 </Layout>
