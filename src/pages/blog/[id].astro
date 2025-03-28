@@ -31,7 +31,7 @@ const { title, description, tags, createdAt } = post.data;
 
 <Layout className="container gap-32">
     <article class="max-w-prose mx-auto flex flex-col gap-16">
-        <section>
+        <section role="banner">
             <h1 class="mb-8 text-3xl font-bold leading-snug">
                 {title}
             </h1>
@@ -56,8 +56,10 @@ const { title, description, tags, createdAt } = post.data;
             </PlayfulDivider>
         </section>
 
-        <Prose>
-            <Content/>
-        </Prose>
+        <section role="main">
+            <Prose>
+                <Content/>
+            </Prose>
+        </section>
     </article>
 </Layout>

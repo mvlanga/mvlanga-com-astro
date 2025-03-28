@@ -33,11 +33,14 @@ const { type = "regular" } = Astro.props;
             </div>
     )}
 
-    <div class={clsx("flex flex-wrap items-end justify-between gap-6 text-neutral-500", type === "regular" && "mt-12")}>
+    <div
+            role="contentinfo"
+            class={clsx("flex flex-wrap items-end justify-between gap-6 text-neutral-500", type === "regular" && "mt-12")}
+         >
         {isProduction ?
                 <CarbonBadge/> : "<CarbonBadge />"}
 
-        <div class="flex flex-wrap gap-2 md:gap-4">
+        <div class="flex flex-wrap gap-2 md:gap-4" role="navigation">
             <a href="https://github.com/mvlanga/mvlanga-com-astro" target="blank"
                class="transition-colors hover:text-purple"
                data-umami-event="link-click"
