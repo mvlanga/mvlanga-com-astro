@@ -8,6 +8,7 @@ type ButtonProps = {
 	level?: "primary" | "secondary";
 	className?: string;
 	onClick?: (event: SyntheticEvent<HTMLButtonElement>) => void;
+	onFocus?: (event: SyntheticEvent<HTMLButtonElement>) => void;
 } & PerspectiveTextHoverProps &
 	Partial<AriaAttributes>;
 
@@ -19,6 +20,7 @@ export const Button = ({
 	isActive = false,
 	className: additionalClasses,
 	onClick,
+	onFocus,
 	...ariaAttributes
 }: ButtonProps) => {
 	return (
@@ -36,6 +38,7 @@ export const Button = ({
 				),
 			)}
 			onClick={onClick}
+			onFocus={onFocus}
 			{...ariaAttributes}
 		>
 			<motion.div

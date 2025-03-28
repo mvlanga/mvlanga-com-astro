@@ -123,6 +123,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 				initial="visible"
 				animate={currentVariant}
 				variants={variants}
+				onFocus={() => setIsHeaderHidden(false)}
 			>
 				<a aria-label="Moriz von Langa wordmark" href="/">
 					<Button text="mvlanga" />
@@ -142,6 +143,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 					aria-controls="main-menu"
 					isActive={isMenuOpen}
 					onClick={toggleMenu}
+					onFocus={() => setIsHeaderHidden(false)}
 					text="menu"
 					activeText="close"
 					aria-label={isMenuOpen ? "close main menu" : "open main menu"}
