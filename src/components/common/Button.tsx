@@ -52,7 +52,7 @@ export const Button = ({
 					},
 				}}
 				className={clsx(
-					"absolute h-[200%] w-[150%] rounded-[50%] bg-purple-600",
+					"absolute h-[200%] w-[150%] rounded-[50%] bg-purple-700",
 				)}
 			/>
 			<PerspectiveTextHover
