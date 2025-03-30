@@ -122,10 +122,10 @@ export const Post = ({
 			href={`/blog/${id}`}
 		>
 			<div className="flex flex-col items-start gap-6">
-				<motion.h5 className="text-lg" layout>
+				<motion.h2 className="text-lg" layout>
 					{title}
-				</motion.h5>
-				<motion.p layout className="text-neutral-300">
+				</motion.h2>
+				<motion.p layout className="text-neutral-200">
 					{description}
 				</motion.p>
 			</div>
