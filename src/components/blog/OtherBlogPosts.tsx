@@ -1,5 +1,6 @@
 import type { CollectionEntry } from "astro:content";
 import { useBlogPostsWithViewCount } from "@/components/blog/utils.ts";
+import { Skeleton } from "@/components/common/Skeleton.tsx";
 import useEmblaCarousel from "embla-carousel-react";
 
 type OtherBlogPostsProps = {
@@ -41,7 +42,7 @@ export const OtherBlogPosts = ({ blogPosts }: OtherBlogPostsProps) => {
 
 									<div className="flex flex-wrap gap-4">
 										{isLoading ? (
-											<div className="inline-block h-[1lh] w-[8ch] animate-pulse rounded-lg bg-neutral-800" />
+											<Skeleton className="w-[8ch]" />
 										) : (
 											<span>{viewCount?.toLocaleString()} views</span>
 										)}

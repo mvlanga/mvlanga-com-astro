@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import { PlayfulDivider } from "@/components/common/PlayfulDivider";
 import Prose from "@/components/common/Prose.astro";
+import Skeleton from "@/components/common/Skeleton.astro";
 import ViewCounter from "@/components/common/ViewCounter.astro";
 import Layout from "@/layouts/layout.astro";
 
@@ -41,12 +42,12 @@ const { title, description, tags, createdAt } = post.data;
         </section>
 
         <section class="flex flex-col gap-4">
-            <div class="flex flex-wrap justify-between gap-4 ext-neutral-500">
+            <div class="flex flex-wrap justify-between gap-4 text-neutral-500">
                 <span>{tags.map((tag) => `#${tag}`).join(", ")}</span>
 
                 <div class="flex flex-wrap gap-4">
                     <ViewCounter server:defer id={post.id}>
-                        <div slot="fallback" class="inline-block h-[1lh] w-[8ch] animate-pulse rounded-lg bg-neutral-900" />
+                        <Skeleton slot="fallback" className="w-[8ch]" />
                     </ViewCounter>
                     <p>{createdAt.toLocaleDateString("en-US")}</p>
                 </div>
