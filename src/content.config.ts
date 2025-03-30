@@ -31,7 +31,9 @@ const projects = defineCollection({
 			description: z.string(),
 			customer: z.string(),
 			cover: image(),
+			coverAlt: z.string(),
 			coverOnHover: image(),
+			coverOnHoverAlt: z.string(),
 		}),
 });
 

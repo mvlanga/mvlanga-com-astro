@@ -10,7 +10,9 @@
 		"lint": "biome lint --write .",
 		"lint:fix": "biome check --write .",
 		"lint:fix-unsafe": "biome check --write --unsafe .",
-		"format": "biome format --write ."
+		"format": "biome format --write .",
+		"test:e2e:local": "environment=LOCAL playwright test",
+		"test:e2e:production": "environment=PRODUCTION playwright test"
 	},
 	"dependencies": {
 		"@astrojs/db": "^0.14.9",
@@ -32,11 +34,14 @@
 		"@astrojs/mdx": "^4.2.2",
 		"@astrojs/react": "^4.2.2",
 		"@astrojs/sitemap": "^3.3.0",
+		"@axe-core/playwright": "^4.10.1",
 		"@biomejs/biome": "1.9.4",
 		"@commitlint/cli": "^19.8.0",
 		"@commitlint/config-conventional": "^19.8.0",
+		"@playwright/test": "^1.51.1",
 		"@tailwindcss/typography": "^0.5.16",
 		"@tailwindcss/vite": "^4.0.17",
+		"@types/node": "^22.13.14",
 		"@types/react": "^19.0.12",
 		"@types/react-dom": "^19.0.4",
 		"astro": "^5.5.5",
