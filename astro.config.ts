@@ -31,14 +31,14 @@ export default defineConfig({
 					item.priority = 0.2;
 				}
 
-				if (/project/.test(item.url)) {
-					item.changefreq = EnumChangefreq.DAILY;
+				if (/cariad|skoda|fujitsu/.test(item.url)) {
+					item.changefreq = EnumChangefreq.MONTHLY;
 					item.lastmod = new Date().toDateString();
 					item.priority = 0.9;
 				}
 
 				if (/blog/.test(item.url)) {
-					item.changefreq = EnumChangefreq.WEEKLY;
+					item.changefreq = EnumChangefreq.MONTHLY;
 					item.lastmod = new Date().toDateString();
 					item.priority = 0.8;
 				}
@@ -63,9 +63,19 @@ export default defineConfig({
 		edgeMiddleware: true,
 	}),
 	redirects: {
-		"/en/*": "/",
+		"/:lang/personal-projects": "/",
+		"/:lang/about-me": "/#about",
+		"/assets/resume/*": "/moriz-von-langa_resume.pdf",
+
+		"/:lang/skoda-enyaq-coupe": "/skoda-enyaq-coupe",
+		"/:lang/fujitsu-cx-lab": "/fujitsu-cx-lab",
+		"/:lang/cariad-iaa": "/cariad-iaa",
+		"/:lang/skoda-fabia": "/skoda-fabia",
+		"/:lang/fujitsu-smart-city": "/fujitsu-smart-city",
+
+		"/:lang/legal/:slug": "/legal/:slug",
+
 		"/en": "/",
-		"/de/*": "/",
 		"/de": "/",
 	},
 });

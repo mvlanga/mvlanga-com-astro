@@ -16,7 +16,7 @@ export const OtherProjects = ({ projects }: OtherProjectsProps) => {
 						key={id}
 						className="transform-3d-[0_0_0] min-w-0 flex-[0_0_60%] pl-8 md:flex-[0_0_30%]"
 					>
-						<a href={`/project/${id}`} className="group flex flex-col gap-8">
+						<a href={`/${id}`} className="group flex flex-col gap-8">
 							<img
 								className="block rounded-3xl bg-neutral-900 transition-opacity group-hover:opacity-50"
 								width={cover.width}
