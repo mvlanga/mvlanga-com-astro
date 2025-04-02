@@ -3,8 +3,11 @@ title: How to Build a View Counter with Astro DB and Server-side Islands
 slug: how-to-build-a-view-counter-with-astro-db-and-server-side-islands
 description: "Discover how to implement a view counter on your Astro pages without relying on client-side scripts or public API routes, using Astro DB, Astro Actions, and Server-side Islands for a secure and efficient solution."
 createdAt: 2025-04-02
-tags: [ "astro", "astro db", "server islands" ]
+tags: [ "astro", "astro db", "astro actions", "server islands" ]
 ---
+import {ViewCounterExample} from "./ViewCounterExample";
+
+<ViewCounterExample client:idle />
 
 If you're like me, you've probably come across tutorials that use public API routes and client-side JavaScript to implement a view counter. While functional, this method can lead to unnecessary complexity and security concerns. So, I decided to take a different approach using Astro DB, Astro Actions, and Server-side Islands to create a streamlined, more secure solution that doesn’t rely on client-side scripts.
 
@@ -74,12 +77,7 @@ export default defineDb({
 
 This configuration will create the table in your database, and you can use it to store and update the view count for your pages.
 
-
-### Displaying and Incrementing Page Views in the Component
-
-Now that the database is set up, we need to handle the logic for both displaying and updating the view count within the component itself.
-
-#### Create an Astro Action to Retrieve the View Count
+### Create an Astro Action to Retrieve the View Count
 
 In the `src/actions/` folder, create a new file called `index.ts`. This is where we will define our server-side actions for interacting with the database.
 
@@ -101,7 +99,7 @@ export const server = {
                     .where(eq(PageViews.id, id)); // Only fetch the row where the `id` matches the given one
          } catch (e) {
             console.error(e); // Log any errors
-   
+
             // Throw an error if something goes wrong
             throw new ActionError({
                code: "BAD_REQUEST",
@@ -125,7 +123,7 @@ export const server = {
 
 - `ActionError`: If there’s an error, we throw an `ActionError` with a relevant message and error code.
 
-## Display the View Count with Astro Components
+### Displaying and Incrementing Page Views with an Astro Component
 Now, we need to create an Astro component that will display and update the view count.
 
 ```astro
@@ -185,7 +183,7 @@ if (count === undefined) {
 
 - `count.toLocaleString()`: This formats the view count with proper thousands separators for better readability.
 
-## Usage
+### Usage
 
 To display the view count in your Astro pages, you can easily use the `ViewCounter` component that we just created. Here’s an example of how to implement it within your page component:
 
