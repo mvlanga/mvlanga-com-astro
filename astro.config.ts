@@ -38,7 +38,7 @@ export default defineConfig({
 				}
 
 				if (/blog/.test(item.url)) {
-					item.changefreq = EnumChangefreq.WEEKLY;
+					item.changefreq = EnumChangefreq.MONTHLY;
 					item.lastmod = new Date().toDateString();
 					item.priority = 0.8;
 				}
