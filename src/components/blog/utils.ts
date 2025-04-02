@@ -42,7 +42,7 @@ export const useBlogPostsWithViewCount = (
 		useState<BlogPostWithViewCount[]>(blogPosts);
 
 	const fetchData = async () => {
-		const { data, error } = await actions.getPageViews(
+		const { data, error } = await actions.pageViews.get(
 			blogPosts.map((post) => post.id),
 		);
 

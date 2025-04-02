@@ -1,14 +1,13 @@
+import { getCollection } from "astro:content";
 import { PageViews, db } from "astro:db";
 
 export default async function seed() {
+	const blogPosts = await getCollection("blogPosts");
+
 	await db.insert(PageViews).values([
-		{
-			id: "organize-arrays-objects-dates-by-month-javascript-groupby",
-			count: 1219,
-		},
-		{
-			id: "creating-a-header-and-navigation-with-react-and-motion-dev",
-			count: 2,
-		},
+		...blogPosts.map((post) => ({
+			id: post.id,
+			count: Math.floor(Math.random() * 100),
+		})),
 	]);
 }
