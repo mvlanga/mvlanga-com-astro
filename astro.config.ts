@@ -63,15 +63,15 @@ export default defineConfig({
 		edgeMiddleware: true,
 	}),
 	redirects: {
-		"/en/*": "/",
-		"/en": "/",
-		"/de/*": "/",
-		"/de": "/",
-
 		"/:lang/skoda-enyaq-coupe": "/skoda-enyaq-coupe",
 		"/:lang/fujitsu-cx-lab": "/fujitsu-cx-lab",
 		"/:lang/cariad-iaa": "/cariad-iaa",
 		"/:lang/skoda-fabia": "/skoda-fabia",
 		"/:lang/fujitsu-smart-city": "/fujitsu-smart-city",
+
+		"/en/*": "/",
+		"/en": "/",
+		"/de/*": "/",
+		"/de": "/",
 	},
 });
