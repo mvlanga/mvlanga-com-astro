@@ -74,5 +74,8 @@ export default defineConfig({
 		"/:lang/fujitsu-smart-city": "/fujitsu-smart-city",
 
 		"/:lang/legal/:slug": "/legal/:slug",
+
+		"/en": "/",
+		"/de": "/",
 	},
 });
