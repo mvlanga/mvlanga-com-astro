@@ -8,7 +8,6 @@ import Ellipsis from "@/components/common/Ellipsis.astro";
 import { PlayfulDivider } from "@/components/common/PlayfulDivider";
 import { PortraitImage } from "@/components/common/PortraitImage";
 import Skeleton from "@/components/common/Skeleton.astro";
-import { ExperienceItem } from "@/components/home-page/ExperienceItem";
 import Layout from "@/layouts/layout.astro";
 import {
 	sortBlogPosts,
@@ -109,10 +108,41 @@ const blogPosts = sortBlogPosts(
         </PlayfulDivider>
 
         <div class="flex flex-col gap-8">
-            <div class="relative flex flex-col gap-8 z-0">
+            <div class="flex flex-col gap-8 z-0">
                 {
-                    experience.map((exp, index) => (
-                            <ExperienceItem data={exp.data} index={index} client:media="(width >= 64rem)"/>
+                    experience.map(({
+                                        data: {from, to, role, technologies, company, tasks},
+                                    }, index) => (
+                            <div
+                                    class="grid gap-8 rounded-xl bg-neutral-900 p-8 md:p-16 lg:grid-cols-3 lg:gap-16"
+                                    style={{zIndex: index * 20}}
+                            >
+                                <div class="flex flex-col gap-4 lg:col-span-1">
+                                    <p class="text-neutral-400">
+                                        {from}
+                                        {" - "}
+                                        {to}
+                                    </p>
+                                    <h3 class="text-3xl">{role}</h3>
+                                    <p class="text-neutral-300 text-xl">{company.title}</p>
+                                    <p class="text-neutral-400">{company.description}</p>
+                                </div>
+                                <hr class="border-neutral-800 lg:hidden"/>
+                                <div class="flex max-w-prose flex-col gap-8 lg:col-span-2">
+                                    <ul class="flex flex-col gap-4 text-neutral-400">
+                                        {tasks.map((task) => (
+                                                <li>{task}</li>
+                                        ))}
+                                    </ul>
+                                    {technologies && (
+                                            <div class="flex flex-wrap gap-2">
+                                                {technologies.map((tech) => (
+                                                        <span class="rounded-full bg-neutral-800 px-5 py-2 text-neutral-400 text-sm">{tech}</span>
+                                                ))}
+                                            </div>
+                                    )}
+                                </div>
+                            </div>
                     ))
                 }
             </div>
@@ -180,7 +210,7 @@ const blogPosts = sortBlogPosts(
                     {blogPosts.map(
                         ({
                              id,
-                             data: { title, description, tags, createdAt },
+                             data: {title, description, tags, createdAt},
                          }) => (
                                 <div
                                         class="transform-3d-[0_0_0] min-w-0 flex-[0_0_75%] pl-8 md:flex-[0_0_40%] lg:flex-[0_0_45%]"
@@ -194,13 +224,13 @@ const blogPosts = sortBlogPosts(
                                             <p class="text-neutral-300">{description}</p>
                                         </div>
 
-                                        <hr class="border-neutral-800 transition-colors group-hover:border-neutral-700" />
+                                        <hr class="border-neutral-800 transition-colors group-hover:border-neutral-700"/>
 
                                         <div class="flex flex-wrap justify-between gap-4 text-neutral-400 text-xs">
                                             <p>{tags.map((tag) => `#${tag}`).join(", ")}</p>
 
                                             <div class="flex flex-wrap gap-4">
-                                                <Skeleton className="w-[8ch]" />
+                                                <Skeleton className="w-[8ch]"/>
 
                                                 <p>{createdAt.toLocaleDateString("en-US")}</p>
                                             </div>
