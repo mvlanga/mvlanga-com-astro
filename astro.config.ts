@@ -31,10 +31,11 @@ export default defineConfig({
 					item.priority = 0.2;
 				}
 
-				if (/cariad|skoda|fujitsu/.test(item.url))
+				if (/cariad|skoda|fujitsu/.test(item.url)) {
 					item.changefreq = EnumChangefreq.DAILY;
-				item.lastmod = new Date().toDateString();
-				item.priority = 0.9;
+					item.lastmod = new Date().toDateString();
+					item.priority = 0.9;
+				}
 
 				if (/blog/.test(item.url)) {
 					item.changefreq = EnumChangefreq.WEEKLY;
