@@ -1,38 +1,15 @@
 ---
 export const prerender = false;
 
-import { actions } from "astro:actions"; // Import Astro actions for calling server-side logic
 import { PageViews, db, sql } from "astro:db";
 
 interface Props {
 	id: string;
-	increase: boolean;
 }
 
-const { id, increase } = Astro.props;
+const { id } = Astro.props;
 
-const getCount = async (): Promise<undefined | number> => {
-	if (increase) {
-		const dbResponse = await db
-			.insert(PageViews)
-			.values({
-				id,
-			})
-			.onConflictDoUpdate({
-				target: PageViews.id,
-				set: { count: sql`count + 1` },
-			})
-			.returning();
-
-		return dbResponse[0]?.count;
-	}
-
-	const { data } = await Astro.callAction(actions.pageViews.get, id);
-
-	return data?.[0]?.count;
-};
-
-const dbResponse = await db
+const pageViews = await db
 	.insert(PageViews)
 	.values({
 		id,
@@ -43,7 +20,7 @@ const dbResponse = await db
 	})
 	.returning();
 
-const count = await getCount();
+const count = pageViews[0]?.count;
 
 if (count === undefined) {
 	return;
