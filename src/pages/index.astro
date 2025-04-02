@@ -137,7 +137,7 @@ const blogPosts = sortBlogPosts(
                 projects.map(({id, data: {title, customer, cover, coverOnHover}}, index) => (
                         <div class="flex flex-col md:col-span-2 xl:col-span-1 justify-center md:order-none! md:py-16"
                              style=`order: ${index + 2}`>
-                            <a href=`project/${id}` class="flex flex-col gap-6">
+                            <a href=`/${id}` class="flex flex-col gap-6">
                                 <span class="text-neutral-400 text-xl">{customer}</span>
                                 <h3 class="text-4xl">
                                     <span>{title}</span>
@@ -147,7 +147,7 @@ const blogPosts = sortBlogPosts(
                         <div class="md:sticky md:top-0 md:col-span-3 xl:col-span-1 flex items-center md:order-none! mt-16 md:mb-0 md:py-16"
                              style=`order: ${index + 1}`>
                             <a class="block relative overflow-hidden rounded-2xl w-full aspect-square md:aspect-auto md:max-h-[calc(100lvh-var(--spacing)*16*2)]"
-                               href=`project/${id}`>
+                               href=`/${id}`>
                                 <Image class="bg-neutral-900 w-full h-full object-cover" src={cover} alt={title}/>
                                 <Image
                                         class="bg-neutral-900 absolute transition-all object-cover duration-500 opacity-0 inset-0 w-full h-full hover:opacity-100 hover:scale-110 z-10"
