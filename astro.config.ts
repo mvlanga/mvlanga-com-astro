@@ -32,7 +32,7 @@ export default defineConfig({
 				}
 
 				if (/cariad|skoda|fujitsu/.test(item.url)) {
-					item.changefreq = EnumChangefreq.DAILY;
+					item.changefreq = EnumChangefreq.MONTHLY;
 					item.lastmod = new Date().toDateString();
 					item.priority = 0.9;
 				}
