@@ -1,10 +1,13 @@
 ---
+import { getCollection } from "astro:content";
 import { clsx } from "clsx";
 import CarbonBadge from "./CarbonBadge.astro";
 import { PlayfulDivider } from "./PlayfulDivider";
 
 const year = new Date().getFullYear();
 const isProduction = import.meta.env.PROD;
+
+const legalPages = await getCollection("legalPages");
 
 interface Props {
 	type?: "regular" | "small";
@@ -45,19 +48,16 @@ const { type = "regular" } = Astro.props;
             >
                 Source code
             </a>
-            <a
-                    href="/legal/imprint"
-                    class="transition-colors hover:text-purple"
-            >
-                Imprint
-            </a>
-
-            <a
-                    href="/legal/privacy-policy"
-                    class="transition-colors hover:text-purple"
-            >
-                Privacy Policy
-            </a>
+            {
+                legalPages.map(({id, data: {title}}) => (
+                        <a
+                                href={`/legal/${id}`}
+                                class="transition-colors hover:text-purple"
+                        >
+                            {title}
+                        </a>
+                ))
+            }
             <span>
                 &copy; Moriz von Langa 2023 - {year}
             </span>
