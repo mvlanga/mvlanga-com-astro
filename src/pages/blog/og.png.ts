@@ -39,14 +39,14 @@ export const GET = async () => {
                     {
                         type: "h1",
                         props: {
-                            children: "Hi, I’m Moriz.",
+                            children: "Blog",
                             tw: "text-9xl leading-snug",
                         },
                     },
                     {
                         type: "p",
                         props: {
-                            children: "Frontend Developer based in Leipzig.",
+                            children: "A few notes and reminders, it's just great to have a place to go back to",
                             tw: "text-5xl leading-snug text-neutral-100 font-normal",
                         },
                     },
