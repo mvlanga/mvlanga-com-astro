@@ -18,6 +18,7 @@
 		"@astrojs/db": "^0.14.10",
 		"@astrojs/netlify": "^6.2.5",
 		"@nanostores/react": "^0.8.4",
+		"@upstash/redis": "^1.34.6",
 		"@vidstack/react": "^1.12.13",
 		"clsx": "^2.1.1",
 		"embla-carousel-react": "^8.5.2",

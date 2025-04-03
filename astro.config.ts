@@ -78,4 +78,13 @@ export default defineConfig({
 		"/en": "/",
 		"/de": "/",
 	},
+	experimental: {
+		session: true,
+	},
+	session: {
+		driver: "upstash",
+		options: {
+			base: "sessions",
+		},
+	},
 });
