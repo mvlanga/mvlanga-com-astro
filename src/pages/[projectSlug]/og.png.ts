@@ -1,5 +1,3 @@
-import fs from "node:fs/promises";
-import path from "node:path";
 import { type CollectionEntry, getCollection } from "astro:content";
 import { getBackgroundImage, getFonts } from "@/utils/og-image/utils.ts";
 import satori from "satori";
@@ -14,14 +12,6 @@ export const GET = async ({ props }: Props) => {
 	const { project } = props;
 
 	const backgroundImage = await getBackgroundImage();
-
-	const coverImg = await fs.readFile(
-		import.meta.env.DEV
-			? path.resolve(
-					`${process.cwd()}/src/${project.data.cover.src.split("/src")[1]?.replace(/\?.*/, "")}`,
-				)
-			: path.resolve(project.data.cover.src.replace("/", "dist/")),
-	);
 
 	const svg = await satori(
 		// @ts-expect-error: Astro currently does not support endpoints with tsx file format
@@ -56,7 +46,7 @@ export const GET = async ({ props }: Props) => {
 					{
 						type: "img",
 						props: {
-							src: coverImg.buffer,
+							src: `${import.meta.env.SITE}/${project.data.cover.src}`,
 							style: {
 								width: "400px",
 								height: "100%",
