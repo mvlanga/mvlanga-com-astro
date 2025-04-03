@@ -9,7 +9,7 @@ interface Props {
 
 const { id } = Astro.props;
 
-const dbResponse = await db
+const pageViews = await db
 	.insert(PageViews)
 	.values({
 		id,
@@ -19,5 +19,11 @@ const dbResponse = await db
 		set: { count: sql`count + 1` },
 	})
 	.returning();
+
+const count = pageViews[0]?.count;
+
+if (count === undefined) {
+	return;
+}
 ---
-<p class="inline-block">{dbResponse?.[0]?.count.toLocaleString()} views</p>
+<p class="inline-block">{count.toLocaleString()} views</p>

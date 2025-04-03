@@ -50,7 +50,7 @@ const legalPages = defineCollection({
 const blogPosts = defineCollection({
 	loader: glob({
 		base: "src/content/blog",
-		pattern: "**/**/*.md",
+		pattern: ["**/**/*.md", "**/**/*.mdx"],
 	}),
 	schema: z.object({
 		title: z.string(),

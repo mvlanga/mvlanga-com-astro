@@ -3,7 +3,7 @@ import { PageViews, db, inArray } from "astro:db";
 import { z } from "astro:schema";
 
 export const pageViews = {
-	getPageViews: defineAction({
+	get: defineAction({
 		input: z.array(z.string()),
 		handler: async (ids) => {
 			try {
@@ -16,7 +16,7 @@ export const pageViews = {
 
 				throw new ActionError({
 					code: "BAD_REQUEST",
-					message: "Error updating `PageViews`",
+					message: "Error getting `PageViews`",
 				});
 			}
 		},
