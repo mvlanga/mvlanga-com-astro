@@ -1,3 +1,5 @@
+import fs from "node:fs/promises";
+import path from "node:path";
 import { type CollectionEntry, getCollection } from "astro:content";
 import { getBackgroundImage, getFonts } from "@/utils/og-image/utils.ts";
 import satori from "satori";
@@ -12,6 +14,47 @@ export const GET = async ({ props }: Props) => {
 	const { project } = props;
 
 	const backgroundImage = await getBackgroundImage();
+
+	let coverImg: undefined | string | ArrayBufferLike;
+
+	try {
+		const a = project.filePath?.split("/");
+		a?.pop();
+
+		const b = project.data.cover.src;
+
+		const c = b.replace("/_astro/", "");
+
+		const cArr = c.split(".");
+
+		cArr.splice(1, 1);
+
+		const imgUrlProduction = `${a?.join("/")}/${cArr.join(".")}`.replace(
+			"src",
+			"",
+		);
+
+		coverImg = import.meta.env.PROD
+			? `http://localhost:3001${imgUrlProduction}`
+			: (
+					await fs.readFile(
+						path.resolve(
+							`${process.cwd()}/src/${project.data.cover.src.split("/src")[1]?.replace(/\?.*/, "")}`,
+						),
+					)
+				).buffer;
+	} catch (e) {
+		console.error(e);
+		return new Response(null, {
+			status: 404,
+		});
+	}
+
+	if (coverImg === undefined) {
+		return new Response(null, {
+			status: 404,
+		});
+	}
 
 	const svg = await satori(
 		// @ts-expect-error: Astro currently does not support endpoints with tsx file format
@@ -46,7 +89,7 @@ export const GET = async ({ props }: Props) => {
 					{
 						type: "img",
 						props: {
-							src: `${import.meta.env.SITE}/${project.data.cover.src}`,
+							src: coverImg,
 							style: {
 								width: "400px",
 								height: "100%",
