@@ -99,11 +99,15 @@ export const GET = async ({ props }: Props) => {
 		},
 	);
 
-	const png = await sharp(Buffer.from(svg)).png().toBuffer();
+	const jpeg = await sharp(Buffer.from(svg))
+		.jpeg({
+			quality: 60,
+		})
+		.toBuffer();
 
-	return new Response(png, {
+	return new Response(jpeg, {
 		headers: {
-			"Content-Type": "image/png",
+			"Content-Type": "image/jpeg",
 		},
 	});
 };

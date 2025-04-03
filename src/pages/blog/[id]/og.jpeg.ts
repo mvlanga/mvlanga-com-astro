@@ -1,8 +1,16 @@
+import { type CollectionEntry, getCollection } from "astro:content";
 import { getBackgroundImage, getFonts } from "@/utils/og-image/utils.ts";
 import satori from "satori";
 import sharp from "sharp";
 
-export const GET = async () => {
+interface Props {
+	params: { id: string };
+	props: { post: CollectionEntry<"blogPosts"> };
+}
+
+export const GET = async ({ props }: Props) => {
+	const { post } = props;
+
 	const backgroundImage = await getBackgroundImage();
 
 	const svg = await satori(
@@ -39,15 +47,14 @@ export const GET = async () => {
 					{
 						type: "h1",
 						props: {
-							children: "Blog",
-							tw: "text-9xl leading-snug",
+							children: post.data.title,
+							tw: "text-6xl leading-snug",
 						},
 					},
 					{
 						type: "p",
 						props: {
-							children:
-								"A few notes and reminders, it's just great to have a place to go back to",
+							children: "Moriz von Langa | Blog",
 							tw: "text-5xl leading-snug text-neutral-100 font-normal",
 						},
 					},
@@ -62,11 +69,24 @@ export const GET = async () => {
 		},
 	);
 
-	const png = await sharp(Buffer.from(svg)).png().toBuffer();
+	const jpeg = await sharp(Buffer.from(svg))
+		.jpeg({
+			quality: 60,
+		})
+		.toBuffer();
 
-	return new Response(png, {
+	return new Response(jpeg, {
 		headers: {
-			"Content-Type": "image/png",
+			"Content-Type": "image/jpeg",
 		},
 	});
 };
+
+export async function getStaticPaths() {
+	const blogPosts = await getCollection("blogPosts");
+
+	return blogPosts.map((post) => ({
+		params: { id: post.id },
+		props: { post },
+	}));
+}

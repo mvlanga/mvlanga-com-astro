@@ -1,16 +1,8 @@
-import { type CollectionEntry, getCollection } from "astro:content";
 import { getBackgroundImage, getFonts } from "@/utils/og-image/utils.ts";
 import satori from "satori";
 import sharp from "sharp";
 
-interface Props {
-	params: { id: string };
-	props: { legalPage: CollectionEntry<"legalPages"> };
-}
-
-export const GET = async ({ props }: Props) => {
-	const { legalPage } = props;
-
+export const GET = async () => {
 	const backgroundImage = await getBackgroundImage();
 
 	const svg = await satori(
@@ -47,15 +39,15 @@ export const GET = async ({ props }: Props) => {
 					{
 						type: "h1",
 						props: {
-							children: legalPage.data.title,
+							children: "Hi, I’m Moriz.",
 							tw: "text-9xl leading-snug",
 						},
 					},
 					{
 						type: "p",
 						props: {
-							children: "Moriz von Langa | Legal",
-							tw: "text-4xl text-neutral-100 font-normal",
+							children: "Frontend Developer based in Leipzig.",
+							tw: "text-5xl leading-snug text-neutral-100 font-normal",
 						},
 					},
 				],
@@ -69,20 +61,15 @@ export const GET = async ({ props }: Props) => {
 		},
 	);
 
-	const png = await sharp(Buffer.from(svg)).png().toBuffer();
+	const jpeg = await sharp(Buffer.from(svg))
+		.jpeg({
+			quality: 60,
+		})
+		.toBuffer();
 
-	return new Response(png, {
+	return new Response(jpeg, {
 		headers: {
-			"Content-Type": "image/png",
+			"Content-Type": "image/jpeg",
 		},
 	});
 };
-
-export async function getStaticPaths() {
-	const legalPages = await getCollection("legalPages");
-
-	return legalPages.map((legalPage) => ({
-		params: { id: legalPage.id },
-		props: { legalPage },
-	}));
-}
