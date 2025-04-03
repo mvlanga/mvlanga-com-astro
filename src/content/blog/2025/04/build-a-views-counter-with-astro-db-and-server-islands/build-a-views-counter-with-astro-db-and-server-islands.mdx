@@ -126,7 +126,11 @@ export const server = {
 
 - `handler`: The function that handles the action's logic, including querying the database for the view count.
 
-- `db.select().from(PageViews).where(eq(PageViews.id, id))`: This queries the `PageViews` table to retrieve the current count for the given `id` (slug).
+- `db.select()`: Retrieves data from the database.
+
+  - `.from(PageViews)`: Specifies the PageViews table.
+
+  - `.where(eq(PageViews.id, id))`: Filters the data where the id column matches the given id.
 
 - `ActionError`: If there’s an error, we throw an `ActionError` with a relevant message and error code.
 
