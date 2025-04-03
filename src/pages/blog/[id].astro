@@ -29,6 +29,7 @@ const { title, description, tags, createdAt } = post.data;
 
 <title slot="head">{title} — Moriz von Langa</title>
 <meta slot="head" name="description" content={description}/>
+<meta slot="head" property="og:image" content={`${import.meta.env.SITE}/blog/${post.id}/og.png`} />
 
 <Layout className="container gap-32">
     <article class="max-w-prose mx-auto flex flex-col gap-16">

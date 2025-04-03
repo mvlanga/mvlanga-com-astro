@@ -36,7 +36,8 @@
 @layer base {
 	@font-face {
 		font-family: "Averta";
-		src: url(./assets/fonts/averta-light.woff2) format("woff2");
+		src: url(./fonts/averta-light.woff2) format("woff2"),
+			url(./fonts/averta-light.woff) format("woff");
 		font-weight: 300;
 		font-style: normal;
 		font-display: swap;
@@ -44,7 +45,8 @@
 
 	@font-face {
 		font-family: "Averta";
-		src: url(./assets/fonts/averta-regular.woff2) format("woff2");
+		src: url(./fonts/averta-regular.woff2) format("woff2"),
+			url(./fonts/averta-regular.woff) format("woff");
 		font-weight: 400;
 		font-style: normal;
 		font-display: swap;
@@ -52,7 +54,8 @@
 
 	@font-face {
 		font-family: "Averta";
-		src: url(./assets/fonts/averta-semibold.woff2) format("woff2");
+		src: url(./fonts/averta-semibold.woff2) format("woff2"),
+			url(./fonts/averta-semibold.woff) format("woff");
 		font-weight: 600;
 		font-style: normal;
 		font-display: swap;
@@ -60,7 +63,8 @@
 
 	@font-face {
 		font-family: "Averta";
-		src: url(./assets/fonts/averta-bold.woff2) format("woff2");
+		src: url(./fonts/averta-bold.woff2) format("woff2"),
+			url(./fonts/averta-bold.woff) format("woff");
 		font-weight: 700;
 		font-style: normal;
 		font-display: swap;

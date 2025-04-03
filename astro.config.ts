@@ -15,7 +15,7 @@ export default defineConfig({
 			theme: "github-dark-default",
 		},
 	},
-	site: "https://mvlanga.com",
+	site: "https://deploy-preview-17--mvlanga-v2.netlify.app/",
 	integrations: [
 		sitemap({
 			serialize(item) {
