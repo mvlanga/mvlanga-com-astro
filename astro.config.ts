@@ -78,10 +78,4 @@ export default defineConfig({
 		"/en": "/",
 		"/de": "/",
 	},
-	experimental: {
-		session: true,
-	},
-	session: {
-		driver: "netlify-blobs",
-	},
 });

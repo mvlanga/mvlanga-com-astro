@@ -1,8 +1,11 @@
 ---
-import { actions } from "astro:actions";
 export const prerender = false;
 
+import { actions } from "astro:actions";
 import { PageViews, db, sql } from "astro:db";
+import { getStore } from "@netlify/blobs";
+
+const store = getStore("session");
 
 interface Props {
 	id: string;
@@ -10,7 +13,7 @@ interface Props {
 
 const { id } = Astro.props;
 
-const isIncreased = Boolean(await Astro.session?.get(`increased-${id}`));
+const isIncreased = Boolean(await store.get(`increased-${id}`));
 
 console.log("INCREASED: ", isIncreased);
 
@@ -32,7 +35,12 @@ if (isIncreased) {
 		})
 		.returning();
 
-	Astro.session?.set(`increased-${id}`, true);
+	store.set(
+		`increased-${id}`,
+		new Blob([JSON.stringify(true, null, 2)], {
+			type: "application/json",
+		}),
+	);
 
 	count = pageViews[0]?.count;
 }
