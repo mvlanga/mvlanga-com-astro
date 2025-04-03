@@ -5,9 +5,9 @@ description: "Discover how to implement a view counter on your Astro pages witho
 createdAt: 2025-04-01
 tags: [ "astro", "astro db", "astro actions", "server islands" ]
 ---
-import {ViewCounterExample} from "./ViewCounterExample";
+import {ViewCounterExample} from "./ViewCounterExample.js";
 
-<ViewCounterExample client:idle />
+<ViewCounterExample client:load />
 
 If you're like me, you've probably come across tutorials that use public API routes and client-side JavaScript to implement a view counter. While functional, this method can lead to unnecessary complexity and security concerns. So, I decided to take a different approach using Astro DB, Astro Actions, and Server-side Islands to create a streamlined, more secure solution that doesn’t rely on client-side scripts.
 
@@ -128,9 +128,9 @@ export const server = {
 
 - `db.select()`: Retrieves data from the database.
 
-  - `.from(PageViews)`: Specifies the PageViews table.
+- `.from(PageViews)`: Specifies the PageViews table.
 
-  - `.where(eq(PageViews.id, id))`: Filters the data where the id column matches the given id.
+- `.where(eq(PageViews.id, id))`: Filters the data where the id column matches the given id.
 
 - `ActionError`: If there’s an error, we throw an `ActionError` with a relevant message and error code.
 

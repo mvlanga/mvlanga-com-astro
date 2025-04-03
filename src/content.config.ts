@@ -34,6 +34,7 @@ const projects = defineCollection({
 			coverAlt: z.string(),
 			coverOnHover: image(),
 			coverOnHoverAlt: z.string(),
+			openGraphCover: z.string(),
 		}),
 });
 
