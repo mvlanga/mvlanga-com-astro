@@ -1,7 +1,11 @@
 ---
 export const prerender = false;
 
+import { actions } from "astro:actions";
 import { PageViews, db, sql } from "astro:db";
+import { getStore } from "@netlify/blobs";
+
+const store = getStore("session");
 
 interface Props {
 	id: string;
@@ -9,21 +13,40 @@ interface Props {
 
 const { id } = Astro.props;
 
-const pageViews = await db
-	.insert(PageViews)
-	.values({
-		id,
-	})
-	.onConflictDoUpdate({
-		target: PageViews.id,
-		set: { count: sql`count + 1` },
-	})
-	.returning();
+const isIncreased = Boolean(await store.get(`increased-${id}`));
 
-const count = pageViews[0]?.count;
+console.log("INCREASED: ", isIncreased);
+
+let count: undefined | number;
+
+if (isIncreased) {
+	const { data } = await Astro.callAction(actions.pageViews.get, [id]);
+
+	count = data?.[0]?.count;
+} else {
+	const pageViews = await db
+		.insert(PageViews)
+		.values({
+			id,
+		})
+		.onConflictDoUpdate({
+			target: PageViews.id,
+			set: { count: sql`count + 1` },
+		})
+		.returning();
+
+	store.set(
+		`increased-${id}`,
+		new Blob([JSON.stringify(true, null, 2)], {
+			type: "application/json",
+		}),
+	);
+
+	count = pageViews[0]?.count;
+}
 
 if (count === undefined) {
-	return;
+	count = 0;
 }
 ---
 <p class="inline-block">{count.toLocaleString()} views</p>
