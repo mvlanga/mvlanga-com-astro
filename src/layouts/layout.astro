@@ -49,7 +49,7 @@ const { className, footerType = "regular" } = Astro.props;
 
     <slot name="head"/>
 
-    <meta slot="head" property="og:image" content={`${import.meta.env.SITE}${Astro.url.pathname}/og.png`} />
+    <meta slot="head" property="og:image" content={`${import.meta.env.SITE}${Astro.url.pathname}og.png`} />
 
     <link rel="apple-touch-icon" sizes="180x180"
           href="/meta/apple-touch-icon.png">
