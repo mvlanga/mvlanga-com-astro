@@ -15,7 +15,7 @@ In this tutorial, I'll show you how to build a view counter in your Astro projec
 
 ### Prerequisites
 
-For this guide, we'll assume you have a working Astro setup. If you don't, head over to [Astro's official documentation](https://astro.build/) and get started. Once you're ready, let's dive into adding the view counter!
+For this guide, we'll assume you have a working Astro setup. If you don't, head over to the [Astro's official documentation](https://astro.build/) or use on of the [starter templates from Astro](https://astro.new/blog?on=idx). Once you're ready, let's dive into adding the view counter!
 
 ### Setting Up Your Database with Astro DB
 
@@ -39,6 +39,8 @@ Now that Astro DB is installed, let's define a table to store our page views. Th
 - `count`: the number of views, which will be a number and default to 1.
 
 ```typescript
+// db/config.ts
+
 import { column, defineDb, defineTable } from "astro:db";
 
 // Define the `PageViews` table
@@ -57,6 +59,8 @@ const PageViews = defineTable({
 Now, let’s bring everything together in the `db/config.ts` file. We define the database schema and add the `PageViews` table to the configuration.
 
 ```typescript
+// db/config.ts
+
 import { column, defineDb, defineTable } from "astro:db";
 
 // Define the `PageViews` table as described earlier
@@ -82,7 +86,10 @@ This configuration will create the table in your database, and you can use it to
 In the `src/actions/` folder, create a new file called `index.ts`. This is where we will define our server-side actions for interacting with the database.
 
 ```typescript
-import { defineAction } from 'astro:actions';
+// src/actions/index.ts
+
+import { defineAction, ActionError } from 'astro:actions';
+import { PageViews, db, eq } from "astro:db";
 import { z } from 'astro:schema';
 
 // Define two actions: one for getting page views and one for increasing them
@@ -124,11 +131,14 @@ export const server = {
 - `ActionError`: If there’s an error, we throw an `ActionError` with a relevant message and error code.
 
 ### Displaying and Incrementing Page Views with an Astro Component
-Now, we need to create an Astro component that will display and update the view count.
+Now, we need to create a new Astro component at `src/components/ViewCounter.astro` that will display and update the view count.
 
 ```astro
 ---
 export const prerender = false; // Disable prerendering for this component, as it's dynamic
+
+// Prevent caching for this server island to ensure that when the user navigates back, they always see the most up-to-date content.
+Astro.response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
 
 import { actions } from "astro:actions"; // Import Astro actions to call server-side logic
 import { PageViews, db, sql } from "astro:db";
@@ -157,16 +167,13 @@ const getCount = async (): Promise<undefined | number> => {
 	}
 
 	// Fetch the current page view count
-	const { data } = await Astro.callAction(actions.pageViews.get, id);
+	const { data } = await Astro.callAction(actions.getPageViews, id);
 
 	return data?.[0]?.count;
 };
 
-const count = await getCount();
-
-if (count === undefined) {
-	return;
-}
+// For the case that we want to read an count before it got created, we need to return an default view count of 0
+const count = await getCount() ?? 0;
 ---
 
 <!-- Display the view count -->

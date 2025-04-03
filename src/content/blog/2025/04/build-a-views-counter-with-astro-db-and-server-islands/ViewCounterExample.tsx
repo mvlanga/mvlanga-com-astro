@@ -6,7 +6,7 @@ export const ViewCounterExample = () => {
 	useEffect(() => {
 		const timer = setInterval(() => {
 			setIsLoading((v) => !v);
-		}, 5000);
+		}, 2500);
 
 		return () => clearInterval(timer);
 	}, []);
