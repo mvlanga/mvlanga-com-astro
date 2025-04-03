@@ -15,46 +15,9 @@ export const GET = async ({ props }: Props) => {
 
 	const backgroundImage = await getBackgroundImage();
 
-	let coverImg: undefined | string | ArrayBufferLike;
-
-	try {
-		const a = project.filePath?.split("/");
-		a?.pop();
-
-		const b = project.data.cover.src;
-
-		const c = b.replace("/_astro/", "");
-
-		const cArr = c.split(".");
-
-		cArr.splice(1, 1);
-
-		const imgUrlProduction = `${a?.join("/")}/${cArr.join(".")}`.replace(
-			"src",
-			"",
-		);
-
-		coverImg = import.meta.env.PROD
-			? `http://localhost:3001${imgUrlProduction}`
-			: (
-					await fs.readFile(
-						path.resolve(
-							`${process.cwd()}/src/${project.data.cover.src.split("/src")[1]?.replace(/\?.*/, "")}`,
-						),
-					)
-				).buffer;
-	} catch (e) {
-		console.error(e);
-		return new Response(null, {
-			status: 404,
-		});
-	}
-
-	if (coverImg === undefined) {
-		return new Response(null, {
-			status: 404,
-		});
-	}
+	const img = await fs.readFile(
+		path.resolve(`${process.cwd()}/${project.data.openGraphCover}`),
+	);
 
 	const svg = await satori(
 		// @ts-expect-error: Astro currently does not support endpoints with tsx file format
@@ -89,7 +52,7 @@ export const GET = async ({ props }: Props) => {
 					{
 						type: "img",
 						props: {
-							src: coverImg,
+							src: img.buffer,
 							style: {
 								width: "400px",
 								height: "100%",
