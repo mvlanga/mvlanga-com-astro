@@ -28,7 +28,7 @@ export const GET = async ({ props }: Props) => {
 					color: "white",
 					backgroundColor: "black",
 					padding: "80px",
-					justifyContent: "flex-end"
+					justifyContent: "flex-end",
 				},
 				children: [
 					{
@@ -40,7 +40,7 @@ export const GET = async ({ props }: Props) => {
 								width: "1200px",
 								height: "630px",
 								objectFit: "cover",
-								filter: "brightness(0.6)"
+								filter: "brightness(0.6)",
 							},
 						},
 					},
