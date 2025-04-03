@@ -17,7 +17,7 @@ console.log("INCREASED: ", isIncreased);
 let count: undefined | number;
 
 if (isIncreased) {
-	const { data } = await Astro.callAction(actions.pageViews.get, id);
+	const { data } = await Astro.callAction(actions.pageViews.get, [id]);
 
 	count = data?.[0]?.count;
 } else {
