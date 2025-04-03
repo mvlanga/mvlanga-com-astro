@@ -82,9 +82,6 @@ export default defineConfig({
 		session: true,
 	},
 	session: {
-		driver: "upstash",
-		options: {
-			base: "sessions",
-		},
+		driver: "netlify-blobs",
 	},
 });
