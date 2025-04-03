@@ -5,7 +5,6 @@
 	"scripts": {
 		"dev": "astro dev",
 		"build": "npm run check && astro build --remote",
-		"kill-assets": "kill-port 3001 || true",
 		"check": "astro check",
 		"preview": "astro preview",
 		"lint": "biome lint --write .",
