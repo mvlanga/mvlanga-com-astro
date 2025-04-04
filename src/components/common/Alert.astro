@@ -1,0 +1,28 @@
+---
+import { clsx } from "clsx";
+
+type Severity = "info" | "success" | "warning" | "error" | "neutral";
+
+interface Props {
+	severity?: Severity;
+	additionalClasses?: string;
+}
+
+const { severity = "info", additionalClasses } = Astro.props;
+
+const alertClasses = clsx(
+	"rounded-lg border px-8 py-6",
+	"[&_*]:first:mt-0",
+	"[&_*]:last:mb-0",
+	severity === "info" && "border-purple-800 bg-purple-900",
+	severity === "neutral" && "border-neutral-800 bg-neutral-900",
+	severity === "success" && "border-green-900 bg-green-950",
+	severity === "warning" && "border-orange-900 bg-orange-950",
+	severity === "error" && "border-red-900 bg-red-950",
+	additionalClasses,
+);
+---
+
+<div role="alert" class={alertClasses}>
+    <slot/>
+</div>
