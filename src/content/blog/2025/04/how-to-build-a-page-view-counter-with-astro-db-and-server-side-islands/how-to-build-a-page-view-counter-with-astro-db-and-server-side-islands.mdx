@@ -15,7 +15,7 @@ While searching for tutorials on how to implement a view counter for my blog pos
 Curious to understand the reasoning behind this, I decided to experiment with both approaches. The answer came pretty quickly, and the results were quite revealing.
 
 <Alert additionalClasses="not-first:mt-12 not-last:mb-12">
-    ### The issue with incrementing the count on server side rendering
+    ## The issue with incrementing the count on server side rendering
 
     Astro automatically adds a `<link rel="preload" as="fetch" href="/_server-islands/ViewCounter" crossorigin="anonymous" />` tag in the page's header when using a **server-side island** component.
 
@@ -26,11 +26,11 @@ Curious to understand the reasoning behind this, I decided to experiment with bo
     Given this limitation, it seems that the most straightforward solution is to handle the count increment on the **client-side** instead.
 </Alert>
 
-### Prerequisites
+## Prerequisites
 
 For this guide, we'll assume you have a working Astro setup. If you don't, head over to the [Astro's official documentation](https://astro.build/) or use on of the [starter templates from Astro](https://astro.new/blog?on=idx). Once you're ready, let's dive into adding the view counter!
 
-### Setting Up Your Database with Astro DB
+## Setting Up Your Database with Astro DB
 
 Astro DB is a simple, integrated database solution within Astro that lets you manage data directly within your project. To track page views, we'll create a table that stores the page slug (for identification) and the view count.
 
@@ -73,7 +73,7 @@ export default defineDb({
 
 This configuration will create the table in your database, and you can use it to store and update the view count for your pages.
 
-### Create Astro Actions to Retrieve and Increment the View Count
+## Create Astro Actions to Retrieve and Increment the View Count
 
 Next, we’ll define two server-side actions to interact with the database:
 
@@ -146,11 +146,11 @@ export const server = {
 
 - `ActionError`: This is used to handle errors in a structured way. If something goes wrong with the action (e.g., database issues), it throws a consistent error with a custom code and message.
 
-### Create Astro Components to Display and Increase the View Count
+## Create Astro Components to Display and Increase the View Count
 
 Now, let’s create two Astro components to display and update the view count.
 
-#### Display the View Count
+### Display the View Count
 
 Create an Astro component to display the view count, which will fetch data from the server.
 
@@ -197,7 +197,7 @@ To just display the current view count, import the `ViewCounter` component that 
 
 - `<div class="inline-block h-[1lh] w-[8ch] animate-pulse rounded-lg bg-neutral-800"></div>`: A skeleton loader styled with Tailwind CSS to show an animated placeholder while the view count is being fetched.
 
-#### Increment and Display the View Count using vanilla js
+### Increment and Display the View Count using vanilla js
 
 Let's create an Astro component under `src/components/ViewCounterWithIncrease.astro` that will increase and then display the updated view count.
 
@@ -283,7 +283,7 @@ const {id} = Astro.props;
 <ViewCounterWithIncrease id={post.id} />
 ```
 
-#### Increment and Display the View Count using React
+### Increment and Display the View Count using React
 
 Let's create a React component under `src/components/ViewCounter.tsx` that will increase and then display the updated view count.
 
@@ -369,7 +369,7 @@ export const ViewCounter = ({id}: {id: string}) => {
 
 - `id={post.id}`: The unique identifier (e.g., slug) to retrieve the correct view count for the page.
 
-### Conclusion
+## Conclusion
 
 Now that you've implemented the view counter using Astro DB, Astro Actions, and server-side islands, you have a reliable solution for tracking page views in your Astro project. By using Astro's built-in tools, we can efficiently manage and display the view count while keeping things simple and organized.
 

@@ -4,9 +4,10 @@ import { twMerge } from "tailwind-merge";
 
 interface Props {
 	additionalClasses?: string;
+    variant: "project" | "blog"
 }
 
-const { additionalClasses } = Astro.props;
+const { additionalClasses, variant } = Astro.props;
 ---
 
 <div class={
@@ -19,10 +20,14 @@ const { additionalClasses } = Astro.props;
                 "[&>pre>code]:p-0 [&>pre>code]:bg-transparent",
                 "prose-headings:font-normal",
                 "prose-headings:scroll-mt-16 prose-strong:scroll-mt-16",
-                "prose-h4:text-2xl",
-                "prose-h3:text-3xl",
-                "prose-h2:text-4xl",
-                "prose-h1:text-5xl",
+                variant === "project" && "prose-h4:text-2xl",
+                variant === "project" && "prose-h3:text-3xl",
+                variant === "project" && "prose-h2:text-4xl",
+                variant === "project" && "prose-h1:text-5xl",
+                variant === "blog" && "prose-h4:text-xl",
+                variant === "blog" && "prose-h3:text-2xl",
+                variant === "blog" && "prose-h2:text-3xl",
+                variant === "blog" && "prose-h1:text-4xl",
                 additionalClasses
             )
         )
