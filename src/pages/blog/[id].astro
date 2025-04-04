@@ -1,9 +1,9 @@
 ---
 import { getCollection, render } from "astro:content";
+import { ViewCounter } from "@/components/blog/ViewCounter";
 import { PlayfulDivider } from "@/components/common/PlayfulDivider";
 import Prose from "@/components/common/Prose.astro";
 import Skeleton from "@/components/common/Skeleton.astro";
-import ViewCounter from "@/components/common/ViewCounter.astro";
 import Layout from "@/layouts/layout.astro";
 
 export async function getStaticPaths() {
@@ -46,8 +46,8 @@ const { title, description, tags, createdAt } = post.data;
                 <span>{tags.map((tag) => `#${tag}`).join(", ")}</span>
 
                 <div class="flex flex-wrap gap-4">
-                    <ViewCounter server:defer id={post.id}>
-                        <Skeleton slot="fallback" className="w-[8ch]" />
+                    <ViewCounter client:idle id={post.id}>
+                        <Skeleton slot="fallback" className="w-[8ch]"/>
                     </ViewCounter>
                     <p>{createdAt.toLocaleDateString("en-US")}</p>
                 </div>
@@ -57,7 +57,7 @@ const { title, description, tags, createdAt } = post.data;
             </PlayfulDivider>
         </section>
 
-        <Prose>
+        <Prose variant="blog">
             <Content/>
         </Prose>
     </article>

@@ -2,7 +2,7 @@ import { actions } from "astro:actions";
 import type { CollectionEntry } from "astro:content";
 import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
 import { useOnMount } from "@/utils/useOnMount.ts";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const getTagsWithCountByPosts = (
 	posts: CollectionEntry<"blogPosts">[],
@@ -71,5 +71,42 @@ export const useBlogPostsWithViewCount = (
 	return {
 		isLoading,
 		blogPostsWithViewCount,
+	};
+};
+
+export const useViewCount = (id: string) => {
+	const [isLoading, setIsLoading] = useState(true);
+	const [error, setError] = useState<null | unknown>(null);
+	const [viewCount, setViewCount] = useState<null | number>(null);
+
+	const fetchData = useCallback(async () => {
+		const { data, error } = await actions.pageViews.increase(id);
+
+		setIsLoading(false);
+
+		if (error) {
+			throw new Error("Unable to run `pageViews.increase` action");
+		}
+
+		if (data === undefined || data[0] === undefined) {
+			throw new Error(
+				"Returned data of `pageViews.increase` action is unusable",
+			);
+		}
+
+		setViewCount(data[0].count);
+	}, [id]);
+
+	useEffect(() => {
+		fetchData().catch((error) => {
+			console.error(error);
+			setError(error);
+		});
+	}, [fetchData]);
+
+	return {
+		isLoading,
+		error,
+		viewCount,
 	};
 };

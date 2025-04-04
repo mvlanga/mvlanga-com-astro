@@ -16,7 +16,7 @@ export const ViewCounterExample = () => {
 			{isLoading ? (
 				<div className="inline-flex h-[1lh] w-[8ch] animate-pulse rounded-lg bg-neutral-800" />
 			) : (
-				<div>{Math.floor(Math.random() * 100).toLocaleString()} views</div>
+				<div>{Math.floor(Math.random() * 2000).toLocaleString()} views</div>
 			)}
 		</div>
 	);

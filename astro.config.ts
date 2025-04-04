@@ -10,6 +10,10 @@ import { EnumChangefreq } from "sitemap";
 import netlify from "@astrojs/netlify";
 
 export default defineConfig({
+	outDir: "static",
+	prefetch: {
+		prefetchAll: true,
+	},
 	markdown: {
 		shikiConfig: {
 			theme: "github-dark-default",
