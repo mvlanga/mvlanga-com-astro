@@ -81,5 +81,7 @@ export default defineConfig({
 
 		"/en": "/",
 		"/de": "/",
+
+		"/blog/how-to-build-a-page-view-counter-with-astro-db-and-server-side-islands": "/blog/how-to-build-a-page-view-counter-with-astro-db-actions-and-server-side-islands"
 	},
 });
