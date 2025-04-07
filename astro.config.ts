@@ -69,11 +69,11 @@ export default defineConfig({
 	redirects: {
 		"http://mvlanga.de": {
 			status: 301,
-			destination: "/",
+			destination: "https://mvlanga.com",
 		},
 		"https://mvlanga.de": {
 			status: 301,
-			destination: "/",
+			destination: "https://mvlanga.com",
 		},
 
 		"/:lang/personal-projects": "/",
