@@ -67,14 +67,8 @@ export default defineConfig({
 		edgeMiddleware: true,
 	}),
 	redirects: {
-		"http://mvlanga.de": {
-			status: 301,
-			destination: "https://mvlanga.com",
-		},
-		"https://mvlanga.de": {
-			status: 301,
-			destination: "https://mvlanga.com",
-		},
+		"http://mvlanga.de": "/",
+		"https://mvlanga.de": "/",
 
 		"/:lang/personal-projects": "/",
 		"/:lang/about-me": "/#about",
