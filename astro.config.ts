@@ -67,8 +67,7 @@ export default defineConfig({
 		edgeMiddleware: true,
 	}),
 	redirects: {
-		"http://mvlanga.de": "/",
-		"https://mvlanga.de": "/",
+		"https://mvlanga.de/*": "/",
 
 		"/:lang/personal-projects": "/",
 		"/:lang/about-me": "/#about",
