@@ -67,8 +67,6 @@ export default defineConfig({
 		edgeMiddleware: true,
 	}),
 	redirects: {
-		"https://mvlanga.de/*": "/",
-
 		"/:lang/personal-projects": "/",
 		"/:lang/about-me": "/#about",
 		"/assets/resume/*": "/moriz-von-langa_resume.pdf",
