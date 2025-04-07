@@ -1,0 +1,25 @@
+---
+export const prerender = false;
+
+import { actions } from "astro:actions";
+
+interface Props {
+	blogPostSlug: string;
+}
+
+const { blogPostSlug } = Astro.props;
+
+const { data } = await Astro.callAction(actions.blogComments.get, blogPostSlug);
+---
+
+<section class="flex flex-col gap-4">
+    {
+        data?.map(({name, content, createdAt}) => (
+                <div class="flex flex-col gap-2 bg-neutral-900 rounded-xl p-6">
+                    <p>{name}</p>
+                    <p>{content}</p>
+                    <p class="text-xs">{createdAt.toLocaleDateString()}</p>
+                </div>
+        ))
+    }
+</section>

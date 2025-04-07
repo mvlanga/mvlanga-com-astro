@@ -1,5 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
+import BlogCommentForm from "@/components/blog/BlogCommentForm.astro";
+import BlogComments from "@/components/blog/BlogComments.astro";
 import { ViewCounter } from "@/components/blog/ViewCounter";
 import { PlayfulDivider } from "@/components/common/PlayfulDivider";
 import Prose from "@/components/common/Prose.astro";
@@ -30,8 +32,11 @@ const { title, description, tags, createdAt } = post.data;
 <title slot="head">{title} — Moriz von Langa</title>
 <meta slot="head" name="description" content={description}/>
 
-<Layout className="container gap-32">
-    <article class="max-w-prose mx-auto flex flex-col gap-16">
+<Layout className="container gap-32 flex flex-col">
+    <div class="flex bg-red-500">
+        test
+    </div>
+    <article class="flex-1 max-w-prose mx-auto flex flex-col gap-16">
         <section>
             <h1 class="mb-8 text-3xl font-bold leading-snug">
                 {title}
@@ -61,4 +66,21 @@ const { title, description, tags, createdAt } = post.data;
             <Content/>
         </Prose>
     </article>
+
+    <section class="grid gap-16">
+        <h2 class="text-4xl">Comments</h2>
+
+        <PlayfulDivider client:only="react">
+            <hr slot="fallback" class="border-neutral-800"/>
+        </PlayfulDivider>
+
+        <section class="relative grid grid-cols-3 gap-8">
+            <div class="col-span-2">
+                <BlogComments server:defer blogPostSlug={post.id}/>
+            </div>
+            <div class="col-span-1">
+                <BlogCommentForm blogPostSlug={post.id}/>
+            </div>
+        </section>
+    </section>
 </Layout>

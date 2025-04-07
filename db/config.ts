@@ -1,4 +1,4 @@
-import { column, defineDb, defineTable } from "astro:db";
+import { NOW, column, defineDb, defineTable } from "astro:db";
 
 const PageViews = defineTable({
 	columns: {
@@ -9,8 +9,26 @@ const PageViews = defineTable({
 	},
 });
 
+const BlogComments = defineTable({
+	columns: {
+		id: column.text({ unique: true, primaryKey: true }),
+		blogPostSlug: column.text(),
+		name: column.text(),
+		content: column.text(),
+		createdAt: column.date({
+			default: NOW,
+			optional: true,
+		}),
+		reviewed: column.boolean({
+			default: false,
+			optional: true,
+		}),
+	},
+});
+
 export default defineDb({
 	tables: {
 		PageViews,
+		BlogComments,
 	},
 });
