@@ -67,6 +67,15 @@ export default defineConfig({
 		edgeMiddleware: true,
 	}),
 	redirects: {
+		"http://mvlanga.de": {
+			status: 301,
+			destination: "/",
+		},
+		"https://mvlanga.de": {
+			status: 301,
+			destination: "/",
+		},
+
 		"/:lang/personal-projects": "/",
 		"/:lang/about-me": "/#about",
 		"/assets/resume/*": "/moriz-von-langa_resume.pdf",
@@ -82,6 +91,7 @@ export default defineConfig({
 		"/en": "/",
 		"/de": "/",
 
-		"/blog/how-to-build-a-page-view-counter-with-astro-db-and-server-side-islands": "/blog/how-to-build-a-page-view-counter-with-astro-db-actions-and-server-side-islands"
+		"/blog/how-to-build-a-page-view-counter-with-astro-db-and-server-side-islands":
+			"/blog/how-to-build-a-page-view-counter-with-astro-db-actions-and-server-side-islands",
 	},
 });
