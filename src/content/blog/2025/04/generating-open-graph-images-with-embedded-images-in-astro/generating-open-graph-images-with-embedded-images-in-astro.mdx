@@ -46,18 +46,18 @@ import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
 const blogPosts = defineCollection({
-	loader: glob({
-		base: "src/content/blog",
-		pattern: ["**/**/*.md", "**/**/*.mdx"],
-	}),
-	schema: z.object({
-		title: z.string(),
-	}),
+    loader: glob({
+        base: "src/content/blog",
+        pattern: ["**/**/*.md", "**/**/*.mdx"],
+    }),
+    schema: z.object({
+        title: z.string(),
+    }),
 });
 
 export const collections = {
-    blogPosts
-}
+    blogPosts,
+};
 ```
 
 **Explanation of the Code:**
@@ -93,18 +93,18 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 export const getCustomFonts = async () => {
-	const yourFontData = await fs.readFile(
-		path.resolve("./public/fonts/your-font.woff"),
-	);
+    const yourFontData = await fs.readFile(
+        path.resolve("./public/fonts/your-font.woff"),
+    );
 
-	return [
-		{
-			name: "yourFont",
-			data: yourFontData,
-			weight: 400,
-			style: "normal",
-		},
-	];
+    return [
+        {
+            name: "yourFont",
+            data: yourFontData,
+            weight: 400,
+            style: "normal",
+        },
+    ];
 };
 ```
 
@@ -117,30 +117,30 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 const backgroundImages = [
-	"og-background-01.png",
-	"og-background-02.png",
-	"og-background-03.png",
+    "og-background-01.png",
+    "og-background-02.png",
+    "og-background-03.png",
 ];
 
 export const BackgroundImage = async () => {
-	const backgroundImage = await fs.readFile(
-		path.resolve(
-			`./public/img/${backgroundImages[Math.floor(Math.random() * backgroundImages.length)]}`,
-		),
-	);
+    const backgroundImage = await fs.readFile(
+        path.resolve(
+            `./public/img/${backgroundImages[Math.floor(Math.random() * backgroundImages.length)]}`,
+        ),
+    );
 
-	return {
-		type: "img",
-		props: {
-			src: backgroundImage.buffer,
-			style: {
-				position: "absolute",
-				width: "1200px",
-				height: "630px",
-				objectFit: "cover",
-			},
-		},
-	};
+    return {
+        type: "img",
+        props: {
+            src: backgroundImage.buffer,
+            style: {
+                position: "absolute",
+                width: "1200px",
+                height: "630px",
+                objectFit: "cover",
+            },
+        },
+    };
 };
 ```
 
@@ -156,68 +156,72 @@ import satori from "satori";
 import sharp from "sharp";
 
 interface Props {
-	params: { id: string };
-	props: { post: CollectionEntry<"blogPosts"> };
+    params: { id: string };
+    props: { post: CollectionEntry<"blogPosts"> };
 }
 
 export const GET = async ({ props }: Props) => {
-	const { post } = props;
+    const { post } = props;
 
     const svg = await satori(
         // @ts-expect-error: Astro currently does not support endpoints with tsx file format
-		// because of that, we need to use react-elements-like objects
-		// satori still expects valid JSX elements, that's why we get typescript errors here
-		{
-			type: "div",
-			props: {
-				style: {
-					display: "flex",
-					flexDirection: "column",
-					width: "100%",
-					height: "100%",
-					color: "white",
-					backgroundColor: "black",
-					padding: "80px",
-					justifyContent: "flex-end",
-				},
-				children: [
-					await BackgroundImage(),
-					{
-						type: "h1",
-						props: {
-							children: post.data.title,
-							tw: "text-6xl leading-snug",
-						},
-					},
-					{
-						type: "p",
-						props: {
-							children: "Moriz von Langa | Blog",
-							tw: "text-5xl leading-snug text-neutral-100 font-normal",
-						},
-					},
-				],
-			},
-		},
+        // because of that, we need to use react-elements-like objects
+        // satori still expects valid JSX elements, that's why we get typescript errors here
+        {
+            type: "div",
+            props: {
+                style: {
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%",
+                    height: "100%",
+                    color: "white",
+                    backgroundColor: "black",
+                    padding: "80px",
+                    justifyContent: "flex-end",
+                },
+                children: [
+                    await BackgroundImage(),
+                    {
+                        type: "h1",
+                        props: {
+                            children: post.data.title,
+                            style: {
+                                fontSize: "4rem",
+                            },
+                        },
+                    },
+                    {
+                        type: "p",
+                        props: {
+                            children: "Moriz von Langa | Blog",
+                            style: {
+                                fontSize: "3rem",
+                            },
+                        },
+                    },
+                ],
+            },
+        },
         {
             width: 1200,
             height: 630,
             debug: false,
             fonts: await getCustomFonts(),
-        }
+        },
     );
 
-	const jpeg = await sharp(Buffer.from(svg))
-		.jpeg({
-			quality: 60,
-		})
-		.toBuffer();
+    const jpeg = await sharp(Buffer.from(svg))
+        .jpeg({
+            quality: 60,
+        })
+        .toBuffer();
 
-	return new Response(jpeg, {
-		headers: {
-			"Content-Type": "image/jpeg",
-		},
-	});
+    return new Response(jpeg, {
+        headers: {
+            "Content-Type": "image/jpeg",
+        },
+    });
 };
 ```
 
@@ -229,12 +233,12 @@ To generate the OG images at build time, use the `getStaticPaths` method:
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-	const blogPosts = await getCollection("blogPosts");
+    const blogPosts = await getCollection("blogPosts");
 
-	return blogPosts.map((post) => ({
-		params: { id: post.id },
-		props: { post },
-	}));
+    return blogPosts.map((post) => ({
+        params: { id: post.id },
+        props: { post },
+    }));
 }
 ```
 
@@ -274,12 +278,15 @@ In the `content.config.ts` file, define your blog post schema to include the cov
 
 ```typescript
 defineCollection({
-	loader: /* your loader */
-	schema: ({ image }) => z.object({
-		title: z.string(),
-        cover: image(),
-        coverAlt: z.string()
-	}),
+    loader: {
+        /* your loader */
+    },
+    schema: ({ image }) =>
+        z.object({
+            title: z.string(),
+            cover: image(),
+            coverAlt: z.string(),
+        }),
 });
 ```
 
@@ -313,25 +320,25 @@ To handle these differences, you'll need a utility function that resolves the co
 import fs from "node:fs/promises";
 
 export const getFrontmatterImage = async (
-	filePath: string,
-	src: string,
-	format: string
+    filePath: string,
+    src: string,
+    format: string,
 ) => {
-	// In production, the paths are different, so we handle them accordingly
-	if (import.meta.env.PROD) {
-		const folderPathArr = filePath.split("/");
-		folderPathArr.pop(); // Remove the file name to get the folder path
+    // In production, the paths are different, so we handle them accordingly
+    if (import.meta.env.PROD) {
+        const folderPathArr = filePath.split("/");
+        folderPathArr.pop(); // Remove the file name to get the folder path
 
-		const folderPath = folderPathArr.join("/");
+        const folderPath = folderPathArr.join("/");
 
-		// Read the file from the resolved path in production
-		return await fs.readFile(
-			`${process.cwd()}/${folderPath}${src.replace("_astro", "").split(".")[0]}.${format}`
-		);
-	}
+        // Read the file from the resolved path in production
+        return await fs.readFile(
+            `${process.cwd()}/${folderPath}${src.replace("_astro", "").split(".")[0]}.${format}`,
+        );
+    }
 
-	// In development, we can access the file directly
-	return await fs.readFile(src.replace("/@fs", "").replace(/\?.*/, ""));
+    // In development, we can access the file directly
+    return await fs.readFile(src.replace("/@fs", "").replace(/\?.*/, ""));
 };
 ```
 
@@ -342,11 +349,11 @@ This utility resolves the correct path for both development and production envir
 To get the frontmatter image, use the `getFrontmatterImage` function in your image generation logic. Here’s how you can use it to fetch the cover image:
 
 ```typescript
-	const projectCoverImage = await getFrontmatterImage(
-		project.filePath,
-		project.data.cover.src,
-		project.data.cover.format,
-	);
+const projectCoverImage = await getFrontmatterImage(
+    project.filePath,
+    project.data.cover.src,
+    project.data.cover.format,
+);
 ```
 
 This will return the correct image file, whether you're working locally or in production.
