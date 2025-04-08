@@ -1,5 +1,5 @@
 ---
-title: How to Generate Open Graph Images in Astro
+title: How to Generate Open Graph (OG) Images in Astro
 slug: generating-open-graph-images-in-astro
 description: Learn how to generate dynamic Open Graph (OG) images for your Astro pages using Satori and Sharp.
 createdAt: 2025-04-10
@@ -11,9 +11,11 @@ import OgImagePreview from "./OgImagePreview.astro";
 
 ## What is an Open Graph (OG) Image?
 
-An Open Graph (OG) image is a visual preview displayed when sharing a link on social media platforms. It helps increase user engagement by making shared content more visually appealing. These images play a crucial role in improving click-through rates, enhancing brand visibility, and boosting social media interactions.
+An Open Graph (OG) image is a visual preview displayed when sharing a link on social media platforms. It helps increase user engagement by making shared content more visually appealing. These images play a crucial role in improving click-through rates and improving interactions.
 
-By using OG images correctly, you can increase your website's visibility, enhance SEO performance, and drive more traffic to your pages. To make the most of them, ensure that your OG images follow best practices, such as choosing the right dimensions, optimizing file sizes, and making them relevant to the content.
+Plus, it just looks cool when you send a link to someone and a little image automatically pops up over the link,
+
+To make the most of them, ensure that your OG images follow best practices, such as choosing the right dimensions, optimizing file sizes, and making them relevant to the content.
 
 ### Recommended OG Image Dimensions
 
@@ -268,7 +270,7 @@ await fs.readFile(
 
 This method ensures that Astro doesn’t try to process the image, making it easier to handle in dynamic image generation.
 
-### A way more complicated solution
+### A much more detailed solution if you want to avoid having the image path twice
 
 If you'd prefer a more detailed approach where Astro processes the image, here's how you can do it.
 
