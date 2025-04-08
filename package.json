@@ -1,22 +1,20 @@
 {
 	"name": "mvlanga-com",
-	"type": "module",
 	"version": "0.0.1",
+	"type": "module",
 	"scripts": {
-		"dev": "astro dev",
 		"build": "npm run check && astro build --remote",
 		"check": "astro check",
-		"preview": "astro preview",
+		"dev": "astro dev",
+		"format": "biome format --write .",
 		"lint": "biome lint --write .",
 		"lint:fix": "biome check --write .",
 		"lint:fix-unsafe": "biome check --write --unsafe .",
-		"format": "biome format --write .",
+		"preview": "astro preview",
 		"test:e2e:local": "environment=LOCAL playwright test",
 		"test:e2e:production": "environment=PRODUCTION playwright test"
 	},
 	"dependencies": {
-		"@astrojs/db": "^0.14.10",
-		"@astrojs/netlify": "^6.2.5",
 		"@nanostores/react": "^0.8.4",
 		"@vidstack/react": "^1.12.13",
 		"clsx": "^2.1.1",
@@ -27,13 +25,13 @@
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
 		"react-use-size": "^5.0.1",
-		"satori": "^0.12.2",
-		"sharp": "^0.33.5",
 		"tailwind-merge": "^3.1.0"
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.4",
+		"@astrojs/db": "^0.14.10",
 		"@astrojs/mdx": "^4.2.3",
+		"@astrojs/netlify": "^6.2.5",
 		"@astrojs/react": "^4.2.3",
 		"@astrojs/sitemap": "^3.3.0",
 		"@axe-core/playwright": "^4.10.1",
@@ -49,6 +47,8 @@
 		"astro": "^5.6.0",
 		"lefthook": "^1.11.6",
 		"rollup-plugin-visualizer": "^5.14.0",
+		"satori": "^0.12.2",
+		"sharp": "^0.33.5",
 		"tailwindcss": "^4.0.5",
 		"typescript": "^5.8.2"
 	}

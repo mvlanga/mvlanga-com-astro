@@ -1,7 +1,5 @@
 import { type CollectionEntry, getCollection } from "astro:content";
-import { getBackgroundImage, getFonts } from "@/utils/og-image/utils.ts";
-import satori from "satori";
-import sharp from "sharp";
+import { BackgroundImage, generateOgImage } from "@/utils/og-image/utils.ts";
 
 interface Props {
 	params: { id: string };
@@ -11,9 +9,7 @@ interface Props {
 export const GET = async ({ props }: Props) => {
 	const { legalPage } = props;
 
-	const backgroundImage = await getBackgroundImage();
-
-	const svg = await satori(
+	return await generateOgImage(
 		// @ts-expect-error: Astro currently does not support endpoints with tsx file format
 		// because of that, we need to use react-elements-like objects
 		// satori still expects valid JSX elements, that's why we get typescript errors here
@@ -31,19 +27,7 @@ export const GET = async ({ props }: Props) => {
 					justifyContent: "flex-end",
 				},
 				children: [
-					{
-						type: "img",
-						props: {
-							src: backgroundImage.buffer,
-							style: {
-								position: "absolute",
-								width: "1200px",
-								height: "630px",
-								objectFit: "cover",
-								filter: "brightness(0.6)",
-							},
-						},
-					},
+					await BackgroundImage(),
 					{
 						type: "h1",
 						props: {
@@ -61,25 +45,7 @@ export const GET = async ({ props }: Props) => {
 				],
 			},
 		},
-		{
-			width: 1200,
-			height: 630,
-			debug: false,
-			fonts: await getFonts(),
-		},
 	);
-
-	const jpeg = await sharp(Buffer.from(svg))
-		.jpeg({
-			quality: 60,
-		})
-		.toBuffer();
-
-	return new Response(jpeg, {
-		headers: {
-			"Content-Type": "image/jpeg",
-		},
-	});
 };
 
 export async function getStaticPaths() {
