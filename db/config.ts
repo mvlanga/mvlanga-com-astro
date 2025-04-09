@@ -17,11 +17,9 @@ const BlogComments = defineTable({
 		content: column.text(),
 		createdAt: column.date({
 			default: NOW,
-			optional: true,
 		}),
 		reviewed: column.boolean({
 			default: false,
-			optional: true,
 		}),
 	},
 });

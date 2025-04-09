@@ -28,6 +28,6 @@ const seedBlogComments = async () => {
 };
 
 export default async function seed() {
-	seedViewCounts();
-	seedBlogComments();
+	await seedViewCounts();
+	// await seedBlogComments();
 }

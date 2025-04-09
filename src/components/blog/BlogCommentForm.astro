@@ -1,4 +1,5 @@
 ---
+import { blogComments } from "@/actions/blogComments";
 import { Button } from "@/components/common/Button.tsx";
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
 const { blogPostSlug } = Astro.props;
 ---
 
-<form id="add-blog-comment-form" class="sticky top-8 flex flex-col gap-4" method="POST">
+<form id="add-blog-comment-form" class="sticky top-8 flex flex-col gap-4">
     <p class="text-xl">New Comment</p>
 
     <hr class="border-neutral-800 mb-4"/>
@@ -17,23 +18,96 @@ const { blogPostSlug } = Astro.props;
 
     <label class="flex flex-col gap-2">
         <span>Name</span>
-        <input class="bg-neutral-900 p-4 rounded-xl" type="text" name="name" />
+        <input required class="bg-neutral-900 p-4 rounded-xl" type="text" name="name"/>
+        <span class="text-sm text-red-300" id="name-errors"></span>
     </label>
 
     <label class="flex flex-col gap-2">
         <span>Comment</span>
-        <input class="bg-neutral-900 p-4 rounded-xl" type="text" name="comment" />
+        <textarea required class="bg-neutral-900 p-4 rounded-xl resize-none" rows="3" name="comment"/>
+        <span class="text-sm text-red-300" id="comment-errors"></span>
     </label>
 
-    <Button client:visible level="secondary" text="Submit" />
+    <Button client:visible level="secondary" text="Submit"/>
 </form>
 
 <script>
-const formElement = document.getElementById("add-blog-comment-form");
+    import {actions} from 'astro:actions';
 
-formElement.addEventListener("submit", (e) => {
-    e.preventDefault();
-    console.log(e)
-    console.log(new FormData(formElement).entries());
-})
+    const initFormElement = () => {
+        const formElement = document.getElementById("add-blog-comment-form");
+        const nameErrorWrapper = document.getElementById("name-errors");
+        const commentErrorWrapper = document.getElementById("comment-errors");
+
+        const hasAnyErrors = () => {
+            return nameErrorWrapper.innerText !== "" || commentErrorWrapper.innerText !== "";
+        }
+
+        if (formElement === null || nameErrorWrapper === null || commentErrorWrapper === null) {
+            return;
+        }
+
+        formElement.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const formElAfterSubmit = e.currentTarget;
+
+            if (formElAfterSubmit === null || !(formElAfterSubmit instanceof HTMLFormElement)) {
+                return;
+            }
+
+            const formData = new FormData(formElAfterSubmit)
+
+
+            const params = {
+                blogPostSlug: formData.get("blogPostSlug"),
+                name: formData.get("name"),
+                content: formData.get("comment"),
+            }
+
+            if (
+                (typeof params.blogPostSlug === "string"
+                    && params.blogPostSlug === "")
+                || params.blogPostSlug === null
+                ||
+                (typeof params.name === "string"
+                    && params.name === "")
+                || params.name === null
+                ||
+                (typeof params.content === "string"
+                    && params.content === "")
+                || params.content === null
+            ) {
+                return;
+            }
+
+            if (params.name.length < 3) {
+                nameErrorWrapper.innerText = "Name should be at least 3 characters long.";
+            } else {
+                nameErrorWrapper.innerText = ""
+            }
+
+            if (params.content.length > 150) {
+                commentErrorWrapper.innerText = "Comment should be 150 characters at maximum.";
+            } else {
+                commentErrorWrapper.innerText = ""
+            }
+
+            if (hasAnyErrors()) {
+                return;
+            }
+
+            const {data, error} = await actions.blogComments.add(params);
+
+            if (error) {
+                throw error;
+            }
+
+            if (data.length > 0) {
+                window.location.reload();
+            }
+        })
+    }
+
+    initFormElement();
 </script>

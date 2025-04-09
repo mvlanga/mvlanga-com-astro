@@ -3,6 +3,8 @@ import { BlogComments, and, db, eq } from "astro:db";
 import { z } from "astro:schema";
 import { v4 as uuidv4 } from "uuid";
 
+const isProduction = import.meta.env.PROD;
+
 export const blogComments = {
 	get: defineAction({
 		input: z.string(),
@@ -35,12 +37,16 @@ export const blogComments = {
 		}),
 		handler: async ({ blogPostSlug, name, content }) => {
 			try {
-				return await db.insert(BlogComments).values({
-					id: uuidv4(),
-					blogPostSlug,
-					name,
-					content,
-				});
+				return await db
+					.insert(BlogComments)
+					.values({
+						id: uuidv4(),
+						blogPostSlug,
+						name,
+						content,
+						reviewed: !isProduction,
+					})
+					.returning();
 			} catch (e) {
 				console.error(e);
 
