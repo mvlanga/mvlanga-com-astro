@@ -10,7 +10,7 @@ const isProduction = import.meta.env.PROD;
 const legalPages = await getCollection("legalPages");
 
 interface Props {
-	type?: "regular" | "small";
+	type?: "regular" | "small" | "rating";
 }
 
 const { type = "regular" } = Astro.props;
@@ -19,7 +19,7 @@ const { type = "regular" } = Astro.props;
 <footer class={
     clsx(
             "container flex flex-col pb-12",
-            type === "regular" && "gap-24",
+            (type === "regular" || type === "rating") && "gap-24",
             type === "small" && "gap-12",
         )
     }
@@ -36,13 +36,30 @@ const { type = "regular" } = Astro.props;
             </div>
     )}
 
+    {type === "rating" && (
+            <div class="flex flex-row flex-wrap justify-between gap-12 md:items-end text-neutral-200">
+                <h2 class="text-5xl">Did you like it?</h2>
+
+                <div class="flex flex-wrap gap-2">
+                    <button class="inline-flex rounded-3xl gap-2 px-6 py-3 text-white bg-neutral-900">
+                        <span class="text-xl">🔥</span>
+                        <span>5</span>
+                    </button>
+                    <button class="inline-flex rounded-3xl gap-2 px-6 py-3 text-white bg-neutral-900">
+                        <span class="text-xl">😢️</span>
+                        <span>2</span>
+                    </button>
+                </div>
+            </div>
+    )}
+
     <div class={clsx("flex flex-wrap items-end justify-between gap-6 text-neutral-500 contrast-more:text-neutral-400", type === "regular" && "mt-12")}>
         {isProduction ?
                 <CarbonBadge/> : "<CarbonBadge />"}
 
         <div class="flex flex-wrap gap-2 md:gap-4">
             <a href="https://github.com/mvlanga/mvlanga-com-astro" target="blank"
-               class="transition-colors hover:text-purple"
+               class="transition-colors hover:text-purple-300"
                data-umami-event="link-click"
                data-umami-event-url="https://github.com/mvlanga/mvlanga-com-astro"
             >
@@ -52,7 +69,7 @@ const { type = "regular" } = Astro.props;
                 legalPages.map(({id, data: {title}}) => (
                         <a
                                 href={`/legal/${id}`}
-                                class="transition-colors hover:text-purple"
+                                class="transition-colors hover:text-purple-300"
                         >
                             {title}
                         </a>

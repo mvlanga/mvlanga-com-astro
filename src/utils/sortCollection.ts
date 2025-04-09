@@ -17,5 +17,11 @@ export const sortBlogPosts = <T extends CollectionEntry<"blogPosts">>(
 	);
 };
 
+export const sortBlogComments = <T extends { createdAt: Date }>(
+	comments: T[],
+) => {
+	return comments.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+};
+
 export const shuffle = <T>(items: Array<T>) =>
 	items.sort(() => Math.random() - 0.5);

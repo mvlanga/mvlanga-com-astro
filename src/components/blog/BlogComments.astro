@@ -1,0 +1,37 @@
+---
+import { sortBlogComments } from "../../utils/sortCollection";
+export const prerender = false;
+
+import { actions } from "astro:actions";
+
+interface Props {
+	blogPostSlug: string;
+}
+
+const { blogPostSlug } = Astro.props;
+
+const { data } = await Astro.callAction(actions.blogComments.get, blogPostSlug);
+---
+
+{
+    data === undefined || data.length === 0 ? (
+    <div class="flex flex-col gap-2 bg-neutral-900 rounded-xl p-6">
+       <p>
+           This could be the first comment, maybe made by you?
+       </p>
+    </div>
+        ) : (
+    <div class="flex flex-col gap-4">
+        {
+            sortBlogComments(data)
+                .map(({name, content, createdAt}) => (
+                        <div class="flex flex-col gap-2 bg-neutral-900 rounded-xl p-6">
+                            <p>{name}</p>
+                            <p>{content}</p>
+                            <p class="text-xs">{createdAt.toLocaleString()}</p>
+                        </div>
+                ))
+        }
+    </div>
+        )
+    }
