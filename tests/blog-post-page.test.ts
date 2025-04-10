@@ -4,6 +4,7 @@ import { testAutomaticallyDetectableA11nIssuesByRoute } from "./utils.ts";
 const blogPages: string[] = [
 	"/blog/organize-arrays-objects-dates-by-month-javascript-groupby",
 	"/blog/how-to-build-a-page-view-counter-with-astro-db-actions-and-server-side-islands",
+	"/blog/generating-open-graph-images-in-astro",
 ];
 
 test.describe("blog-post-page", () => {
