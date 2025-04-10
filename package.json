@@ -15,8 +15,11 @@
 		"test:e2e:production": "environment=PRODUCTION playwright test"
 	},
 	"dependencies": {
+		"@expressive-code/plugin-collapsible-sections": "^0.40.2",
+		"@expressive-code/plugin-line-numbers": "^0.40.2",
 		"@nanostores/react": "^0.8.4",
 		"@vidstack/react": "^1.12.13",
+		"astro-expressive-code": "^0.40.2",
 		"clsx": "^2.1.1",
 		"embla-carousel-react": "^8.6.0",
 		"media-icons": "^1.1.5",
