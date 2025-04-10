@@ -89,6 +89,11 @@
 	@apply w-full;
 }
 
+.max-w-prose [role="alert"]:not(:where([class~="not-prose"])),
+.max-w-prose .expressive-code:not(:where([class~="not-prose"])) {
+	@apply my-5;
+}
+
 @utility max-w-prose-l {
 	@apply w-full;
 }
