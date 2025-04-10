@@ -1,10 +1,10 @@
 ---
 import { getCollection, render } from "astro:content";
-import { ViewCounter } from "@/components/blog/ViewCounter";
-import { PlayfulDivider } from "@/components/common/PlayfulDivider";
-import Prose from "@/components/common/Prose.astro";
-import Skeleton from "@/components/common/Skeleton.astro";
-import Layout from "@/layouts/layout.astro";
+import { ViewCounter } from "../../../components/blog/ViewCounter";
+import { PlayfulDivider } from "../../../components/common/PlayfulDivider";
+import Prose from "../../../components/common/Prose.astro";
+import Skeleton from "../../../components/common/Skeleton.astro";
+import Layout from "../../../layouts/layout.astro";
 
 export async function getStaticPaths() {
 	const isProduction = import.meta.env.PROD;

@@ -59,6 +59,7 @@ const blogPosts = defineCollection({
 		createdAt: z.date(),
 		tags: z.array(z.string()),
 		draft: z.boolean().optional(),
+		openGraphCover: z.string().optional(),
 	}),
 });
 

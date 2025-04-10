@@ -4,93 +4,76 @@ slug: generating-open-graph-images-in-astro
 description: Learn how to generate dynamic Open Graph (OG) images for your Astro pages using Satori and Sharp.
 createdAt: 2025-04-10
 tags: [ "seo", "astro" ]
+openGraphCover: "src/content/blog/2025/04/generating-open-graph-images-with-embedded-images-in-astro/example-cover.png"
 ---
+import Alert from "../../../../../components/common/Alert.astro";
 import OgImagePreview from "./OgImagePreview.astro";
 
 <OgImagePreview/>
 
 ## What is an Open Graph (OG) Image?
 
-An Open Graph (OG) image is a visual preview displayed when sharing a link on social media platforms. It helps increase user engagement by making shared content more visually appealing. These images play a crucial role in improving click-through rates and improving interactions.
+An Open Graph (OG) image is a visual preview displayed when sharing a link within some social media platforms or tools like Microsoft Teams or Slack.
 
-Plus, it just looks cool when you send a link to someone and a little image automatically pops up over the link,
+Plus, let’s be honest—it just looks cooler when you send someone a link and a custom image pops up instead of a simple plain link.
 
-To make the most of them, ensure that your OG images follow best practices, such as choosing the right dimensions, optimizing file sizes, and making them relevant to the content.
+To get the most out of OG images, make sure to follow best practices: use the right dimensions, optimize file sizes, and keep them relevant to your content.
 
 ### Recommended OG Image Dimensions
 
 > Recommended Dimensions: 1200x630 pixels (1.91:1 aspect ratio)
-This size works well across platforms like Facebook, LinkedIn, and Twitter. For a detailed guide on OG image dimensions, check out [OGimage Gallery's post about that topic](https://www.ogimage.gallery/libary/the-ultimate-guide-to-og-image-dimensions-2024-update).
+This size works well across platforms like LinkedIn, Microsoft Teams and Slack. For a detailed guide on OG image dimensions, check out [OGimage Gallery's post about that topic](https://www.ogimage.gallery/libary/the-ultimate-guide-to-og-image-dimensions-2024-update).
 
 ## Prerequisites
 
-For this guide, we'll assume you have a working Astro setup. If you don't, head over to the [Astro's official documentation](https://astro.build/) or use on of the [starter templates from Astro](https://astro.new/blog?on=idx). Once you're ready, let's dive in!
+For this guide, we'll assume you have a working Astro setup. If you don't, head over to the [Astro's official documentation](https://astro.build/) or use on of the [starter templates from Astro](https://astro.new/blog?on=idx).
+
+We’ll also assume you're using a structure similar to **Astro's Blog starter template**, like this:
+
+```markdown
+.
+├── public/
+│   └── img/
+│       └── ...
+└── src/
+    ├── components/
+    │   └── ...
+    ├── content/
+    │   └── blog/
+    │       └── hello-world.md
+    ├── pages/
+    │   └── blog/
+    │       ├── index.ts
+    │       └── [id]/
+    │           └── index.ts
+    └── utils/
+        └── ...
+```
 
 ## Dependencies
 
-We'll use two libraries to dynamically generate Open Graph images:
+We’ll use two libraries to generate Open Graph images dynamically:
 
 - `Satori`: A library for converting HTML and CSS to SVG.
 - `Sharp`: A tool for high performance Node.js image processing.
 
-To install these dependencies, run:
+Install them with:
 
 ```
 npm install satori sharp --save-dev
 ```
 
-## Creating the `Blog` Content Entity
-
-In your `content.config.ts`, define your blog posts collection:
-
-```typescript
-import { defineCollection, z } from "astro:content";
-import { glob } from "astro/loaders";
-
-const blogPosts = defineCollection({
-    loader: glob({
-        base: "src/content/blog",
-        pattern: ["**/**/*.md", "**/**/*.mdx"],
-    }),
-    schema: z.object({
-        title: z.string(),
-    }),
-});
-
-export const collections = {
-    blogPosts,
-};
-```
-
-**Explanation of the Code:**
-
-- `defineCollection`: Defines a collection of blog posts.
-- `glob`: Loads all markdown or MDX files in the `src/content/blog` directory.
-- `schema`: Ensures that each post has a title property as a string.
-
-## Creating Your First Blog Post
-
-Now, let's create a simple blog post. Create a new file under `src/content/blog/hello-world.md` and add the following content:
-
-```astro
----
-title: Hello World
----
-
-# Hello World
-
-Welcome to my first blog post! 🎉
-```
-
 ## Utility Functions
 
-Next, let's create some utility functions for generating Open Graph images. We'll define these in `src/utils/open-graph.ts`.
+Let’s create utility functions in `src/utils/open-graph.ts` to handle fonts, background images, and image generation.
 
-### Custom fonts
+### Load Custom Fonts
 
-To use custom fonts in your OG images, they should be placed in the public directory. This ensures Astro can access them during the image generation process.
+Place your fonts in the `public` directory to make them accessible at build time:
 
 ```typescript
+// src/utils/open-graph.ts
+
 import fs from "node:fs/promises";
 import path from "node:path";
 
@@ -110,25 +93,19 @@ export const getCustomFonts = async () => {
 };
 ```
 
-### Background image
+### Load Background Image
 
-We'll create a helper function to randomly select a background image from a few options.
+Let's create a utility to load a background image that will appear in the background of each OG image. We'll use a lossless `.png' because we're optimising the image for web use while generating the og image itself.
 
 ```typescript
+// src/utils/open-graph.ts
+
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const backgroundImages = [
-    "og-background-01.png",
-    "og-background-02.png",
-    "og-background-03.png",
-];
-
 export const BackgroundImage = async () => {
     const backgroundImage = await fs.readFile(
-        path.resolve(
-            `./public/img/${backgroundImages[Math.floor(Math.random() * backgroundImages.length)]}`,
-        ),
+        path.resolve("./public/img/og-background.png"),
     );
 
     return {
@@ -146,16 +123,50 @@ export const BackgroundImage = async () => {
 };
 ```
 
-## Creating the Open Graph Image Endpoint
+### Generate the OG Image
 
-To dynamically generate OG images for your blog posts, create a new file under `src/pages/blog/[id]/og.jpeg.ts`.
-
-1. Define the `GET` Method
+Usually, we want every og image using the same file type and quality settings, thats why we create another small utility for that.
 
 ```typescript
-import { type CollectionEntry } from "astro:content";
+// src/utils/open-graph.ts
+
+import type { ReactNode } from "react";
 import satori from "satori";
 import sharp from "sharp";
+
+export const generateOgImage = async (content: ReactNode) => {
+    const svg = await satori(content, {
+		width: 1200,
+		height: 630,
+		debug: false,
+		fonts: await getCustomFonts(),
+	});
+
+	const jpeg = await sharp(Buffer.from(svg))
+		.jpeg({
+			quality: 60,
+		})
+		.toBuffer();
+
+	return new Response(jpeg, {
+		headers: {
+			"Content-Type": "image/jpeg",
+		},
+	});
+};
+```
+
+## Creating the Endpoint to Generate OG Images
+
+Let’s create the dynamic endpoint at `src/pages/blog/[id]/og.jpeg.ts`.
+
+1. Set Up the `GET` Method
+
+```typescript
+// src/pages/blog/[id]/og.jpeg.ts
+
+import { type CollectionEntry } from "astro:content";
+import { BackgroundImage, generateOgImage } from "../../../utils/og-image/utils.ts";
 
 interface Props {
     params: { id: string };
@@ -165,7 +176,7 @@ interface Props {
 export const GET = async ({ props }: Props) => {
     const { post } = props;
 
-    const svg = await satori(
+    return await generateOgImage(
         // @ts-expect-error: Astro currently does not support endpoints with tsx file format
         // because of that, we need to use react-elements-like objects
         // satori still expects valid JSX elements, that's why we get typescript errors here
@@ -204,34 +215,26 @@ export const GET = async ({ props }: Props) => {
                     },
                 ],
             },
-        },
-        {
-            width: 1200,
-            height: 630,
-            debug: false,
-            fonts: await getCustomFonts(),
-        },
-    );
-
-    const jpeg = await sharp(Buffer.from(svg))
-        .jpeg({
-            quality: 60,
-        })
-        .toBuffer();
-
-    return new Response(jpeg, {
-        headers: {
-            "Content-Type": "image/jpeg",
-        },
-    });
+        }
+    )
 };
 ```
 
+<Alert>
+    **Small reminder about styling**
+
+    When styling the html content, please keep in mind that `Satori` doesn't support all css properties, check the docs for the list of supported properties [here](https://github.com/vercel/satori?tab=readme-ov-file#css).
+
+    `Satori` also supports `tailwindcss`, but it is experimental and because it does not support all css properties and some are written differently (e.g. `object-fit` vs `objectFit`) I do not recommend using tailwindcss utility classes here.
+</Alert>
+
 2. Add the `getStaticPaths` Method
 
-To generate the OG images at build time, use the `getStaticPaths` method:
+To generate the OG images at build time for each blog entry, use the `getStaticPaths` method:
 
 ```typescript
+// src/pages/blog/[id]/og.jpeg.ts
+
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -246,13 +249,13 @@ export async function getStaticPaths() {
 
 Now, when you visit `/blog/hello-world/og.jpeg`, you should see your dynamically generated OG image!
 
-## Including Dynamic Images in OG Image
+## Including Images from Frontmatter
 
-If your posts have a cover image, you can easily include these cover images in the Open Graph (OG) image that appears when your content is shared on social media. By referencing an image in the frontmatter of your blog posts, you can seamlessly integrate it into your dynamic OG image generation process.
+Want to include a custom image per post?
 
-### A Simple and Future-Proof Solution
+The most simple solution is to add a dedicated field like `openGraphCover` to your frontmatter, which will contain the **absolute image path** as a string. By doing this, Astro won’t process the image but will allow you to read it directly using `fs.readFile`.
 
-A very simple and future-proof solution is to add a dedicated field like `openGraphCover` to your frontmatter, which will contain the image path as a string. By doing this, Astro won’t process the image but will allow you to read it directly using `fs.readFile`.
+So add a field like this in your frontmatter:
 
 ```astro
 ---
@@ -260,9 +263,11 @@ openGraphCover: "src/content/blog/hello-world/hello-world-cover.jpg"
 ---
 ```
 
-Then, you can read the image with the following code:
+Then read it in your OG endpoint:
 
 ```typescript
+// src/pages/blog/[id]/og.jpeg.ts
+
 await fs.readFile(
     path.resolve(`${process.cwd()}/${project.data.openGraphCover}`),
 );
@@ -270,55 +275,24 @@ await fs.readFile(
 
 This method ensures that Astro doesn’t try to process the image, making it easier to handle in dynamic image generation.
 
-### A much more detailed solution if you want to avoid having the image path twice
+### Why Not Use Astro-Processed Images?
 
-If you'd prefer a more detailed approach where Astro processes the image, here's how you can do it.
+The problem with using [astro processed image from content collections](https://docs.astro.build/de/guides/images/#images-in-content-collections)?
 
-#### 1. Add Image to `content.config.ts`
+Wile developing locally, the paths for assets like images may differ from how they are handled in production. This discrepancy can cause issues when trying to read image files directly using `fs.readFile`.
 
-In the `content.config.ts` file, define your blog post schema to include the cover image and alt text. Use the `image()` method from Astro to properly process the image:
+- **In development mode, the path might look like this**: `/@fs/Users/your-user/desktop/workspace/my-project/src/content/blog/hello-world/hello-world-cover.jpg?origWidth=700&origHeight=900&origFormat=jpg`
+- **In production build, Astro generates a path like this**: `/_astro/hello-world-cover.DB8pXa__.jpg`
 
-```typescript
-defineCollection({
-    loader: {
-        /* your loader */
-    },
-    schema: ({ image }) =>
-        z.object({
-            title: z.string(),
-            cover: image(),
-            coverAlt: z.string(),
-        }),
-});
-```
+There is also another challenge in production, the assets aren’t directly accessible during build time due to how Astro processes them. As a result, accessing them via fs.readFile is problematic because the image doesn't exist sometimes (depending on the build order).
 
-This ensures that the cover image and alt text are part of your content schema and available for later use in dynamic image generation.
+We can create a utility for that, but if astro changes some internal behaviour, we would need to adjust the util again, thats why I suggest using the simpler approach mentioned above.
 
-#### 2. Add Image to Frontmatter
-
-To add an image to your blog post, simply reference it in the frontmatter of your markdown file (.md or .mdx). For example, in the `src/content/blog/hello-world.md` file:
-
-```astro
----
-cover: ./hello-word-cover.jpg
-coverAlt: your alt text
----
-```
-
-#### 3. Handling Image Paths
-
-Now, while developing locally, the paths for assets like images may differ from how they are handled in production. This discrepancy can cause issues when trying to read image files directly using `fs.readFile`.
-
-- **In development mode, the path might look like this:**: `/@fs/Users/your-user/desktop/workspace/my-project/src/content/blog/hello-world/hello-world-cover.jpg?origWidth=700&origHeight=900&origFormat=jpg`
-- **In production build, Astro generates a path like this:**: `/_astro/hello-world-cover.DB8pXa__.jpg`
-
-The challenge is that in production, the assets aren’t directly accessible during build time due to how Astro processes them. As a result, accessing them via fs.readFile is problematic.
-
-#### 4. Utility Function to Resolve Image Paths
-
-To handle these differences, you'll need a utility function that resolves the correct path, whether you're in development or production. Here's a simple solution that takes care of both environments:
+If you wanna use a utility, I could get this working with this util, taking care of both environments:
 
 ```typescript
+// src/utils/open-graph.ts
+
 import fs from "node:fs/promises";
 
 export const getFrontmatterImage = async (
@@ -326,31 +300,28 @@ export const getFrontmatterImage = async (
     src: string,
     format: string,
 ) => {
-    // In production, the paths are different, so we handle them accordingly
     if (import.meta.env.PROD) {
         const folderPathArr = filePath.split("/");
-        folderPathArr.pop(); // Remove the file name to get the folder path
+        folderPathArr.pop();
 
         const folderPath = folderPathArr.join("/");
 
-        // Read the file from the resolved path in production
         return await fs.readFile(
             `${process.cwd()}/${folderPath}${src.replace("_astro", "").split(".")[0]}.${format}`,
         );
     }
 
-    // In development, we can access the file directly
     return await fs.readFile(src.replace("/@fs", "").replace(/\?.*/, ""));
 };
 ```
 
 This utility resolves the correct path for both development and production environments. It accounts for the differences in how Astro handles asset paths during the build process.
 
-#### 5. Using the Utility Function
-
-To get the frontmatter image, use the `getFrontmatterImage` function in your image generation logic. Here’s how you can use it to fetch the cover image:
+**Using it**
 
 ```typescript
+// src/pages/blog/[id]/og.jpeg.ts
+
 const projectCoverImage = await getFrontmatterImage(
     project.filePath,
     project.data.cover.src,
@@ -360,8 +331,8 @@ const projectCoverImage = await getFrontmatterImage(
 
 This will return the correct image file, whether you're working locally or in production.
 
-## Summary
+## Final Thoughts
 
-By following this guide, you've learned how to dynamically generate Open Graph images for your Astro blog posts using Satori and Sharp. These images will help improve your content's visibility and engagement on social media platforms, boosting both SEO and user interaction.
+With this setup, you can generate slick, dynamic OG images for every blog post. Make your blog feel just a little more polished.
 
 Happy coding!
