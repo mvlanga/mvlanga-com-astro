@@ -48,7 +48,7 @@
 		"lefthook": "^1.11.8",
 		"rollup-plugin-visualizer": "^5.14.0",
 		"satori": "^0.12.2",
-		"sharp": "^0.33.5",
+		"sharp": "^0.34.1",
 		"tailwindcss": "^4.0.5",
 		"typescript": "^5.8.3"
 	}
