@@ -50,6 +50,6 @@
 		"satori": "^0.12.2",
 		"sharp": "^0.33.5",
 		"tailwindcss": "^4.0.5",
-		"typescript": "^5.8.2"
+		"typescript": "^5.8.3"
 	}
 }
