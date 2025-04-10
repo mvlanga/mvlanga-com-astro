@@ -10,3 +10,8 @@ updates:
     schedule:
       interval: "weekly"
       day: "sunday"
+    groups:
+      dev-deps:
+        dependency-type: "development"
+      prod-deps:
+        dependency-type: "production"
