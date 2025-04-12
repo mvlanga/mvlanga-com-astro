@@ -21,8 +21,10 @@ const alertClasses = clsx(
 	severity === "error" && "border-red-900 bg-red-950",
 	additionalClasses,
 );
+
+const html = await Astro.slots.render("default");
 ---
 
 <div role="alert" class={alertClasses}>
-    <slot/>
+    <Fragment set:html={html} />
 </div>
