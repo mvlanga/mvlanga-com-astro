@@ -4,7 +4,6 @@ import netlify from "@astrojs/netlify";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
-import expressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
 import { visualizer } from "rollup-plugin-visualizer";
 import { EnumChangefreq } from "sitemap";
@@ -48,27 +47,6 @@ export default defineConfig({
 				}
 
 				return item;
-			},
-		}),
-		expressiveCode({
-			shiki: {
-				bundledLangs: [
-					"typescript",
-					"jsx",
-					"markdown",
-					"bash",
-					"astro",
-					"shell",
-				],
-			},
-			themes: ["github-dark-default"],
-			styleOverrides: {
-				codeBackground: "var(--color-neutral-900)",
-				borderColor: "transparent",
-				borderRadius: "var(--radius-xl)",
-				frames: {
-					terminalBackground: "var(--color-neutral-900)",
-				},
 			},
 		}),
 		mdx(),
