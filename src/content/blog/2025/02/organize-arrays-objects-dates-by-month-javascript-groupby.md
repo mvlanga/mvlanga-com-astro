@@ -53,8 +53,10 @@ distinguish between posts from the same month in different years.
 
 Here’s how we can modify the code to achieve this:
 
-```javascript
+```javascript del={2-2} ins={4-10}
 Object.groupBy(filteredBlogPosts, ({data: {createdAt}}) => {
+    return createdAt.toLocaleString("en-US", {month: "long"})
+  
     const isThisYear =
         createdAt.getFullYear() === new Date().getFullYear();
 
@@ -91,7 +93,7 @@ for (const [month, posts] of Object.entries(groupedPosts)) {
 This code outputs a clean, organized display where each month has its own section, with all posts from that month listed
 underneath. For example:
 
-```text
+```text showLineNumbers=false
 February:
 - Post Title 4
 
