@@ -11,8 +11,9 @@ on <a href="https://www.netlify.com/" target="_blank">Netlify</a>.
 You can use this code for your own website, **with attribution**.
 
 I like keeping my site open source but invested a large amount of time and effort into building and designing this
-version of my website. Please don’t claim this work as your
-own.
+version of my website. Please don’t claim this work as your own.
+
+[More details about forking this repo](src/content/blog/2025/04/forking-my-website.md)
 
 ### TL;DR
 
@@ -39,11 +40,15 @@ to [mvlanga.com](https://mvlanga.com). Thanks!
    npm run dev
    ```
 
-## Prepare database for deploying to production 
+## Prepare database for deploying to production
 
-I use [Turso](https://turso.tech/) for the database as Astro suggests for [Astro DB](https://docs.astro.build/en/guides/astro-db/).
+I use [Turso](https://turso.tech/) for the database as Astro suggests
+for [Astro DB](https://docs.astro.build/en/guides/astro-db/).
 
-To connect the database for production, refer to the [official guide on configuring and connecting the database](https://docs.astro.build/en/guides/astro-db/#connect-a-libsql-database-for-production) from Astro. Additionally, the `.env.example` file in the root directory will guide you in setting up the environment variables.
+To connect the database for production, refer to
+the [official guide on configuring and connecting the database](https://docs.astro.build/en/guides/astro-db/#connect-a-libsql-database-for-production)
+from Astro. Additionally, the `.env.example` file in the root directory will guide you in setting up the environment
+variables.
 
 ## 🚀 Building and running for production
 
