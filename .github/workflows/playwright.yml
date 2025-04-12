@@ -27,3 +27,5 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 3
+      - name: ✅ All steps completed
+        run: echo "🎉 Tests and uploads complete. Workflow should now finish."
