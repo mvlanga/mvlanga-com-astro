@@ -52,7 +52,14 @@ export default defineConfig({
 		}),
 		expressiveCode({
 			shiki: {
-				bundledLangs: ["typescript", "jsx", "markdown", "bash", "astro", "shell"],
+				bundledLangs: [
+					"typescript",
+					"jsx",
+					"markdown",
+					"bash",
+					"astro",
+					"shell",
+				],
 			},
 			themes: ["github-dark-default"],
 			styleOverrides: {
