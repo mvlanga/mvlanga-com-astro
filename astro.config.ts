@@ -84,9 +84,7 @@ export default defineConfig({
 			}),
 		],
 	},
-	adapter: netlify({
-		edgeMiddleware: true,
-	}),
+	adapter: netlify(),
 	redirects: {
 		"/:lang/personal-projects": "/",
 		"/:lang/about-me": "/#about",
