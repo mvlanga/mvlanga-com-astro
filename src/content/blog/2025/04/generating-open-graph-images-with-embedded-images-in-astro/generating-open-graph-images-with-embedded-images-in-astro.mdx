@@ -1,11 +1,12 @@
 ---
 title: How to Generate Open Graph (OG) Images in Astro
 slug: generating-open-graph-images-in-astro
-description: Learn how to generate dynamic Open Graph (OG) images for your Astro-powered page using Satori and Sharp. From setting up custom fonts to handling frontmatter images in both dev and production—this guide covers it all. Make your shared links look stunning!
+description: Learn how to generate dynamic Open Graph (OG) images for your Astro-powered page using Satori and Sharp. From setting up custom fonts to handling frontmatter images in both dev and production — this guide covers it all. Make your shared links look stunning!
 createdAt: 2025-04-12
 tags: [ "seo", "astro" ]
 openGraphCover: "src/content/blog/2025/04/generating-open-graph-images-with-embedded-images-in-astro/example-cover.png"
 ---
+import Alert from "../../../../../components/common/Alert.astro";
 import OgImagePreview from "./OgImagePreview.astro";
 
 <OgImagePreview/>
@@ -14,7 +15,7 @@ import OgImagePreview from "./OgImagePreview.astro";
 
 An Open Graph (OG) image is a visual preview displayed when sharing a link within some social media platforms or tools like Microsoft Teams or Slack.
 
-Plus, let’s be honest—it just looks cooler when you send someone a link and a custom image pops up instead of a simple plain link.
+Plus, let’s be honest — it just looks cooler when you send someone a link and a custom image pops up instead of a simple plain link.
 
 To get the most out of OG images, make sure to follow best practices: use the right dimensions, optimize file sizes, and keep them relevant to your content.
 
@@ -262,6 +263,14 @@ export const GET = async ({ props }: Props) => {
     )
 };
 ```
+
+<Alert>
+    **Small reminder about styling**
+
+    When styling the html content, please keep in mind that `Satori` doesn't support all css properties, check the docs for the list of supported properties here: https://github.com/vercel/satori?tab=readme-ov-file#css.
+
+    `Satori` also supports `tailwindcss`, but it is experimental and because it does not support all css properties and some are written differently (e.g. `object-fit` vs `objectFit`) I do not recommend using tailwindcss utility classes here.
+</Alert>
 
 2. Add the `getStaticPaths` Method
 
