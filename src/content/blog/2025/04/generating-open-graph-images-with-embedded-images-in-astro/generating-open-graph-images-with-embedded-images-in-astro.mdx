@@ -6,7 +6,6 @@ createdAt: 2025-04-12
 tags: [ "seo", "astro" ]
 openGraphCover: "src/content/blog/2025/04/generating-open-graph-images-with-embedded-images-in-astro/example-cover.png"
 ---
-import Alert from "../../../../../components/common/Alert.astro";
 import OgImagePreview from "./OgImagePreview.astro";
 
 <OgImagePreview/>
@@ -263,10 +262,6 @@ export const GET = async ({ props }: Props) => {
     )
 };
 ```
-
-<Alert>
-test
-</Alert>
 
 2. Add the `getStaticPaths` Method
 
