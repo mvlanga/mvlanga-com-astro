@@ -8,6 +8,8 @@ import { defineConfig } from "astro/config";
 import { visualizer } from "rollup-plugin-visualizer";
 import { EnumChangefreq } from "sitemap";
 
+import expressiveCode from "astro-expressive-code";
+
 export default defineConfig({
 	outDir: "static",
 	prefetch: {
@@ -49,9 +51,10 @@ export default defineConfig({
 				return item;
 			},
 		}),
+		db(),
+		expressiveCode(),
 		mdx(),
 		react(),
-		db(),
 	],
 	vite: {
 		plugins: [
