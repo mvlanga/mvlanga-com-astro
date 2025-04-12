@@ -7,9 +7,6 @@ interface Props {
 	severity?: Severity;
 	additionalClasses?: string;
 }
-console.log("PROPS: ", Astro.props);
-
-console.log("SLOTS: ", Astro.slots);
 
 const { severity = "info", additionalClasses } = Astro.props;
 
@@ -24,8 +21,6 @@ const alertClasses = clsx(
 	severity === "error" && "border-red-900 bg-red-950",
 	additionalClasses,
 );
-
-console.log("SLOTS: ", Astro.slots);
 ---
 
 <div role="alert" class={alertClasses}>
