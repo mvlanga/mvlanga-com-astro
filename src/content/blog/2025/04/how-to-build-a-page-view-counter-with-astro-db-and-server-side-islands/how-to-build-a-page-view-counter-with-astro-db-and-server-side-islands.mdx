@@ -28,7 +28,24 @@ Curious to understand the reasoning behind this, I decided to experiment with bo
 
 ## Prerequisites
 
-For this guide, we'll assume you have a working Astro setup. If you don't, head over to the [Astro's official documentation](https://astro.build/) or use on of the [starter templates from Astro](https://astro.new/blog?on=idx). Once you're ready, let's dive into adding the view counter!
+For this guide, we'll assume you have a working Astro setup. If you don't, head over to the [Astro's official documentation](https://astro.build/) or use on of the [starter templates from Astro](https://astro.new/blog?on=idx).
+
+We’ll also assume you're using a structure similar to **Astro's Blog starter template**, like this:
+
+```markdown showLineNumbers=false
+.
+└── src/
+    ├── components/
+    │   └── ...
+    ├── content/
+    │   └── blog/
+    │       └── hello-world.md
+    ├── pages/
+    │   └── blog/
+    │       └── [id].astro
+    └── utils/
+        └── ...
+```
 
 ## Setting Up Your Database with Astro DB
 
@@ -51,7 +68,7 @@ Now that Astro DB is installed, let’s define the table to store page views. Th
 - `id`: a unique identifier for each page (we’ll use the page's slug).
 - `count`: the number of views, initialized to 1.
 
-```typescript
+```typescript title="db/config.ts"
 import { column, defineDb, defineTable } from "astro:db";
 
 // Define the `PageViews` table
@@ -82,7 +99,7 @@ Next, we’ll define two server-side actions to interact with the database:
 
 Create a new file in `src/actions/index.ts`:
 
-```typescript
+```typescript title="src/actions/index.ts"
 import { defineAction, ActionError } from 'astro:actions';
 import { PageViews, db, eq, sql } from "astro:db";
 import { z } from 'astro:schema';
@@ -154,7 +171,7 @@ Now, let’s create two Astro components to display and update the view count.
 
 Create an Astro component to display the view count, which will fetch data from the server.
 
-```astro
+```astro title="src/components/ViewCounter.astro"
 ---
 export const prerender = false;
 
@@ -201,7 +218,7 @@ To just display the current view count, import the `ViewCounter` component that 
 
 Let's create an Astro component under `src/components/ViewCounterWithIncrease.astro` that will increase and then display the updated view count.
 
-```astro
+```astro title="src/components/ViewCounterWithIncrease.astro"
 ---
 interface Props {
     id: string;
@@ -285,9 +302,9 @@ const {id} = Astro.props;
 
 ### Increment and Display the View Count using React
 
-Let's create a React component under `src/components/ViewCounter.tsx` that will increase and then display the updated view count.
+Let's create a React component under `src/components/ViewCounterWithIncrease.tsx` that will increase and then display the updated view count.
 
-```typescript jsx
+```typescript jsx title="src/components/ViewCounterWithIncrease.tsx"
 import {actions} from "astro:actions";
 import {useCallback, useState, useEffect} from "react";
 

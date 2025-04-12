@@ -1,13 +1,13 @@
 import db from "@astrojs/db";
 import mdx from "@astrojs/mdx";
+import netlify from "@astrojs/netlify";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
+import astroExpressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
 import { visualizer } from "rollup-plugin-visualizer";
 import { EnumChangefreq } from "sitemap";
-
-import netlify from "@astrojs/netlify";
 
 export default defineConfig({
 	outDir: "static",
@@ -50,6 +50,27 @@ export default defineConfig({
 				return item;
 			},
 		}),
+		astroExpressiveCode({
+			shiki: {
+				bundledLangs: [
+					"typescript",
+					"jsx",
+					"markdown",
+					"bash",
+					"astro",
+					"shell",
+				],
+			},
+			themes: ["github-dark-default"],
+			styleOverrides: {
+				codeBackground: "var(--color-neutral-900)",
+				borderColor: "transparent",
+				borderRadius: "var(--radius-xl)",
+				frames: {
+					terminalBackground: "var(--color-neutral-900)",
+				},
+			},
+		}),
 		mdx(),
 		react(),
 		db(),
@@ -63,9 +84,7 @@ export default defineConfig({
 			}),
 		],
 	},
-	adapter: netlify({
-		edgeMiddleware: true,
-	}),
+	adapter: netlify(),
 	redirects: {
 		"/:lang/personal-projects": "/",
 		"/:lang/about-me": "/#about",

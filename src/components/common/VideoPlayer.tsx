@@ -119,7 +119,7 @@ const VideoPlayerControls = ({ muted }: { muted: boolean }) => {
 			<div className="flex-1" />
 
 			<Controls.Group className="pointer-events-auto flex media-started:hidden w-full justify-center">
-				<PlayButton className="group relative inline-flex h-18 w-18 cursor-pointer items-center justify-center rounded-md outline-none hover:bg-purple">
+				<PlayButton className="group relative inline-flex h-18 w-18 cursor-pointer items-center justify-center rounded-md outline-none hover:bg-purple-500">
 					<PlayIcon className="h-16 w-16 " />
 				</PlayButton>
 			</Controls.Group>
@@ -128,21 +128,21 @@ const VideoPlayerControls = ({ muted }: { muted: boolean }) => {
 			<div className="media-starte:hidden flex-1" />
 
 			<Controls.Group className="pointer-events-auto flex media-started:flex hidden w-full items-center gap-4 p-8">
-				<PlayButton className="group relative inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md outline-none hover:bg-purple">
+				<PlayButton className="group relative inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md outline-none hover:bg-purple-500">
 					<PlayIcon className="hidden h-8 w-8 group-data-[paused]:block" />
 					<PauseIcon className="h-8 w-8 group-data-[paused]:hidden" />
 				</PlayButton>
 
 				{!muted && (
 					<>
-						<MuteButton className="group relative inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md outline-none hover:bg-purple">
+						<MuteButton className="group relative inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md outline-none hover:bg-purple-500">
 							<MuteIcon className="hidden h-8 w-8 group-data-[state='muted']:block" />
 							<VolumeLowIcon className="hidden h-8 w-8 group-data-[state='low']:block" />
 							<VolumeHighIcon className="hidden h-8 w-8 group-data-[state='high']:block" />
 						</MuteButton>
 						<VolumeSlider.Root className="group relative inline-flex h-10 w-full max-w-[80px] cursor-pointer touch-none select-none items-center outline-none aria-hidden:hidden">
 							<VolumeSlider.Track className="relative z-0 h-[5px] w-full rounded-sm bg-white/30 group-data-[focus]:ring-[3px]">
-								<VolumeSlider.TrackFill className="absolute h-full w-[var(--slider-fill)] rounded-sm bg-purple will-change-[width]" />
+								<VolumeSlider.TrackFill className="absolute h-full w-[var(--slider-fill)] rounded-sm bg-purple-500 will-change-[width]" />
 							</VolumeSlider.Track>
 							<VolumeSlider.Thumb className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-[var(--slider-fill)] z-20 h-[15px] w-[15px] rounded-full border border-[#cacaca] bg-white opacity-0 ring-white/40 transition-opacity will-change-[left] group-data-[active]:opacity-100 group-data-[dragging]:ring-4" />
 						</VolumeSlider.Root>
@@ -151,7 +151,7 @@ const VideoPlayerControls = ({ muted }: { muted: boolean }) => {
 
 				<TimeSlider.Root className="group relative inline-flex h-10 w-full cursor-pointer touch-none select-none items-center outline-none aria-hidden:hidden">
 					<TimeSlider.Track className="relative z-0 h-[5px] w-full rounded-sm bg-white/30 group-data-[focus]:ring-[3px]">
-						<TimeSlider.TrackFill className="absolute h-full w-[var(--slider-fill)] rounded-sm bg-purple will-change-[width]" />
+						<TimeSlider.TrackFill className="absolute h-full w-[var(--slider-fill)] rounded-sm bg-purple-500 will-change-[width]" />
 						<TimeSlider.Progress className="absolute z-10 h-full w-[var(--slider-progress)] rounded-sm bg-white/50 will-change-[width]" />
 					</TimeSlider.Track>
 					<TimeSlider.Thumb className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-[var(--slider-fill)] z-20 h-[15px] w-[15px] rounded-full border border-[#cacaca] bg-white opacity-0 ring-white/40 transition-opacity will-change-[left] group-data-[active]:opacity-100 group-data-[dragging]:ring-4" />

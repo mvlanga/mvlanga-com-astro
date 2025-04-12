@@ -1,21 +1,26 @@
 ---
 title: How to Generate Open Graph (OG) Images in Astro
 slug: generating-open-graph-images-in-astro
-description: Learn how to generate dynamic Open Graph (OG) images for your Astro-powered page using Satori and Sharp. From setting up custom fonts to handling frontmatter images in both dev and production—this guide covers it all. Make your shared links look stunning!
+description: Learn how to generate dynamic Open Graph (OG) images for your Astro-powered page using Satori and Sharp. From setting up custom fonts to handling frontmatter images in both dev and production — this guide covers it all. Make your shared links look stunning!
 createdAt: 2025-04-12
 tags: [ "seo", "astro" ]
 openGraphCover: "src/content/blog/2025/04/generating-open-graph-images-with-embedded-images-in-astro/example-cover.png"
 ---
+import { Image } from 'astro:assets';
+import ogImage from "./og.png";
 import Alert from "../../../../../components/common/Alert.astro";
-import OgImagePreview from "./OgImagePreview.astro";
 
-<OgImagePreview/>
+<Image
+    src={ogImage}
+    class="bg-neutral-900 rounded-xl"
+    alt="example open graph image"/>
+
 
 ## What is an Open Graph (OG) Image?
 
 An Open Graph (OG) image is a visual preview displayed when sharing a link within some social media platforms or tools like Microsoft Teams or Slack.
 
-Plus, let’s be honest—it just looks cooler when you send someone a link and a custom image pops up instead of a simple plain link.
+Plus, let’s be honest — it just looks cooler when you send someone a link and a custom image pops up instead of a simple plain link.
 
 To get the most out of OG images, make sure to follow best practices: use the right dimensions, optimize file sizes, and keep them relevant to your content.
 
@@ -30,7 +35,7 @@ For this guide, we'll assume you have a working Astro setup. If you don't, head 
 
 We’ll also assume you're using a structure similar to **Astro's Blog starter template**, like this:
 
-```markdown
+```markdown showLineNumbers=false
 .
 ├── public/
 │   └── img/
@@ -43,9 +48,9 @@ We’ll also assume you're using a structure similar to **Astro's Blog starter t
     │       └── hello-world.md
     ├── pages/
     │   └── blog/
-    │       ├── index.ts
+    │       ├── index.astro
     │       └── [id]/
-    │           └── index.ts
+    │           └── index.astro
     └── utils/
         └── ...
 ```
@@ -59,7 +64,7 @@ We’ll use two libraries to generate Open Graph images dynamically:
 
 Install them with:
 
-```
+```shell showLineNumbers=false frame="terminal"
 npm install satori sharp --save-dev
 ```
 
@@ -71,9 +76,7 @@ Let’s create utility functions in `src/utils/open-graph.ts` to handle fonts, b
 
 Place your fonts in the `public` directory to make them accessible at build time:
 
-```typescript
-// src/utils/open-graph.ts
-
+```typescript title="src/utils/open-graph.ts"
 import fs from "node:fs/promises";
 import path from "node:path";
 
@@ -97,11 +100,24 @@ export const getCustomFonts = async () => {
 
 Let's create a utility to load a background image that will appear in the background of each OG image. We'll use a lossless `.png' because we're optimising the image for web use while generating the og image itself.
 
-```typescript
-// src/utils/open-graph.ts
-
+```typescript title="src/utils/open-graph.ts" collapse={1-17} ins={19-36}
 import fs from "node:fs/promises";
 import path from "node:path";
+
+export const getCustomFonts = async () => {
+    const yourFontData = await fs.readFile(
+        path.resolve("./public/fonts/your-font.woff"),
+    );
+
+    return [
+        {
+            name: "yourFont",
+            data: yourFontData,
+            weight: 400,
+            style: "normal",
+        },
+    ];
+};
 
 export const BackgroundImage = async () => {
     const backgroundImage = await fs.readFile(
@@ -127,12 +143,47 @@ export const BackgroundImage = async () => {
 
 Usually, we want every og image using the same file type and quality settings, thats why we create another small utility for that.
 
-```typescript
-// src/utils/open-graph.ts
+```typescript title="src/utils/open-graph.ts" collapse={1-2,8-40} ins={42-61}
+import fs from "node:fs/promises";
+import path from "node:path";
 
 import type { ReactNode } from "react";
 import satori from "satori";
 import sharp from "sharp";
+
+export const getCustomFonts = async () => {
+    const yourFontData = await fs.readFile(
+        path.resolve("./public/fonts/your-font.woff"),
+    );
+
+    return [
+        {
+            name: "yourFont",
+            data: yourFontData,
+            weight: 400,
+            style: "normal",
+        },
+    ];
+};
+
+export const BackgroundImage = async () => {
+    const backgroundImage = await fs.readFile(
+        path.resolve("./public/img/og-background.png"),
+    );
+
+    return {
+        type: "img",
+        props: {
+            src: backgroundImage.buffer,
+            style: {
+                position: "absolute",
+                width: "1200px",
+                height: "630px",
+                objectFit: "cover",
+            },
+        },
+    };
+};
 
 export const generateOgImage = async (content: ReactNode) => {
     const svg = await satori(content, {
@@ -162,9 +213,7 @@ Let’s create the dynamic endpoint at `src/pages/blog/[id]/og.jpeg.ts`.
 
 1. Set Up the `GET` Method
 
-```typescript
-// src/pages/blog/[id]/og.jpeg.ts
-
+```typescript title="src/pages/blog/[id]/og.jpeg.ts"
 import { type CollectionEntry } from "astro:content";
 import { BackgroundImage, generateOgImage } from "../../../utils/og-image/utils.ts";
 
@@ -220,22 +269,77 @@ export const GET = async ({ props }: Props) => {
 };
 ```
 
-<Alert>
+<Alert additionalClasses="not-first:mt-12 not-last:mb-12">
     **Small reminder about styling**
 
-    When styling the html content, please keep in mind that `Satori` doesn't support all css properties, check the docs for the list of supported properties [here](https://github.com/vercel/satori?tab=readme-ov-file#css).
+    When styling the html content, please keep in mind that `Satori` doesn't support all css properties, check the docs
+    for the list of supported properties [here](https://github.com/vercel/satori?tab=readme-ov-file#css).
 
-    `Satori` also supports `tailwindcss`, but it is experimental and because it does not support all css properties and some are written differently (e.g. `object-fit` vs `objectFit`) I do not recommend using tailwindcss utility classes here.
+    `Satori` also supports `tailwindcss`, but it is experimental and because it does not support all css properties and
+    some are written differently (e.g. `object-fit` vs `objectFit`) I do not recommend using tailwindcss utility classes
+    here.
 </Alert>
 
 2. Add the `getStaticPaths` Method
 
 To generate the OG images at build time for each blog entry, use the `getStaticPaths` method:
 
-```typescript
-// src/pages/blog/[id]/og.jpeg.ts
-
+```typescript title="src/pages/blog/[id]/og.jpeg.ts" collapse={3-55} ins={1-1, 57-64}
 import { getCollection } from "astro:content";
+
+import { type CollectionEntry } from "astro:content";
+import { BackgroundImage, generateOgImage } from "../../../utils/og-image/utils.ts";
+
+interface Props {
+    params: { id: string };
+    props: { post: CollectionEntry<"blogPosts"> };
+}
+
+export const GET = async ({ props }: Props) => {
+    const { post } = props;
+
+    return await generateOgImage(
+        // @ts-expect-error: Astro currently does not support endpoints with tsx file format
+        // because of that, we need to use react-elements-like objects
+        // satori still expects valid JSX elements, that's why we get typescript errors here
+        {
+            type: "div",
+            props: {
+                style: {
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%",
+                    height: "100%",
+                    color: "white",
+                    backgroundColor: "black",
+                    padding: "80px",
+                    justifyContent: "flex-end",
+                },
+                children: [
+                    await BackgroundImage(),
+                    {
+                        type: "h1",
+                        props: {
+                            children: post.data.title,
+                            style: {
+                                fontSize: "4rem",
+                            },
+                        },
+                    },
+                    {
+                        type: "p",
+                        props: {
+                            children: "Moriz von Langa | Blog",
+                            style: {
+                                fontSize: "3rem",
+                            },
+                        },
+                    },
+                ],
+            },
+        }
+    )
+};
 
 export async function getStaticPaths() {
     const blogPosts = await getCollection("blogPosts");
