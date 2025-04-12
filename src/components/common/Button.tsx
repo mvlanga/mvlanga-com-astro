@@ -32,7 +32,7 @@ export const Button = ({
 			className={twMerge(
 				clsx(
 					"relative inline-flex items-center justify-center overflow-hidden rounded-3xl px-8 py-4 text-white",
-					level === "primary" && "bg-purple",
+					level === "primary" && "bg-purple-500",
 					level === "secondary" && "bg-neutral-900",
 					additionalClasses,
 				),
