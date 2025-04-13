@@ -15,13 +15,13 @@
 		"test:e2e:production": "environment=PRODUCTION playwright test"
 	},
 	"dependencies": {
-		"@nanostores/react": "^0.8.4",
+		"@nanostores/react": "^1.0.0",
 		"@vidstack/react": "^1.12.13",
 		"clsx": "^2.1.1",
 		"embla-carousel-react": "^8.6.0",
 		"media-icons": "^1.1.5",
-		"motion": "^12.6.3",
-		"nanostores": "^0.11.4",
+		"motion": "^12.6.5",
+		"nanostores": "^1.0.1",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
 		"react-use-size": "^5.0.1",
