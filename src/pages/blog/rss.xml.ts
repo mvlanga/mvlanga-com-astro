@@ -1,15 +1,18 @@
 import { getCollection } from "astro:content";
+import { sortBlogPosts } from "@/utils/sortCollection.ts";
 import rss from "@astrojs/rss";
 import type { APIRoute } from "astro";
 
 const isProduction = import.meta.env.PROD;
 
 export const GET: APIRoute = async (context) => {
-	const blogPosts = await getCollection("blogPosts", ({ data }) => {
-		return isProduction
-			? data.draft === undefined || data.draft === false
-			: true;
-	});
+	const blogPosts = sortBlogPosts(
+		await getCollection("blogPosts", ({ data }) => {
+			return isProduction
+				? data.draft === undefined || data.draft === false
+				: true;
+		}),
+	);
 
 	if (context.site === undefined) {
 		return new Response(null, {
