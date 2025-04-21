@@ -30,8 +30,8 @@ export const GET: APIRoute = async (context) => {
 			({ id, data: { title, description, tags, createdAt } }) => ({
 				title,
 				description,
-				tags,
-				createdAt,
+				tags: tags.join(", "),
+				createdAt: createdAt.toString(),
 				link: `/blog/${id}/`,
 			}),
 		),
