@@ -21,12 +21,12 @@
 		"clsx": "^2.1.1",
 		"embla-carousel-react": "^8.6.0",
 		"media-icons": "^1.1.5",
-		"motion": "^12.10.5",
+		"motion": "^12.12.1",
 		"nanostores": "^1.0.1",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
 		"react-use-size": "^5.0.1",
-		"tailwind-merge": "^3.2.0"
+		"tailwind-merge": "^3.3.0"
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.4",
