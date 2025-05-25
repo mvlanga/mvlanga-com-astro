@@ -17,6 +17,7 @@
 	"dependencies": {
 		"@astrojs/rss": "^4.0.11",
 		"@nanostores/react": "^1.0.0",
+		"@sentry/astro": "^9.22.0",
 		"@vidstack/react": "^1.12.13",
 		"clsx": "^2.1.1",
 		"embla-carousel-react": "^8.6.0",

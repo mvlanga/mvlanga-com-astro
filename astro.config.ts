@@ -9,6 +9,8 @@ import { EnumChangefreq } from "sitemap";
 
 import netlify from "@astrojs/netlify";
 
+import sentry from "@sentry/astro";
+
 export default defineConfig({
 	outDir: "static",
 	prefetch: {
@@ -53,6 +55,19 @@ export default defineConfig({
 		mdx(),
 		react(),
 		db(),
+		sentry({
+			dsn: import.meta.env.SENTRY_DSN,
+			// tracesSampleRate: 0,
+			// replaysSessionSampleRate: 0,
+			// replaysOnErrorSampleRate: 0,
+			// Setting this option to true will send default PII data to Sentry.
+			// For example, automatic IP address collection on events
+			// sendDefaultPii: true,
+			sourceMapsUploadOptions: {
+				project: "mvlanga-com",
+				authToken: import.meta.env.SENTRY_AUTH_TOKEN,
+			},
+		}),
 	],
 	vite: {
 		plugins: [

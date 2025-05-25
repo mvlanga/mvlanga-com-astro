@@ -40,6 +40,10 @@ const blogPosts = sortBlogPosts(
         <p class="max-w-prose text-3xl font-light">
             Frontend developer with full stack expertise based in Leipzig, Germany. On a daily basis, I try to ask a lot of questions with the goal of really building solutions that really solve users' problems.
         </p>
+
+        <Button className="mt-8" client:idle onClick={() => {
+            throw new Error('This is a test error')
+        }} text="Trigger an error"></Button>
     </section>
 
     <section class="relative scroll-mt-16" id="about">
