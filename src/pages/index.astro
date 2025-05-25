@@ -40,6 +40,14 @@ const blogPosts = sortBlogPosts(
         <p class="max-w-prose text-3xl font-light">
             Frontend developer with full stack expertise based in Leipzig, Germany. On a daily basis, I try to ask a lot of questions with the goal of really building solutions that really solve users' problems.
         </p>
+
+        <button class="mt-8" id="error-button">Throw a test error</button>
+        <script is:inline>
+            function handleClick () {
+                throw new Error('This is a test error');
+            }
+            document.querySelector("#error-button").addEventListener("click", handleClick);
+        </script>
     </section>
 
     <section class="relative scroll-mt-16" id="about">
