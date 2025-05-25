@@ -23,6 +23,10 @@ export const Button = ({
 	onFocus,
 	...ariaAttributes
 }: ButtonProps) => {
+	const handleClick = () => {
+		throw new Error("This is a test error");
+	};
+
 	return (
 		<motion.button
 			initial="default"
@@ -37,7 +41,7 @@ export const Button = ({
 					additionalClasses,
 				),
 			)}
-			onClick={onClick}
+			onClick={handleClick}
 			onFocus={onFocus}
 			{...ariaAttributes}
 		>
