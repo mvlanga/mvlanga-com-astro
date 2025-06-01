@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import RssIcon from "@/assets/icons/rss.svg";
 import { OtherBlogPosts } from "@/components/blog/OtherBlogPosts";
 import { Button } from "@/components/common/Button";
 import { ColoredBackground } from "@/components/common/ColoredBackground";
@@ -9,23 +10,12 @@ import { PlayfulDivider } from "@/components/common/PlayfulDivider";
 import { PortraitImage } from "@/components/common/PortraitImage";
 import Skeleton from "@/components/common/Skeleton.astro";
 import Layout from "@/layouts/layout.astro";
-import {
-	sortBlogPosts,
-	sortExperience,
-	sortProjects,
-} from "@/utils/sortCollection";
+import { getBlogPosts } from "@/utils/collections";
+import { sortExperience, sortProjects } from "@/utils/sortCollection";
+
 const experience = sortExperience(await getCollection("experience"));
 const projects = sortProjects(await getCollection("projects"));
-
-const isProduction = import.meta.env.PROD;
-
-const blogPosts = sortBlogPosts(
-	await getCollection("blogPosts", ({ data }) => {
-		return isProduction || Astro.locals.netlify.context.deploy.published
-			? data.draft === undefined || data.draft === false
-			: true;
-	}),
-);
+const blogPosts = await getBlogPosts();
 ---
 
 <Layout>
@@ -191,7 +181,15 @@ const blogPosts = sortBlogPosts(
 
     <section class="container grid gap-16" id="blogPosts">
         <div class="grid gap-8">
-            <h2 class="text-5xl">Latest blog posts</h2>
+            <div class="flex gap-4 items-center">
+                <h2 class="text-5xl">
+                    Latest blog posts
+                </h2>
+                <a class="text-neutral-500 transition-colors hover:text-purple-300 translate-y-1" href="/blog/rss.xml">
+                    <RssIcon width="32" height="32" fill="var(--color-neutral-500)"/>
+                </a>
+            </div>
+
 
             <p class="text-neutral-400 max-w-prose">
                 Just a few notes and reminders for myself, usually when I've found a solution to something I was
