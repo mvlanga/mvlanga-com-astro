@@ -20,7 +20,7 @@
 		"@vidstack/react": "^1.12.13",
 		"clsx": "^2.1.1",
 		"embla-carousel-react": "^8.6.0",
-		"media-icons": "^0.10.0",
+		"media-icons": "^1.1.5",
 		"motion": "^12.15.0",
 		"nanostores": "^1.0.1",
 		"react": "^19.1.0",
