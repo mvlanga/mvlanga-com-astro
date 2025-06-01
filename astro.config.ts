@@ -10,7 +10,6 @@ import { EnumChangefreq } from "sitemap";
 import netlify from "@astrojs/netlify";
 
 export default defineConfig({
-	outDir: "static",
 	prefetch: {
 		prefetchAll: true,
 	},
@@ -63,9 +62,7 @@ export default defineConfig({
 			}),
 		],
 	},
-	adapter: netlify({
-		edgeMiddleware: true,
-	}),
+	adapter: netlify(),
 	redirects: {
 		"/:lang/personal-projects": "/",
 		"/:lang/about-me": "/#about",
