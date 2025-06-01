@@ -1,5 +1,4 @@
 ---
-import { getCollection } from "astro:content";
 import { BlogFilter } from "@/components/blog/BlogFilter";
 import { BlogPosts } from "@/components/blog/BlogPosts";
 import {
@@ -8,17 +7,12 @@ import {
 } from "@/components/blog/utils";
 import Skeleton from "@/components/common/Skeleton.astro";
 import Layout from "@/layouts/layout.astro";
-import { sortBlogPosts } from "@/utils/sortCollection";
+import { getBlogPosts } from "@/utils/collections";
 
 const isProduction = import.meta.env.PROD;
+const isDeployPreview = !Astro.locals.netlify.context.deploy.published;
 
-const blogPosts = sortBlogPosts(
-	await getCollection("blogPosts", ({ data }) => {
-		return isProduction
-			? data.draft === undefined || data.draft === false
-			: true;
-	}),
-);
+const blogPosts = await getBlogPosts(isProduction && isDeployPreview);
 
 const postsGroupedByMonth = groupPostsByMonth(blogPosts);
 

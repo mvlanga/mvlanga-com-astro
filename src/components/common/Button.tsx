@@ -6,6 +6,7 @@ import { twMerge } from "tailwind-merge";
 type ButtonProps = {
 	ref?: Ref<HTMLButtonElement>;
 	level?: "primary" | "secondary";
+	size?: "small" | "medium";
 	className?: string;
 	onClick?: (event: SyntheticEvent<HTMLButtonElement>) => void;
 	onFocus?: (event: SyntheticEvent<HTMLButtonElement>) => void;
@@ -17,6 +18,7 @@ export const Button = ({
 	activeText,
 	ref,
 	level = "primary",
+	size = "medium",
 	isActive = false,
 	className: additionalClasses,
 	onClick,
@@ -31,7 +33,9 @@ export const Button = ({
 			ref={ref}
 			className={twMerge(
 				clsx(
-					"relative inline-flex items-center justify-center overflow-hidden rounded-3xl px-8 py-4 text-white",
+					"relative inline-flex items-center justify-center overflow-hidden text-white",
+					size === "small" && "rounded-2xl px-6 py-3",
+					size === "medium" && "rounded-3xl px-8 py-4",
 					level === "primary" && "bg-purple",
 					level === "secondary" && "bg-neutral-900",
 					additionalClasses,

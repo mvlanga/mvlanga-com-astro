@@ -15,7 +15,7 @@ export const OtherBlogPosts = ({ blogPosts }: OtherBlogPostsProps) => {
 
 	return (
 		<div className="overflow-hidden" ref={emblaRef}>
-			<div className="-ml-8 flex touch-pan-y">
+			<div className="-ml-4 md:-ml-8 flex touch-pan-y">
 				{blogPostsWithViewCount.map(
 					({
 						id,
@@ -24,7 +24,7 @@ export const OtherBlogPosts = ({ blogPosts }: OtherBlogPostsProps) => {
 					}) => (
 						<div
 							key={id}
-							className="transform-3d-[0_0_0] min-w-0 flex-[0_0_75%] pl-8 md:flex-[0_0_40%] lg:flex-[0_0_45%]"
+							className="transform-3d-[0_0_0] min-w-0 flex-[0_0_92%] pl-4 md:flex-[0_0_60%] md:pl-8 lg:flex-[0_0_45%]"
 						>
 							<a
 								className="group flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 p-12 transition-colors hover:bg-neutral-800"

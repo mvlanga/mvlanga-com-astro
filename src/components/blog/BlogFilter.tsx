@@ -13,6 +13,7 @@ export const BlogFilter = ({ availableTags }: BlogFilterProps) => {
 		<div className="flex flex-wrap gap-2">
 			<Button
 				text="All"
+				size="small"
 				level={
 					$selectedTag === BLOG_FILTER_TAG_ALL_VALUE ? "primary" : "secondary"
 				}
@@ -22,6 +23,7 @@ export const BlogFilter = ({ availableTags }: BlogFilterProps) => {
 			{availableTags.map(({ name, count }) => (
 				<Button
 					key={name}
+					size="small"
 					text={`#${name} (${count})`}
 					level={$selectedTag === name ? "primary" : "secondary"}
 					onClick={() => blogFilterTag.set(name)}
