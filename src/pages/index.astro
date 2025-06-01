@@ -21,7 +21,7 @@ const isProduction = import.meta.env.PROD;
 
 const blogPosts = sortBlogPosts(
 	await getCollection("blogPosts", ({ data }) => {
-		return isProduction
+		return isProduction || Astro.locals.netlify.context.deploy.published
 			? data.draft === undefined || data.draft === false
 			: true;
 	}),
@@ -38,7 +38,8 @@ const blogPosts = sortBlogPosts(
             Hi, I’m Moriz.
         </h1>
         <p class="max-w-prose text-3xl font-light">
-            Frontend developer with full stack expertise based in Leipzig, Germany. On a daily basis, I try to ask a lot of questions with the goal of really building solutions that really solve users' problems.
+            Frontend developer with full stack expertise based in Leipzig, Germany. On a daily basis, I try to ask a lot
+            of questions with the goal of really building solutions that really solve users' problems.
         </p>
     </section>
 
@@ -204,14 +205,14 @@ const blogPosts = sortBlogPosts(
 
         <OtherBlogPosts client:only="react" blogPosts={blogPosts}>
             <div slot="fallback" class="overflow-hidden">
-                <div class="-ml-8 flex touch-pan-y">
+                <div class="-ml-4 md:-ml-8 flex touch-pan-y">
                     {blogPosts.map(
                         ({
                              id,
                              data: {title, description, tags, createdAt},
                          }) => (
                                 <div
-                                        class="transform-3d-[0_0_0] min-w-0 flex-[0_0_75%] pl-8 md:flex-[0_0_40%] lg:flex-[0_0_45%]"
+                                        class="transform-3d-[0_0_0] min-w-0 flex-[0_0_92%] pl-4 md:pl-8 md:flex-[0_0_60%] lg:flex-[0_0_45%]"
                                 >
                                     <a
                                             class="group flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 p-12 transition-colors hover:bg-neutral-800"
