@@ -1,19 +1,14 @@
 ---
-import { getCollection, render } from "astro:content";
-import { ViewCounter } from "../../../components/blog/ViewCounter";
-import { PlayfulDivider } from "../../../components/common/PlayfulDivider";
-import Prose from "../../../components/common/Prose.astro";
-import Skeleton from "../../../components/common/Skeleton.astro";
-import Layout from "../../../layouts/layout.astro";
+import { render } from "astro:content";
+import { ViewCounter } from "@/components/blog/ViewCounter";
+import { PlayfulDivider } from "@/components/common/PlayfulDivider";
+import Prose from "@/components/common/Prose.astro";
+import Skeleton from "@/components/common/Skeleton.astro";
+import Layout from "@/layouts/layout.astro";
+import { getBlogPosts } from "@/utils/collections";
 
 export async function getStaticPaths() {
-	const isProduction = import.meta.env.PROD;
-
-	const blogPosts = await getCollection("blogPosts", ({ data }) => {
-		return isProduction
-			? data.draft === undefined || data.draft === false
-			: true;
-	});
+	const blogPosts = await getBlogPosts();
 
 	return blogPosts.map((post) => ({
 		params: { id: post.id },

@@ -1,4 +1,5 @@
 ---
+import RssIcon from "@/assets/icons/rss.svg";
 import { BlogFilter } from "@/components/blog/BlogFilter";
 import { BlogPosts } from "@/components/blog/BlogPosts";
 import {
@@ -9,10 +10,7 @@ import Skeleton from "@/components/common/Skeleton.astro";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
 
-const isProduction = import.meta.env.PROD;
-const isDeployPreview = !Astro.locals.netlify.context.deploy.published;
-
-const blogPosts = await getBlogPosts(isProduction && isDeployPreview);
+const blogPosts = await getBlogPosts();
 
 const postsGroupedByMonth = groupPostsByMonth(blogPosts);
 
@@ -25,9 +23,15 @@ const availableTags = getTagsWithCountByPosts(blogPosts);
 
 <Layout className="container gap-32">
     <section class="max-w-prose-l grid gap-8">
-        <h1 class="text-4xl font-bold leading-snug">
-            Blog
-        </h1>
+        <div class="flex gap-4 items-center">
+            <h1 class="text-4xl font-bold leading-snug">
+                Blog
+            </h1>
+            <a class="text-neutral-500 transition-colors hover:text-purple-300 translate-y-1" href="/blog/rss.xml">
+                <RssIcon width="32" height="32" fill="var(--color-neutral-500)"/>
+            </a>
+        </div>
+
         <p class="text-lg text-neutral-400">
             A few notes and reminders for myself, usually when I've found a solution to something I was struggling with,
             discovered a good solution to a channeling problem, or tried something new.
