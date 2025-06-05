@@ -33,11 +33,13 @@ export const Button = ({
 			ref={ref}
 			className={twMerge(
 				clsx(
-					"relative inline-flex items-center justify-center overflow-hidden text-white",
+					"relative inline-flex items-center justify-center overflow-hidden transition-colors duration-300 dark:text-white",
 					size === "small" && "rounded-2xl px-6 py-3",
 					size === "medium" && "rounded-3xl px-8 py-4",
-					level === "primary" && "bg-purple",
-					level === "secondary" && "bg-neutral-900",
+					level === "primary" && "bg-purple text-white",
+					level === "secondary" &&
+						" bg-neutral-300 hover:text-white dark:bg-neutral-900",
+					level === "secondary" && isActive && "text-white",
 					additionalClasses,
 				),
 			)}

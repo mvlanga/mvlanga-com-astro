@@ -29,14 +29,14 @@ const { type = "regular" } = Astro.props;
     </PlayfulDivider>
 
     {type === "regular" && (
-            <div class="flex flex-row flex-wrap justify-between gap-6 md:gap-12 md:items-end text-neutral-200">
+            <div class="flex flex-row flex-wrap justify-between gap-6 md:gap-12 md:items-end  text-black dark:text-neutral-200">
                 <h2 class="text-5xl">Let’s collaborate</h2>
                 <a class="text-3xl transition-colors hover:text-purple-300" href="mailto:morizvlanga@gmail.com"
                    data-umami-event="link-click" data-umami-event-url="mailto:morizvlanga@gmail.com">morizvlanga@gmail.com</a>
             </div>
     )}
 
-    <div class={clsx("flex flex-wrap items-end justify-between gap-6 text-neutral-500 contrast-more:text-neutral-400", type === "regular" && "mt-12")}>
+    <div class={clsx("flex flex-wrap items-end justify-between gap-6 text-neutral-700 dark:text-neutral-500 contrast-more:text-neutral-400", type === "regular" && "mt-12")}>
         {isProduction ?
                 <CarbonBadge/> : "<CarbonBadge />"}
 

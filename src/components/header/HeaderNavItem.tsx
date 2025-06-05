@@ -61,7 +61,7 @@ const NavItem = ({ isActive, setIsMenuOpen, label, url }: NavItemProps) => {
 			<div
 				aria-hidden="true"
 				className={clsx(
-					"-translate-x-14 absolute h-0.5 w-10 scale-x-0 rounded-xl bg-neutral-500 opacity-0 transition-all group-hover:scale-x-100 group-hover:opacity-100",
+					"-translate-x-14 absolute h-0.5 w-10 scale-x-0 rounded-xl bg-neutral-600 opacity-0 transition-all group-hover:scale-x-100 group-hover:opacity-100 dark:bg-neutral-500",
 					isActive && "opacity-100",
 					isActive && "scale-x-100",
 				)}
