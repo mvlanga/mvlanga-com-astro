@@ -6,6 +6,8 @@ const blogPages: string[] = [
 	"/blog/how-to-build-a-page-view-counter-with-astro-db-actions-and-server-side-islands",
 	"/blog/generating-open-graph-images-in-astro",
 	"/blog/forking-my-website",
+	"/blog/optimizing-images-from-contentful-in-astro",
+	"/blog/automatically-detect-accessibility-issues-in-astro-using-axe-core",
 ];
 
 test.describe("blog-post-page", () => {
