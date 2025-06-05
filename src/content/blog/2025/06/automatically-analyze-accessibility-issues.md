@@ -31,7 +31,7 @@ const isLocalEnvironment = environment === "LOCAL";
 
 const baseURL = isLocalEnvironment
 	? "http://localhost:4321"
-	: "https://mvlanga.com";
+	: "https://your-website.com";
 
 export default defineConfig({
 	testDir: "./tests",
