@@ -55,10 +55,10 @@ const blogPosts = await getBlogPosts();
             </h2>
             <div class="grid md:grid-cols-3 gap-16">
                 <div class="flex flex-col gap-6">
-                    <p class="text-neutral-700 dark:text-neutral-500 dark:contrast-more:text-neutral-400">01</p>
+                    <p class="text-neutral-500 contrast-more:text-neutral-400">01</p>
                     <hr class="border-neutral-800"/>
                     <p class="text-2xl">Learning & Problem Solving</p>
-                    <p class="text-neutral-800 dark:text-neutral-400">
+                    <p class="text-neutral-400">
                         With my ability to quickly grasp new systems and their underlying structure, I thrive in
                         environments where I can dive deep and make sense of complex challenges. I approach every
                         problem with a curious mindset, constantly questioning and seeking to understand the root
@@ -66,20 +66,20 @@ const blogPosts = await getBlogPosts();
                     </p>
                 </div>
                 <div class="flex flex-col gap-6">
-                    <p class="text-neutral-700 dark:text-neutral-500 dark:contrast-more:text-neutral-400">02</p>
+                    <p class="text-neutral-500 contrast-more:text-neutral-400">02</p>
                     <hr class="border-neutral-800"/>
                     <p class="text-2xl">System Architecture</p>
-                    <p class="text-neutral-800 dark:text-neutral-400">
+                    <p class="text-neutral-400">
                         With a keen eye for how frontend and backend systems work together, I ensure my work is always
                         in sync with the bigger picture. I take pride in creating solutions that align seamlessly with
                         the overall architecture, ensuring efficiency and scalability.
                     </p>
                 </div>
                 <div class="flex flex-col gap-6">
-                    <p class="text-neutral-700 dark:text-neutral-500 dark:contrast-more:text-neutral-400">03</p>
+                    <p class="text-neutral-500 contrast-more:text-neutral-400">03</p>
                     <hr class="border-neutral-800"/>
                     <p class="text-2xl">User-Centric Design</p>
-                    <p class="text-neutral-800 dark:text-neutral-400">
+                    <p class="text-neutral-400">
                         I’m passionate about understanding the user’s needs and challenges. I dig deep into their pain
                         points to craft solutions that truly make a difference. My focus is always on creating
                         intuitive, accessible experiences that enhance the user journey.
@@ -103,22 +103,22 @@ const blogPosts = await getBlogPosts();
                                         data: {from, to, role, technologies, company, tasks},
                                     }, index) => (
                             <div
-                                    class="grid gap-8 rounded-xl bg-neutral-300 dark:bg-neutral-900 p-8 md:p-16 lg:grid-cols-3 lg:gap-16"
+                                    class="grid gap-8 rounded-xl bg-neutral-900 p-8 md:p-16 lg:grid-cols-3 lg:gap-16"
                                     style={{zIndex: index * 20}}
                             >
                                 <div class="flex flex-col gap-4 lg:col-span-1">
-                                    <p class="text-neutral-700 dark:text-neutral-400">
+                                    <p class="text-neutral-400">
                                         {from}
                                         {" - "}
                                         {to}
                                     </p>
                                     <h3 class="text-3xl">{role}</h3>
                                     <p class="text-neutral-300 text-xl">{company.title}</p>
-                                    <p class="text-neutral-700 dark:text-neutral-400">{company.description}</p>
+                                    <p class="text-neutral-400">{company.description}</p>
                                 </div>
                                 <hr class="border-neutral-800 lg:hidden"/>
                                 <div class="flex max-w-prose flex-col gap-8 lg:col-span-2">
-                                    <ul class="flex flex-col gap-4 text-neutral-700 dark:text-neutral-400">
+                                    <ul class="flex flex-col gap-4 text-neutral-400">
                                         {tasks.map((task) => (
                                                 <li>{task}</li>
                                         ))}
@@ -126,7 +126,7 @@ const blogPosts = await getBlogPosts();
                                     {technologies && (
                                             <div class="flex flex-wrap gap-2">
                                                 {technologies.map((tech) => (
-                                                        <span class="rounded-full bg-neutral-400 text-black  dark:bg-neutral-800 px-5 py-2 dark:text-neutral-400 text-sm">{tech}</span>
+                                                        <span class="rounded-full bg-neutral-800 px-5 py-2 text-neutral-400 text-sm">{tech}</span>
                                                 ))}
                                             </div>
                                     )}
@@ -157,7 +157,7 @@ const blogPosts = await getBlogPosts();
                         <div class="flex flex-col md:col-span-2 xl:col-span-1 justify-center md:order-none! md:py-16"
                              style=`order: ${index + 2}`>
                             <a href=`/${id}` class="flex flex-col gap-6">
-                                <span class="text-neutral-700 dark:text-neutral-400 text-xl">{customer}</span>
+                                <span class="text-neutral-400 text-xl">{customer}</span>
                                 <h3 class="text-4xl">
                                     <span>{title}</span>
                                 </h3>
@@ -189,8 +189,9 @@ const blogPosts = await getBlogPosts();
                     <RssIcon width="32" height="32" fill="var(--color-neutral-500)"/>
                 </a>
             </div>
-            
-            <p class="text-neutral-800 dark:text-neutral-400 max-w-prose">
+
+
+            <p class="text-neutral-400 max-w-prose">
                 Just a few notes and reminders for myself, usually when I've found a solution to something I was
                 struggling with, discovered a good solution to a channeling problem, or tried something new.
             </p>

@@ -14,10 +14,7 @@ export const ColoredBackground = ({ className }: { className?: string }) => {
 		<motion.div
 			ref={ref}
 			className={twMerge(
-				clsx(
-					"-z-10 absolute inset-0 bg-neutral-200 dark:bg-neutral-900",
-					className,
-				),
+				clsx("-z-10 absolute inset-0 bg-neutral-900", className),
 			)}
 			style={{
 				opacity: useTransform(scrollYProgress, [0, 1], [0, 1]),
