@@ -138,6 +138,12 @@ From a content editor’s point of view, they just upload the image. That’s it
 
 **They just upload, hit publish, and everything works.**
 
+## What about out-of-the-box solutions?
+
+There are great tools out there that do a lot of the heavy lifting for you. One I was recently pointed to is [Unpic](https://unpic.pics/), a super handy tool for optimizing images from various sources, including Contentful.
+
+Big thanks to [@cpenned](https://www.reddit.com/user/cpenned) for letting me know!
+
 ## Conclusion
 This little setup gives us the best of both worlds:
 
