@@ -43,12 +43,13 @@ export const BlogFilter = ({ availableTags }: BlogFilterProps) => {
 				/>
 			))}
 
-			<input
-				className="min-w-[30ch] flex-1 rounded-3xl bg-neutral-900 px-8 py-4 text-white"
-				type="text"
-				placeholder="Search by title, description or tag"
-				onChange={(e) => setSearchTerm(e.target.value)}
-			/>
+<input
+  className="min-w-[30ch] flex-1 rounded-3xl bg-neutral-900 px-8 py-4 text-white"
+  type="text"
+  placeholder="Search by title, description or tag"
+  value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}
+/>
 		</div>
 	);
 };
