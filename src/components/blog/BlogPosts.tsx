@@ -1,5 +1,6 @@
 import {
 	BLOG_FILTER_TAG_ALL_VALUE,
+	blogFilterSearchTerm,
 	blogFilterTag,
 } from "@/components/blog/blogFilterStore.ts";
 import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
@@ -26,6 +27,7 @@ type BlogPostsProps = { blogPosts: BlogPostWithViewCount[] };
 
 export const BlogPosts = ({ blogPosts }: BlogPostsProps) => {
 	const $selectedTag = useStore(blogFilterTag);
+	const $searchTerm = useStore(blogFilterSearchTerm);
 
 	const { isLoading, blogPostsWithViewCount } =
 		useBlogPostsWithViewCount(blogPosts);
@@ -34,10 +36,20 @@ export const BlogPosts = ({ blogPosts }: BlogPostsProps) => {
 		() =>
 			blogPostsWithViewCount.filter(
 				(post) =>
-					$selectedTag === BLOG_FILTER_TAG_ALL_VALUE ||
-					post.data.tags.includes($selectedTag),
+					($searchTerm === "" ||
+						post.data.title.toLowerCase().includes($searchTerm.toLowerCase()) ||
+						post.data.description
+							.toLowerCase()
+							.includes($searchTerm.toLowerCase()) ||
+						post.data.tags.some(
+							(tag) =>
+								tag.toLowerCase().includes($searchTerm.toLowerCase()) ||
+								`#${tag.toLowerCase()}`.includes($searchTerm.toLowerCase()),
+						)) &&
+					($selectedTag === BLOG_FILTER_TAG_ALL_VALUE ||
+						post.data.tags.includes($selectedTag)),
 			),
-		[blogPostsWithViewCount, $selectedTag],
+		[blogPostsWithViewCount, $selectedTag, $searchTerm],
 	);
 
 	const postsGroupedByMonth = useMemo(
