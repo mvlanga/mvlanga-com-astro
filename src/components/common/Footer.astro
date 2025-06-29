@@ -31,7 +31,7 @@ const { type = "regular" } = Astro.props;
     {type === "regular" && (
             <div class="flex flex-row flex-wrap justify-between gap-6 md:gap-12 md:items-end text-neutral-200 light:text-black">
                 <h2 class="text-5xl">Let’s collaborate</h2>
-                <a class="text-3xl transition-colors hover:text-purple-300 light:hover:text-purple-500" href="mailto:morizvlanga@gmail.com"
+                <a class="text-3xl transition-colors hover:text-purple-300 light:hover:text-purple-500 max-w-full overflow-hidden text-ellipsis" href="mailto:morizvlanga@gmail.com"
                    data-umami-event="link-click" data-umami-event-url="mailto:morizvlanga@gmail.com">morizvlanga@gmail.com</a>
             </div>
     )}
@@ -52,7 +52,7 @@ const { type = "regular" } = Astro.props;
                 legalPages.map(({id, data: {title}}) => (
                         <a
                                 href={`/legal/${id}`}
-                                class="transition-colors hover:text-purple-300 light:hover:text-purple-500"
+                                class="transition-colors hover:text-purple-300"
                         >
                             {title}
                         </a>

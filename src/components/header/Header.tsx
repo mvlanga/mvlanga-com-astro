@@ -1,7 +1,8 @@
 import { Button } from "@/components/common/Button";
-import { IconButton } from "@/components/common/IconButton";
 import { HeaderNavItem } from "@/components/header/HeaderNavItem";
+import { ThemeToggleButton } from "@/components/header/ThemeToggleButton";
 import { useEscapeKey } from "@/utils/useEscapeKey";
+import { useIsBreakpointSm } from "@/utils/useMediaQuery.ts";
 import {
 	AnimatePresence,
 	type Variants,
@@ -63,6 +64,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 		width: menuButtonElementWidth,
 		height: menuButtonElementHeight,
 	} = useComponentSize();
+	const isBreakpointSm = useIsBreakpointSm();
 
 	const { scrollY } = useScroll();
 	const [isHeaderHidden, setIsHeaderHidden] = useState(scrollY.get() >= 100);
@@ -92,18 +94,6 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 
 	function toggleMenu() {
 		setIsMenuOpen((s) => !s);
-	}
-
-	function toggleTheme() {
-		const root = document.documentElement;
-		const currentTheme = root.getAttribute("data-theme");
-		const newTheme = currentTheme === "light" ? "dark" : "light";
-
-		localStorage.theme = newTheme;
-
-		document.startViewTransition(() => {
-			root.setAttribute("data-theme", newTheme);
-		});
 	}
 
 	const currentVariant = isHeaderHidden ? "hidden" : "visible";
@@ -149,33 +139,21 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 				animate={currentVariant}
 				variants={variants}
 			>
-				<AnimatePresence>
-					{!isMenuOpen && (
-						<motion.div
-							className="-z-10"
-							initial={{ translateX: "100%", scale: 0.8 }}
-							animate={{ translateX: 0, scale: 1 }}
-							exit={{ translateX: "100%", scale: 0.8 }}
-						>
-							<IconButton level="secondary" onClick={() => toggleTheme()}>
-								<svg
-									className="z-10 transition-colors"
-									width="1.5rem"
-									height="1.5rem"
-									viewBox="0 0 24 24"
-									version="1.1"
-									xmlns="http://www.w3.org/2000/svg"
-									role="img"
-								>
-									<title>Theme toggle icon</title>
-									<g fill="currentColor">
-										<path d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M12,20.5 L12,3.5 C16.6944204,3.5 20.5,7.30557963 20.5,12 C20.5,16.6944204 16.6944204,20.5 12,20.5 Z" />
-									</g>
-								</svg>
-							</IconButton>
-						</motion.div>
-					)}
-				</AnimatePresence>
+				{isBreakpointSm && (
+					<AnimatePresence>
+						{!isMenuOpen && (
+							<motion.div
+								className="-z-10"
+								initial={{ translateX: "100%", scale: 0.8 }}
+								animate={{ translateX: 0, scale: 1 }}
+								exit={{ translateX: "100%", scale: 0.8 }}
+							>
+								<ThemeToggleButton />
+							</motion.div>
+						)}
+					</AnimatePresence>
+				)}
+
 				<Button
 					ref={menuButtonElement}
 					level="secondary"
@@ -189,6 +167,19 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 					aria-label={isMenuOpen ? "close main menu" : "open main menu"}
 				/>
 			</motion.div>
+
+			<AnimatePresence>
+				{!isBreakpointSm && !isHeaderHidden && (
+					<motion.div
+						exit={{ opacity: 0, translateY: "100%" }}
+						initial={{ opacity: 0, translateY: "100%" }}
+						animate={{ opacity: 1, translateY: "0" }}
+						className="fixed right-4 bottom-4 z-10"
+					>
+						<ThemeToggleButton />
+					</motion.div>
+				)}
+			</AnimatePresence>
 
 			<AnimatePresence>
 				{isMenuOpen && (
@@ -310,13 +301,17 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 				)}
 			</AnimatePresence>
 
-			{isMenuOpen && (
-				// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
-				<div
-					className="fixed top-0 right-0 bottom-0 left-0 z-20"
-					onClick={() => setIsMenuOpen(false)}
-				/>
-			)}
+			<AnimatePresence>
+				{isMenuOpen && (
+					<motion.div
+						animate={{ opacity: 0.5 }}
+						initial={{ opacity: 0 }}
+						exit={{ opacity: 0 }}
+						className="fixed top-0 right-0 bottom-0 left-0 z-20 bg-black sm:bg-transparent"
+						onClick={() => setIsMenuOpen(false)}
+					/>
+				)}
+			</AnimatePresence>
 		</>
 	);
 };
