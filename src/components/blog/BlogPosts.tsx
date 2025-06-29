@@ -1,13 +1,14 @@
+import { BlogPost } from "@/components/blog/BlogPost";
 import {
 	BLOG_FILTER_TAG_ALL_VALUE,
 	blogFilterTag,
-} from "@/components/blog/blogFilterStore.ts";
-import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
+} from "@/components/blog/blogFilterStore";
+import type { BlogPostWithViewCount } from "@/components/blog/types";
 import {
 	groupPostsByMonth,
 	useBlogPostsWithViewCount,
-} from "@/components/blog/utils.ts";
-import { Skeleton } from "@/components/common/Skeleton.tsx";
+} from "@/components/blog/utils";
+import { Skeleton } from "@/components/common/Skeleton";
 import { useStore } from "@nanostores/react";
 import {
 	AnimatePresence,
@@ -17,7 +18,7 @@ import {
 } from "motion/react";
 import { useMemo } from "react";
 
-const layoutTransition: Transition = {
+export const layoutTransition: Transition = {
 	duration: 0.5,
 	ease: [0.27, 0.99, 0.25, 0.99],
 };
@@ -91,61 +92,18 @@ const Area = ({ title, posts, isLoading }: AreaProps) => {
 				{title}
 			</motion.p>
 			<AnimatePresence propagate>
-				{posts?.map((post) => (
-					<Post key={post.id} post={post} isLoading={isLoading} />
+				{posts?.map((post, viewCount) => (
+					<BlogPost key={post.id} post={post}>
+						{isLoading ? (
+							<Skeleton className="w-[8ch]" />
+						) : (
+							<p className="inline-block">
+								{viewCount?.toLocaleString()} views
+							</p>
+						)}
+					</BlogPost>
 				))}
 			</AnimatePresence>
 		</motion.div>
-	);
-};
-
-type PostProps = {
-	post: BlogPostWithViewCount;
-	isLoading: boolean;
-};
-
-export const Post = ({
-	post: {
-		id,
-		data: { title, createdAt, tags, description },
-		viewCount,
-	},
-	isLoading,
-}: PostProps) => {
-	return (
-		<motion.a
-			layout
-			initial={{ opacity: 0, scale: 0.8 }}
-			animate={{ opacity: 1, scale: 1 }}
-			exit={{ opacity: 0, scale: 0.8 }}
-			transition={layoutTransition}
-			className="group col-span-1 flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 p-12 transition-colors hover:bg-neutral-800"
-			href={`/blog/${id}`}
-		>
-			<div className="flex flex-col items-start gap-6">
-				<motion.h2 className="text-lg" layout>
-					{title}
-				</motion.h2>
-				<motion.p layout className="text-neutral-200">
-					{description}
-				</motion.p>
-			</div>
-
-			<hr className="border-neutral-800 transition-colors group-hover:border-neutral-700" />
-
-			<div className="flex flex-wrap justify-between gap-4 text-neutral-400 text-xs">
-				<p>{tags.map((tag) => `#${tag}`).join(", ")}</p>
-
-				<div className="flex flex-wrap gap-4">
-					{isLoading ? (
-						<Skeleton className="w-[8ch]" />
-					) : (
-						<p className="inline-block">{viewCount?.toLocaleString()} views</p>
-					)}
-
-					<p>{createdAt.toLocaleDateString("en-US")}</p>
-				</div>
-			</div>
-		</motion.a>
 	);
 };

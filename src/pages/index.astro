@@ -2,13 +2,14 @@
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import RssIcon from "@/assets/icons/rss.svg";
+import { OtherBlogPost } from "@/components/blog/OtherBlogPost";
 import { OtherBlogPosts } from "@/components/blog/OtherBlogPosts";
 import { Button } from "@/components/common/Button";
 import { ColoredBackground } from "@/components/common/ColoredBackground";
 import Ellipsis from "@/components/common/Ellipsis.astro";
 import { PlayfulDivider } from "@/components/common/PlayfulDivider";
 import { PortraitImage } from "@/components/common/PortraitImage";
-import Skeleton from "@/components/common/Skeleton.astro";
+import { Skeleton } from "@/components/common/Skeleton";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
 import { sortExperience, sortProjects } from "@/utils/sortCollection";
@@ -24,10 +25,10 @@ const blogPosts = await getBlogPosts();
           content="I'm a frontend developer who focuses on building solutions that really solve user problems. All while keeping an eye on system architecture and appropriate design."/>
 
     <section class="container scroll-mt-96" id="home">
-        <h1 class="mb-10 text-6xl font-bold leading-snug">
+        <h1 class="mb-10 text-6xl font-bold light:font-semibold leading-snug">
             Hi, I’m Moriz.
         </h1>
-        <p class="max-w-prose text-3xl font-light">
+        <p class="max-w-prose text-3xl font-light light:font-normal">
             Frontend developer with full stack expertise based in Leipzig, Germany. On a daily basis, I try to ask a lot
             of questions with the goal of really building solutions that really solve users' problems.
         </p>
@@ -53,12 +54,12 @@ const blogPosts = await getBlogPosts();
                 The way I work
                 <Ellipsis/>
             </h2>
-            <div class="grid md:grid-cols-3 gap-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
                 <div class="flex flex-col gap-6">
-                    <p class="text-neutral-500 contrast-more:text-neutral-400">01</p>
+                    <p class="text-neutral-500 contrast-more:text-neutral-400 light:text-neutral-600">01</p>
                     <hr class="border-neutral-800"/>
                     <p class="text-2xl">Learning & Problem Solving</p>
-                    <p class="text-neutral-400">
+                    <p class="text-neutral-400 light:text-neutral-700">
                         With my ability to quickly grasp new systems and their underlying structure, I thrive in
                         environments where I can dive deep and make sense of complex challenges. I approach every
                         problem with a curious mindset, constantly questioning and seeking to understand the root
@@ -66,20 +67,20 @@ const blogPosts = await getBlogPosts();
                     </p>
                 </div>
                 <div class="flex flex-col gap-6">
-                    <p class="text-neutral-500 contrast-more:text-neutral-400">02</p>
+                    <p class="text-neutral-500 contrast-more:text-neutral-400 light:text-neutral-600">02</p>
                     <hr class="border-neutral-800"/>
                     <p class="text-2xl">System Architecture</p>
-                    <p class="text-neutral-400">
+                    <p class="text-neutral-400 light:text-neutral-700">
                         With a keen eye for how frontend and backend systems work together, I ensure my work is always
                         in sync with the bigger picture. I take pride in creating solutions that align seamlessly with
                         the overall architecture, ensuring efficiency and scalability.
                     </p>
                 </div>
-                <div class="flex flex-col gap-6">
-                    <p class="text-neutral-500 contrast-more:text-neutral-400">03</p>
+                <div class="flex flex-col col-span-full lg:col-span-1 gap-6">
+                    <p class="text-neutral-500 contrast-more:text-neutral-400 light:text-neutral-600">03</p>
                     <hr class="border-neutral-800"/>
                     <p class="text-2xl">User-Centric Design</p>
-                    <p class="text-neutral-400">
+                    <p class="text-neutral-400 light:text-neutral-700">
                         I’m passionate about understanding the user’s needs and challenges. I dig deep into their pain
                         points to craft solutions that truly make a difference. My focus is always on creating
                         intuitive, accessible experiences that enhance the user journey.
@@ -103,22 +104,22 @@ const blogPosts = await getBlogPosts();
                                         data: {from, to, role, technologies, company, tasks},
                                     }, index) => (
                             <div
-                                    class="grid gap-8 rounded-xl bg-neutral-900 p-8 md:p-16 lg:grid-cols-3 lg:gap-16"
+                                    class="grid gap-8 rounded-xl bg-neutral-900 light:bg-neutral-200 p-8 md:p-16 lg:grid-cols-3 lg:gap-16"
                                     style={{zIndex: index * 20}}
                             >
                                 <div class="flex flex-col gap-4 lg:col-span-1">
-                                    <p class="text-neutral-400">
+                                    <p class="text-neutral-400 light:text-neutral-600">
                                         {from}
                                         {" - "}
                                         {to}
                                     </p>
                                     <h3 class="text-3xl">{role}</h3>
-                                    <p class="text-neutral-300 text-xl">{company.title}</p>
-                                    <p class="text-neutral-400">{company.description}</p>
+                                    <p class="text-neutral-400 light:text-neutral-700">at <span
+                                            class="font-semibold">{company.title}</span>, {company.description}</p>
                                 </div>
                                 <hr class="border-neutral-800 lg:hidden"/>
                                 <div class="flex max-w-prose flex-col gap-8 lg:col-span-2">
-                                    <ul class="flex flex-col gap-4 text-neutral-400">
+                                    <ul class="flex flex-col gap-4 text-neutral-400 light:text-neutral-700">
                                         {tasks.map((task) => (
                                                 <li>{task}</li>
                                         ))}
@@ -126,7 +127,7 @@ const blogPosts = await getBlogPosts();
                                     {technologies && (
                                             <div class="flex flex-wrap gap-2">
                                                 {technologies.map((tech) => (
-                                                        <span class="rounded-full bg-neutral-800 px-5 py-2 text-neutral-400 text-sm">{tech}</span>
+                                                        <span class="rounded-full bg-neutral-800 light:bg-neutral-300 px-5 py-2 text-neutral-400 light:text-neutral-800 text-sm">{tech}</span>
                                                 ))}
                                             </div>
                                     )}
@@ -157,7 +158,7 @@ const blogPosts = await getBlogPosts();
                         <div class="flex flex-col md:col-span-2 xl:col-span-1 justify-center md:order-none! md:py-16"
                              style=`order: ${index + 2}`>
                             <a href=`/${id}` class="flex flex-col gap-6">
-                                <span class="text-neutral-400 text-xl">{customer}</span>
+                                <span class="text-neutral-400 light:text-neutral-700 text-xl">{customer}</span>
                                 <h3 class="text-4xl">
                                     <span>{title}</span>
                                 </h3>
@@ -185,13 +186,13 @@ const blogPosts = await getBlogPosts();
                 <h2 class="text-5xl">
                     Latest blog posts
                 </h2>
-                <a class="text-neutral-500 transition-colors hover:text-purple-300 translate-y-1" href="/blog/rss.xml" aria-label="RSS Feed" target="_blank">
+                <a class="text-neutral-500 light:text-neutral-600 transition-colors hover:text-purple-300 light:hover:text-purple-500 translate-y-1"
+                   href="/blog/rss.xml" aria-label="RSS Feed" target="_blank">
                     <RssIcon width="32" height="32" fill="var(--color-neutral-500)"/>
                 </a>
             </div>
 
-
-            <p class="text-neutral-400 max-w-prose">
+            <p class="text-neutral-400 light:text-neutral-700 max-w-prose">
                 Just a few notes and reminders for myself, usually when I've found a solution to something I was
                 struggling with, discovered a good solution to a channeling problem, or tried something new.
             </p>
@@ -205,35 +206,10 @@ const blogPosts = await getBlogPosts();
             <div slot="fallback" class="overflow-hidden">
                 <div class="-ml-4 md:-ml-8 flex touch-pan-y">
                     {blogPosts.map(
-                        ({
-                             id,
-                             data: {title, description, tags, createdAt},
-                         }) => (
-                                <div
-                                        class="transform-3d-[0_0_0] min-w-0 flex-[0_0_92%] pl-4 md:pl-8 md:flex-[0_0_60%] lg:flex-[0_0_45%]"
-                                >
-                                    <a
-                                            class="group flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 p-12 transition-colors hover:bg-neutral-800"
-                                            href={`/blog/${id}`}
-                                    >
-                                        <div class="flex flex-col items-start gap-6">
-                                            <h3 class="text-lg">{title}</h3>
-                                            <p class="text-neutral-300">{description}</p>
-                                        </div>
-
-                                        <hr class="border-neutral-800 transition-colors group-hover:border-neutral-700"/>
-
-                                        <div class="flex flex-wrap justify-between gap-4 text-neutral-400 text-xs">
-                                            <p>{tags.map((tag) => `#${tag}`).join(", ")}</p>
-
-                                            <div class="flex flex-wrap gap-4">
-                                                <Skeleton className="w-[8ch]"/>
-
-                                                <p>{createdAt.toLocaleDateString("en-US")}</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                        (post) => (
+                                <OtherBlogPost blogPost={post}>
+                                    <Skeleton className="w-[8ch]"/>
+                                </OtherBlogPost>
                         ),
                     )}
                 </div>

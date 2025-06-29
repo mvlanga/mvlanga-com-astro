@@ -33,11 +33,12 @@ export const Button = ({
 			ref={ref}
 			className={twMerge(
 				clsx(
-					"relative inline-flex items-center justify-center overflow-hidden text-white",
+					"relative inline-flex items-center justify-center overflow-hidden",
 					size === "small" && "rounded-2xl px-6 py-3",
 					size === "medium" && "rounded-3xl px-8 py-4",
-					level === "primary" && "bg-purple",
-					level === "secondary" && "bg-neutral-900",
+					level === "primary" && "bg-purple text-white",
+					level === "secondary" &&
+						"bg-neutral-900 light:bg-neutral-200 light:text-black text-white light:hover:text-white light:aria-expanded:text-white",
 					additionalClasses,
 				),
 			)}
@@ -126,7 +127,7 @@ const PerspectiveTextHover = ({
 					<motion.span
 						// biome-ignore lint/suspicious/noArrayIndexKey: splitting text, therefore there is no id available
 						key={`default-text_${char}_${i}`}
-						className={char === " " ? "" : "inline-block"}
+						className={`${char === " " ? "" : "inline-block"} transition-colors`}
 						variants={{
 							default: {
 								visibility: "visible",
@@ -161,7 +162,7 @@ const PerspectiveTextHover = ({
 					<motion.span
 						// biome-ignore lint/suspicious/noArrayIndexKey: splitting text, therefore there is no id available
 						key={`active-text_${char}_${i}`}
-						className={char === " " ? "" : "inline-block"}
+						className={`${char === " " ? "" : "inline-block"} transition-colors`}
 						variants={{
 							default: {
 								visibility: "hidden",

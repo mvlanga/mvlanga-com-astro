@@ -13,9 +13,11 @@ const { additionalClasses, variant } = Astro.props;
 <div class={
         twMerge(
             clsx(
-                "prose prose-invert",
+                "prose prose-invert light:prose-neutral",
                 "prose-a:text-purple-300 prose-a:hover:text-purple-400 prose-a:transition-colors",
-                "prose-code:px-2  prose-code:py-1 prose-code:rounded prose-code:bg-neutral-900 prose-code:font-normal",
+                "light:prose-a:text-purple-500 light:prose-a:hover:text-purple-800",
+                "prose-code:px-2  prose-code:py-1 prose-code:rounded  prose-code:font-normal",
+                "prose-code:bg-neutral-900 prose-code:light:bg-neutral-200",
                 "prose-code:before:content-none prose-code:after:content-none",
                 "prose-code:break-words",
                 "[&>pre>code]:p-0 [&>pre>code]:bg-transparent",
