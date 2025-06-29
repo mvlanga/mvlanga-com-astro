@@ -1,12 +1,13 @@
 ---
 import RssIcon from "@/assets/icons/rss.svg";
 import { BlogFilter } from "@/components/blog/BlogFilter";
+import { BlogPost } from "@/components/blog/BlogPost";
 import { BlogPosts } from "@/components/blog/BlogPosts";
 import {
 	getTagsWithCountByPosts,
 	groupPostsByMonth,
 } from "@/components/blog/utils";
-import Skeleton from "@/components/common/Skeleton.astro";
+import { Skeleton } from "@/components/common/Skeleton";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
 
@@ -27,12 +28,13 @@ const availableTags = getTagsWithCountByPosts(blogPosts);
             <h1 class="text-4xl font-bold leading-snug">
                 Blog
             </h1>
-            <a class="text-neutral-500 transition-colors hover:text-purple-300 translate-y-1" href="/blog/rss.xml" aria-label="RSS Feed" target="_blank">
+            <a class="text-neutral-500 light:text-neutral-600 transition-colors hover:text-purple-300 light:hover:text-purple-500 translate-y-1"
+               href="/blog/rss.xml" aria-label="RSS Feed" target="_blank">
                 <RssIcon width="32" height="32" fill="var(--color-neutral-500)"/>
             </a>
         </div>
 
-        <p class="text-lg text-neutral-400">
+        <p class="text-neutral-400 light:text-neutral-700 max-w-prose">
             A few notes and reminders for myself, usually when I've found a solution to something I was struggling with,
             discovered a good solution to a channeling problem, or tried something new.
             <br/><br/>
@@ -49,31 +51,10 @@ const availableTags = getTagsWithCountByPosts(blogPosts);
                         <p class="col-span-full text-2xl">
                             {title}
                         </p>
-                        {posts && posts.map(({id, data: { title, createdAt, tags, description }}) => (
-                                <a class="group col-span-1 flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 transition-colors hover:bg-neutral-800 p-12"
-                                   href={`/blog/${id}`}
-                                >
-                                    <div class="flex flex-col items-start gap-6">
-                                        <h2 class="text-lg">
-                                            {title}
-                                        </h2>
-                                        <p class="text-neutral-200">
-                                            {description}
-                                        </p>
-                                    </div>
-
-                                    <hr class="border-neutral-800 transition-colors group-hover:border-neutral-700" />
-
-                                    <div class="flex flex-wrap justify-between gap-4 text-neutral-400 text-xs">
-                                        <p>{tags.map((tag) => `#${tag}`).join(", ")}</p>
-
-                                        <div class="flex flex-wrap gap-4">
-                                            <Skeleton className="w-[8ch]" />
-
-                                            <p>{createdAt.toLocaleDateString("en-US")}</p>
-                                        </div>
-                                    </div>
-                                </a>
+                        {posts && posts.map((post) => (
+                                <BlogPost post={post}>
+                                    <Skeleton className="w-[8ch]" />
+                                </BlogPost>
                         ))}
                     </div>
             ))}

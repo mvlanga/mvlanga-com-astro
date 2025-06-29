@@ -18,7 +18,7 @@ const { description, responsibilities } = Astro.props;
             My responsibilities
         </h2>
 
-        <p class="text-neutral-400 max-w-prose">{description}</p>
+        <p class="text-neutral-400 light:text-neutral-700 max-w-prose">{description}</p>
     </div>
 
     <PlayfulDivider client:only="react">
@@ -28,17 +28,17 @@ const { description, responsibilities } = Astro.props;
     <div class="grid gap-8">
         <ul class="grid gap-4">
             {responsibilities.me.map((responsibility) =>
-                    <li class="p-8 bg-neutral-900 rounded-3xl">{responsibility}</li>
+                    <li class="p-8 bg-neutral-900 light:bg-neutral-200 rounded-3xl">{responsibility}</li>
             )}
-            <li class="p-6 border-solid border-1 border-neutral-800 rounded-3xl">{responsibilities.colleagues}</li>
+            <li class="p-6 border-solid border-1 border-neutral-800 light:border-neutral-300 rounded-3xl">{responsibilities.colleagues}</li>
         </ul>
 
         <div class="flex gap-8 justify-end flex-wrap">
             <div class="flex items-center gap-4">
-                <span class="inline-block w-4 h-4 rounded-full bg-neutral-900"/> Me
+                <span class="inline-block w-4 h-4 rounded-full bg-neutral-900 light:bg-neutral-200"/> Me
             </div>
             <div class="flex items-center gap-4">
-                <span class="inline-block w-4 h-4 rounded-full border-solid border-1 border-neutral-800"/> Colleagues
+                <span class="inline-block w-4 h-4 rounded-full border-solid border-1 border-neutral-800 light:border-neutral-300"/> Colleagues
             </div>
         </div>
     </div>

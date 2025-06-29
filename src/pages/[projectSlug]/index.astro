@@ -15,10 +15,10 @@ const { project } = Astro.props;
 const { Content } = await render(project);
 const { title, description, customer } = project.data;
 
-import { PlayfulDivider } from "../../components/common/PlayfulDivider";
-import { OtherProjects } from "../../components/projects/OtherProjects";
-import Layout from "../../layouts/layout.astro";
-import { shuffle } from "../../utils/sortCollection";
+import { PlayfulDivider } from "@/components/common/PlayfulDivider";
+import { OtherProjects } from "@/components/projects/OtherProjects";
+import Layout from "@/layouts/layout.astro";
+import { shuffle } from "@/utils/sortCollection";
 
 const relatedProjects = shuffle(
 	await getCollection("projects", ({ id }) => id !== project.id),
@@ -30,13 +30,13 @@ const relatedProjects = shuffle(
 
 <Layout className="container gap-32 md:gap-48 lg:gap-64">
     <section class="max-w-prose mx-auto">
-        <h3 class="text-xl mb-4 text-neutral-400">
+        <h3 class="text-xl mb-4 text-neutral-400 light:text-neutral-700">
             {customer}
         </h3>
         <h1 class="mb-8 text-4xl font-bold leading-snug">
             {title}
         </h1>
-        <p class="max-w-prose text-lg text-neutral-400">
+        <p class="max-w-prose text-lg text-neutral-400 light:text-neutral-700">
             {description}
         </p>
     </section>

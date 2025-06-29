@@ -1,5 +1,5 @@
-import { useViewCount } from "@/components/blog/utils.ts";
-import { Skeleton } from "@/components/common/Skeleton.tsx";
+import { useViewCount } from "@/components/blog/utils";
+import { Skeleton } from "@/components/common/Skeleton";
 
 type ViewCounterProps = {
 	id: string;

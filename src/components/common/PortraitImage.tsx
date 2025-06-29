@@ -40,7 +40,7 @@ export const PortraitImage = () => {
 			<div
 				ref={containerRef}
 				style={{ aspectRatio }}
-				className="relative overflow-hidden rounded-2xl md:ml-auto md:max-h-lvh"
+				className="relative max-h-lvh overflow-hidden rounded-2xl md:ml-auto"
 			>
 				<motion.img
 					style={{ y: videoOffset }}

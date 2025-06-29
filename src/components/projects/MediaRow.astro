@@ -28,11 +28,11 @@ const { items, reverseOffset = false } = Astro.props;
     {items.map((props, index) =>
         props.type === "image" ? (
                 <figure class="md:col-span-3 h-fit grid gap-4 text-center">
-                    <img class={clsx("bg-neutral-900 rounded-4xl", (reverseOffset ? index % 2 === 0 : index % 2) && "md:mt-32")}
+                    <img class={clsx("bg-neutral-900 light:bg-neutral-200 rounded-4xl", (reverseOffset ? index % 2 === 0 : index % 2) && "md:mt-32")}
                          src={props.image.src} width={props.image.width} height={props.image.height} alt={props.alt}
                          loading="lazy"/>
 
-                    {props.description && <figcaption class="text-neutral-300">{props.description}</figcaption>}
+                    {props.description && <figcaption class="text-neutral-300 light:text-neutral-800">{props.description}</figcaption>}
                 </figure>
         ) : (
                 <div class={clsx("md:col-span-3 h-fit",(reverseOffset ? index % 2 === 0 : index % 2) && "md:mt-64")}>

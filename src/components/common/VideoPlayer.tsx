@@ -73,9 +73,9 @@ export const VideoPlayer = ({
 				className="relative w-full overflow-hidden rounded-4xl"
 				muted={muted}
 			>
-				<MediaProvider className="media-started:opacity-100 opacity-50 transition-opacity duration-200">
+				<MediaProvider className="light:opacity-75 media-started:opacity-100 opacity-50 transition-opacity duration-200">
 					<Poster
-						className="absolute inset-0 block h-full w-full rounded-md bg-neutral-900 opacity-0 transition-opacity data-[loading]:animate-pulse data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
+						className="absolute inset-0 block h-full w-full rounded-md bg-neutral-900 light:bg-neutral-200 opacity-0 transition-opacity data-[loading]:animate-pulse data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
 						src={poster.src}
 						alt={alt}
 					/>
@@ -89,7 +89,9 @@ export const VideoPlayer = ({
 			</MediaPlayer>
 
 			{description && (
-				<p className="mt-4 text-center text-neutral-300">{description}</p>
+				<p className="mt-4 text-center light:text-neutral-800 text-neutral-300">
+					{description}
+				</p>
 			)}
 		</div>
 	);
@@ -127,7 +129,7 @@ const VideoPlayerControls = ({ muted }: { muted: boolean }) => {
 			<div className="flex-1" />
 			<div className="media-starte:hidden flex-1" />
 
-			<Controls.Group className="pointer-events-auto flex media-started:flex hidden w-full items-center gap-4 p-8">
+			<Controls.Group className="pointer-events-auto media-started:flex hidden w-full items-center gap-4 p-8">
 				<PlayButton className="group relative inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md outline-none hover:bg-purple">
 					<PlayIcon className="hidden h-8 w-8 group-data-[paused]:block" />
 					<PauseIcon className="h-8 w-8 group-data-[paused]:hidden" />
