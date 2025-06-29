@@ -7,7 +7,7 @@ import { OtherBlogPosts } from "@/components/blog/OtherBlogPosts";
 import { Button } from "@/components/common/Button";
 import { ColoredBackground } from "@/components/common/ColoredBackground";
 import Ellipsis from "@/components/common/Ellipsis.astro";
-import { PlayfulDivider } from "@/components/common/PlayfulDivider";
+import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
 import { PortraitImage } from "@/components/common/PortraitImage";
 import { Skeleton } from "@/components/common/Skeleton";
 import Layout from "@/layouts/layout.astro";
@@ -38,9 +38,9 @@ const blogPosts = await getBlogPosts();
         <ColoredBackground client:idle className="-z-20 -bottom-32 -top-32"/>
         <div class="container grid gap-16">
             <h2 class="text-5xl">About</h2>
-            <PlayfulDivider client:only="react">
-                <hr slot="fallback" class="border-neutral-800"/>
-            </PlayfulDivider>
+
+            <PlayfulDivider />
+
             <div class="grid md:grid-cols-6 gap-16">
                 <div class="md:col-span-2">
                     <p class="text-xl max-w-prose">
