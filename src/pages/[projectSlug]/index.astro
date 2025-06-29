@@ -15,7 +15,7 @@ const { project } = Astro.props;
 const { Content } = await render(project);
 const { title, description, customer } = project.data;
 
-import { PlayfulDivider } from "@/components/common/PlayfulDivider";
+import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
 import { OtherProjects } from "@/components/projects/OtherProjects";
 import Layout from "@/layouts/layout.astro";
 import { shuffle } from "@/utils/sortCollection";
@@ -46,9 +46,7 @@ const relatedProjects = shuffle(
     <section class="grid gap-16">
         <h2 class="text-4xl">More projects you may like</h2>
 
-        <PlayfulDivider client:only="react">
-            <hr slot="fallback" class="border-neutral-800"/>
-        </PlayfulDivider>
+        <PlayfulDivider />
 
         <OtherProjects client:visible projects={relatedProjects}/>
     </section>

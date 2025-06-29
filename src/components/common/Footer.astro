@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
+import CarbonBadge from "@/components/common/CarbonBadge.astro";
+import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
 import { clsx } from "clsx";
-import CarbonBadge from "./CarbonBadge.astro";
-import { PlayfulDivider } from "./PlayfulDivider";
 
 const year = new Date().getFullYear();
 const isProduction = import.meta.env.PROD;
@@ -24,9 +24,7 @@ const { type = "regular" } = Astro.props;
         )
     }
 >
-    <PlayfulDivider client:only="react">
-        <hr slot="fallback" class="border-neutral-800"/>
-    </PlayfulDivider>
+    <PlayfulDivider />
 
     {type === "regular" && (
             <div class="flex flex-row flex-wrap justify-between gap-6 md:gap-12 md:items-end text-neutral-200 light:text-black">

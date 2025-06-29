@@ -93,9 +93,7 @@ const blogPosts = await getBlogPosts();
     <section class="grid gap-16 container scroll-mt-16" id="experience">
         <h2 class="text-5xl">Experience</h2>
 
-        <PlayfulDivider client:only="react">
-            <hr slot="fallback" class="border-neutral-800"/>
-        </PlayfulDivider>
+        <PlayfulDivider />
 
         <div class="flex flex-col gap-8">
             <div class="flex flex-col gap-8 z-0">
@@ -148,9 +146,7 @@ const blogPosts = await getBlogPosts();
     <section class="container scroll-mt-16 grid gap-16" id="projects">
         <h2 class="text-5xl">Projects</h2>
 
-        <PlayfulDivider client:only="react">
-            <hr slot="fallback" class="border-neutral-800"/>
-        </PlayfulDivider>
+        <PlayfulDivider />
 
         <div class="relative grid md:grid-cols-5 xl:grid-cols-2 gap-y-16 md:gap-y-0 gap-x-16">
             {
@@ -198,9 +194,7 @@ const blogPosts = await getBlogPosts();
             </p>
         </div>
 
-        <PlayfulDivider client:only="react">
-            <hr slot="fallback" class="border-neutral-800"/>
-        </PlayfulDivider>
+        <PlayfulDivider />
 
         <OtherBlogPosts client:only="react" blogPosts={blogPosts}>
             <div slot="fallback" class="overflow-hidden">
