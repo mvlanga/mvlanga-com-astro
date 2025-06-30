@@ -75,10 +75,21 @@ const { className, footerType = "regular" } = Astro.props;
     </style>
 
     <script is:inline>
-        const prefersLightTheme = localStorage.theme === "light" ||
-            (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: light)").matches)
+        const userPrefersLightTheme = () => {
+            try {
+                const storedTheme = localStorage.getItem("theme");
 
-        if (prefersLightTheme) {
+                return (
+                    storedTheme === "light" ||
+                    (storedTheme === null &&
+                        window.matchMedia("(prefers-color-scheme: light)").matches)
+                );
+            } catch {
+                return window.matchMedia("(prefers-color-scheme: light)").matches;
+            }
+        };
+
+        if (userPrefersLightTheme()) {
             document.documentElement.setAttribute("data-theme", "light")
         }
     </script>

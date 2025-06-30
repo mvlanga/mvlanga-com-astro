@@ -1,6 +1,6 @@
-import { IconButton } from "@/components/common/IconButton.tsx";
 import { motion, useReducedMotion } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState} from "react";
+import { IconButton } from "@/components/common/IconButton.tsx";
 
 type Theme = "dark" | "light";
 
@@ -8,8 +8,12 @@ export const ThemeToggleButton = () => {
 	const shouldReduceMotion = useReducedMotion();
 
 	const [theme, setTheme] = useState<Theme>(
-		userPrefersLightTheme() ? "light" : "dark",
+		"dark"
 	);
+
+	useEffect(() => {
+        setTheme(userPrefersLightTheme() ? "light" : "dark");
+    }, []);
 
 	function toggleTheme() {
 		const root = document.documentElement;
@@ -18,7 +22,7 @@ export const ThemeToggleButton = () => {
 		const newTheme = currentTheme === "light" ? "dark" : "light";
 
 		try {
-			localStorage.theme = newTheme;
+			localStorage.setItem("theme", newTheme);
 		} catch (e) {
 			console.warn("Could not save theme preference:", e);
 		}
@@ -37,15 +41,19 @@ export const ThemeToggleButton = () => {
 	}
 
 	return (
-		<IconButton level="secondary" onClick={() => toggleTheme()}>
+		<IconButton
+			level="secondary"
+			onClick={() => toggleTheme()}
+			aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
+		>
 			<div className="relative h-6 w-6 overflow-hidden rounded-full border-2 border-current transition-colors">
 				<motion.div
 					variants={{
 						dark: {
-							translateX: "-50%",
+							translateX: "-60%",
 						},
 						light: {
-							translateX: "50%",
+							translateX: "40%",
 						},
 					}}
 					animate={theme}
@@ -63,9 +71,15 @@ const userPrefersLightTheme = () => {
 		return false;
 	}
 
-	return (
-		localStorage.theme === "light" ||
-		(!("theme" in localStorage) &&
-			window.matchMedia("(prefers-color-scheme: light)").matches)
-	);
+    try {
+        const storedTheme = localStorage.getItem("theme");
+
+        return (
+            storedTheme === "light" ||
+            (storedTheme === null &&
+                window.matchMedia("(prefers-color-scheme: light)").matches)
+        );
+    } catch {
+        return window.matchMedia("(prefers-color-scheme: light)").matches;
+    }
 };

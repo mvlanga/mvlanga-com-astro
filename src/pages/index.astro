@@ -180,12 +180,13 @@ const blogPosts = await getBlogPosts();
         <div class="grid gap-8">
             <div class="flex gap-4 items-center">
                 <h2 class="text-5xl">
-                    Latest blog posts
+                    <span>Latest blog posts</span>
+
+                    <a class="inline-block text-neutral-500 light:text-neutral-600 transition-colors hover:text-purple-300 light:hover:text-purple-500 translate-y-1"
+                       href="/blog/rss.xml" aria-label="RSS Feed" target="_blank">
+                        <RssIcon width="32" height="32" fill="var(--color-neutral-500)"/>
+                    </a>
                 </h2>
-                <a class="text-neutral-500 light:text-neutral-600 transition-colors hover:text-purple-300 light:hover:text-purple-500 translate-y-1"
-                   href="/blog/rss.xml" aria-label="RSS Feed" target="_blank">
-                    <RssIcon width="32" height="32" fill="var(--color-neutral-500)"/>
-                </a>
             </div>
 
             <p class="text-neutral-400 light:text-neutral-700 max-w-prose">
