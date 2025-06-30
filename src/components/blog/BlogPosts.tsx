@@ -92,13 +92,13 @@ const Area = ({ title, posts, isLoading }: AreaProps) => {
 				{title}
 			</motion.p>
 			<AnimatePresence propagate>
-				{posts?.map((post, viewCount) => (
+				{posts?.map((post) => (
 					<BlogPost key={post.id} post={post}>
 						{isLoading ? (
 							<Skeleton className="w-[8ch]" />
 						) : (
 							<p className="inline-block">
-								{viewCount?.toLocaleString()} views
+								{post.viewCount?.toLocaleString()} views
 							</p>
 						)}
 					</BlogPost>
