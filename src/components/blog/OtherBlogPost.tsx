@@ -25,7 +25,7 @@ export const OtherBlogPost = ({
 					</p>
 				</div>
 
-				<div className="flex grow-1 items-end">
+				<div className="flex grow items-end">
 					<hr className="w-full border-neutral-800 light:border-neutral-400 transition-colors group-hover:border-neutral-700 group-hover:light:border-neutral-500" />
 				</div>
 

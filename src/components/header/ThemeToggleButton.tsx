@@ -1,21 +1,34 @@
 import { IconButton } from "@/components/common/IconButton.tsx";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { useState } from "react";
 
 type Theme = "dark" | "light";
 
 export const ThemeToggleButton = () => {
+	const shouldReduceMotion = useReducedMotion();
+
 	const [theme, setTheme] = useState<Theme>(
 		userPrefersLightTheme() ? "light" : "dark",
 	);
 
 	function toggleTheme() {
 		const root = document.documentElement;
-		const currentTheme = root.getAttribute("data-theme");
+		const currentTheme = root.getAttribute("data-theme") || "dark";
 
-		const newTheme: Theme = currentTheme === "light" ? "dark" : "light";
+		const newTheme = currentTheme === "light" ? "dark" : "light";
 
-		localStorage.theme = newTheme;
+		try {
+			localStorage.theme = newTheme;
+		} catch (e) {
+			console.warn("Could not save theme preference:", e);
+		}
+
+		if (shouldReduceMotion || !document.startViewTransition) {
+			setTheme(newTheme);
+			root.setAttribute("data-theme", newTheme);
+
+			return;
+		}
 
 		document.startViewTransition(() => {
 			setTheme(newTheme);
@@ -29,10 +42,10 @@ export const ThemeToggleButton = () => {
 				<motion.div
 					variants={{
 						dark: {
-							left: "-50%",
+							translateX: "-50%",
 						},
 						light: {
-							left: "50%",
+							translateX: "50%",
 						},
 					}}
 					animate={theme}
