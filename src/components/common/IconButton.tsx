@@ -43,7 +43,7 @@ export const IconButton = ({
 					size === "medium" && "rounded-full p-4",
 					level === "primary" && "bg-purple text-white",
 					level === "secondary" &&
-						"bg-neutral-900 light:bg-neutral-200 light:text-black text-white light:hover:text-white",
+					"bg-neutral-900 light:bg-neutral-100 light:text-black text-white light:hover:text-white",
 					additionalClasses,
 				),
 			)}

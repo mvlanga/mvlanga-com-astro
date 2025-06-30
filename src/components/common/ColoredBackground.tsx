@@ -15,7 +15,7 @@ export const ColoredBackground = ({ className }: { className?: string }) => {
 			ref={ref}
 			className={twMerge(
 				clsx(
-					"-z-10 absolute inset-0 bg-neutral-900 light:bg-neutral-200",
+					"-z-10 absolute inset-0 bg-neutral-900 light:bg-neutral-100",
 					className,
 				),
 			)}
