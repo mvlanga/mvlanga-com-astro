@@ -57,7 +57,7 @@ const blogPosts = await getBlogPosts();
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
                 <div class="flex flex-col gap-6">
                     <p class="text-neutral-500 contrast-more:text-neutral-400 light:text-neutral-600">01</p>
-                    <hr class="border-neutral-800"/>
+                    <hr class="border-neutral-800 light:border-neutral-300"/>
                     <p class="text-2xl">Learning & Problem Solving</p>
                     <p class="text-neutral-400 light:text-neutral-700">
                         With my ability to quickly grasp new systems and their underlying structure, I thrive in
@@ -68,7 +68,7 @@ const blogPosts = await getBlogPosts();
                 </div>
                 <div class="flex flex-col gap-6">
                     <p class="text-neutral-500 contrast-more:text-neutral-400 light:text-neutral-600">02</p>
-                    <hr class="border-neutral-800"/>
+                    <hr class="border-neutral-800 light:border-neutral-300"/>
                     <p class="text-2xl">System Architecture</p>
                     <p class="text-neutral-400 light:text-neutral-700">
                         With a keen eye for how frontend and backend systems work together, I ensure my work is always
@@ -78,7 +78,7 @@ const blogPosts = await getBlogPosts();
                 </div>
                 <div class="flex flex-col col-span-full lg:col-span-1 gap-6">
                     <p class="text-neutral-500 contrast-more:text-neutral-400 light:text-neutral-600">03</p>
-                    <hr class="border-neutral-800"/>
+                    <hr class="border-neutral-800 light:border-neutral-300"/>
                     <p class="text-2xl">User-Centric Design</p>
                     <p class="text-neutral-400 light:text-neutral-700">
                         I’m passionate about understanding the user’s needs and challenges. I dig deep into their pain
@@ -102,7 +102,7 @@ const blogPosts = await getBlogPosts();
                                         data: {from, to, role, technologies, company, tasks},
                                     }, index) => (
                             <div
-                                    class="grid gap-8 rounded-xl bg-neutral-900 light:bg-neutral-200 p-8 md:p-16 lg:grid-cols-3 lg:gap-16"
+                                    class="grid gap-8 rounded-xl bg-neutral-900 light:bg-neutral-100 p-8 md:p-16 lg:grid-cols-3 lg:gap-16"
                                     style={{zIndex: index * 20}}
                             >
                                 <div class="flex flex-col gap-4 lg:col-span-1">
@@ -125,7 +125,7 @@ const blogPosts = await getBlogPosts();
                                     {technologies && (
                                             <div class="flex flex-wrap gap-2">
                                                 {technologies.map((tech) => (
-                                                        <span class="rounded-full bg-neutral-800 light:bg-neutral-300 px-5 py-2 text-neutral-400 light:text-neutral-800 text-sm">{tech}</span>
+                                                        <span class="rounded-full bg-neutral-800 light:bg-neutral-200 px-5 py-2 text-neutral-400 light:text-neutral-800 text-sm">{tech}</span>
                                                 ))}
                                             </div>
                                     )}

@@ -38,7 +38,7 @@ export const Button = ({
 					size === "medium" && "rounded-3xl px-8 py-4",
 					level === "primary" && "bg-purple text-white",
 					level === "secondary" &&
-						"bg-neutral-900 light:bg-neutral-200 light:text-black text-white light:hover:text-white light:aria-expanded:text-white",
+						"bg-neutral-900 light:bg-neutral-100 light:text-black text-white light:hover:text-white light:aria-expanded:text-white",
 					additionalClasses,
 				),
 			)}

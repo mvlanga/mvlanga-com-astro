@@ -15,7 +15,7 @@ export const OtherBlogPost = ({
 	return (
 		<div className="transform-3d-[0_0_0] min-w-0 flex-[0_0_92%] pl-4 md:flex-[0_0_60%] md:pl-8 lg:flex-[0_0_45%]">
 			<a
-				className="group flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 light:bg-neutral-200 p-12 transition-colors hover:bg-neutral-800 light:hover:bg-neutral-300"
+				className="group flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 light:bg-neutral-100 p-12 transition-colors hover:bg-neutral-800 light:hover:bg-neutral-200"
 				href={`/blog/${id}`}
 			>
 				<div className="flex flex-col items-start gap-6">
@@ -26,7 +26,7 @@ export const OtherBlogPost = ({
 				</div>
 
 				<div className="flex grow items-end">
-					<hr className="w-full border-neutral-800 light:border-neutral-400 transition-colors group-hover:border-neutral-700 group-hover:light:border-neutral-500" />
+					<hr className="w-full border-neutral-800 light:border-neutral-300 transition-colors group-hover:border-neutral-700 group-hover:light:border-neutral-400" />
 				</div>
 
 				<div className="flex flex-wrap justify-between gap-4 light:text-neutral-700 text-neutral-400 text-xs">

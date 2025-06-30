@@ -199,7 +199,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 						animate="open"
 						exit="closed"
 						aria-label="Main Menu"
-						className="fixed top-2 right-2 left-2 z-30 flex max-h-[calc(100%-1rem)] flex-col gap-10 overflow-y-auto rounded-2xl bg-neutral-900 light:bg-neutral-200 px-8 py-10 sm:top-5 sm:right-5 sm:left-auto sm:w-72"
+						className="fixed top-2 right-2 left-2 z-30 flex max-h-[calc(100%-1rem)] flex-col gap-10 overflow-y-auto rounded-2xl bg-neutral-900 light:bg-neutral-100 px-8 py-10 sm:top-5 sm:right-5 sm:left-auto sm:w-72"
 						id="main-menu"
 					>
 						<div className="flex flex-col gap-4">

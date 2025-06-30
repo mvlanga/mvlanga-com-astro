@@ -23,7 +23,7 @@ export const BlogPost = ({
 			animate={{ opacity: 1, scale: 1 }}
 			exit={{ opacity: 0, scale: 0.8 }}
 			transition={layoutTransition}
-			className="group flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 light:bg-neutral-200 p-12 transition-colors hover:bg-neutral-800 light:hover:bg-neutral-300"
+			className="group flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 light:bg-neutral-100 p-12 transition-colors hover:bg-neutral-800 light:hover:bg-neutral-200"
 			href={`/blog/${id}`}
 		>
 			<div className="flex flex-col items-start gap-6">
@@ -39,7 +39,7 @@ export const BlogPost = ({
 			</div>
 
 			<div className="flex grow items-end">
-				<hr className="w-full border-neutral-800 light:border-neutral-400 transition-colors group-hover:border-neutral-700 group-hover:light:border-neutral-500" />
+				<hr className="w-full border-neutral-800 light:border-neutral-300 transition-colors group-hover:border-neutral-700 group-hover:light:border-neutral-400" />
 			</div>
 
 			<div className="flex flex-wrap justify-between gap-4 light:text-neutral-700 text-neutral-400 text-xs">

@@ -73,9 +73,9 @@ export const VideoPlayer = ({
 				className="relative w-full overflow-hidden rounded-4xl"
 				muted={muted}
 			>
-				<MediaProvider className="light:opacity-75 media-started:opacity-100 opacity-50 transition-opacity duration-200">
+				<MediaProvider className="brightness-75 light:brightness-[80%] media-started:brightness-100 transition-all duration-200">
 					<Poster
-						className="absolute inset-0 block h-full w-full rounded-md bg-neutral-900 light:bg-neutral-200 opacity-0 transition-opacity data-[loading]:animate-pulse data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
+						className="absolute inset-0 block h-full w-full rounded-md bg-neutral-900 light:bg-neutral-100 opacity-0 transition-opacity data-[loading]:animate-pulse data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
 						src={poster.src}
 						alt={alt}
 					/>
@@ -116,7 +116,7 @@ const VideoPlayerGestures = () => {
 
 const VideoPlayerControls = ({ muted }: { muted: boolean }) => {
 	return (
-		<Controls.Root className="pointer-events-none absolute inset-0 z-10 flex h-full w-full flex-col bg-gradient-to-t from-black/10 to-transparent opacity-0 transition-opacity data-[visible]:opacity-100">
+		<Controls.Root className="text-white pointer-events-none absolute inset-0 z-10 flex h-full w-full flex-col bg-gradient-to-t from-black/10 to-transparent opacity-0 transition-opacity data-[visible]:opacity-100">
 			<div className="flex-1" />
 			<div className="flex-1" />
 
