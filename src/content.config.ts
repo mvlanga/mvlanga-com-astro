@@ -7,12 +7,13 @@ const experience = defineCollection({
 		pattern: "*.json",
 	}),
 	schema: z.object({
+		reduced: z.boolean().optional(),
 		company: z.object({
 			title: z.string(),
 			description: z.string(),
 		}),
-		from: z.number(),
-		to: z.string().optional(),
+		from: z.string(),
+		to: z.string(),
 		role: z.string(),
 		tasks: z.array(z.string()),
 		technologies: z.array(z.string()).optional(),

@@ -3,13 +3,12 @@
 		"title": "SCHACHZUG",
 		"description": "a leading creative agency in the automotive and technology sector, working with clients like Volkswagen, Škoda, and Fujitsu."
 	},
-	"from": "2019",
-	"to": "2022",
-	"role": "Full Stack Developer",
+	"from": "2017",
+	"to": "2019",
+	"role": "Apprenticeship in Media Design",
 	"tasks": [
 		"I have done full stack application development, such as ordering systems with logistics functionality and digitising press events by creating digitally accessible 3D environments. These projects allowed clients to explore a 3D world, experiencing the same interactive features and location as if they were attending the event themselves.",
-		"I was also responsible for the complete conception of digital events, leading the design and development process to ensure a seamless user experience.",
-		"My role also involved managing the IT & Development team, maintaining and setting up a new IT infrastructure (network, storage), coordinating external service vendors such as livestreaming and 3D designers."
+		"I was also responsible for the complete conception of digital events, leading the design and development process to ensure a seamless user experience."
 	],
 	"technologies": [
 		"Angular",
