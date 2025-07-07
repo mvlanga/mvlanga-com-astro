@@ -10,6 +10,7 @@ import Ellipsis from "@/components/common/Ellipsis.astro";
 import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
 import { PortraitImage } from "@/components/common/PortraitImage";
 import { Skeleton } from "@/components/common/Skeleton";
+import { ExperienceItem } from "@/components/experience/ExperienceItem";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
 import { sortExperience, sortHighlights } from "@/utils/sortCollection";
@@ -96,42 +97,9 @@ const blogPosts = await getBlogPosts();
         <PlayfulDivider />
 
         <div class="flex flex-col gap-8">
-            <div class="flex flex-col gap-8 z-0">
+            <div class="flex flex-col gap-8">
                 {
-                    experience.map(({
-                                        data: {from, to, role, technologies, company, tasks},
-                                    }, index) => (
-                            <div
-                                    class="grid gap-8 rounded-xl bg-neutral-900 light:bg-neutral-100 p-8 md:p-16 lg:grid-cols-3 lg:gap-16"
-                                    style={{zIndex: index * 20}}
-                            >
-                                <div class="flex flex-col gap-4 lg:col-span-1">
-                                    <p class="text-neutral-400 light:text-neutral-600">
-                                        {from}
-                                        {" - "}
-                                        {to}
-                                    </p>
-                                    <h3 class="text-3xl">{role}</h3>
-                                    <p class="text-neutral-400 light:text-neutral-700">at <span
-                                            class="font-semibold">{company.title}</span>, {company.description}</p>
-                                </div>
-                                <hr class="border-neutral-800 lg:hidden"/>
-                                <div class="flex max-w-prose flex-col gap-8 lg:col-span-2">
-                                    <ul class="flex flex-col gap-4 text-neutral-400 light:text-neutral-700">
-                                        {tasks.map((task) => (
-                                                <li>{task}</li>
-                                        ))}
-                                    </ul>
-                                    {technologies && (
-                                            <div class="flex flex-wrap gap-2">
-                                                {technologies.map((tech) => (
-                                                        <span class="rounded-full bg-neutral-800 light:bg-neutral-200 px-5 py-2 text-neutral-400 light:text-neutral-800 text-sm">{tech}</span>
-                                                ))}
-                                            </div>
-                                    )}
-                                </div>
-                            </div>
-                    ))
+                    experience.map((item) => <ExperienceItem experienceItem={item} />)
                 }
             </div>
             <div class="w-full text-end">
