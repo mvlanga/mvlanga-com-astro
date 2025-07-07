@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import { testAutomaticallyDetectableA11nIssuesByRoute } from "./utils.ts";
 
-const projectPages: string[] = [
+const highlightPages: string[] = [
 	"/skoda-enyaq-coupe",
 	"/fujitsu-cx-lab",
 	"/cariad-iaa",
@@ -9,8 +9,8 @@ const projectPages: string[] = [
 	"/fujitsu-smart-city",
 ];
 
-test.describe("project-page", () => {
-	for (const route of projectPages) {
+test.describe("highlight-page", () => {
+	for (const route of highlightPages) {
 		test.describe(`${route}`, () => {
 			testAutomaticallyDetectableA11nIssuesByRoute(route);
 		});
