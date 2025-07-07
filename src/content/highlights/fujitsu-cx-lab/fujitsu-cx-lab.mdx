@@ -8,10 +8,10 @@ cover: ./fujitsu-cx-lab-thumbnail_01.jpg
 coverAlt: Example screenshot of the Fujtisu CX Lab Application
 coverOnHover: ./fujitsu-cx-lab-thumbnail_02.jpg
 coverOnHoverAlt: Example screenshot of the Fujtisu CX Lab Application
-openGraphCover: "src/content/projects/fujitsu-cx-lab/fujitsu-cx-lab-thumbnail_01.jpg"
+openGraphCover: "src/content/highlights/fujitsu-cx-lab/fujitsu-cx-lab-thumbnail_01.jpg"
 ---
-import MediaRow from "../../../components/projects/MediaRow.astro";
-import MyResponsibilities from "../../../components/projects/MyResponsibilities.astro";
+import MediaRow from "../../../components/highlights/MediaRow.astro";
+import MyResponsibilities from "../../../components/highlights/MyResponsibilities.astro";
 import {VideoPlayer} from "../../../components/common/VideoPlayer";
 import Prose from "../../../components/common/Prose.astro";
 
@@ -23,10 +23,10 @@ import customUploadPoster from "./custom-upload.jpg";
 import presentationPoster from "./presentation.jpg";
 import teaserPoster from "./teaser.jpg";
 
-<VideoPlayer client:visible src="/projects/fujitsu-cx-lab/teaser.mp4" poster={teaserPoster}
+<VideoPlayer client:visible src="/highlights/fujitsu-cx-lab/teaser.mp4" poster={teaserPoster}
              alt="Example Transition"/>
 
-<Prose variant="project" additionalClasses="max-w-prose mx-auto">
+<Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## The origin: Our Smart City exhibit at the Fujitsu Forum 2019
 
     Explaining products and services in a simplified way using a digital city comes from an idea we had during a
@@ -47,7 +47,7 @@ import teaserPoster from "./teaser.jpg";
     }
 ]}/>
 
-<Prose variant="project" additionalClasses="max-w-prose mx-auto">
+<Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## The goals
 
     Fujitsu's services are often very complex and many potential customers have no concrete examples of how they can
@@ -83,7 +83,7 @@ import teaserPoster from "./teaser.jpg";
 <MediaRow items={[
     {
         type: "video",
-        src: "/projects/fujitsu-cx-lab/custom-upload.mp4",
+        src: "/highlights/fujitsu-cx-lab/custom-upload.mp4",
         poster: customUploadPoster,
         muted: true,
         alt: "Upload of logos & custom presentations",
@@ -91,7 +91,7 @@ import teaserPoster from "./teaser.jpg";
     },
     {
         type: "video",
-        src: "/projects/fujitsu-cx-lab/presentation.mp4",
+        src: "/highlights/fujitsu-cx-lab/presentation.mp4",
         poster: presentationPoster,
         muted: true,
         alt: "Presentation controls",
@@ -99,7 +99,7 @@ import teaserPoster from "./teaser.jpg";
     }
 ]}/>
 
-<Prose variant="project" additionalClasses="max-w-prose mx-auto">
+<Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## Highlights
 
     In addition to features such as multi-language capability and passwordless e-mail authentication, one had the

@@ -1,4 +1,3 @@
-import { useOnMount } from "@/utils/useOnMount.ts";
 import {
 	Controls,
 	FullscreenButton,
@@ -25,6 +24,7 @@ import {
 import type { ImageMetadata } from "astro";
 import { useInView } from "motion/react";
 import { useEffect, useRef } from "react";
+import { useOnMount } from "@/utils/useOnMount.ts";
 
 export type VideoPlayerProps = {
 	src: string;
@@ -116,7 +116,7 @@ const VideoPlayerGestures = () => {
 
 const VideoPlayerControls = ({ muted }: { muted: boolean }) => {
 	return (
-		<Controls.Root className="text-white pointer-events-none absolute inset-0 z-10 flex h-full w-full flex-col bg-gradient-to-t from-black/10 to-transparent opacity-0 transition-opacity data-[visible]:opacity-100">
+		<Controls.Root className="pointer-events-none absolute inset-0 z-10 flex h-full w-full flex-col bg-gradient-to-t from-black/10 to-transparent text-white opacity-0 transition-opacity data-[visible]:opacity-100">
 			<div className="flex-1" />
 			<div className="flex-1" />
 

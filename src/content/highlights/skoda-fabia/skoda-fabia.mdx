@@ -8,10 +8,10 @@ cover: ./skoda-fabia-thumbnail_01.jpg
 coverAlt: Example screenshot of the web app of the Škoda Fabia Digital World Premiere
 coverOnHover: ./skoda-fabia-thumbnail_02.jpg
 coverOnHoverAlt: Example screenshot of the web app of the Škoda Fabia Digital World Premiere
-openGraphCover: "src/content/projects/skoda-fabia/skoda-fabia-thumbnail_01.jpg"
+openGraphCover: "src/content/highlights/skoda-fabia/skoda-fabia-thumbnail_01.jpg"
 ---
-import MediaRow from "../../../components/projects/MediaRow.astro";
-import MyResponsibilities from "../../../components/projects/MyResponsibilities.astro";
+import MediaRow from "../../../components/highlights/MediaRow.astro";
+import MyResponsibilities from "../../../components/highlights/MyResponsibilities.astro";
 import {VideoPlayer} from "../../../components/common/VideoPlayer";
 import Prose from "../../../components/common/Prose.astro";
 
@@ -42,7 +42,7 @@ import scannedSkodaEmployees from "./scanned-skoda-employees.jpg";
     }
 ]}/>
 
-<Prose variant="project" additionalClasses="max-w-prose mx-auto">
+<Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## The story
 
     Due to rising infection rates (COVID) in the Czech Republic, we were unable to hold a live event with
@@ -72,7 +72,7 @@ import scannedSkodaEmployees from "./scanned-skoda-employees.jpg";
                         "Deploying the application using Firebase Hosting.",
                     ]}/>
 
-<Prose variant="project" additionalClasses="max-w-prose mx-auto">
+<Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## World Premiere
 
     The actual world premiere took place via livestream. Users who were online during the show were automatically
@@ -94,7 +94,7 @@ import scannedSkodaEmployees from "./scanned-skoda-employees.jpg";
     }
 ]} reverseOffset={true}/>
 
-<Prose variant="project" additionalClasses="max-w-prose mx-auto">
+<Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## Highlights
 
     In addition to the livestream and other video clips, there were numerous features such as the integration of
@@ -106,14 +106,14 @@ import scannedSkodaEmployees from "./scanned-skoda-employees.jpg";
 <MediaRow items={[
     {
         type: "video",
-        src: "/projects/skoda-fabia/ar-car.mp4",
+        src: "/highlights/skoda-fabia/ar-car.mp4",
         poster: arCarPoster,
         alt: "Augmented Reality Car Model",
         description: "Augmented Reality Car Model",
     },
     {
         type: "video",
-        src: "/projects/skoda-fabia/virtual-assistant.mp4",
+        src: "/highlights/skoda-fabia/virtual-assistant.mp4",
         poster: virtualAssistantPoster,
         alt: "Virtual assistant",
         description: "Virtual assistant"
@@ -126,14 +126,14 @@ import scannedSkodaEmployees from "./scanned-skoda-employees.jpg";
     },
     {
         type: "video",
-        src: "/projects/skoda-fabia/design-chat.mp4",
+        src: "/highlights/skoda-fabia/design-chat.mp4",
         poster: designChatPoster,
         alt: "Chat with the design team",
         description: "Chat with the design team"
     },
     {
         type: "video",
-        src: "/projects/skoda-fabia/camera-transition.mp4",
+        src: "/highlights/skoda-fabia/camera-transition.mp4",
         poster: cameraTransitionPoster,
         alt: "Camera transitions",
         description: "Camera transitions"

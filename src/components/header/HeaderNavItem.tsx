@@ -1,8 +1,8 @@
-import { useOnMount } from "@/utils/useOnMount.ts";
 import { clsx } from "clsx";
 import { scroll } from "motion";
 import { inView } from "motion/react";
 import type { Dispatch, SetStateAction } from "react";
+import { useOnMount } from "@/utils/useOnMount.ts";
 
 type HeaderNavItemProps = {
 	currentPath: string;

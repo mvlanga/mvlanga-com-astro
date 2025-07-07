@@ -1,22 +1,22 @@
+import { type CollectionEntry, getCollection } from "astro:content";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { type CollectionEntry, getCollection } from "astro:content";
 import { BackgroundImage, generateOgImage } from "@/utils/og-image/utils.ts";
 
 interface Props {
-	params: { projectSlug: string };
-	props: { project: CollectionEntry<"projects"> };
+	params: { highlightSlug: string };
+	props: { highlight: CollectionEntry<"highlights"> };
 }
 
 export const GET = async ({ props }: Props) => {
-	const { project } = props;
+	const { highlight } = props;
 
-	if (project.filePath === undefined) {
+	if (highlight.filePath === undefined) {
 		return;
 	}
 
-	const projectCoverImage = await fs.readFile(
-		path.resolve(`${process.cwd()}/${project.data.openGraphCover}`),
+	const highlightCoverImage = await fs.readFile(
+		path.resolve(`${process.cwd()}/${highlight.data.openGraphCover}`),
 	);
 
 	return await generateOgImage(
@@ -40,7 +40,7 @@ export const GET = async ({ props }: Props) => {
 					{
 						type: "img",
 						props: {
-							src: projectCoverImage.buffer,
+							src: highlightCoverImage.buffer,
 							style: {
 								width: "400px",
 								height: "100%",
@@ -62,14 +62,14 @@ export const GET = async ({ props }: Props) => {
 								{
 									type: "h1",
 									props: {
-										children: `${project.data.customer} - ${project.data.title}`,
+										children: `${highlight.data.customer} - ${highlight.data.title}`,
 										tw: "text-5xl leading-snug",
 									},
 								},
 								{
 									type: "p",
 									props: {
-										children: "Moriz von Langa | Projects",
+										children: "Moriz von Langa | Highlights",
 										tw: "text-4xl text-neutral-100 font-normal",
 									},
 								},
@@ -83,10 +83,10 @@ export const GET = async ({ props }: Props) => {
 };
 
 export async function getStaticPaths() {
-	const projects = await getCollection("projects");
+	const highlights = await getCollection("highlights");
 
-	return projects.map((project) => ({
-		params: { projectSlug: project.id },
-		props: { project },
+	return highlights.map((highlight) => ({
+		params: { highlightSlug: highlight.id },
+		props: { highlight },
 	}));
 }

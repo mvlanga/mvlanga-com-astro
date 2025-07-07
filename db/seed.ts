@@ -1,5 +1,5 @@
 import { getCollection } from "astro:content";
-import { PageViews, db } from "astro:db";
+import { db, PageViews } from "astro:db";
 
 export default async function seed() {
 	const blogPosts = await getCollection("blogPosts");

@@ -1,6 +1,6 @@
-import { getBlogPosts } from "@/utils/collections.ts";
 import rss from "@astrojs/rss";
 import type { APIRoute } from "astro";
+import { getBlogPosts } from "@/utils/collections.ts";
 
 export const GET: APIRoute = async (context) => {
 	const blogPosts = await getBlogPosts();

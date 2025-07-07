@@ -1,6 +1,6 @@
-import mvlPortrait from "@/assets/img/moriz-von-langa-portrait.webp";
 import { motion, useInView, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef } from "react";
+import mvlPortrait from "@/assets/img/moriz-von-langa-portrait.webp";
 
 const aspectRatio = mvlPortrait.width / mvlPortrait.height;
 

@@ -12,10 +12,10 @@ import { PortraitImage } from "@/components/common/PortraitImage";
 import { Skeleton } from "@/components/common/Skeleton";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
-import { sortExperience, sortProjects } from "@/utils/sortCollection";
+import { sortExperience, sortHighlights } from "@/utils/sortCollection";
 
 const experience = sortExperience(await getCollection("experience"));
-const projects = sortProjects(await getCollection("projects"));
+const highlights = sortHighlights(await getCollection("highlights"));
 const blogPosts = await getBlogPosts();
 ---
 
@@ -143,14 +143,14 @@ const blogPosts = await getBlogPosts();
         </div>
     </section>
 
-    <section class="container scroll-mt-16 grid gap-16" id="projects">
-        <h2 class="text-5xl">Projects</h2>
+    <section class="container scroll-mt-16 grid gap-16" id="highlights">
+        <h2 class="text-5xl">Highlights</h2>
 
         <PlayfulDivider />
 
         <div class="relative grid md:grid-cols-5 xl:grid-cols-2 gap-y-16 md:gap-y-0 gap-x-16">
             {
-                projects.map(({id, data: {title, customer, cover, coverOnHover}}, index) => (
+                highlights.map(({id, data: {title, customer, cover, coverOnHover}}, index) => (
                         <div class="flex flex-col md:col-span-2 xl:col-span-1 justify-center md:order-none! md:py-16"
                              style=`order: ${index + 2}`>
                             <a href=`/${id}` class="flex flex-col gap-6">
