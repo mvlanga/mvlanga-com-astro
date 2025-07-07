@@ -1,17 +1,17 @@
+import {
+	AnimatePresence,
+	motion,
+	useMotionValueEvent,
+	useScroll,
+	type Variants,
+} from "motion/react";
+import { useCallback, useEffect, useState } from "react";
+import { useComponentSize } from "react-use-size";
 import { Button } from "@/components/common/Button";
 import { HeaderNavItem } from "@/components/header/HeaderNavItem";
 import { ThemeToggleButton } from "@/components/header/ThemeToggleButton";
 import { useEscapeKey } from "@/utils/useEscapeKey";
 import { useIsBreakpointSm } from "@/utils/useMediaQuery.ts";
-import {
-	AnimatePresence,
-	type Variants,
-	motion,
-	useMotionValueEvent,
-	useScroll,
-} from "motion/react";
-import { useCallback, useEffect, useState } from "react";
-import { useComponentSize } from "react-use-size";
 
 type NavigationItems = { label: string; url: string }[];
 
@@ -29,8 +29,8 @@ const navItems: NavigationItems = [
 		url: "/#experience",
 	},
 	{
-		label: "Projects",
-		url: "/#projects",
+		label: "Highlights",
+		url: "/#highlights",
 	},
 	{
 		label: "Blog",
@@ -116,6 +116,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 		<>
 			{isHeaderHidden && (
 				<div
+					aria-hidden={true}
 					className="fixed top-0 right-0 left-0 z-50 h-5"
 					onMouseEnter={() => setIsHeaderHidden(false)}
 				/>

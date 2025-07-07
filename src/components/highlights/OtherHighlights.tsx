@@ -1,17 +1,17 @@
 import type { CollectionEntry } from "astro:content";
 import useEmblaCarousel from "embla-carousel-react";
 
-type OtherProjectsProps = {
-	projects: CollectionEntry<"projects">[];
+type OtherHighlightsProps = {
+	highlights: CollectionEntry<"highlights">[];
 };
 
-export const OtherProjects = ({ projects }: OtherProjectsProps) => {
+export const OtherHighlights = ({ highlights }: OtherHighlightsProps) => {
 	const [emblaRef] = useEmblaCarousel();
 
 	return (
 		<div className="overflow-hidden" ref={emblaRef}>
 			<div className="-ml-8 flex touch-pan-y">
-				{projects.map(({ id, data: { title, cover, coverAlt } }, _index) => (
+				{highlights.map(({ id, data: { title, cover, coverAlt } }, _index) => (
 					<div
 						key={id}
 						className="transform-3d-[0_0_0] min-w-0 flex-[0_0_60%] pl-8 md:flex-[0_0_30%]"

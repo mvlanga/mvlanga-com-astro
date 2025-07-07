@@ -2,26 +2,26 @@
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-	const projects = await getCollection("projects");
+	const highlights = await getCollection("highlights");
 
-	return projects.map((project) => ({
-		params: { projectSlug: project.id },
-		props: { project },
+	return highlights.map((highlight) => ({
+		params: { highlightSlug: highlight.id },
+		props: { highlight },
 	}));
 }
 
-const { project } = Astro.props;
+const { highlight } = Astro.props;
 
-const { Content } = await render(project);
-const { title, description, customer } = project.data;
+const { Content } = await render(highlight);
+const { title, description, customer } = highlight.data;
 
 import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
-import { OtherProjects } from "@/components/projects/OtherProjects";
+import { OtherHighlights } from "@/components/highlights/OtherHighlights";
 import Layout from "@/layouts/layout.astro";
 import { shuffle } from "@/utils/sortCollection";
 
-const relatedProjects = shuffle(
-	await getCollection("projects", ({ id }) => id !== project.id),
+const relatedHighlights = shuffle(
+	await getCollection("highlights", ({ id }) => id !== highlight.id),
 );
 ---
 
@@ -44,10 +44,10 @@ const relatedProjects = shuffle(
     <Content/>
 
     <section class="grid gap-16">
-        <h2 class="text-4xl">More projects you may like</h2>
+        <h2 class="text-4xl">More highlights you may like</h2>
 
         <PlayfulDivider />
 
-        <OtherProjects client:visible projects={relatedProjects}/>
+        <OtherHighlights client:visible highlights={relatedHighlights}/>
     </section>
 </Layout>

@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "motion/react";
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { IconButton } from "@/components/common/IconButton.tsx";
 
 type Theme = "dark" | "light";
@@ -7,13 +7,11 @@ type Theme = "dark" | "light";
 export const ThemeToggleButton = () => {
 	const shouldReduceMotion = useReducedMotion();
 
-	const [theme, setTheme] = useState<Theme>(
-		"dark"
-	);
+	const [theme, setTheme] = useState<Theme>("dark");
 
 	useEffect(() => {
-        setTheme(userPrefersLightTheme() ? "light" : "dark");
-    }, []);
+		setTheme(userPrefersLightTheme() ? "light" : "dark");
+	}, []);
 
 	function toggleTheme() {
 		const root = document.documentElement;
@@ -71,15 +69,15 @@ const userPrefersLightTheme = () => {
 		return false;
 	}
 
-    try {
-        const storedTheme = localStorage.getItem("theme");
+	try {
+		const storedTheme = localStorage.getItem("theme");
 
-        return (
-            storedTheme === "light" ||
-            (storedTheme === null &&
-                window.matchMedia("(prefers-color-scheme: light)").matches)
-        );
-    } catch {
-        return window.matchMedia("(prefers-color-scheme: light)").matches;
-    }
+		return (
+			storedTheme === "light" ||
+			(storedTheme === null &&
+				window.matchMedia("(prefers-color-scheme: light)").matches)
+		);
+	} catch {
+		return window.matchMedia("(prefers-color-scheme: light)").matches;
+	}
 };

@@ -1,6 +1,6 @@
+import { type CollectionEntry, getCollection } from "astro:content";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { type CollectionEntry, getCollection } from "astro:content";
 import { BackgroundImage, generateOgImage } from "@/utils/og-image/utils.ts";
 
 interface Props {

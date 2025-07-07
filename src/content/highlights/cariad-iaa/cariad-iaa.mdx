@@ -8,10 +8,10 @@ cover: ./cariad-iaa-thumbnail_01.jpg
 coverAlt: Example screenshot of the CARIAD Digital Booth at IAA 2021
 coverOnHover: ./cariad-iaa-thumbnail_02.jpg
 coverOnHoverAlt: Example screenshot of the CARIAD Digital Booth at IAA 2021
-openGraphCover: "src/content/projects/cariad-iaa/cariad-iaa-thumbnail_01.jpg"
+openGraphCover: "src/content/highlights/cariad-iaa/cariad-iaa-thumbnail_01.jpg"
 ---
-import MediaRow from "../../../components/projects/MediaRow.astro";
-import MyResponsibilities from "../../../components/projects/MyResponsibilities.astro";
+import MediaRow from "../../../components/highlights/MediaRow.astro";
+import MyResponsibilities from "../../../components/highlights/MyResponsibilities.astro";
 import {VideoPlayer} from "../../../components/common/VideoPlayer";
 import Prose from "../../../components/common/Prose.astro";
 
@@ -27,11 +27,11 @@ import beautyThree from "cariad-iaa_beauty-03.jpg";
 import beautySix from "cariad-iaa_beauty-06.jpg";
 import beautySeven from "cariad-iaa_beauty-07.jpg";
 
-<VideoPlayer client:visible src="/projects/cariad-iaa/cariad-iaa-2021_teaser.mp4" poster={teaserPoster}
+<VideoPlayer client:visible src="/highlights/cariad-iaa/cariad-iaa-2021_teaser.mp4" poster={teaserPoster}
              muted={false}
              alt="Teaser"/>
 
-<Prose variant="project" additionalClasses="max-w-prose mx-auto">
+<Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## The story
 
     In order to make the event an experience not only for visitors to the IAA 2021, we digitally reproduced the
@@ -73,7 +73,7 @@ import beautySeven from "cariad-iaa_beauty-07.jpg";
                         "Deploying the application using Firebase Hosting.",
                     ]}/>
 
-<Prose variant="project" additionalClasses="max-w-prose mx-auto">
+<Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## Live Sessions
 
     During the entire IAA, 7 different topics were broadcast live from the stage of the CARIAD booth. In addition to
@@ -81,10 +81,10 @@ import beautySeven from "cariad-iaa_beauty-07.jpg";
     to get a more immersive feel. We also installed a display showing real-time viewer numbers.
 </Prose>
 
-<VideoPlayer client:visible src="/projects/cariad-iaa/cariad-iaa-2021_live-sessions.mp4" poster={liveSessionsPoster}
+<VideoPlayer client:visible src="/highlights/cariad-iaa/cariad-iaa-2021_live-sessions.mp4" poster={liveSessionsPoster}
              muted={false} alt="Livestreams"/>
 
-<Prose variant="project" additionalClasses="max-w-prose mx-auto">
+<Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## Highlights
 
     In addition to the booth and information about CARIAD, we offered many other features, such as the Quiz Corner,
@@ -98,28 +98,28 @@ import beautySeven from "cariad-iaa_beauty-07.jpg";
 <MediaRow items={[
     {
         type: "video",
-        src: "/projects/cariad-iaa/hr-corner.mp4",
+        src: "/highlights/cariad-iaa/hr-corner.mp4",
         poster: hrCornerPoster,
         alt: "HR Corner",
         description: "HR Corner"
     },
     {
         type: "video",
-        src: "/projects/cariad-iaa/quiz-corner.mp4",
+        src: "/highlights/cariad-iaa/quiz-corner.mp4",
         poster: quizCornerPoster,
         alt: "Quiz Corner",
         description: "Quiz Corner"
     },
     {
         type: "video",
-        src: "/projects/cariad-iaa/cariad-experience.mp4",
+        src: "/highlights/cariad-iaa/cariad-experience.mp4",
         poster: cariadExperiencePoster,
         alt: "CARAID Experience",
         description: "CARAID Experience"
     },
     {
         type: "video",
-        src: "/projects/cariad-iaa/board-talk.mp4",
+        src: "/highlights/cariad-iaa/board-talk.mp4",
         poster: boardTalkPoster,
         alt: "Board talk",
         description: "Board talk"
