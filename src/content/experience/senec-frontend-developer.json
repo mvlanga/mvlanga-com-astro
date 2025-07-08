@@ -21,6 +21,7 @@
 		"Webpack",
 		"Vite",
 		"Jest",
-		"Vitest"
+		"Vitest",
+		"Contentful"
 	]
 }

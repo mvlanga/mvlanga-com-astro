@@ -9,14 +9,19 @@
 	"tasks": [
 		"Designed and developed a web application for a trade fair exhibit, which controlled a game developed with Unity via TCP communication within a local network.",
 		"Developed custom HTML-based newsletters, ensuring cross-client compatibility using Litmus.",
-		"Maintained and developed a custom e-commerce platform with integrated shipping and logistics functionalities."
+		"Maintained and developed a custom e-commerce platform with integrated shipping and logistics functionalities.",
+		"Took over the responsibility of maintaining and extending our IT infrastructure, including our NAS Systems, LDAP directory, internal network, web servers as well as certificate management.",
+		"Enhanced and maintained a mobile app to simplify fair visits for guests, providing them with a personalised agenda, ticket management and additional information about the fair."
 	],
 	"reduced": true,
 	"technologies": [
-		"Node.js (Express)",
-		"PHP (Symfony)",
+		"NAS",
+		"Network",
+		"LDAP",
 		"Apache",
 		"Certbot",
+		"Node.js (Express)",
+		"PHP (Symfony)",
 		"HTML (Twig)",
 		"CSS (Less)",
 		"Javascript",

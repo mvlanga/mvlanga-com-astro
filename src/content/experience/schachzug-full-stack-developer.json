@@ -7,9 +7,12 @@
 	"to": "2022",
 	"role": "Full Stack Developer",
 	"tasks": [
+		"Full-Stack Development of ",
+
 		"I have done full stack application development, such as ordering systems with logistics functionality and digitising press events by creating digitally accessible 3D environments. These projects allowed clients to explore a 3D world, experiencing the same interactive features and location as if they were attending the event themselves.",
 		"I was also responsible for the complete conception of digital events, leading the design and development process to ensure a seamless user experience.",
-		"My role also involved managing the IT & Development team, maintaining and setting up a new IT infrastructure (network, storage), coordinating external service vendors such as livestreaming and 3D designers."
+		"I took full responsibility for the development and IT department for more than two years. During this time, we set up a brand new IT infrastructure, including a new firewall, LAN cables at every desk, and a WLAN mesh system for over 20 employees and more than 250 square metres of space in an old villa.",
+		"Coordinated multiple external service vendors, e.g. for live streaming or 3D design."
 	],
 	"technologies": [
 		"AWS",
