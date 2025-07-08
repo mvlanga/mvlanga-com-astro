@@ -1,19 +1,18 @@
 ---
-import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
+import {Image} from "astro:assets";
+import {getCollection} from "astro:content";
 import RssIcon from "@/assets/icons/rss.svg";
-import { OtherBlogPost } from "@/components/blog/OtherBlogPost";
-import { OtherBlogPosts } from "@/components/blog/OtherBlogPosts";
-import { Button } from "@/components/common/Button";
-import { ColoredBackground } from "@/components/common/ColoredBackground";
+import {OtherBlogPost} from "@/components/blog/OtherBlogPost";
+import {OtherBlogPosts} from "@/components/blog/OtherBlogPosts";
+import {Button} from "@/components/common/Button";
+import {ColoredBackground} from "@/components/common/ColoredBackground";
 import Ellipsis from "@/components/common/Ellipsis.astro";
 import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
-import { PortraitImage } from "@/components/common/PortraitImage";
-import { Skeleton } from "@/components/common/Skeleton";
-import { ExperienceItem } from "@/components/experience/ExperienceItem";
+import {PortraitImage} from "@/components/common/PortraitImage";
+import {Skeleton} from "@/components/common/Skeleton";
 import Layout from "@/layouts/layout.astro";
-import { getBlogPosts } from "@/utils/collections";
-import { sortExperience, sortHighlights } from "@/utils/sortCollection";
+import {getBlogPosts} from "@/utils/collections";
+import {sortExperience, sortHighlights} from "@/utils/sortCollection";
 
 const experience = sortExperience(await getCollection("experience"));
 const highlights = sortHighlights(await getCollection("highlights"));
@@ -40,7 +39,7 @@ const blogPosts = await getBlogPosts();
         <div class="container grid gap-16">
             <h2 class="text-5xl">About</h2>
 
-            <PlayfulDivider />
+            <PlayfulDivider/>
 
             <div class="grid md:grid-cols-6 gap-16">
                 <div class="md:col-span-2">
@@ -94,12 +93,42 @@ const blogPosts = await getBlogPosts();
     <section class="grid gap-16 container scroll-mt-16" id="experience">
         <h2 class="text-5xl">Experience</h2>
 
-        <PlayfulDivider />
+        <PlayfulDivider/>
 
         <div class="flex flex-col gap-8">
             <div class="flex flex-col gap-8">
                 {
-                    experience.map((item) => <ExperienceItem experienceItem={item} />)
+                    experience.map(({data: {from, to, role, company, tasks, technologies}}) => (
+                            <div class="grid gap-8 rounded-xl bg-neutral-900 light:bg-neutral-100 p-8 md:p-16 lg:grid-cols-3 lg:gap-16">
+                                <div class="flex flex-col gap-4 lg:col-span-1">
+                                    <p class="light:text-neutral-600 text-neutral-400">
+                                        {from}
+                                        {" - "}
+                                        {to}
+                                    </p>
+                                    <h3 class="text-3xl">{role}</h3>
+                                    <p class="light:text-neutral-700 text-neutral-400">
+                                        at <span class="font-semibold">{company.title}</span>,{" "}
+                                        {company.description}
+                                    </p>
+                                </div>
+
+                                <hr class="border-neutral-800 lg:hidden"/>
+
+                                <div class="flex max-w-prose flex-col gap-8 lg:col-span-2">
+                                    <ul class="flex flex-col gap-4 light:text-neutral-700 text-neutral-400">
+                                        {tasks.map((task) => (
+                                                <li>{task}</li>
+                                        ))}
+                                    </ul>
+                                    <div class="flex flex-wrap gap-2">
+                                        {technologies.map((tech) => (
+                                                <span class="rounded-full bg-neutral-800 light:bg-neutral-200 px-5 py-2 light:text-neutral-800 text-neutral-400 text-sm">{tech}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                    ))
                 }
             </div>
             <div class="w-full text-end">
@@ -114,7 +143,7 @@ const blogPosts = await getBlogPosts();
     <section class="container scroll-mt-16 grid gap-16" id="highlights">
         <h2 class="text-5xl">Highlights</h2>
 
-        <PlayfulDivider />
+        <PlayfulDivider/>
 
         <div class="relative grid md:grid-cols-5 xl:grid-cols-2 gap-y-16 md:gap-y-0 gap-x-16">
             {
@@ -163,7 +192,7 @@ const blogPosts = await getBlogPosts();
             </p>
         </div>
 
-        <PlayfulDivider />
+        <PlayfulDivider/>
 
         <OtherBlogPosts client:only="react" blogPosts={blogPosts}>
             <div slot="fallback" class="overflow-hidden">
