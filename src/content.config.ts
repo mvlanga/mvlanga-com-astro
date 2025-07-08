@@ -16,7 +16,7 @@ const experience = defineCollection({
 		to: z.string(),
 		role: z.string(),
 		tasks: z.array(z.string()),
-		technologies: z.array(z.string()).optional(),
+		technologies: z.array(z.string()),
 	}),
 });
 

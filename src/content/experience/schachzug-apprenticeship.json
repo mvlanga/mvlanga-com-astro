@@ -5,17 +5,21 @@
 	},
 	"from": "2017",
 	"to": "2019",
-	"role": "Apprenticeship in Media Design",
+	"role": "Apprenticeship",
 	"tasks": [
-		"I have done full stack application development, such as ordering systems with logistics functionality and digitising press events by creating digitally accessible 3D environments. These projects allowed clients to explore a 3D world, experiencing the same interactive features and location as if they were attending the event themselves.",
-		"I was also responsible for the complete conception of digital events, leading the design and development process to ensure a seamless user experience."
+		"Designed and developed a web application for a trade fair exhibit, which controlled a game developed with Unity via TCP communication within a local network.",
+		"Developed custom HTML-based newsletters, ensuring cross-client compatibility using Litmus.",
+		"Maintained and developed a custom e-commerce platform with integrated shipping and logistics functionalities."
 	],
+	"reduced": true,
 	"technologies": [
-		"Angular",
-		"Firebase",
-		"SCSS",
+		"Node.js (Express)",
 		"PHP (Symfony)",
-		"MySQL",
-		"Adobe XD"
+		"Apache",
+		"Certbot",
+		"HTML (Twig)",
+		"CSS (Less)",
+		"Javascript",
+		"Grunt"
 	]
 }

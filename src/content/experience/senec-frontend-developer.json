@@ -12,11 +12,15 @@
 		"I collaborated closely with designers to refine the user experience and further developed the UI component library to improve consistency and usability."
 	],
 	"technologies": [
+		"OpenAPI",
 		"Microfrontends (SingleSPA)",
 		"React",
 		"Angular",
 		"Storybook",
+		"MUI",
+		"Webpack",
 		"Vite",
+		"Jest",
 		"Vitest"
 	]
 }

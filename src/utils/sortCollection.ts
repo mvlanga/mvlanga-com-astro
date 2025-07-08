@@ -3,7 +3,9 @@ import type { CollectionEntry } from "astro:content";
 export const sortExperience = <T extends CollectionEntry<"experience">>(
 	experience: T[],
 ) => {
-	return experience.sort((a, b) => b.data.from - a.data.from);
+	return experience.sort(
+		(a, b) => parseInt(b.data.from, 10) - parseInt(a.data.from, 10),
+	);
 };
 
 export const sortHighlights = (highlights: CollectionEntry<"highlights">[]) =>
