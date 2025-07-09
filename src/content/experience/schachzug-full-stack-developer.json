@@ -7,12 +7,11 @@
 	"to": "2022",
 	"role": "Full Stack Developer",
 	"tasks": [
-		"Full-Stack Development of ",
-
-		"I have done full stack application development, such as ordering systems with logistics functionality and digitising press events by creating digitally accessible 3D environments. These projects allowed clients to explore a 3D world, experiencing the same interactive features and location as if they were attending the event themselves.",
-		"I was also responsible for the complete conception of digital events, leading the design and development process to ensure a seamless user experience.",
-		"I took full responsibility for the development and IT department for more than two years. During this time, we set up a brand new IT infrastructure, including a new firewall, LAN cables at every desk, and a WLAN mesh system for over 20 employees and more than 250 square metres of space in an old villa.",
-		"Coordinated multiple external service vendors, e.g. for live streaming or 3D design."
+		"Led full-stack development of digital event platforms, built with Angular and Firestore, enabling realtime communication between the server and the clients to trigger synchronized events across all connected users. These platforms supported immersive, browser-based 3D experiences for press events realized with Panolens.js, allowing participants to explore interactive environments remotely.",
+		"Designed UI design using Adobe XD for high-profile clients including Moët Hennessy, Škoda, Volkswagen, and Fujitsu, while also leading the development and launch of multiple websites.",
+		"Managed the development and IT department for over two years, taking full ownership of technical operations and team leadership.",
+		"Planned and supervised a complete IT infrastructure overhaul, including firewall setup, structured LAN cabling for all workstations, and a WLAN mesh network covering 250+ square metres in a historic building.",
+		"Coordinated multiple external service providers, including vendors for live streaming infrastructure and 3D content production."
 	],
 	"technologies": [
 		"AWS",
