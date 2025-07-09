@@ -16,7 +16,11 @@
 	"technologies": [
 		"AWS",
 		"Drupal",
-		"Firebase",
+		"Firestore Database",
+		"Firebase Authentication",
+		"Firebase Hosting",
+		"Firebase Functions",
+		"Firebase Storage",
 		"Node.js",
 		"PHP (Symfony)",
 		"MySQL",
