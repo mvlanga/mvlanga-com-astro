@@ -15,6 +15,7 @@
 	],
 	"technologies": [
 		"AWS",
+		"Drupal",
 		"Firebase",
 		"Node.js",
 		"PHP (Symfony)",
