@@ -9,11 +9,6 @@
 	"tasks": [
 		"Gained my first coding experience by building e-commerce websites and personal homepages, which introduced me to web development basics."
 	],
-	"technologies": [
-		"HTML",
-		"CSS",
-		"Javascript",
-		"jQuery"
-	],
+	"technologies": ["HTML", "CSS", "Javascript", "jQuery"],
 	"reduced": true
 }

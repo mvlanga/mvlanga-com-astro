@@ -1,18 +1,18 @@
 ---
-import {Image} from "astro:assets";
-import {getCollection} from "astro:content";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import RssIcon from "@/assets/icons/rss.svg";
-import {OtherBlogPost} from "@/components/blog/OtherBlogPost";
-import {OtherBlogPosts} from "@/components/blog/OtherBlogPosts";
-import {Button} from "@/components/common/Button";
-import {ColoredBackground} from "@/components/common/ColoredBackground";
+import { OtherBlogPost } from "@/components/blog/OtherBlogPost";
+import { OtherBlogPosts } from "@/components/blog/OtherBlogPosts";
+import { Button } from "@/components/common/Button";
+import { ColoredBackground } from "@/components/common/ColoredBackground";
 import Ellipsis from "@/components/common/Ellipsis.astro";
 import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
-import {PortraitImage} from "@/components/common/PortraitImage";
-import {Skeleton} from "@/components/common/Skeleton";
+import { PortraitImage } from "@/components/common/PortraitImage";
+import { Skeleton } from "@/components/common/Skeleton";
 import Layout from "@/layouts/layout.astro";
-import {getBlogPosts} from "@/utils/collections";
-import {sortExperience, sortHighlights} from "@/utils/sortCollection";
+import { getBlogPosts } from "@/utils/collections";
+import { sortExperience, sortHighlights } from "@/utils/sortCollection";
 
 const experience = sortExperience(await getCollection("experience"));
 const highlights = sortHighlights(await getCollection("highlights"));
