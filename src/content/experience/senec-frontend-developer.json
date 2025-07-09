@@ -7,11 +7,14 @@
 	"to": "now",
 	"role": "Frontend Developer",
 	"tasks": [
-		"I have worked on the development of a platform for specialist partners which were served as many micro frotends and combine the output of several teams, enhancing its functionality and user interface.",
-		"Additionally, I have worked on enhancing an existing Angular application and migrating/rewriting it from Angular to React, embedding them as micro-frontends for improved modularity and performance. This involved careful planning and implementation of the migration process, ensuring a smooth transition.",
-		"I collaborated closely with designers to refine the user experience and further developed the UI component library to improve consistency and usability."
+		"Contribute to the development of a platform for specialist partners, structured as multiple micro-frontends, integrating the work of several teams to enhance functionality and improve the overall user experience.",
+		"Enhance and gradually migrate an existing Angular application to React, embedding the rewritten module as micro-frontend. This includes planning and executing the migration strategy to ensure a seamless transition.",
+		"Collaborate closely with designers to refine the user experience through iterative feedback and prototyping.",
+		"Extend and maintain a shared UI component library built with React, improving design consistency and reusability across teams; components are documented and showcased using Storybook for easier exploration and adoption.",
+		"Reconfigure RenovateBot to support internal dependency updates and collaborate with IT to enable company-wide rollout, improving automation and reducing manual maintenance."
 	],
 	"technologies": [
+		"Renovatebot",
 		"OpenAPI",
 		"Microfrontends (SingleSPA)",
 		"React",

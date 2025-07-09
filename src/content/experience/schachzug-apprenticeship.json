@@ -7,11 +7,11 @@
 	"to": "2019",
 	"role": "Apprenticeship",
 	"tasks": [
-		"Designed and developed a web application for a trade fair exhibit, which controlled a game developed with Unity via TCP communication within a local network.",
-		"Developed custom HTML-based newsletters, ensuring cross-client compatibility using Litmus.",
-		"Maintained and developed a custom e-commerce platform with integrated shipping and logistics functionalities.",
-		"Took over the responsibility of maintaining and extending our IT infrastructure, including our NAS Systems, LDAP directory, internal network, web servers as well as certificate management.",
-		"Enhanced and maintained a mobile app to simplify fair visits for guests, providing them with a personalised agenda, ticket management and additional information about the fair."
+		"Built a web application for a trade fair exhibit, controlling a Unity-based game via TCP over a local network.",
+		"Created HTML-based newsletters with Litmus testing, ensuring cross-client compatibility across major email platforms.",
+		"Developed a custom e-commerce platform with integrated shipping and logistics functionalities.",
+		"Maintained a mobile app for the Fujitsu Forum visitors, enabling personalized agendas, ticketing, and event navigation.",
+		"Administered internal IT infrastructure including NAS, LDAP, internal network, public web servers as well as certificate lifecycles."
 	],
 	"reduced": true,
 	"technologies": [
