@@ -4,7 +4,8 @@ export const sortExperience = <T extends CollectionEntry<"experience">>(
 	experience: T[],
 ) => {
 	return experience.sort(
-		(a, b) => parseInt(b.data.from, 10) - parseInt(a.data.from, 10),
+		(a, b) =>
+			Number.parseInt(b.data.from, 10) - Number.parseInt(a.data.from, 10),
 	);
 };
 
