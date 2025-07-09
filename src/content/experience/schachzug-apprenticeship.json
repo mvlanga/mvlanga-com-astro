@@ -13,7 +13,6 @@
 		"Maintained a mobile app for the Fujitsu Forum visitors, enabling personalized agendas, ticketing, and event navigation.",
 		"Administered internal IT infrastructure including NAS, LDAP, internal network, public web servers as well as certificate lifecycles."
 	],
-	"reduced": true,
 	"technologies": [
 		"NAS",
 		"Network",
