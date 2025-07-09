@@ -8,7 +8,8 @@
 	"role": "Apprenticeship",
 	"tasks": [
 		"Built a web application for a trade fair exhibit, controlling a Unity-based game via TCP over a local network.",
-		"Created HTML-based newsletters with Litmus testing, ensuring cross-client compatibility across major email platforms.",
+		"Created multiple Drupal-powered websites for high-profile clients including Moët Hennessy and Volkswagen.",
+		"Developed HTML-based newsletters with Litmus testing, ensuring cross-client compatibility across major email platforms.",
 		"Developed a custom e-commerce platform with integrated shipping and logistics functionalities.",
 		"Maintained a mobile app for the Fujitsu Forum visitors, enabling personalized agendas, ticketing, and event navigation.",
 		"Administered internal IT infrastructure including NAS, LDAP, internal network, public web servers as well as certificate lifecycles."
@@ -19,6 +20,7 @@
 		"LDAP",
 		"Apache",
 		"Certbot",
+		"Drupal",
 		"Node.js (Express)",
 		"PHP (Symfony)",
 		"HTML (Twig)",
