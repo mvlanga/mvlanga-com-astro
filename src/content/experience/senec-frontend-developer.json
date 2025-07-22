@@ -10,16 +10,17 @@
 		"Contribute to the development of a platform for specialist partners, structured as multiple micro-frontends, integrating the work of several teams to enhance functionality and improve the overall user experience.",
 		"Collaborate closely with Architects to enhance the micro-frontend architecture, simplifying integration for other teams while improving stability, reducing error-proneness, and boosting performance.",
 		"Support cross-functional teams in migrating their applications to enable seamless integration as micro-frontends within our specialist-partner platform.",
-		"Enhance and gradually migrate an existing Angular application to React, embedding the rewritten module as micro-frontend. This includes planning and executing the migration strategy to ensure a seamless transition.",
+		"Migrate an existing Angular application to React, embedding the rewritten module as micro-frontend.",
 		"Collaborate closely with designers to refine the user experience through iterative feedback and prototyping.",
-		"Extend and maintain a shared UI component library built with React, improving design consistency and reusability across teams; components are documented and showcased using Storybook for easier exploration and adoption.",
-		"Reconfigure RenovateBot to support internal dependency updates and collaborate with IT to enable company-wide rollout, improving automation and reducing manual maintenance."
+		"Extend and maintain a shared UI component library built with React, improving design consistency and reusability across teams.",
+		"Reconfigure Renovatebot to support packages from private registries and collaborate with IT to enable company-wide rollout, improving automation and reducing manual maintenance."
 	],
 	"technologies": [
 		"Renovatebot",
 		"OpenAPI",
 		"Microfrontends (SingleSPA)",
 		"React",
+		"Tanstack Query",
 		"Angular",
 		"Storybook",
 		"MUI",
