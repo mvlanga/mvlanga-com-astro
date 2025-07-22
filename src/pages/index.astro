@@ -16,7 +16,7 @@ import { sortExperience, sortHighlights } from "@/utils/sortCollection";
 
 const experience = sortExperience(await getCollection("experience"));
 const highlights = sortHighlights(await getCollection("highlights"));
-const blogPosts = await getBlogPosts();
+const blogPosts = (await getBlogPosts()).slice(0, 3);
 ---
 
 <Layout>
@@ -179,8 +179,7 @@ const blogPosts = await getBlogPosts();
             </div>
 
             <p class="text-neutral-400 light:text-neutral-700 max-w-prose">
-                Just a few notes and reminders for myself, usually when I've found a solution to something I was
-                struggling with, discovered a good solution to a channeling problem, or tried something new.
+                Just a few notes and reminders for myself, usually when I've found a solution to something I was struggling with or tried something new.
             </p>
         </div>
 
