@@ -84,7 +84,7 @@ export const generateOgImage = async (content: ReactNode) => {
 		})
 		.toBuffer();
 
-	return new Response(jpeg, {
+	return new Response(new Uint8Array(jpeg), {
 		headers: {
 			"Content-Type": "image/jpeg",
 		},

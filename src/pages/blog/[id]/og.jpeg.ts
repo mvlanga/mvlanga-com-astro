@@ -1,14 +1,12 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import fs from "node:fs/promises";
 import path from "node:path";
+import type { APIRoute } from "astro";
 import { BackgroundImage, generateOgImage } from "@/utils/og-image/utils.ts";
 
-interface Props {
-	params: { id: string };
-	props: { post: CollectionEntry<"blogPosts"> };
-}
-
-export const GET = async ({ props }: Props) => {
+export const GET: APIRoute<{ post: CollectionEntry<"blogPosts"> }> = async ({
+	props,
+}) => {
 	const { post } = props;
 
 	if (post.data.openGraphCover) {
