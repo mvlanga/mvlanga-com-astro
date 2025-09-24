@@ -1,6 +1,6 @@
 import { useStore } from "@nanostores/react";
-import { Button } from "@/components/common/Button.tsx";
-import { BLOG_FILTER_TAG_ALL_VALUE, blogFilterTag } from "./blogFilterStore.ts";
+import { NativeButton } from "@/components/common/NativeButton";
+import { BLOG_FILTER_TAG_ALL_VALUE, blogFilterTag } from "./blogFilterStore";
 
 type BlogFilterProps = {
 	availableTags: { name: string; count: number }[];
@@ -11,7 +11,7 @@ export const BlogFilter = ({ availableTags }: BlogFilterProps) => {
 
 	return (
 		<div className="flex flex-wrap gap-2">
-			<Button
+			<NativeButton
 				text="All"
 				size="small"
 				level={
@@ -21,7 +21,7 @@ export const BlogFilter = ({ availableTags }: BlogFilterProps) => {
 			/>
 
 			{availableTags.map(({ name, count }) => (
-				<Button
+				<NativeButton
 					key={name}
 					size="small"
 					text={`#${name} (${count})`}
