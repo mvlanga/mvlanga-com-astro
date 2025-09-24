@@ -22,9 +22,9 @@ import {
 	VolumeLowIcon,
 } from "@vidstack/react/icons";
 import type { ImageMetadata } from "astro";
-import { useInView } from "motion/react";
 import { useEffect, useRef } from "react";
 import { useOnMount } from "@/utils/useOnMount.ts";
+import {useIsInView} from "@/utils/useIsInView.ts";
 
 export type VideoPlayerProps = {
 	src: string;
@@ -50,7 +50,7 @@ export const VideoPlayer = ({
 		}
 	});
 
-	const isInView = useInView(videoElementRef);
+	const isInView = useIsInView(videoElementRef);
 
 	useEffect(() => {
 		if (videoRef.current === null) {
@@ -122,7 +122,7 @@ const VideoPlayerControls = ({ muted }: { muted: boolean }) => {
 
 			<Controls.Group className="pointer-events-auto flex media-started:hidden w-full justify-center">
 				<PlayButton className="group relative inline-flex h-18 w-18 cursor-pointer items-center justify-center rounded-md outline-none hover:bg-purple">
-					<PlayIcon className="h-16 w-16 " />
+					<PlayIcon className="h-16 w-16" />
 				</PlayButton>
 			</Controls.Group>
 

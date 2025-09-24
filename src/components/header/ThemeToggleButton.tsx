@@ -1,11 +1,11 @@
-import { useReducedMotion } from "motion/react";
 import { useEffect, useState } from "react";
 import { IconButton } from "@/components/common/IconButton.tsx";
+import {useUsersReducedMotionPreference} from "@/utils/useUsersReducedMotionPreference.ts";
 
 type Theme = "dark" | "light";
 
 export const ThemeToggleButton = () => {
-	const shouldReduceMotion = useReducedMotion();
+	const shouldReduceMotion = useUsersReducedMotionPreference();
 
 	const [theme, setTheme] = useState<Theme>("dark");
 
