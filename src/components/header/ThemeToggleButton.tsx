@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { IconButton } from "@/components/common/IconButton.tsx";
-import {useUsersReducedMotionPreference} from "@/utils/useUsersReducedMotionPreference.ts";
+import { useUsersReducedMotionPreference } from "@/utils/useUsersReducedMotionPreference.ts";
 
 type Theme = "dark" | "light";
 

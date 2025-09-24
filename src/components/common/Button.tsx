@@ -2,7 +2,7 @@ import { clsx } from "clsx";
 import type { ButtonHTMLAttributes, Ref } from "react";
 import { twMerge } from "tailwind-merge";
 
-export type NativeButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 	ref?: Ref<HTMLButtonElement>;
 	level?: "primary" | "secondary";
 	size?: "small" | "medium";
@@ -16,14 +16,14 @@ export type NativeButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 	isActive?: boolean;
 };
 
-export const NativeButton = ({
+export const Button = ({
 	ref,
 	level = "primary",
 	size = "medium",
 	text,
 	isActive,
 	...additionalProps
-}: NativeButtonProps) => {
+}: ButtonProps) => {
 	const defaultText = typeof text === "string" ? text : text.default;
 	const activeText = typeof text === "string" ? text : text.activeText;
 	const buttonLabel =
