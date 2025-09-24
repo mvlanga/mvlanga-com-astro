@@ -23,8 +23,8 @@ import {
 } from "@vidstack/react/icons";
 import type { ImageMetadata } from "astro";
 import { useEffect, useRef } from "react";
+import { useIsInView } from "@/utils/useIsInView.ts";
 import { useOnMount } from "@/utils/useOnMount.ts";
-import {useIsInView} from "@/utils/useIsInView.ts";
 
 export type VideoPlayerProps = {
 	src: string;

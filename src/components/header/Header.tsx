@@ -7,7 +7,7 @@ import {
 } from "motion/react";
 import { useCallback, useEffect, useState } from "react";
 import { useComponentSize } from "react-use-size";
-import { NativeButton } from "@/components/common/NativeButton.tsx";
+import { Button } from "@/components/common/Button.tsx";
 import { HeaderNavItem } from "@/components/header/HeaderNavItem";
 import { ThemeToggleButton } from "@/components/header/ThemeToggleButton";
 import { useEscapeKey } from "@/utils/useEscapeKey";
@@ -130,7 +130,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 				onFocus={() => setIsHeaderHidden(false)}
 			>
 				<a aria-label="Moriz von Langa wordmark" href="/">
-					<NativeButton text="mvlanga" />
+					<Button text="mvlanga" />
 				</a>
 			</motion.header>
 
@@ -155,7 +155,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 					</AnimatePresence>
 				)}
 
-				<NativeButton
+				<Button
 					ref={menuButtonElement}
 					level="secondary"
 					aria-expanded={isMenuOpen}
