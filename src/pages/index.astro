@@ -4,15 +4,15 @@ import { getCollection } from "astro:content";
 import RssIcon from "@/assets/icons/rss.svg";
 import { OtherBlogPost } from "@/components/blog/OtherBlogPost";
 import { OtherBlogPosts } from "@/components/blog/OtherBlogPosts";
-import { Button } from "@/components/common/Button";
-import { ColoredBackground } from "@/components/common/ColoredBackground";
+import { NativeButton } from "@/components/common/NativeButton";
 import Ellipsis from "@/components/common/Ellipsis.astro";
 import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
-import { PortraitImage } from "@/components/common/PortraitImage";
 import { Skeleton } from "@/components/common/Skeleton";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
 import { sortExperience, sortHighlights } from "@/utils/sortCollection";
+
+import mvlPortrait from "../assets/img/moriz-von-langa-portrait.avif";
 
 const experience = sortExperience(await getCollection("experience"));
 const highlights = sortHighlights(await getCollection("highlights"));
@@ -35,7 +35,9 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
     </section>
 
     <section class="relative scroll-mt-16" id="about">
-        <ColoredBackground client:idle className="-z-20 -bottom-32 -top-32"/>
+        <div id="colored-background"
+             class="-z-20 -bottom-32 -top-32 absolute inset-0 animate-timeline-[square] bg-neutral-900 light:bg-neutral-100" />
+
         <div class="container grid gap-16">
             <h2 class="text-5xl">About</h2>
 
@@ -48,7 +50,18 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
                         architecture.
                     </p>
                 </div>
-                <PortraitImage client:idle/>
+                <div class="md:col-span-4">
+                    <div
+                            style={{ aspectRatio: mvlPortrait.width / mvlPortrait.height }}
+                            class="relative max-h-lvh overflow-clip rounded-2xl md:ml-auto"
+                    >
+                        <Image src={mvlPortrait}
+                               class="-top-48 absolute inset-0 h-[calc(100%+var(--spacing)*32*2)] object-cover"
+                                id="portrait-image"
+                                alt="Portrait of Moriz von Langa"
+                        />
+                    </div>
+                </div>
             </div>
             <h2 class="text-4xl">
                 The way I work
@@ -126,7 +139,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
             <div class="w-full text-end">
                 <a href="/moriz-von-langa_resume.pdf" class="w-full md:w-auto" target="_blank"
                    data-umami-event="link-click" data-umami-event-url="/moriz-von-langa_resume.pdf">
-                    <Button className="w-full md:w-auto" client:visible text="See full resume" level="primary"/>
+                    <NativeButton text="See full resume" className="w-full md:w-auto" />
                 </a>
             </div>
         </div>
@@ -201,7 +214,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 
         <div class="w-full text-end">
             <a href="/blog" class="w-full md:w-auto">
-                <Button className="w-full md:w-auto" client:visible text="See all blog posts" level="primary"/>
+                <NativeButton className="w-full md:w-auto" text="See all blog posts" level="primary"/>
             </a>
         </div>
     </section>

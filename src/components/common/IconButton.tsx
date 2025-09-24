@@ -1,74 +1,44 @@
 import { clsx } from "clsx";
-import { motion } from "motion/react";
-import type {
-	AriaAttributes,
-	PropsWithChildren,
-	Ref,
-	SyntheticEvent,
-} from "react";
+import type { ButtonHTMLAttributes, PropsWithChildren, Ref } from "react";
 import { twMerge } from "tailwind-merge";
 
-type IconButtonProps = {
-	ref?: Ref<HTMLButtonElement>;
-	level?: "primary" | "secondary";
-	size?: "small" | "medium";
-	className?: string;
-	isActive?: boolean;
-	onClick?: (event: SyntheticEvent<HTMLButtonElement>) => void;
-	onFocus?: (event: SyntheticEvent<HTMLButtonElement>) => void;
-} & PropsWithChildren &
-	Partial<AriaAttributes>;
+export type IconButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+	PropsWithChildren & {
+		ref?: Ref<HTMLButtonElement>;
+		level?: "primary" | "secondary";
+		size?: "small" | "medium";
+		className?: string;
+	};
 
 export const IconButton = ({
 	ref,
 	level = "primary",
 	size = "medium",
-	className: additionalClasses,
-	onClick,
-	onFocus,
-	isActive,
 	children,
-	...ariaAttributes
+	...additionalProps
 }: IconButtonProps) => {
 	return (
-		<motion.button
-			initial="default"
-			animate={isActive ? "active" : "default"}
-			whileHover="hover"
+		<button
+			{...additionalProps}
 			ref={ref}
 			className={twMerge(
 				clsx(
-					"relative inline-flex items-center justify-center overflow-hidden",
+					"group relative inline-flex items-center justify-center overflow-clip",
 					size === "small" && "rounded-full p-3",
 					size === "medium" && "rounded-full p-4",
 					level === "primary" && "bg-purple text-white",
 					level === "secondary" &&
 						"bg-neutral-900 light:bg-neutral-100 light:text-black text-white light:hover:text-white",
-					additionalClasses,
+					additionalProps.className,
 				),
 			)}
-			onClick={onClick}
-			onFocus={onFocus}
-			{...ariaAttributes}
 		>
-			<motion.div
-				transition={{ duration: 0.2, ease: "easeOut" }}
-				variants={{
-					default: {
-						translateY: "100%",
-					},
-					active: {
-						translateY: "0",
-					},
-					hover: {
-						translateY: "0",
-					},
-				}}
-				className={clsx(
-					"absolute h-[200%] w-[150%] rounded-[50%] bg-purple-700",
-				)}
+			<div
+				aria-hidden
+				className="absolute z-0 h-[200%] w-[150%] translate-y-full rounded-[50%] bg-purple-700 transition-transform duration-200 ease-out group-hover:translate-y-0 group-[.active]:translate-y-0"
 			/>
+
 			{children}
-		</motion.button>
+		</button>
 	);
 };

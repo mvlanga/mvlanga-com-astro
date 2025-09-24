@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
 import { useEffect, useState } from "react";
 import { IconButton } from "@/components/common/IconButton.tsx";
 
@@ -45,17 +45,9 @@ export const ThemeToggleButton = () => {
 			aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
 		>
 			<div className="relative h-6 w-6 overflow-hidden rounded-full border-2 border-current transition-colors">
-				<motion.div
-					variants={{
-						dark: {
-							translateX: "-60%",
-						},
-						light: {
-							translateX: "40%",
-						},
-					}}
-					animate={theme}
-					className="absolute h-full w-full bg-current transition-colors"
+				<div
+					data-theme={theme}
+					className="data-[theme=dark]:-translate-x-1/2 absolute h-full w-full bg-current transition-transform duration-150 ease-out data-[theme=light]:translate-x-1/2"
 				/>
 			</div>
 		</IconButton>

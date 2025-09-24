@@ -114,3 +114,43 @@
 @utility max-w-prose-xl {
 	@apply w-full;
 }
+
+@supports (animation-timeline: scroll()) {
+	#colored-background {
+		animation-name: fadeIn;
+		animation-timeline: view(block 50% 100%);
+		animation-timing-function: linear;
+		animation-fill-mode: both;
+	}
+
+	@-moz-document #colored-background, @-moz-document #portrait-image {
+		animation-duration: 1ms;
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0
+		}
+
+		to {
+			opacity: 1
+		}
+	}
+
+	#portrait-image {
+		animation-name: portraitParallax;
+		animation-timeline: view(block);
+		animation-timing-function: linear;
+		animation-fill-mode: both;
+	}
+	
+	@keyframes portraitParallax {
+		from {
+			transform: translateY(calc(var(--spacing) * 24))
+		}
+
+		to {
+			transform: translateY(calc(var(--spacing) * -24))
+		}
+	}
+}
