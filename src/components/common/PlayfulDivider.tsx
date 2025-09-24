@@ -88,9 +88,9 @@ const ReactiveLine = () => {
 	};
 
 	return (
-		<div ref={containerEl} className="group relative h-px w-full">
+		<div ref={containerEl} className="group relative h-px w-full" aria-hidden>
+			{/* biome-ignore lint/a11y/noStaticElementInteractions: hidden for screen readers */}
 			<div
-				aria-hidden={true}
 				onMouseEnter={manageMouseEnter}
 				onMouseMove={manageMouseMove}
 				onMouseLeave={manageMouseLeave}
@@ -100,7 +100,6 @@ const ReactiveLine = () => {
 			{/* biome-ignore lint/a11y/noSvgWithoutTitle: hidden for screen readers */}
 			<svg
 				className="pointer-events-none absolute top-[-250px] h-[500px] w-full"
-				aria-hidden={false}
 			>
 				<path
 					ref={pathEl}
