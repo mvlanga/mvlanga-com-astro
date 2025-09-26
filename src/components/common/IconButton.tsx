@@ -19,8 +19,9 @@ export const IconButton = ({
 }: IconButtonProps) => {
 	return (
 		<button
-			{...additionalProps}
+			type="button"
 			ref={ref}
+			{...additionalProps}
 			className={twMerge(
 				clsx(
 					"group relative inline-flex items-center justify-center overflow-clip",
