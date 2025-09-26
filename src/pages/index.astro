@@ -36,7 +36,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 
     <section class="relative scroll-mt-16" id="about">
         <div id="colored-background"
-             class="-z-20 -bottom-32 -top-32 absolute inset-0 animate-timeline-[square] bg-neutral-900 light:bg-neutral-100" />
+             class="-z-20 -bottom-32 -top-32 absolute inset-x-0 animate-timeline-[square] bg-neutral-900 light:bg-neutral-100" />
 
         <div class="container grid gap-16">
             <h2 class="text-5xl">About</h2>
@@ -52,7 +52,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
                 </div>
                 <div class="md:col-span-4">
                     <div
-                            style={{ aspectRatio: mvlPortrait.width / mvlPortrait.height }}
+                            style={{ "aspect-ratio": mvlPortrait.width / mvlPortrait.height }}
                             class="relative max-h-lvh overflow-clip rounded-2xl md:ml-auto"
                     >
                         <Image src={mvlPortrait}

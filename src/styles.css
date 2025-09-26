@@ -115,6 +115,12 @@
 	@apply w-full;
 }
 
+@supports not (animation-timeline: scroll()) {
+	#colored-background {
+		display: none;
+	}
+}
+
 @supports (animation-timeline: scroll()) {
 	#colored-background {
 		animation-name: fadeIn;
@@ -123,17 +129,13 @@
 		animation-fill-mode: both;
 	}
 
-	@-moz-document #colored-background, @-moz-document #portrait-image {
-		animation-duration: 1ms;
-	}
-
 	@keyframes fadeIn {
 		from {
-			opacity: 0
+			opacity: 0;
 		}
 
 		to {
-			opacity: 1
+			opacity: 1;
 		}
 	}
 
@@ -143,14 +145,14 @@
 		animation-timing-function: linear;
 		animation-fill-mode: both;
 	}
-	
+
 	@keyframes portraitParallax {
 		from {
-			transform: translateY(calc(var(--spacing) * 24))
+			transform: translateY(calc(var(--spacing) * 24));
 		}
 
 		to {
-			transform: translateY(calc(var(--spacing) * -24))
+			transform: translateY(calc(var(--spacing) * -24));
 		}
 	}
 }
