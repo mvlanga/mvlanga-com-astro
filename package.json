@@ -21,7 +21,7 @@
 		"clsx": "^2.1.1",
 		"embla-carousel-react": "^8.6.0",
 		"media-icons": "^1.1.5",
-		"motion": "^12.23.12",
+		"motion": "^12.23.22",
 		"nanostores": "^1.0.1",
 		"react": "^19.1.1",
 		"react-dom": "^19.1.1",
