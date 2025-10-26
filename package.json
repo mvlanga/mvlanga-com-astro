@@ -15,7 +15,7 @@
 		"test:e2e:production": "environment=PRODUCTION playwright test"
 	},
 	"dependencies": {
-		"@astrojs/rss": "^4.0.12",
+		"@astrojs/rss": "^4.0.13",
 		"@nanostores/react": "^1.0.0",
 		"@vidstack/react": "^1.12.13",
 		"clsx": "^2.1.1",
