@@ -45,7 +45,7 @@
 		"@types/node": "^24.10.0",
 		"@types/react": "^19.2.2",
 		"@types/react-dom": "^19.2.2",
-		"astro": "^5.15.4",
+		"astro": "^5.15.8",
 		"lefthook": "^2.0.2",
 		"rollup-plugin-visualizer": "^6.0.5",
 		"satori": "^0.18.3",
