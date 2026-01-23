@@ -25,6 +25,8 @@ export const BackgroundImage = async (brightness = 0.6) => {
 				position: "absolute",
 				width: "1200px",
 				height: "630px",
+				left: 0,
+				top: 0,
 				objectFit: "cover",
 				filter: `brightness(${brightness})`,
 			},
