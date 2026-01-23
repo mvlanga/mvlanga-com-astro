@@ -1,16 +1,16 @@
 ---
-import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
+import {Image} from "astro:assets";
+import {getCollection} from "astro:content";
 import RssIcon from "@/assets/icons/rss.svg";
-import { OtherBlogPost } from "@/components/blog/OtherBlogPost";
-import { OtherBlogPosts } from "@/components/blog/OtherBlogPosts";
-import { Button } from "@/components/common/Button";
+import {OtherBlogPost} from "@/components/blog/OtherBlogPost";
+import {OtherBlogPosts} from "@/components/blog/OtherBlogPosts";
+import {Button} from "@/components/common/Button";
 import Ellipsis from "@/components/common/Ellipsis.astro";
 import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
-import { Skeleton } from "@/components/common/Skeleton";
+import {Skeleton} from "@/components/common/Skeleton";
 import Layout from "@/layouts/layout.astro";
-import { getBlogPosts } from "@/utils/collections";
-import { sortExperience, sortHighlights } from "@/utils/sortCollection";
+import {getBlogPosts} from "@/utils/collections";
+import {sortExperience, sortHighlights} from "@/utils/sortCollection";
 
 import mvlPortrait from "../assets/img/moriz-von-langa-portrait.avif";
 
@@ -36,7 +36,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 
     <section class="relative scroll-mt-16" id="about">
         <div id="colored-background"
-             class="-z-20 -bottom-32 -top-32 absolute inset-x-0 animate-timeline-[square] bg-neutral-900 light:bg-neutral-100" />
+             class="-z-20 -bottom-32 -top-32 absolute inset-x-0 animate-timeline-[square] bg-neutral-900 light:bg-neutral-100"/>
 
         <div class="container grid gap-16">
             <h2 class="text-5xl">About</h2>
@@ -46,19 +46,19 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
             <div class="grid md:grid-cols-6 gap-16">
                 <div class="md:col-span-2">
                     <p class="text-xl max-w-prose">
-                        I love exploring ideas with curiosity and an open mind, all while focusing on software
-                        architecture.
+                        I love exploring ideas with curiosity and an open mind, all while having the big picture in
+                        mind.
                     </p>
                 </div>
                 <div class="md:col-span-4">
                     <div
-                            style={{ "aspect-ratio": mvlPortrait.width / mvlPortrait.height }}
+                            style={{"aspect-ratio": mvlPortrait.width / mvlPortrait.height}}
                             class="relative max-h-lvh overflow-clip rounded-2xl md:ml-auto"
                     >
                         <Image src={mvlPortrait}
                                class="-top-48 absolute inset-0 h-[calc(100%+var(--spacing)*32*2)] object-cover"
-                                id="portrait-image"
-                                alt="Portrait of Moriz von Langa"
+                               id="portrait-image"
+                               alt="Portrait of Moriz von Langa"
                         />
                     </div>
                 </div>
@@ -73,14 +73,20 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
                     <hr class="border-neutral-800 light:border-neutral-300"/>
                     <p class="text-2xl">Curiosity drives deeper solutions</p>
                     <p class="text-neutral-400 light:text-neutral-700">
-                        I adapt quickly to new systems and enjoy uncovering how they work beneath the surface. Complex challenges motivate me, especially when I can dig deep to understand what’s really going on. Rather than treating symptoms, I focus on identifying root causes to develop thoughtful and lasting solutions.                    </p>
+                        I adapt quickly to new systems and enjoy uncovering how they work beneath the surface. Complex
+                        challenges motivate me, especially when I can dig deep to understand what’s really going on.
+                        Rather than treating symptoms, I focus on identifying root causes to develop thoughtful and
+                        lasting solutions. </p>
                 </div>
                 <div class="flex flex-col gap-6">
                     <p class="text-neutral-500 contrast-more:text-neutral-400 light:text-neutral-600">02</p>
                     <hr class="border-neutral-800 light:border-neutral-300"/>
                     <p class="text-2xl">Systems should fit together seamlessly</p>
                     <p class="text-neutral-400 light:text-neutral-700">
-                        With a solid background in full-stack development, I design with the big picture in mind, ensuring frontend components integrate smoothly with backend services, micro-frontends, and broader system architecture. I care about maintainability, performance, and making things easier for other teams, not just for myself.
+                        With a solid background in full-stack development, I design with the big picture in mind,
+                        ensuring frontend components integrate smoothly with backend services, micro-frontends, and
+                        broader system architecture. I care about maintainability, performance, and making things easier
+                        for other teams, not just for myself.
                     </p>
                 </div>
                 <div class="flex flex-col col-span-full lg:col-span-1 gap-6">
@@ -88,7 +94,9 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
                     <hr class="border-neutral-800 light:border-neutral-300"/>
                     <p class="text-2xl">Design that puts usability first</p>
                     <p class="text-neutral-400 light:text-neutral-700">
-                        Good UX is not an afterthought, it's a priority. I collaborate closely with designers to shape intuitive and accessible interfaces, focusing on real user needs and feedback to refine every interaction and flow.
+                        Good UX is not an afterthought, it's a priority. I collaborate closely with designers to shape
+                        intuitive and accessible interfaces, focusing on real user needs and feedback to refine every
+                        interaction and flow.
                     </p>
                 </div>
             </div>
@@ -139,7 +147,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
             <div class="w-full text-end">
                 <a href="/moriz-von-langa_resume.pdf" class="w-full md:w-auto" target="_blank"
                    data-umami-event="link-click" data-umami-event-url="/moriz-von-langa_resume.pdf">
-                    <Button text="See full resume" className="w-full md:w-auto" />
+                    <Button text="See full resume" className="w-full md:w-auto"/>
                 </a>
             </div>
         </div>
@@ -192,7 +200,8 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
             </div>
 
             <p class="text-neutral-400 light:text-neutral-700 max-w-prose">
-                Just a few notes and reminders for myself, usually when I've found a solution to something I was struggling with or tried something new.
+                Just a few notes and reminders for myself, usually when I've found a solution to something I was
+                struggling with or tried something new.
             </p>
         </div>
 
