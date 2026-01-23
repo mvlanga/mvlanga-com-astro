@@ -96,7 +96,7 @@
 
 @utility container {
 	margin-inline: auto;
-	@apply px-6 sm:px-12 md:px-16 lg:px-32 max-w-8xl;
+	@apply px-3 sm:px-12 md:px-16 lg:px-32 max-w-8xl;
 }
 
 @utility prose {
