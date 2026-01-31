@@ -10,9 +10,10 @@ coverOnHover: ./skoda-fabia-thumbnail_02.jpg
 coverOnHoverAlt: Example screenshot of the web app of the Škoda Fabia Digital World Premiere
 openGraphCover: "src/content/highlights/skoda-fabia/skoda-fabia-thumbnail_01.jpg"
 ---
+
 import MediaRow from "../../../components/highlights/MediaRow.astro";
 import MyResponsibilities from "../../../components/highlights/MyResponsibilities.astro";
-import {VideoPlayer} from "../../../components/common/VideoPlayer";
+import { VideoPlayer } from "../../../components/common/VideoPlayer";
 import Prose from "../../../components/common/Prose.astro";
 
 import arCarPoster from "./ar-car.jpg";
@@ -29,18 +30,20 @@ import beautyFour from "./part_04.jpg";
 import tapeArt from "./tapeart.jpg";
 import scannedSkodaEmployees from "./scanned-skoda-employees.jpg";
 
-<MediaRow items={[
-    {
-        type: "image",
-        image: beautyOne,
-        alt: "Example screenshot of the web app of the Škoda Fabia Digital World Premiere"
-    },
-    {
-        type: "image",
-        image: beautyTwo,
-        alt: "Example screenshot of the web app of the Škoda Fabia Digital World Premiere"
-    }
-]}/>
+<MediaRow
+	items={[
+		{
+			type: "image",
+			image: beautyOne,
+			alt: "Example screenshot of the web app of the Škoda Fabia Digital World Premiere",
+		},
+		{
+			type: "image",
+			image: beautyTwo,
+			alt: "Example screenshot of the web app of the Škoda Fabia Digital World Premiere",
+		},
+	]}
+/>
 
 <Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## The story
@@ -51,26 +54,31 @@ import scannedSkodaEmployees from "./scanned-skoda-employees.jpg";
     used for several world premieres. For the 3D environment we chose a replica of the film set where the car
     release was shot, the DOX Centre for Contemporary Art in Prague. The entire implementation of the virtual event
     took less than 2 months.
+
 </Prose>
 
-<VideoPlayer client:visible
-             src="https://res.cloudinary.com/dobsizufr/video/upload/v1674769362/mvlanga.com/skoda-fabia-guided-tour.mp4"
-             poster={guidedTourPoster}
-             muted={false}
-             alt="Guided Tour"/>
+<VideoPlayer
+	client:visible
+	src="https://res.cloudinary.com/dobsizufr/video/upload/v1674769362/mvlanga.com/skoda-fabia-guided-tour.mp4"
+	poster={guidedTourPoster}
+	muted={false}
+	alt="Guided Tour"
+/>
 
-<MyResponsibilities description="Concept assistance, 3D animation & rendering, interface design, fullstack development."
-                    responsibilities={[
-                        "Part of the content concept",
-                        "User journey planning & interface design implementation",
-                        "Content coordination of external 3D artist to model the augmented reality vehicle",
-                        "Shading and preparation of the augmented reality vehicle with Substance Designer",
-                        "Modeling, shading and lighting of the DOX building with Cinema 4D and V-Ray",
-                        "Placement & quality control of scanned Škoda employees",
-                        "Rendering post-production and preparing for web",
-                        "Development of the application using Angular and Firebase",
-                        "Deploying the application using Firebase Hosting.",
-                    ]}/>
+<MyResponsibilities
+	description="Concept assistance, 3D animation & rendering, interface design, fullstack development."
+	responsibilities={[
+		"Part of the content concept",
+		"User journey planning & interface design implementation",
+		"Content coordination of external 3D artist to model the augmented reality vehicle",
+		"Shading and preparation of the augmented reality vehicle with Substance Designer",
+		"Modeling, shading and lighting of the DOX building with Cinema 4D and V-Ray",
+		"Placement & quality control of scanned Škoda employees",
+		"Rendering post-production and preparing for web",
+		"Development of the application using Angular and Firebase",
+		"Deploying the application using Firebase Hosting.",
+	]}
+/>
 
 <Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## World Premiere
@@ -79,20 +87,24 @@ import scannedSkodaEmployees from "./scanned-skoda-employees.jpg";
     redirected to a page that embedded the YouTube livestream. No active user of the site could miss the event. The
     entire system was based on a remote configuration that could update the status of the application for all users
     in real time.
+
 </Prose>
 
-<MediaRow items={[
-    {
-        type: "image",
-        image: beautyThree,
-        alt: "Example screenshot of the web app of the Škoda Fabia Digital World Premiere"
-    },
-    {
-        type: "image",
-        image: beautyFour,
-        alt: "Example screenshot of the web app of the Škoda Fabia Digital World Premiere"
-    }
-]} reverseOffset={true}/>
+<MediaRow
+	items={[
+		{
+			type: "image",
+			image: beautyThree,
+			alt: "Example screenshot of the web app of the Škoda Fabia Digital World Premiere",
+		},
+		{
+			type: "image",
+			image: beautyFour,
+			alt: "Example screenshot of the web app of the Škoda Fabia Digital World Premiere",
+		},
+	]}
+	reverseOffset={true}
+/>
 
 <Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## Highlights
@@ -101,52 +113,59 @@ import scannedSkodaEmployees from "./scanned-skoda-employees.jpg";
     Škoda employees into the environment, insights into an internal chat of the design team, a virtual assistant who
     showed possible interactions, tapeart throughout the whole building, camera transitions between the different 3D
     environments, an augmented reality model of the car and much more.
+
 </Prose>
 
-<MediaRow items={[
-    {
-        type: "video",
-        src: "/highlights/skoda-fabia/ar-car.mp4",
-        poster: arCarPoster,
-        alt: "Augmented Reality Car Model",
-        description: "Augmented Reality Car Model",
-    },
-    {
-        type: "video",
-        src: "/highlights/skoda-fabia/virtual-assistant.mp4",
-        poster: virtualAssistantPoster,
-        alt: "Virtual assistant",
-        description: "Virtual assistant"
-    },
-    {
-        type: "image",
-        image: scannedSkodaEmployees,
-        alt: "3D scanned Škoda employees",
-        description: "3D scanned Škoda employees"
-    },
-    {
-        type: "video",
-        src: "/highlights/skoda-fabia/design-chat.mp4",
-        poster: designChatPoster,
-        alt: "Chat with the design team",
-        description: "Chat with the design team"
-    },
-    {
-        type: "video",
-        src: "/highlights/skoda-fabia/camera-transition.mp4",
-        poster: cameraTransitionPoster,
-        alt: "Camera transitions",
-        description: "Camera transitions"
-    },
-    {
-        type: "image",
-        image: tapeArt,
-        alt: "Tape art",
-        description: "Tape art installations in the whole building"
-    }
-]}/>
+<MediaRow
+	items={[
+		{
+			type: "video",
+			src: "/highlights/skoda-fabia/ar-car.mp4",
+			poster: arCarPoster,
+			alt: "Augmented Reality Car Model",
+			description: "Augmented Reality Car Model",
+		},
+		{
+			type: "video",
+			src: "/highlights/skoda-fabia/virtual-assistant.mp4",
+			poster: virtualAssistantPoster,
+			alt: "Virtual assistant",
+			description: "Virtual assistant",
+		},
+		{
+			type: "image",
+			image: scannedSkodaEmployees,
+			alt: "3D scanned Škoda employees",
+			description: "3D scanned Škoda employees",
+		},
+		{
+			type: "video",
+			src: "/highlights/skoda-fabia/design-chat.mp4",
+			poster: designChatPoster,
+			alt: "Chat with the design team",
+			description: "Chat with the design team",
+		},
+		{
+			type: "video",
+			src: "/highlights/skoda-fabia/camera-transition.mp4",
+			poster: cameraTransitionPoster,
+			alt: "Camera transitions",
+			description: "Camera transitions",
+		},
+		{
+			type: "image",
+			image: tapeArt,
+			alt: "Tape art",
+			description: "Tape art installations in the whole building",
+		},
+	]}
+/>
 
-<VideoPlayer client:visible
-             src="https://res.cloudinary.com/dobsizufr/video/upload/v1674769734/mvlanga.com/skoda-fabia-run-through.mp4"
-             poster={runthroughPoster} muted={false}
-             alt="run through" description="Complete run through"/>
+<VideoPlayer
+	client:visible
+	src="https://res.cloudinary.com/dobsizufr/video/upload/v1674769734/mvlanga.com/skoda-fabia-run-through.mp4"
+	poster={runthroughPoster}
+	muted={false}
+	alt="run through"
+	description="Complete run through"
+/>

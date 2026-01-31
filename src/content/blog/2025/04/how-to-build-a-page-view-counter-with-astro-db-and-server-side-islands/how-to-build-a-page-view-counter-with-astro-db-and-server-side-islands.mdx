@@ -3,12 +3,13 @@ title: "How to build a view counter in Astro: SSG & client-side approach"
 slug: how-to-build-a-page-view-counter-with-astro-db-actions-and-server-side-islands
 description: "Learn how to implement a view counter on your Astro pages using Astro DB, Astro Actions, and server-side islands. We also compare the reliability of incrementing the count using SSG versus a client-side script, highlighting why one method is not feasible."
 createdAt: 2025-04-01
-tags: [ "astro" ]
+tags: ["astro"]
 ---
-import {ViewCounterExample} from "./ViewCounterExample";
+
+import { ViewCounterExample } from "./ViewCounterExample";
 import Alert from "../../../../../components/common/Alert.astro";
 
-<ViewCounterExample client:load/>
+<ViewCounterExample client:load />
 
 While searching for tutorials on how to implement a view counter for my blog posts, I came across numerous examples that relied on public API routes (Astro Actions are public by default) and client-side JavaScript to track page views. This got me thinking — why do all these articles opt to increment the view count on the client side, rather than handling it during server-side rendering?
 
@@ -24,6 +25,7 @@ Curious to understand the reasoning behind this, I decided to experiment with bo
     As per the Astro documentation, there is currently no way to modify this behavior.
 
     Given this limitation, it seems that the most straightforward solution is to handle the count increment on the **client-side** instead.
+
 </Alert>
 
 ## Prerequisites
@@ -56,19 +58,18 @@ import { column, defineDb, defineTable } from "astro:db";
 
 // Define the `PageViews` table
 const PageViews = defineTable({
-    columns: {
-        id: column.text({ unique: true, primaryKey: true }), // Unique page identifier
-        count: column.number({ default: 1 }), // Default count starts at 1
-    },
+	columns: {
+		id: column.text({ unique: true, primaryKey: true }), // Unique page identifier
+		count: column.number({ default: 1 }), // Default count starts at 1
+	},
 });
 
 // Export the database configuration
 export default defineDb({
-    tables: {
-        PageViews, // Adding the PageViews table to the database
-    },
+	tables: {
+		PageViews, // Adding the PageViews table to the database
+	},
 });
-
 ```
 
 This configuration will create the table in your database, and you can use it to store and update the view count for your pages.
@@ -83,54 +84,54 @@ Next, we’ll define two server-side actions to interact with the database:
 Create a new file in `src/actions/index.ts`:
 
 ```typescript
-import { defineAction, ActionError } from 'astro:actions';
+import { defineAction, ActionError } from "astro:actions";
 import { PageViews, db, eq, sql } from "astro:db";
-import { z } from 'astro:schema';
+import { z } from "astro:schema";
 
 export const server = {
-    pageViews: {
-        // Action to fetch the view count for a given page ID
-        get: defineAction({
-            input: z.string(),
-            handler: async (id) => {
-                try {
-                    return await db
-                        .select()
-                        .from(PageViews)
-                        .where(eq(PageViews.id, id));
-                } catch (e) {
-                    console.error(e);
-                    throw new ActionError({
-                        code: "BAD_REQUEST",
-                        message: `Error getting view count for page with id "${id}"`,
-                    });
-                }
-            },
-        }),
+	pageViews: {
+		// Action to fetch the view count for a given page ID
+		get: defineAction({
+			input: z.string(),
+			handler: async (id) => {
+				try {
+					return await db
+						.select()
+						.from(PageViews)
+						.where(eq(PageViews.id, id));
+				} catch (e) {
+					console.error(e);
+					throw new ActionError({
+						code: "BAD_REQUEST",
+						message: `Error getting view count for page with id "${id}"`,
+					});
+				}
+			},
+		}),
 
-        // Action to increment the view count for a given page ID
-        increase: defineAction({
-            input: z.string(),
-            handler: async (id) => {
-                try {
-                    return await db
-                        .insert(PageViews)
-                        .values({ id })
-                        .onConflictDoUpdate({
-                            target: PageViews.id,
-                            set: { count: sql`count + 1` },
-                        })
-                        .returning();
-                } catch (e) {
-                    console.error(e);
-                    throw new ActionError({
-                        code: "BAD_REQUEST",
-                        message: `Error increasing view count for page with id "${id}"`,
-                    });
-                }
-            }
-        })
-    }
+		// Action to increment the view count for a given page ID
+		increase: defineAction({
+			input: z.string(),
+			handler: async (id) => {
+				try {
+					return await db
+						.insert(PageViews)
+						.values({ id })
+						.onConflictDoUpdate({
+							target: PageViews.id,
+							set: { count: sql`count + 1` },
+						})
+						.returning();
+				} catch (e) {
+					console.error(e);
+					throw new ActionError({
+						code: "BAD_REQUEST",
+						message: `Error increasing view count for page with id "${id}"`,
+					});
+				}
+			},
+		}),
+	},
 };
 ```
 
@@ -161,7 +162,7 @@ export const prerender = false;
 import { actions } from "astro:actions";
 
 interface Props {
-    id: string;
+	id: string;
 }
 
 const { id } = Astro.props;
@@ -170,6 +171,7 @@ const { data } = await Astro.callAction(actions.pageViews.get, id);
 
 const count = data?.[0]?.count ?? 0;
 ---
+
 <p class="inline-block">{count.toLocaleString()} views</p>
 ```
 
@@ -187,7 +189,10 @@ To just display the current view count, import the `ViewCounter` component that 
 
 ```astro
 <ViewCounter server:defer id={post.id}>
-   <div slot="fallback" class="inline-block h-[1lh] w-[8ch] animate-pulse rounded-lg bg-neutral-800" />
+	<div
+		slot="fallback"
+		class="inline-block h-[1lh] w-[8ch] animate-pulse rounded-lg bg-neutral-800">
+	</div>
 </ViewCounter>
 ```
 
@@ -204,58 +209,68 @@ Let's create an Astro component under `src/components/ViewCounterWithIncrease.as
 ```astro
 ---
 interface Props {
-    id: string;
+	id: string;
 }
 
-const {id} = Astro.props;
+const { id } = Astro.props;
 ---
+
 <div id="view-counter-increase" class="inline-block" data-post-id={id}>
-    <div id="view-counter-increase__skeleton" class="h-[1lh] w-[8ch] animate-pulse rounded-lg bg-neutral-800"/>
-    <p id="view-counter-increase__content" class="empty:hidden"/>
+	<div
+		id="view-counter-increase__skeleton"
+		class="h-[1lh] w-[8ch] animate-pulse rounded-lg bg-neutral-800">
+	</div>
+	<p id="view-counter-increase__content" class="empty:hidden"></p>
 </div>
 
 <script>
-    import {actions} from 'astro:actions';
+	import { actions } from "astro:actions";
 
-    const initViewCounter = () => {
-        const viewCounterIncreaseElement = document.getElementById('view-counter-increase');
-        const viewCounterIncreaseSkeletonElement = document.getElementById('view-counter-increase__skeleton');
-        const viewCounterIncreaseContentElement = document.getElementById('view-counter-increase__content');
+	const initViewCounter = () => {
+		const viewCounterIncreaseElement = document.getElementById(
+			"view-counter-increase",
+		);
+		const viewCounterIncreaseSkeletonElement = document.getElementById(
+			"view-counter-increase__skeleton",
+		);
+		const viewCounterIncreaseContentElement = document.getElementById(
+			"view-counter-increase__content",
+		);
 
-        if (
-            viewCounterIncreaseElement === null
-            || viewCounterIncreaseSkeletonElement === null
-            || viewCounterIncreaseContentElement === null
-        ) {
-            return;
-        }
+		if (
+			viewCounterIncreaseElement === null ||
+			viewCounterIncreaseSkeletonElement === null ||
+			viewCounterIncreaseContentElement === null
+		) {
+			return;
+		}
 
-        const id = viewCounterIncreaseElement.getAttribute('data-post-id');
+		const id = viewCounterIncreaseElement.getAttribute("data-post-id");
 
-        if (id === null || id === undefined) {
-            viewCounterIncreaseElement.classList.add("hidden");
-        }
+		if (id === null || id === undefined) {
+			viewCounterIncreaseElement.classList.add("hidden");
+		}
 
-        const fetchViewCount = async () => {
-            const {data, error} = await actions.pageViews.increase(id);
+		const fetchViewCount = async () => {
+			const { data, error } = await actions.pageViews.increase(id);
 
-            if (error) {
-                throw error;
-            }
+			if (error) {
+				throw error;
+			}
 
-            const viewCount = data?.[0]?.count ?? 0;
+			const viewCount = data?.[0]?.count ?? 0;
 
-            viewCounterIncreaseSkeletonElement.classList.add("hidden");
+			viewCounterIncreaseSkeletonElement.classList.add("hidden");
 
-            viewCounterIncreaseContentElement.innerHTML = `${viewCount.toLocaleString()} views`;
-        }
+			viewCounterIncreaseContentElement.innerHTML = `${viewCount.toLocaleString()} views`;
+		};
 
-        fetchViewCount().catch(() => {
-            viewCounterIncreaseElement.classList.add("hidden");
-        });
-    }
+		fetchViewCount().catch(() => {
+			viewCounterIncreaseElement.classList.add("hidden");
+		});
+	};
 
-    initViewCounter();
+	initViewCounter();
 </script>
 ```
 

@@ -13,7 +13,6 @@ The challenging part is to give the Renovate Bot access to your private registry
 
 ## The problems
 
-
 ## Sources
 
 https://docs.renovatebot.com/getting-started/private-packages/#automatically-authenticate-for-npm-package-stored-in-private-github-npm-repository

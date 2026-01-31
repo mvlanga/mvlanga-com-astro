@@ -24,7 +24,8 @@ export const getTagsWithCountByPosts = (
 export const groupPostsByMonth = (posts: CollectionEntry<"blogPosts">[]) => {
 	return Object.entries(
 		Object.groupBy(posts, ({ data: { createdAt } }) => {
-			const isThisYear = createdAt.getFullYear() === new Date().getFullYear();
+			const isThisYear =
+				createdAt.getFullYear() === new Date().getFullYear();
 
 			return createdAt.toLocaleString("en-US", {
 				month: "long",
@@ -53,7 +54,9 @@ export const useBlogPostsWithViewCount = (
 		}
 
 		if (data === undefined) {
-			throw new Error("Returned data of `blogPostViews` action is unusable");
+			throw new Error(
+				"Returned data of `blogPostViews` action is unusable",
+			);
 		}
 
 		setBlogPostsWithViewCount(

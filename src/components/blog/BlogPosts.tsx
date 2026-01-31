@@ -79,16 +79,14 @@ const Area = ({ title, posts, isLoading }: AreaProps) => {
 		<motion.div
 			layout
 			transition={layoutTransition}
-			className="grid gap-8 sm:grid-cols-2 xl:grid-cols-2"
-		>
+			className="grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
 			<motion.p
 				layout
 				className="col-span-full text-2xl"
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				exit={{ opacity: 0 }}
-				transition={layoutTransition}
-			>
+				transition={layoutTransition}>
 				{title}
 			</motion.p>
 			<AnimatePresence propagate>

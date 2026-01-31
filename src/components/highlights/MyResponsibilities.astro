@@ -9,22 +9,26 @@ interface Props {
 const { description, responsibilities } = Astro.props;
 ---
 
-<section class="max-w-prose-l mx-auto grid gap-16">
-    <div class="grid gap-8">
-        <h2 class="text-4xl">
-            My responsibilities
-        </h2>
+<section class="mx-auto grid max-w-prose-l gap-16">
+	<div class="grid gap-8">
+		<h2 class="text-4xl">My responsibilities</h2>
 
-        <p class="text-neutral-400 light:text-neutral-700 max-w-prose">{description}</p>
-    </div>
+		<p class="max-w-prose text-neutral-400 light:text-neutral-700">
+			{description}
+		</p>
+	</div>
 
-    <PlayfulDivider />
+	<PlayfulDivider />
 
-    <div class="grid gap-8">
-        <ul class="grid gap-4">
-            {responsibilities.map((responsibility) =>
-                    <li class="p-8 bg-neutral-900 light:bg-neutral-100 rounded-3xl">{responsibility}</li>
-            )}
-        </ul>
-    </div>
+	<div class="grid gap-8">
+		<ul class="grid gap-4">
+			{
+				responsibilities.map((responsibility) => (
+					<li class="rounded-3xl bg-neutral-900 p-8 light:bg-neutral-100">
+						{responsibility}
+					</li>
+				))
+			}
+		</ul>
+	</div>
 </section>

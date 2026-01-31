@@ -16,11 +16,13 @@ In this post, I’ll walk you through how I use the Contentful Images API in an 
 - Respect layout, no Cumulative Layout Shift (CLS)
 
 ## The Problem: Unoptimized Images Everywhere
+
 Out of the box, Contentful doesn’t do any automatic optimization beyond giving you the raw file URL. That means whatever image gets uploaded, JPG, PNG or whatever got uploaded.
 
 If you care about performance, that’s a problem. But it’s not reasonable to expect non-devs to optimize and resize images manually. That’s where the Contentful Images API comes in.
 
 ## What the Image API Actually Does
+
 The Images API lets you apply transformations to images just by tweaking the URL. Things like:
 
 ```
@@ -85,33 +87,34 @@ const { url, width, height } = optimizeContentfulImage(
 import type { AssetFile } from "contentful";
 
 export type OptimizeContentfulImageProps = {
-    width?: number;
-    quality?: number;
+	width?: number;
+	quality?: number;
 };
 
 export const optimizeContentfulImage = (
-    file: AssetFile,
-    { width: newWidth, quality = 80 }: OptimizeContentfulImageProps = {}
+	file: AssetFile,
+	{ width: newWidth, quality = 80 }: OptimizeContentfulImageProps = {},
 ) => {
-    const url = new URL(file.url.replace("//", "https://"));
+	const url = new URL(file.url.replace("//", "https://"));
 
-    const { width: originalWidth, height: originalHeight } = file.details.image!;
+	const { width: originalWidth, height: originalHeight } =
+		file.details.image!;
 
-    let newHeight = originalHeight;
-    if (newWidth) {
-        url.searchParams.set("w", newWidth.toString());
-        const scale = newWidth / originalWidth;
-        newHeight = Math.round(originalHeight * scale);
-    }
+	let newHeight = originalHeight;
+	if (newWidth) {
+		url.searchParams.set("w", newWidth.toString());
+		const scale = newWidth / originalWidth;
+		newHeight = Math.round(originalHeight * scale);
+	}
 
-    url.searchParams.set("q", quality.toString());
-    url.searchParams.set("fm", "avif");
+	url.searchParams.set("q", quality.toString());
+	url.searchParams.set("fm", "avif");
 
-    return {
-        url: url.toString(),
-        width: newWidth ?? originalWidth,
-        height: newHeight,
-    };
+	return {
+		url: url.toString(),
+		width: newWidth ?? originalWidth,
+		height: newHeight,
+	};
 };
 ```
 
@@ -134,7 +137,8 @@ Once you’ve got the component in place, using it is dead simple:
 ```
 
 ## What Editors See
-From a content editor’s point of view, they just upload the image. That’s it. The optimization, resizing, and format conversion all happen transparently via the URL transformation. 
+
+From a content editor’s point of view, they just upload the image. That’s it. The optimization, resizing, and format conversion all happen transparently via the URL transformation.
 
 **They just upload, hit publish, and everything works.**
 
@@ -145,6 +149,7 @@ There are great tools out there that do a lot of the heavy lifting for you. One 
 Big thanks to [@cpenned](https://www.reddit.com/user/cpenned) for letting me know!
 
 ## Conclusion
+
 This little setup gives us the best of both worlds:
 
 - Editors don’t have to worry about formats or sizes

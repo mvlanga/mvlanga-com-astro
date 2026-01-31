@@ -24,20 +24,47 @@ interface Props {
 const { items, reverseOffset = false } = Astro.props;
 ---
 
-<div class="grid md:grid-cols-6 gap-16 md:gap-32">
-    {items.map((props, index) =>
-        props.type === "image" ? (
-                <figure class="md:col-span-3 h-fit grid gap-4 text-center">
-                    <img class={clsx("bg-neutral-900 light:bg-neutral-100 rounded-4xl", (reverseOffset ? index % 2 === 0 : index % 2) && "md:mt-32")}
-                         src={props.image.src} width={props.image.width} height={props.image.height} alt={props.alt}
-                         loading="lazy"/>
+<div class="grid gap-16 md:grid-cols-6 md:gap-32">
+	{
+		items.map((props, index) =>
+			props.type === "image" ? (
+				<figure class="grid h-fit gap-4 text-center md:col-span-3">
+					<img
+						class={clsx(
+							"rounded-4xl bg-neutral-900 light:bg-neutral-100",
+							(reverseOffset ? index % 2 === 0 : index % 2) &&
+								"md:mt-32",
+						)}
+						src={props.image.src}
+						width={props.image.width}
+						height={props.image.height}
+						alt={props.alt}
+						loading="lazy"
+					/>
 
-                    {props.description && <figcaption class="text-neutral-300 light:text-neutral-800">{props.description}</figcaption>}
-                </figure>
-        ) : (
-                <div class={clsx("md:col-span-3 h-fit",(reverseOffset ? index % 2 === 0 : index % 2) && "md:mt-64")}>
-                    <VideoPlayer client:visible muted={props.muted} src={props.src} poster={props.poster} alt={props.alt} description={props.description} />
-                </div>
-        ),
-    )}
+					{props.description && (
+						<figcaption class="text-neutral-300 light:text-neutral-800">
+							{props.description}
+						</figcaption>
+					)}
+				</figure>
+			) : (
+				<div
+					class={clsx(
+						"h-fit md:col-span-3",
+						(reverseOffset ? index % 2 === 0 : index % 2) &&
+							"md:mt-64",
+					)}>
+					<VideoPlayer
+						client:visible
+						muted={props.muted}
+						src={props.src}
+						poster={props.poster}
+						alt={props.alt}
+						description={props.description}
+					/>
+				</div>
+			),
+		)
+	}
 </div>

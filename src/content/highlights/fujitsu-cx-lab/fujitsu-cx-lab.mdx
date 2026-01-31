@@ -10,9 +10,10 @@ coverOnHover: ./fujitsu-cx-lab-thumbnail_02.jpg
 coverOnHoverAlt: Example screenshot of the Fujtisu CX Lab Application
 openGraphCover: "src/content/highlights/fujitsu-cx-lab/fujitsu-cx-lab-thumbnail_01.jpg"
 ---
+
 import MediaRow from "../../../components/highlights/MediaRow.astro";
 import MyResponsibilities from "../../../components/highlights/MyResponsibilities.astro";
-import {VideoPlayer} from "../../../components/common/VideoPlayer";
+import { VideoPlayer } from "../../../components/common/VideoPlayer";
 import Prose from "../../../components/common/Prose.astro";
 
 import beautyOne from "./beauty_01.jpg";
@@ -23,8 +24,12 @@ import customUploadPoster from "./custom-upload.jpg";
 import presentationPoster from "./presentation.jpg";
 import teaserPoster from "./teaser.jpg";
 
-<VideoPlayer client:visible src="/highlights/fujitsu-cx-lab/teaser.mp4" poster={teaserPoster}
-             alt="Example Transition"/>
+<VideoPlayer
+	client:visible
+	src="/highlights/fujitsu-cx-lab/teaser.mp4"
+	poster={teaserPoster}
+	alt="Example Transition"
+/>
 
 <Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## The origin: Our Smart City exhibit at the Fujitsu Forum
@@ -32,20 +37,23 @@ import teaserPoster from "./teaser.jpg";
     Explaining products and services in a simplified way using a digital city comes from an idea we had during a
     previous project with Fujitsu. With our Smart City exhibit, we explained services to Fujitsu Forum visitors
     through beamer projections on a 150 cm high model city using personal examples.
+
 </Prose>
 
-<MediaRow items={[
-    {
-        type: "image",
-        image: beautyOne,
-        alt: "Example screenshot of the Fujtisu CX Lab Application"
-    },
-    {
-        type: "image",
-        image: beautyTwo,
-        alt: "Example screenshot of the Fujtisu CX Lab Application"
-    }
-]}/>
+<MediaRow
+	items={[
+		{
+			type: "image",
+			image: beautyOne,
+			alt: "Example screenshot of the Fujtisu CX Lab Application",
+		},
+		{
+			type: "image",
+			image: beautyTwo,
+			alt: "Example screenshot of the Fujtisu CX Lab Application",
+		},
+	]}
+/>
 
 <Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## The goals
@@ -57,47 +65,55 @@ import teaserPoster from "./teaser.jpg";
     starting point, the Fujitsu Tower, to different parts of the city with camera transitions. In each area, there
     were opportunities to start different presentations and videos. This replaces a typical salespersons standard
     PowerPoint presentation with a unified, expandable presentation platform.
+
 </Prose>
 
-<MediaRow items={[
-    {
-        type: "image",
-        image: beautyThree,
-        alt: "Example screenshot of the Fujtisu CX Lab Application"
-    },
-    {
-        type: "image",
-        image: beautyFour,
-        alt: "Example screenshot of the Fujtisu CX Lab Application"
-    }
-]} reverseOffset={true}/>
+<MediaRow
+	items={[
+		{
+			type: "image",
+			image: beautyThree,
+			alt: "Example screenshot of the Fujtisu CX Lab Application",
+		},
+		{
+			type: "image",
+			image: beautyFour,
+			alt: "Example screenshot of the Fujtisu CX Lab Application",
+		},
+	]}
+	reverseOffset={true}
+/>
 
-<MyResponsibilities description="User journey, interface design, fullstack development."
-                    responsibilities={[
-                        "User journey planning",
-                        "Interface design implementation",
-                        "Development of the application using Angular and Firebase",
-                        "Deploying the application using Firebase Hosting.",
-                    ]}/>
+<MyResponsibilities
+	description="User journey, interface design, fullstack development."
+	responsibilities={[
+		"User journey planning",
+		"Interface design implementation",
+		"Development of the application using Angular and Firebase",
+		"Deploying the application using Firebase Hosting.",
+	]}
+/>
 
-<MediaRow items={[
-    {
-        type: "video",
-        src: "/highlights/fujitsu-cx-lab/custom-upload.mp4",
-        poster: customUploadPoster,
-        muted: true,
-        alt: "Upload of logos & custom presentations",
-        description: "Upload of logos & custom presentations"
-    },
-    {
-        type: "video",
-        src: "/highlights/fujitsu-cx-lab/presentation.mp4",
-        poster: presentationPoster,
-        muted: true,
-        alt: "Presentation controls",
-        description: "Presentation controls"
-    }
-]}/>
+<MediaRow
+	items={[
+		{
+			type: "video",
+			src: "/highlights/fujitsu-cx-lab/custom-upload.mp4",
+			poster: customUploadPoster,
+			muted: true,
+			alt: "Upload of logos & custom presentations",
+			description: "Upload of logos & custom presentations",
+		},
+		{
+			type: "video",
+			src: "/highlights/fujitsu-cx-lab/presentation.mp4",
+			poster: presentationPoster,
+			muted: true,
+			alt: "Presentation controls",
+			description: "Presentation controls",
+		},
+	]}
+/>
 
 <Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## Highlights
@@ -109,4 +125,5 @@ import teaserPoster from "./teaser.jpg";
 
     Since the Fujitsu CX Lab is an internal application, I can unfortunately not show more pictures and videos at
     this point.
+
 </Prose>

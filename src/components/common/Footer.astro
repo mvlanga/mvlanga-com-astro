@@ -16,49 +16,57 @@ interface Props {
 const { type = "regular" } = Astro.props;
 ---
 
-<footer class={
-    clsx(
-            "container flex flex-col pb-12",
-            type === "regular" && "gap-24",
-            type === "small" && "gap-12",
-        )
-    }
->
-    <PlayfulDivider />
+<footer
+	class={clsx(
+		"container flex flex-col pb-12",
+		type === "regular" && "gap-24",
+		type === "small" && "gap-12",
+	)}>
+	<PlayfulDivider />
 
-    {type === "regular" && (
-            <div class="flex flex-row flex-wrap justify-between gap-6 md:gap-12 md:items-end text-neutral-200 light:text-black">
-                <h2 class="text-5xl">Let’s collaborate</h2>
-                <a class="text-3xl transition-colors hover:text-purple-300 light:hover:text-purple-500 max-w-full overflow-hidden text-ellipsis" href="mailto:morizvlanga@gmail.com"
-                   data-umami-event="link-click" data-umami-event-url="mailto:morizvlanga@gmail.com">morizvlanga@gmail.com</a>
-            </div>
-    )}
+	{
+		type === "regular" && (
+			<div class="flex flex-row flex-wrap justify-between gap-6 text-neutral-200 md:items-end md:gap-12 light:text-black">
+				<h2 class="text-5xl">Let’s collaborate</h2>
+				<a
+					class="max-w-full overflow-hidden text-3xl text-ellipsis transition-colors hover:text-purple-300 light:hover:text-purple-500"
+					href="mailto:morizvlanga@gmail.com"
+					data-umami-event="link-click"
+					data-umami-event-url="mailto:morizvlanga@gmail.com">
+					morizvlanga@gmail.com
+				</a>
+			</div>
+		)
+	}
 
-    <div class={clsx("flex flex-wrap items-end justify-between gap-6 text-neutral-500 light:text-neutral-600 light:contrast-more:text-neutral-800 contrast-more:text-neutral-400", type === "regular" && "mt-12")}>
-        {isProduction ?
-                <CarbonBadge/> : "<CarbonBadge />"}
+	<div
+		class={clsx(
+			"flex flex-wrap items-end justify-between gap-6 text-neutral-500 light:text-neutral-600 light:contrast-more:text-neutral-800 contrast-more:text-neutral-400",
+			type === "regular" && "mt-12",
+		)}>
+		{isProduction ? <CarbonBadge /> : "<CarbonBadge />"}
 
-        <div class="flex flex-wrap gap-2 md:gap-4">
-            <a href="https://github.com/mvlanga/mvlanga-com-astro" target="blank"
-               class="transition-colors hover:text-purple-300 light:hover:text-purple-500"
-               data-umami-event="link-click"
-               data-umami-event-url="https://github.com/mvlanga/mvlanga-com-astro"
-            >
-                Source code
-            </a>
-            {
-                legalPages.map(({id, data: {title}}) => (
-                        <a
-                                href={`/legal/${id}`}
-                                class="transition-colors hover:text-purple-300 light:hover:text-purple-500"
-                        >
-                            {title}
-                        </a>
-                ))
-            }
-            <span>
-                &copy; Moriz von Langa 2023 - {year}
-            </span>
-        </div>
-    </div>
+		<div class="flex flex-wrap gap-2 md:gap-4">
+			<a
+				href="https://github.com/mvlanga/mvlanga-com-astro"
+				target="blank"
+				class="transition-colors hover:text-purple-300 light:hover:text-purple-500"
+				data-umami-event="link-click"
+				data-umami-event-url="https://github.com/mvlanga/mvlanga-com-astro">
+				Source code
+			</a>
+			{
+				legalPages.map(({ id, data: { title } }) => (
+					<a
+						href={`/legal/${id}`}
+						class="transition-colors hover:text-purple-300 light:hover:text-purple-500">
+						{title}
+					</a>
+				))
+			}
+			<span>
+				&copy; Moriz von Langa 2023 - {year}
+			</span>
+		</div>
+	</div>
 </footer>

@@ -3,13 +3,14 @@ title: How to Generate Open Graph (OG) Images in Astro
 slug: generating-open-graph-images-in-astro
 description: Learn how to generate dynamic Open Graph (OG) images for your Astro-powered page using Satori and Sharp. From setting up custom fonts to handling frontmatter images in both dev and production—this guide covers it all. Make your shared links look stunning!
 createdAt: 2025-04-12
-tags: [ "seo", "astro" ]
+tags: ["seo", "astro"]
 openGraphCover: "src/content/blog/2025/04/generating-open-graph-images-with-embedded-images-in-astro/example-cover.png"
 ---
+
 import Alert from "../../../../../components/common/Alert.astro";
 import OgImagePreview from "./OgImagePreview.astro";
 
-<OgImagePreview/>
+<OgImagePreview />
 
 ## What is an Open Graph (OG) Image?
 
@@ -22,7 +23,7 @@ To get the most out of OG images, make sure to follow best practices: use the ri
 ### Recommended OG Image Dimensions
 
 > Recommended Dimensions: 1200x630 pixels (1.91:1 aspect ratio)
-This size works well across platforms like LinkedIn, Microsoft Teams and Slack. For a detailed guide on OG image dimensions, check out [OGimage Gallery's post about that topic](https://www.ogimage.gallery/libary/the-ultimate-guide-to-og-image-dimensions-2024-update).
+> This size works well across platforms like LinkedIn, Microsoft Teams and Slack. For a detailed guide on OG image dimensions, check out [OGimage Gallery's post about that topic](https://www.ogimage.gallery/libary/the-ultimate-guide-to-og-image-dimensions-2024-update).
 
 ## Prerequisites
 
@@ -33,21 +34,21 @@ We’ll also assume you're using a structure similar to **Astro's Blog starter t
 ```markdown
 .
 ├── public/
-│   └── img/
-│       └── ...
+│ └── img/
+│ └── ...
 └── src/
-    ├── components/
-    │   └── ...
-    ├── content/
-    │   └── blog/
-    │       └── hello-world.md
-    ├── pages/
-    │   └── blog/
-    │       ├── index.ts
-    │       └── [id]/
-    │           └── index.ts
-    └── utils/
-        └── ...
+├── components/
+│ └── ...
+├── content/
+│ └── blog/
+│ └── hello-world.md
+├── pages/
+│ └── blog/
+│ ├── index.ts
+│ └── [id]/
+│ └── index.ts
+└── utils/
+└── ...
 ```
 
 ## Dependencies
@@ -78,18 +79,18 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 export const getCustomFonts = async () => {
-    const yourFontData = await fs.readFile(
-        path.resolve("./public/fonts/your-font.woff"),
-    );
+	const yourFontData = await fs.readFile(
+		path.resolve("./public/fonts/your-font.woff"),
+	);
 
-    return [
-        {
-            name: "yourFont",
-            data: yourFontData,
-            weight: 400,
-            style: "normal",
-        },
-    ];
+	return [
+		{
+			name: "yourFont",
+			data: yourFontData,
+			weight: 400,
+			style: "normal",
+		},
+	];
 };
 ```
 
@@ -104,22 +105,22 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 export const BackgroundImage = async () => {
-    const backgroundImage = await fs.readFile(
-        path.resolve("./public/img/og-background.png"),
-    );
+	const backgroundImage = await fs.readFile(
+		path.resolve("./public/img/og-background.png"),
+	);
 
-    return {
-        type: "img",
-        props: {
-            src: backgroundImage.buffer,
-            style: {
-                position: "absolute",
-                width: "1200px",
-                height: "630px",
-                objectFit: "cover",
-            },
-        },
-    };
+	return {
+		type: "img",
+		props: {
+			src: backgroundImage.buffer,
+			style: {
+				position: "absolute",
+				width: "1200px",
+				height: "630px",
+				objectFit: "cover",
+			},
+		},
+	};
 };
 ```
 
@@ -135,7 +136,7 @@ import satori from "satori";
 import sharp from "sharp";
 
 export const generateOgImage = async (content: ReactNode) => {
-    const svg = await satori(content, {
+	const svg = await satori(content, {
 		width: 1200,
 		height: 630,
 		debug: false,
@@ -166,57 +167,60 @@ Let’s create the dynamic endpoint at `src/pages/blog/[id]/og.jpeg.ts`.
 // src/pages/blog/[id]/og.jpeg.ts
 
 import { type CollectionEntry } from "astro:content";
-import { BackgroundImage, generateOgImage } from "../../../utils/og-image/utils.ts";
+import {
+	BackgroundImage,
+	generateOgImage,
+} from "../../../utils/og-image/utils.ts";
 
 interface Props {
-    params: { id: string };
-    props: { post: CollectionEntry<"blogPosts"> };
+	params: { id: string };
+	props: { post: CollectionEntry<"blogPosts"> };
 }
 
 export const GET = async ({ props }: Props) => {
-    const { post } = props;
+	const { post } = props;
 
-    return await generateOgImage(
-        // @ts-expect-error: Astro currently does not support endpoints with tsx file format
-        // because of that, we need to use react-elements-like objects
-        // satori still expects valid JSX elements, that's why we get typescript errors here
-        {
-            type: "div",
-            props: {
-                style: {
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "100%",
-                    height: "100%",
-                    color: "white",
-                    backgroundColor: "black",
-                    padding: "80px",
-                    justifyContent: "flex-end",
-                },
-                children: [
-                    await BackgroundImage(),
-                    {
-                        type: "h1",
-                        props: {
-                            children: post.data.title,
-                            style: {
-                                fontSize: "4rem",
-                            },
-                        },
-                    },
-                    {
-                        type: "p",
-                        props: {
-                            children: "Moriz von Langa | Blog",
-                            style: {
-                                fontSize: "3rem",
-                            },
-                        },
-                    },
-                ],
-            },
-        }
-    )
+	return await generateOgImage(
+		// @ts-expect-error: Astro currently does not support endpoints with tsx file format
+		// because of that, we need to use react-elements-like objects
+		// satori still expects valid JSX elements, that's why we get typescript errors here
+		{
+			type: "div",
+			props: {
+				style: {
+					display: "flex",
+					flexDirection: "column",
+					width: "100%",
+					height: "100%",
+					color: "white",
+					backgroundColor: "black",
+					padding: "80px",
+					justifyContent: "flex-end",
+				},
+				children: [
+					await BackgroundImage(),
+					{
+						type: "h1",
+						props: {
+							children: post.data.title,
+							style: {
+								fontSize: "4rem",
+							},
+						},
+					},
+					{
+						type: "p",
+						props: {
+							children: "Moriz von Langa | Blog",
+							style: {
+								fontSize: "3rem",
+							},
+						},
+					},
+				],
+			},
+		},
+	);
 };
 ```
 
@@ -226,6 +230,7 @@ export const GET = async ({ props }: Props) => {
     When styling the html content, please keep in mind that `Satori` doesn't support all css properties, check the docs for the list of supported properties [here](https://github.com/vercel/satori?tab=readme-ov-file#css).
 
     `Satori` also supports `tailwindcss`, but it is experimental and because it does not support all css properties and some are written differently (e.g. `object-fit` vs `objectFit`) I do not recommend using tailwindcss utility classes here.
+
 </Alert>
 
 2. Add the `getStaticPaths` Method
@@ -238,12 +243,12 @@ To generate the OG images at build time for each blog entry, use the `getStaticP
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-    const blogPosts = await getCollection("blogPosts");
+	const blogPosts = await getCollection("blogPosts");
 
-    return blogPosts.map((post) => ({
-        params: { id: post.id },
-        props: { post },
-    }));
+	return blogPosts.map((post) => ({
+		params: { id: post.id },
+		props: { post },
+	}));
 }
 ```
 
@@ -259,7 +264,7 @@ So add a field like this in your frontmatter:
 
 ```astro
 ---
-openGraphCover: "src/content/blog/hello-world/hello-world-cover.jpg"
+openGraphCover: "src/content/blog/hello-world/hello-world-cover.jpg";
 ---
 ```
 
@@ -269,7 +274,7 @@ Then read it in your OG endpoint:
 // src/pages/blog/[id]/og.jpeg.ts
 
 await fs.readFile(
-    path.resolve(`${process.cwd()}/${project.data.openGraphCover}`),
+	path.resolve(`${process.cwd()}/${project.data.openGraphCover}`),
 );
 ```
 
@@ -296,22 +301,22 @@ If you wanna use a utility, I could get this working with this util, taking care
 import fs from "node:fs/promises";
 
 export const getFrontmatterImage = async (
-    filePath: string,
-    src: string,
-    format: string,
+	filePath: string,
+	src: string,
+	format: string,
 ) => {
-    if (import.meta.env.PROD) {
-        const folderPathArr = filePath.split("/");
-        folderPathArr.pop();
+	if (import.meta.env.PROD) {
+		const folderPathArr = filePath.split("/");
+		folderPathArr.pop();
 
-        const folderPath = folderPathArr.join("/");
+		const folderPath = folderPathArr.join("/");
 
-        return await fs.readFile(
-            `${process.cwd()}/${folderPath}${src.replace("_astro", "").split(".")[0]}.${format}`,
-        );
-    }
+		return await fs.readFile(
+			`${process.cwd()}/${folderPath}${src.replace("_astro", "").split(".")[0]}.${format}`,
+		);
+	}
 
-    return await fs.readFile(src.replace("/@fs", "").replace(/\?.*/, ""));
+	return await fs.readFile(src.replace("/@fs", "").replace(/\?.*/, ""));
 };
 ```
 
@@ -323,9 +328,9 @@ This utility resolves the correct path for both development and production envir
 // src/pages/blog/[id]/og.jpeg.ts
 
 const projectCoverImage = await getFrontmatterImage(
-    project.filePath,
-    project.data.cover.src,
-    project.data.cover.format,
+	project.filePath,
+	project.data.cover.src,
+	project.data.cover.format,
 );
 ```
 

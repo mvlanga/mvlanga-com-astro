@@ -11,22 +11,27 @@ tags: ["documentation"]
 If you’re using the code **without making major changes** to the structure or design, I kindly ask that you include a visible credit. Here’s an example you can drop into your project:
 
 ```html
-<a href="https://mvlanga.com" class="transition-colors hover:text-purple-300 light:hover:text-purple-500">
-    Designed & developed by mvlanga.com
+<a
+	href="https://mvlanga.com"
+	class="transition-colors hover:text-purple-300 light:hover:text-purple-500">
+	Designed & developed by mvlanga.com
 </a>
 ```
 
 Or if you've forked the project with **major modifications**, feel free to use this instead:
 
 ```html
-<a href="https://mvlanga.com" class="transition-colors hover:text-purple-300 light:hover:text-purple-500">
-    Forked from mvlanga.com
+<a
+	href="https://mvlanga.com"
+	class="transition-colors hover:text-purple-300 light:hover:text-purple-500">
+	Forked from mvlanga.com
 </a>
 ```
 
 Please make sure this attribution appears in f. ex. the **footer**.
 
 ## View the Code
+
 Explore or fork the code directly from the [GitHub repository](https://github.com/mvlanga/mvlanga-com-astro).
 
 ## A Quick Note

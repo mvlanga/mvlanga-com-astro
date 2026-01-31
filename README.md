@@ -24,21 +24,21 @@ to [mvlanga.com](https://mvlanga.com). Thanks!
 
 1. Install and use the correct version of Node using [NVM](https://github.com/nvm-sh/nvm)
 
-   ```sh
-   nvm install
-   ```
+    ```sh
+    nvm install
+    ```
 
 2. Install dependencies
 
-   ```sh
-   npm install
-   ```
+    ```sh
+    npm install
+    ```
 
 3. Start the development server
 
-   ```sh
-   npm run dev
-   ```
+    ```sh
+    npm run dev
+    ```
 
 ## Prepare database for deploying to production
 
@@ -56,9 +56,9 @@ For hosting this hybrid Astro app, I chose [Netlify](https://www.netlify.com/).
 
 1. Generate the hybrid production build
 
-   ```sh
-   npm run build
-   ```
+    ```sh
+    npm run build
+    ```
 
 ## ⏲️ Previous iterations
 

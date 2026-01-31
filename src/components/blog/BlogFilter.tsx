@@ -15,7 +15,9 @@ export const BlogFilter = ({ availableTags }: BlogFilterProps) => {
 				text="All"
 				size="small"
 				level={
-					$selectedTag === BLOG_FILTER_TAG_ALL_VALUE ? "primary" : "secondary"
+					$selectedTag === BLOG_FILTER_TAG_ALL_VALUE
+						? "primary"
+						: "secondary"
 				}
 				onClick={() => blogFilterTag.set(BLOG_FILTER_TAG_ALL_VALUE)}
 			/>

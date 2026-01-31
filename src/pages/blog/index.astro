@@ -19,44 +19,54 @@ const availableTags = getTagsWithCountByPosts(blogPosts);
 ---
 
 <title slot="head">Blog — Moriz von Langa</title>
-<meta slot="head" name="description"
-      content="A few notes and reminders for myself, usually when I've found a solution to something I was struggling with, discovered a good solution to a channeling problem, or tried something new."/>
+<meta
+	slot="head"
+	name="description"
+	content="A few notes and reminders for myself, usually when I've found a solution to something I was struggling with, discovered a good solution to a channeling problem, or tried something new."
+/>
 
 <Layout className="container gap-32">
-    <section class="max-w-prose-l grid gap-8">
-        <div class="flex gap-4 items-center">
-            <h1 class="text-4xl font-bold leading-snug">
-                Blog
-            </h1>
-            <a class="text-neutral-500 light:text-neutral-600 transition-colors hover:text-purple-300 light:hover:text-purple-500 translate-y-1"
-               href="/blog/rss.xml" aria-label="RSS Feed" target="_blank">
-                <RssIcon width="32" height="32" fill="var(--color-neutral-500)"/>
-            </a>
-        </div>
+	<section class="grid max-w-prose-l gap-8">
+		<div class="flex items-center gap-4">
+			<h1 class="text-4xl leading-snug font-bold">Blog</h1>
+			<a
+				class="translate-y-1 text-neutral-500 transition-colors hover:text-purple-300 light:text-neutral-600 light:hover:text-purple-500"
+				href="/blog/rss.xml"
+				aria-label="RSS Feed"
+				target="_blank">
+				<RssIcon
+					width="32"
+					height="32"
+					fill="var(--color-neutral-500)"
+				/>
+			</a>
+		</div>
 
-        <p class="text-neutral-400 light:text-neutral-700 max-w-prose">
-            A few notes and reminders for myself, usually when I've found a solution to something I was struggling with or tried something new.
-            <br/><br/>
-            It's just great to have a place to go back to.
-        </p>
+		<p class="max-w-prose text-neutral-400 light:text-neutral-700">
+			A few notes and reminders for myself, usually when I've found a
+			solution to something I was struggling with or tried something new.
+			<br /><br />
+			It's just great to have a place to go back to.
+		</p>
 
-        <BlogFilter client:load availableTags={availableTags}/>
-    </section>
+		<BlogFilter client:load availableTags={availableTags} />
+	</section>
 
-    <BlogPosts client:only="react" blogPosts={blogPosts}>
-        <section slot="fallback" class="grid gap-16">
-            {postsGroupedByMonth.map(([title, posts]) => (
-                    <div class="grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
-                        <p class="col-span-full text-2xl">
-                            {title}
-                        </p>
-                        {posts && posts.map((post) => (
-                                <BlogPost post={post}>
-                                    <Skeleton className="w-[8ch]" />
-                                </BlogPost>
-                        ))}
-                    </div>
-            ))}
-        </section>
-    </BlogPosts>
+	<BlogPosts client:only="react" blogPosts={blogPosts}>
+		<section slot="fallback" class="grid gap-16">
+			{
+				postsGroupedByMonth.map(([title, posts]) => (
+					<div class="grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
+						<p class="col-span-full text-2xl">{title}</p>
+						{posts &&
+							posts.map((post) => (
+								<BlogPost post={post}>
+									<Skeleton className="w-[8ch]" />
+								</BlogPost>
+							))}
+					</div>
+				))
+			}
+		</section>
+	</BlogPosts>
 </Layout>

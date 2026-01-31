@@ -2,7 +2,7 @@
 
 @config "../tailwind.config.cjs";
 
-@plugin '@tailwindcss/typography';
+@plugin "@tailwindcss/typography";
 
 @theme {
 	--font-sans:
@@ -96,7 +96,7 @@
 
 @utility container {
 	margin-inline: auto;
-	@apply px-3 sm:px-12 md:px-16 lg:px-32 max-w-8xl;
+	@apply max-w-8xl px-3 sm:px-12 md:px-16 lg:px-32;
 }
 
 @utility prose {

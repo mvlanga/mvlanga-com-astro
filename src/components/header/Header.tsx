@@ -89,7 +89,10 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 		document.addEventListener("astro:after-swap", onAfterRouteChange);
 
 		return () =>
-			document.removeEventListener("astro:after-swap", onAfterRouteChange);
+			document.removeEventListener(
+				"astro:after-swap",
+				onAfterRouteChange,
+			);
 	}, [onAfterRouteChange]);
 
 	function toggleMenu() {
@@ -127,8 +130,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 				initial="visible"
 				animate={currentVariant}
 				variants={variants}
-				onFocus={() => setIsHeaderHidden(false)}
-			>
+				onFocus={() => setIsHeaderHidden(false)}>
 				<a aria-label="Moriz von Langa wordmark" href="/">
 					<Button text="mvlanga" />
 				</a>
@@ -138,8 +140,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 				initial="visible"
 				className="fixed top-4 right-4 z-40 flex gap-2 sm:top-10 sm:right-10"
 				animate={currentVariant}
-				variants={variants}
-			>
+				variants={variants}>
 				{isBreakpointSm && (
 					<AnimatePresence>
 						{!isMenuOpen && (
@@ -147,8 +148,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 								className="-z-10"
 								initial={{ translateX: "100%", scale: 0.8 }}
 								animate={{ translateX: 0, scale: 1 }}
-								exit={{ translateX: "100%", scale: 0.8 }}
-							>
+								exit={{ translateX: "100%", scale: 0.8 }}>
 								<ThemeToggleButton />
 							</motion.div>
 						)}
@@ -167,7 +167,9 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 					isActive={isMenuOpen}
 					onClick={toggleMenu}
 					onFocus={() => setIsHeaderHidden(false)}
-					aria-label={isMenuOpen ? "close main menu" : "open main menu"}
+					aria-label={
+						isMenuOpen ? "close main menu" : "open main menu"
+					}
 				/>
 			</motion.div>
 
@@ -177,8 +179,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 						exit={{ opacity: 0, translateY: "100%" }}
 						initial={{ opacity: 0, translateY: "100%" }}
 						animate={{ opacity: 1, translateY: "0" }}
-						className="fixed right-4 bottom-4 z-10"
-					>
+						className="fixed right-4 bottom-4 z-10">
 						<ThemeToggleButton />
 					</motion.div>
 				)}
@@ -196,24 +197,28 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 								opacity: 0,
 								clipPath: `inset(1.25rem 1.25rem calc(100% - ${menuButtonElementHeight}px - 1.25rem) calc(100% - ${menuButtonElementWidth}px - 1.25rem) round 1rem)`,
 							},
-							open: { opacity: 1, clipPath: "inset(0% 0% 0% 0% round 1rem)" },
+							open: {
+								opacity: 1,
+								clipPath: "inset(0% 0% 0% 0% round 1rem)",
+							},
 						}}
 						initial="initial"
 						animate="open"
 						exit="closed"
 						aria-label="Main Menu"
-						className="fixed top-2 right-2 left-2 z-30 flex max-h-[calc(100%-1rem)] flex-col gap-10 overflow-y-auto rounded-2xl bg-neutral-900 light:bg-neutral-100 px-8 py-10 sm:top-5 sm:right-5 sm:left-auto sm:w-72"
-						id="main-menu"
-					>
+						className="fixed top-2 right-2 left-2 z-30 flex max-h-[calc(100%-1rem)] flex-col gap-10 overflow-y-auto rounded-2xl bg-neutral-900 px-8 py-10 sm:top-5 sm:right-5 sm:left-auto sm:w-72 light:bg-neutral-100"
+						id="main-menu">
 						<div className="flex flex-col gap-4">
 							<motion.p
 								variants={{
 									initial: { opacity: 0 },
 									closed: { opacity: 0 },
-									open: { opacity: 1, transition: { delay: 0.05 } },
+									open: {
+										opacity: 1,
+										transition: { delay: 0.05 },
+									},
 								}}
-								className="text-sm"
-							>
+								className="text-sm">
 								Navigation
 							</motion.p>
 							<motion.ul
@@ -226,27 +231,37 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 											delayChildren: 0.1,
 										},
 									},
-								}}
-							>
+								}}>
 								{navItems.map(({ label, url }) => (
 									<motion.li
 										key={url}
 										variants={{
-											initial: { opacity: 0, translateY: "50%" },
-											closed: { opacity: 0, translateY: "0px" },
-											open: { opacity: 1, translateY: "0px" },
+											initial: {
+												opacity: 0,
+												translateY: "50%",
+											},
+											closed: {
+												opacity: 0,
+												translateY: "0px",
+											},
+											open: {
+												opacity: 1,
+												translateY: "0px",
+											},
 										}}
-										className="group relative text-2xl"
-									>
+										className="group relative text-2xl">
 										<HeaderNavItem
 											currentPath={currentPath}
 											label={label}
 											url={url}
 											setIsMenuOpen={setIsMenuOpen}
-											onActiveAnchorLinkChange={setActiveNavItems}
+											onActiveAnchorLinkChange={
+												setActiveNavItems
+											}
 											isActive={
 												url === currentPath ||
-												latestActiveNavItem === url.substring(1)
+												latestActiveNavItem ===
+													url.substring(1)
 											}
 										/>
 									</motion.li>
@@ -258,10 +273,12 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 								variants={{
 									initial: { opacity: 0 },
 									closed: { opacity: 0 },
-									open: { opacity: 1, transition: { delay: 0.2 } },
+									open: {
+										opacity: 1,
+										transition: { delay: 0.2 },
+									},
 								}}
-								className="text-sm"
-							>
+								className="text-sm">
 								Socials
 							</motion.p>
 							<motion.ul
@@ -274,8 +291,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 											delayChildren: 0.25,
 										},
 									},
-								}}
-							>
+								}}>
 								{socialItems.map(({ label, url }) => (
 									<motion.li
 										key={url}
@@ -283,8 +299,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 											initial: { opacity: 0 },
 											closed: { opacity: 0 },
 											open: { opacity: 1 },
-										}}
-									>
+										}}>
 										<a
 											href={url}
 											referrerPolicy="no-referrer"
@@ -292,8 +307,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 											onClick={() => setIsMenuOpen(false)}
 											rel="noreferrer"
 											data-umami-event="link-click"
-											data-umami-event-url={url}
-										>
+											data-umami-event-url={url}>
 											{label}
 										</a>
 									</motion.li>

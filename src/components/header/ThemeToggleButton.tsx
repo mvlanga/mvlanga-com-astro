@@ -42,12 +42,11 @@ export const ThemeToggleButton = () => {
 		<IconButton
 			level="secondary"
 			onClick={() => toggleTheme()}
-			aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
-		>
+			aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}>
 			<div className="relative h-6 w-6 overflow-hidden rounded-full border-2 border-current transition-colors">
 				<div
 					data-theme={theme}
-					className="data-[theme=dark]:-translate-x-1/2 absolute h-full w-full bg-current transition-transform duration-150 ease-out data-[theme=light]:translate-x-1/2"
+					className="absolute h-full w-full bg-current transition-transform duration-150 ease-out data-[theme=dark]:-translate-x-1/2 data-[theme=light]:translate-x-1/2"
 				/>
 			</div>
 		</IconButton>

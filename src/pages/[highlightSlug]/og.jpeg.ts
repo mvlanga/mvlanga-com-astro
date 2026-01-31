@@ -69,7 +69,8 @@ export const GET = async ({ props }: Props) => {
 								{
 									type: "p",
 									props: {
-										children: "Moriz von Langa | Highlights",
+										children:
+											"Moriz von Langa | Highlights",
 										tw: "text-4xl text-neutral-100 font-normal",
 									},
 								},

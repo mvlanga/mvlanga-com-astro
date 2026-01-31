@@ -10,9 +10,10 @@ coverOnHover: ./skoda-enyaq-coupe-thumbnail_02.jpg
 coverOnHoverAlt: Example screenshot of the Škoda Enyaq Coupé World Premiere Application
 openGraphCover: "src/content/highlights/skoda-enyaq-coupe/skoda-enyaq-coupe-thumbnail_01.jpg"
 ---
+
 import MediaRow from "../../../components/highlights/MediaRow.astro";
 import MyResponsibilities from "../../../components/highlights/MyResponsibilities.astro";
-import {VideoPlayer} from "../../../components/common/VideoPlayer";
+import { VideoPlayer } from "../../../components/common/VideoPlayer";
 import Prose from "../../../components/common/Prose.astro";
 
 import thumbnailOne from "./skoda-enyaq-coupe-thumbnail_01.jpg";
@@ -26,18 +27,20 @@ import cameraTransitionPoster from "./camera-transition.jpg";
 import runthroughPoster from "./runthrough.jpg";
 import transitionPoster from "./transition-01.jpg";
 
-<MediaRow items={[
-    {
-        type: "image",
-        image: thumbnailOne,
-        alt: "Example screenshot of the Škoda Enyaq Coupé World Premiere Application"
-    },
-    {
-        type: "image",
-        image: thumbnailTwo,
-        alt: "Example screenshot of the Škoda Enyaq Coupé World Premiere Application"
-    }
-]}/>
+<MediaRow
+	items={[
+		{
+			type: "image",
+			image: thumbnailOne,
+			alt: "Example screenshot of the Škoda Enyaq Coupé World Premiere Application",
+		},
+		{
+			type: "image",
+			image: thumbnailTwo,
+			alt: "Example screenshot of the Škoda Enyaq Coupé World Premiere Application",
+		},
+	]}
+/>
 
 <Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## The story
@@ -51,21 +54,28 @@ import transitionPoster from "./transition-01.jpg";
     around a movie set where the World Premiere pre-show was filmed. The implementation of the Virtual Event
     happened in
     under 4 weeks.
+
 </Prose>
 
-<VideoPlayer client:visible src="/highlights/skoda-enyaq-coupe/transition-01.mp4" poster={transitionPoster}
-             muted={true}
-             alt="Example Transition"/>
+<VideoPlayer
+	client:visible
+	src="/highlights/skoda-enyaq-coupe/transition-01.mp4"
+	poster={transitionPoster}
+	muted={true}
+	alt="Example Transition"
+/>
 
-<MyResponsibilities description="Concept assistance, 3D animation & rendering, interface design, fullstack development."
-                    responsibilities={[
-                        "Part of the content concept for the virtual event",
-                        "User journey planning & interface design implementation",
-                        "Modeling, shading and lighting of the Cinema building with Cinema 4D and V-Ray",
-                        "Rendering post-production and preparing for web",
-                        "Development of the application using Angular and Firebase",
-                        "Deploying the application using Firebase Hosting.",
-                    ]}/>
+<MyResponsibilities
+	description="Concept assistance, 3D animation & rendering, interface design, fullstack development."
+	responsibilities={[
+		"Part of the content concept for the virtual event",
+		"User journey planning & interface design implementation",
+		"Modeling, shading and lighting of the Cinema building with Cinema 4D and V-Ray",
+		"Rendering post-production and preparing for web",
+		"Development of the application using Angular and Firebase",
+		"Deploying the application using Firebase Hosting.",
+	]}
+/>
 
 <Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## World Premiere
@@ -74,20 +84,24 @@ import transitionPoster from "./transition-01.jpg";
     redirected to a page that embedded the YouTube livestream. No active user of the site could miss the event. The
     entire system was based on a remote configuration that could update the status of the application for all users
     in real time.
+
 </Prose>
 
-<MediaRow items={[
-    {
-        type: "image",
-        image: beautyThree,
-        alt: "Example screenshot of the Škoda Enyaq Coupé World Premiere Application"
-    },
-    {
-        type: "image",
-        image: beautyFour,
-        alt: "Example screenshot of the Škoda Enyaq Coupé World Premiere Application"
-    }
-]} reverseOffset={true}/>
+<MediaRow
+	items={[
+		{
+			type: "image",
+			image: beautyThree,
+			alt: "Example screenshot of the Škoda Enyaq Coupé World Premiere Application",
+		},
+		{
+			type: "image",
+			image: beautyFour,
+			alt: "Example screenshot of the Škoda Enyaq Coupé World Premiere Application",
+		},
+	]}
+	reverseOffset={true}
+/>
 
 <Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## Highlights
@@ -96,36 +110,45 @@ import transitionPoster from "./transition-01.jpg";
     multiple
     features such as two mini-games, a seat selection function and camera transitions between the different 3D
     environments.
+
 </Prose>
 
-<MediaRow items={[
-    {
-        type: "image",
-        image: beautyFive,
-        alt: "Example screenshot of the Škoda Enyaq Coupé World Premiere Application",
-        description: "Guess the right shape"
-    },
-    {
-        type: "image",
-        image: beautySix,
-        alt: "Example screenshot of the Škoda Enyaq Coupé World Premiere Application",
-        description: "Guess the right sound"
-    },
-    {
-        type: "video",
-        src: "/highlights/skoda-enyaq-coupe/seat-selection.mp4",
-        poster: seatSelectionPoster,
-        alt: "Seat selection",
-        description: "Seat selection"
-    },
-    {
-        type: "video",
-        src: "/highlights/skoda-enyaq-coupe/camera-transition.mp4",
-        poster: cameraTransitionPoster,
-        alt: "Camera transitions",
-        description: "Camera transitions"
-    }
-]}/>
+<MediaRow
+	items={[
+		{
+			type: "image",
+			image: beautyFive,
+			alt: "Example screenshot of the Škoda Enyaq Coupé World Premiere Application",
+			description: "Guess the right shape",
+		},
+		{
+			type: "image",
+			image: beautySix,
+			alt: "Example screenshot of the Škoda Enyaq Coupé World Premiere Application",
+			description: "Guess the right sound",
+		},
+		{
+			type: "video",
+			src: "/highlights/skoda-enyaq-coupe/seat-selection.mp4",
+			poster: seatSelectionPoster,
+			alt: "Seat selection",
+			description: "Seat selection",
+		},
+		{
+			type: "video",
+			src: "/highlights/skoda-enyaq-coupe/camera-transition.mp4",
+			poster: cameraTransitionPoster,
+			alt: "Camera transitions",
+			description: "Camera transitions",
+		},
+	]}
+/>
 
-<VideoPlayer client:visible src="/highlights/skoda-enyaq-coupe/runthrough.mp4" poster={runthroughPoster} muted={false}
-             alt="run through" description="Complete run through"/>
+<VideoPlayer
+	client:visible
+	src="/highlights/skoda-enyaq-coupe/runthrough.mp4"
+	poster={runthroughPoster}
+	muted={false}
+	alt="run through"
+	description="Complete run through"
+/>
