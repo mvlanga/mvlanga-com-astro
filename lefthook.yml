@@ -4,7 +4,10 @@ commit-msg:
             run: npx --no -- commitlint --edit
 
 pre-commit:
-    commands:
-        check:
-            glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
-            run: npm run lint:fix -- {staged_files} && npm run check
+    jobs:
+        - name: format
+          run: npx prettier {staged_files} --write
+        - name: lint
+          run: npm run lint:fix -- {staged_files}
+        - name: check
+          run: npm run check
