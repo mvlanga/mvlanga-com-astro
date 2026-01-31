@@ -6,6 +6,7 @@ export default {
     plugins: ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
     overrides: [
         {
+            files: ["**"],
             excludeFiles: [
                 "**/dist",
                 "**/.astro",
@@ -14,7 +15,7 @@ export default {
                 "**/.idea",
                 "**/playwright-report",
                 "**/test-results",
-                "**/static"
+                "**/static",
             ],
         },
         {
