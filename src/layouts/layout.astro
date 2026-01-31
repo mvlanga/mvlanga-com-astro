@@ -1,109 +1,129 @@
 ---
 import "@/styles.css";
 
-import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { clsx } from "clsx";
 import Footer from "../components/common/Footer.astro";
 import { Header } from "../components/header/Header";
 
 interface Props {
-	className?: string;
-	footerType?: "regular" | "small";
+    className?: string;
+    footerType?: "regular" | "small";
 }
 
 const { className, footerType = "regular" } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="en" class="relative scroll-smooth text-lg" data-theme="dark">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width"/>
-    <meta name="generator" content={Astro.generator}/>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
 
-    <link rel="sitemap" href="/sitemap-index.xml"/>
+        <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <script is:inline type="application/ld+json"> {
-        "@context": "https://schema.org/",
-        "@type": "WebPage",
-        "name": "Moriz von Langa",
-        "mainEntity": {
-            "@type": "Person",
-            "name": "Moriz von Langa",
-            "email": "mailto:morizvlanga@gmail.com",
-            "nationality": "German",
-            "knowsLanguage": [
-                "de-DE",
-                "en-US"
-            ],
-            "jobTitle": "Frontend Developer",
-            "worksFor": {
-                "@type": "Organization",
-                "name": "SENEC",
-                "url": "https://senec.com/de"
-            },
-            "workLocation": "Leipzig",
-            "image": "https://mvlanga.com/moriz-von-langa-portrait.webp",
-            "url": "https://mvlanga.com"
-        }
-    } </script>
-
-    <slot name="head"/>
-
-    <meta slot="head" property="og:image" content={`${import.meta.env.SITE}${Astro.url.pathname}og.jpeg`} />
-
-    <link rel="apple-touch-icon" sizes="180x180"
-          href="/meta/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32"
-          href="/meta/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16"
-          href="/meta/favicon-16x16.png">
-    <link rel="manifest" href="/meta/site.webmanifest">
-    <link rel="shortcut icon" href="/meta/favicon.ico">
-    <meta name="msapplication-TileColor" content="#000000">
-    <meta name="msapplication-config" content="/meta/browserconfig.xml">
-    <meta name="theme-color" content="#000000">
-
-    <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="e72a415f-684f-4ff0-bd2c-062e0ef8c366"
-            data-domains="mvlanga.com,v2.mvlanga.com" data-do-not-track="true"/>
-    
-    <style is:global>
-        @media not (prefers-reduced-motion) {
-            @view-transition {
-                navigation: auto;
+        <script is:inline type="application/ld+json">
+            {
+                "@context": "https://schema.org/",
+                "@type": "WebPage",
+                "name": "Moriz von Langa",
+                "mainEntity": {
+                    "@type": "Person",
+                    "name": "Moriz von Langa",
+                    "email": "mailto:morizvlanga@gmail.com",
+                    "nationality": "German",
+                    "knowsLanguage": ["de-DE", "en-US"],
+                    "jobTitle": "Frontend Developer",
+                    "worksFor": {
+                        "@type": "Organization",
+                        "name": "SENEC",
+                        "url": "https://senec.com/de"
+                    },
+                    "workLocation": "Leipzig",
+                    "image": "https://mvlanga.com/moriz-von-langa-portrait.webp",
+                    "url": "https://mvlanga.com"
+                }
             }
-        }
-    </style>
+        </script>
 
-    <script is:inline>
-        const userPrefersLightTheme = () => {
-            try {
-                const storedTheme = localStorage.getItem("theme");
+        <slot name="head" />
 
-                return (
-                    storedTheme === "light" ||
-                    (storedTheme === null &&
-                        window.matchMedia("(prefers-color-scheme: light)").matches)
-                );
-            } catch {
-                return window.matchMedia("(prefers-color-scheme: light)").matches;
+        <meta
+            slot="head"
+            property="og:image"
+            content={`${import.meta.env.SITE}${Astro.url.pathname}og.jpeg`}
+        />
+
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/meta/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/meta/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/meta/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/meta/site.webmanifest" />
+        <link rel="shortcut icon" href="/meta/favicon.ico" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="msapplication-config" content="/meta/browserconfig.xml" />
+        <meta name="theme-color" content="#000000" />
+
+        <script
+            is:inline
+            defer
+            src="https://cloud.umami.is/script.js"
+            data-website-id="e72a415f-684f-4ff0-bd2c-062e0ef8c366"
+            data-domains="mvlanga.com,v2.mvlanga.com"
+            data-do-not-track="true"></script>
+
+        <style is:global>
+            @media not (prefers-reduced-motion) {
+                @view-transition {
+                    navigation: auto;
+                }
             }
-        };
+        </style>
 
-        if (userPrefersLightTheme()) {
-            document.documentElement.setAttribute("data-theme", "light")
-        }
-    </script>
-</head>
+        <script is:inline>
+            const userPrefersLightTheme = () => {
+                try {
+                    const storedTheme = localStorage.getItem("theme");
 
-<body class="bg-black text-white light:bg-white light:text-black">
+                    return (
+                        storedTheme === "light" ||
+                        (storedTheme === null &&
+                            window.matchMedia("(prefers-color-scheme: light)")
+                                .matches)
+                    );
+                } catch {
+                    return window.matchMedia("(prefers-color-scheme: light)")
+                        .matches;
+                }
+            };
 
-<Header client:idle currentPath={Astro.url.pathname}/>
+            if (userPrefersLightTheme()) {
+                document.documentElement.setAttribute("data-theme", "light");
+            }
+        </script>
+    </head>
 
-<main class={twMerge(clsx("flex flex-col gap-64 py-48", className))}>
-    <slot/>
-</main>
+    <body class="bg-black text-white light:bg-white light:text-black">
+        <Header client:idle currentPath={Astro.url.pathname} />
 
-<Footer type={footerType} />
+        <main class={twMerge(clsx("flex flex-col gap-64 py-48", className))}>
+            <slot />
+        </main>
 
-</body>
+        <Footer type={footerType} />
+    </body>
 </html>
