@@ -71,13 +71,17 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 export const testAutomaticallyDetectableA11nIssuesByRoute = (route: string) =>
-    test("should not have any automatically detectable accessibility issues", async ({ page }) => {
-        await page.goto(route);
+	test("should not have any automatically detectable accessibility issues", async ({
+		page,
+	}) => {
+		await page.goto(route);
 
-        const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+		const accessibilityScanResults = await new AxeBuilder({
+			page,
+		}).analyze();
 
-        expect(accessibilityScanResults.violations).toEqual([]);
-    });
+		expect(accessibilityScanResults.violations).toEqual([]);
+	});
 ```
 
 This utility navigates to a given route, runs Axe’s accessibility scanner, and asserts that there are no violations.
@@ -107,21 +111,18 @@ test.describe("home-page", () => {
 import { test } from "@playwright/test";
 import { testAutomaticallyDetectableA11nIssuesByRoute } from "./utils.ts";
 
-const blogPages: string[] = [
-    "/blog/your-post",
-];
+const blogPages: string[] = ["/blog/your-post"];
 
 test.describe("blog-post-page", () => {
-    for (const route of blogPages) {
-        test.describe(`${route}`, () => {
-            testAutomaticallyDetectableA11nIssuesByRoute(route);
-        });
-    }
+	for (const route of blogPages) {
+		test.describe(`${route}`, () => {
+			testAutomaticallyDetectableA11nIssuesByRoute(route);
+		});
+	}
 });
 ```
 
 ## Reminder: Automation Isn’t Everything
-
 
 Automated tools like Axe are great for catching obvious issues like:
 

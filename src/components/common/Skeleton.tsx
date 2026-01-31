@@ -10,7 +10,7 @@ export const Skeleton = ({ className }: SkeletonProps) => {
 		<div
 			className={twMerge(
 				clsx(
-					"inline-block h-[1lh] w-full animate-pulse rounded-lg bg-neutral-800 light:bg-neutral-200 transition-colors",
+					"inline-block h-[1lh] w-full animate-pulse rounded-lg bg-neutral-800 transition-colors light:bg-neutral-200",
 					className,
 				),
 			)}

@@ -3,7 +3,7 @@ title: Organise arrays of objects, including dates, by month using JavaScript's 
 slug: organize-arrays-objects-dates-by-month-javascript-groupby
 description: Learn how to use the JavaScript groupBy method (ES2024) to organise arrays of objects containing dates by month, with each section displaying the full month name using toLocaleString().
 createdAt: 2025-02-28
-tags: [ "javascript" ]
+tags: ["javascript"]
 ---
 
 ## A Simple and Powerful Use Case
@@ -30,10 +30,9 @@ developers a cleaner and more efficient way to manipulate and organize their dat
 Here's the core of the solution for organizing blog posts by month:
 
 ```javascript
-Object.groupBy(filteredData, ({createdAt}) => {
-        return createdAt.toLocaleString("en-US", {month: "long"})
-    }
-);
+Object.groupBy(filteredData, ({ createdAt }) => {
+	return createdAt.toLocaleString("en-US", { month: "long" });
+});
 ```
 
 Let's walk through how this code works:
@@ -54,14 +53,13 @@ distinguish between posts from the same month in different years.
 Here’s how we can modify the code to achieve this:
 
 ```javascript
-Object.groupBy(filteredBlogPosts, ({data: {createdAt}}) => {
-    const isThisYear =
-        createdAt.getFullYear() === new Date().getFullYear();
+Object.groupBy(filteredBlogPosts, ({ data: { createdAt } }) => {
+	const isThisYear = createdAt.getFullYear() === new Date().getFullYear();
 
-    return createdAt.toLocaleString("en-US", {
-        month: "long",
-        ...(isThisYear ? {} : {year: "numeric"}),
-    });
+	return createdAt.toLocaleString("en-US", {
+		month: "long",
+		...(isThisYear ? {} : { year: "numeric" }),
+	});
 });
 ```
 
@@ -78,13 +76,13 @@ Once we’ve grouped the posts by month (and optionally by year), we can loop th
 a well-structured format. Here's how you can display each month’s posts:
 
 ```javascript
-const groupedPosts = Object.groupBy(filteredData, ({created_at}) =>
-    new Date(created_at).toLocaleString("en-US", {month: "long"})
+const groupedPosts = Object.groupBy(filteredData, ({ created_at }) =>
+	new Date(created_at).toLocaleString("en-US", { month: "long" }),
 );
 
 for (const [month, posts] of Object.entries(groupedPosts)) {
-    console.log(`\n${month}:`);
-    posts.forEach(post => console.log(post.title));
+	console.log(`\n${month}:`);
+	posts.forEach((post) => console.log(post.title));
 }
 ```
 

@@ -26,28 +26,28 @@ const relatedHighlights = shuffle(
 ---
 
 <title slot="head">{title} — {customer} — Moriz von Langa</title>
-<meta slot="head" name="description" content={description}/>
+<meta slot="head" name="description" content={description} />
 
 <Layout className="container gap-32 md:gap-48 lg:gap-64">
-    <section class="max-w-prose mx-auto">
-        <h3 class="text-xl mb-4 text-neutral-400 light:text-neutral-700">
-            {customer}
-        </h3>
-        <h1 class="mb-8 text-4xl font-bold leading-snug">
-            {title}
-        </h1>
-        <p class="max-w-prose text-lg text-neutral-400 light:text-neutral-700">
-            {description}
-        </p>
-    </section>
+	<section class="mx-auto max-w-prose">
+		<h3 class="mb-4 text-xl text-neutral-400 light:text-neutral-700">
+			{customer}
+		</h3>
+		<h1 class="mb-8 text-4xl leading-snug font-bold">
+			{title}
+		</h1>
+		<p class="max-w-prose text-lg text-neutral-400 light:text-neutral-700">
+			{description}
+		</p>
+	</section>
 
-    <Content/>
+	<Content />
 
-    <section class="grid gap-16">
-        <h2 class="text-4xl">More highlights you may like</h2>
+	<section class="grid gap-16">
+		<h2 class="text-4xl">More highlights you may like</h2>
 
-        <PlayfulDivider />
+		<PlayfulDivider />
 
-        <OtherHighlights client:visible highlights={relatedHighlights}/>
-    </section>
+		<OtherHighlights client:visible highlights={relatedHighlights} />
+	</section>
 </Layout>

@@ -13,7 +13,7 @@ openGraphCover: "src/content/highlights/fujitsu-smart-city/fujitsu-smart-city-th
 
 import MediaRow from "../../../components/highlights/MediaRow.astro";
 import MyResponsibilities from "../../../components/highlights/MyResponsibilities.astro";
-import {VideoPlayer} from "../../../components/common/VideoPlayer";
+import { VideoPlayer } from "../../../components/common/VideoPlayer";
 import Prose from "../../../components/common/Prose.astro";
 
 import thumbnailOne from "./fujitsu-smart-city-thumbnail_01.jpg";
@@ -30,28 +30,30 @@ import storyTwoPoster from "./fujitsu-smart-city_story_02.jpg";
 import storyThreePoster from "./fujitsu-smart-city_story_03.jpg";
 import storyFourPoster from "./fujitsu-smart-city_story_04.jpg";
 
-<MediaRow items={[
-    {
-        type: "image",
-        image: beautyOne,
-        alt: "Example picture of the Smart City exhibit at Fujitsu Forum"
-    },
-    {
-        type: "image",
-        image: beautyTwo,
-        alt: "Example picture of the Smart City exhibit at Fujitsu Forum"
-    },
-    {
-        type: "image",
-        image: beautyThree,
-        alt: "Example picture of the Smart City exhibit at Fujitsu Forum"
-    },
-    {
-        type: "image",
-        image: beautyFour,
-        alt: "Example picture of the Smart City exhibit at Fujitsu Forum"
-    }
-]}/>
+<MediaRow
+	items={[
+		{
+			type: "image",
+			image: beautyOne,
+			alt: "Example picture of the Smart City exhibit at Fujitsu Forum",
+		},
+		{
+			type: "image",
+			image: beautyTwo,
+			alt: "Example picture of the Smart City exhibit at Fujitsu Forum",
+		},
+		{
+			type: "image",
+			image: beautyThree,
+			alt: "Example picture of the Smart City exhibit at Fujitsu Forum",
+		},
+		{
+			type: "image",
+			image: beautyFour,
+			alt: "Example picture of the Smart City exhibit at Fujitsu Forum",
+		},
+	]}
+/>
 
 <Prose variant="highlight" additionalClasses="max-w-prose mx-auto">
     ## The goal
@@ -65,47 +67,59 @@ import storyFourPoster from "./fujitsu-smart-city_story_04.jpg";
     Digitalization helps companies with automatically and meaningfully analyzing data and optimizing processes to
     sort through immense amounts of information. Visitors to the Fujitsu Forum were able to select and play a story
     of their choice on a tablet at any time.
+
 </Prose>
 
-<MediaRow items={[
-    {
-        type: "image",
-        image: beautyEight,
-        alt: "Example picture of the Smart City exhibit at Fujitsu Forum"
-    },
-    {
-        type: "image",
-        image: thumbnailTwo,
-        alt: "Example picture of the Smart City exhibit at Fujitsu Forum"
-    }
-]} reverseOffset={true}/>
+<MediaRow
+	items={[
+		{
+			type: "image",
+			image: beautyEight,
+			alt: "Example picture of the Smart City exhibit at Fujitsu Forum",
+		},
+		{
+			type: "image",
+			image: thumbnailTwo,
+			alt: "Example picture of the Smart City exhibit at Fujitsu Forum",
+		},
+	]}
+	reverseOffset={true}
+/>
 
-<VideoPlayer client:visible
-             src="https://res.cloudinary.com/dobsizufr/video/upload/v1674764844/mvlanga.com/fujitsu-smart-city_story_02.mp4"
-             poster={storyTwoPoster}
-             muted={false}
-             alt="Picture of our 3D city model exhibit we made for fujitsu, currently running animation Story 2 - Fujitsu’s Just-In-Time Challenge"
-             description="Story 2 - Fujitsu’s Just-In-Time Challenge"/>
+<VideoPlayer
+	client:visible
+	src="https://res.cloudinary.com/dobsizufr/video/upload/v1674764844/mvlanga.com/fujitsu-smart-city_story_02.mp4"
+	poster={storyTwoPoster}
+	muted={false}
+	alt="Picture of our 3D city model exhibit we made for fujitsu, currently running animation Story 2 - Fujitsu’s Just-In-Time Challenge"
+	description="Story 2 - Fujitsu’s Just-In-Time Challenge"
+/>
 
-<VideoPlayer client:visible
-             src="https://res.cloudinary.com/dobsizufr/video/upload/v1674764757/mvlanga.com/fujitsu-smart-city_story_03.mp4"
-             poster={storyThreePoster}
-             muted={false}
-             alt="Picture of our 3D city model exhibit we made for fujitsu, currently running animation Story 3 - Fujitsu Future Mobility Accelerator"
-             description="Story 3 - Fujitsu Future Mobility Accelerator"/>
+<VideoPlayer
+	client:visible
+	src="https://res.cloudinary.com/dobsizufr/video/upload/v1674764757/mvlanga.com/fujitsu-smart-city_story_03.mp4"
+	poster={storyThreePoster}
+	muted={false}
+	alt="Picture of our 3D city model exhibit we made for fujitsu, currently running animation Story 3 - Fujitsu Future Mobility Accelerator"
+	description="Story 3 - Fujitsu Future Mobility Accelerator"
+/>
 
-<MyResponsibilities description="Design & animation, interface design, fullstack development"
-                    responsibilities={[
-                        "Assistance in creating the look and feel of the city",
-                        "Helped create the UV maps for the city model",
-                        "Animation of the city in Story 2, Story 3 and - in a later project - in Story 4",
-                        "Creating masks for the city model in Cinema 4D",
-                        "Development of the small control application with Angular",
-                    ]}/>
+<MyResponsibilities
+	description="Design & animation, interface design, fullstack development"
+	responsibilities={[
+		"Assistance in creating the look and feel of the city",
+		"Helped create the UV maps for the city model",
+		"Animation of the city in Story 2, Story 3 and - in a later project - in Story 4",
+		"Creating masks for the city model in Cinema 4D",
+		"Development of the small control application with Angular",
+	]}
+/>
 
-<VideoPlayer client:visible
-             src="https://res.cloudinary.com/dobsizufr/video/upload/v1674764197/mvlanga.com/fujitsu-smart-city_story_04_v3.mp4"
-             poster={storyFourPoster}
-             muted={false}
-             alt="Preview of our VR 3D city model exhibit we made for fujitsu, currently running animation Story 4 - Fujitsu Data-Driven Transformation"
-             description="Story 4 - Fujitsu Data-Driven Transformation (Available after a later update digitally, e.g. with VR glasses)"/>
+<VideoPlayer
+	client:visible
+	src="https://res.cloudinary.com/dobsizufr/video/upload/v1674764197/mvlanga.com/fujitsu-smart-city_story_04_v3.mp4"
+	poster={storyFourPoster}
+	muted={false}
+	alt="Preview of our VR 3D city model exhibit we made for fujitsu, currently running animation Story 4 - Fujitsu Data-Driven Transformation"
+	description="Story 4 - Fujitsu Data-Driven Transformation (Available after a later update digitally, e.g. with VR glasses)"
+/>

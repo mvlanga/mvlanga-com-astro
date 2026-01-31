@@ -16,13 +16,15 @@ export const OtherBlogPosts = ({ blogPosts }: OtherBlogPostsProps) => {
 
 	return (
 		<div className="overflow-hidden" ref={emblaRef}>
-			<div className="-ml-4 md:-ml-8 flex touch-pan-y">
+			<div className="-ml-4 flex touch-pan-y md:-ml-8">
 				{blogPostsWithViewCount.map((post) => (
 					<OtherBlogPost key={post.id} blogPost={post}>
 						{isLoading ? (
 							<Skeleton className="w-[8ch]" />
 						) : (
-							<span>{post.viewCount?.toLocaleString()} views</span>
+							<span>
+								{post.viewCount?.toLocaleString()} views
+							</span>
 						)}
 					</OtherBlogPost>
 				))}

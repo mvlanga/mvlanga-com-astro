@@ -87,20 +87,23 @@ const ReactiveLine = () => {
 	};
 
 	return (
-		<div ref={containerEl} className="group relative h-px w-full" aria-hidden>
+		<div
+			ref={containerEl}
+			className="group relative h-px w-full"
+			aria-hidden>
 			{/* biome-ignore lint/a11y/noStaticElementInteractions: hidden for screen readers */}
 			<div
 				onMouseEnter={manageMouseEnter}
 				onMouseMove={manageMouseMove}
 				onMouseLeave={manageMouseLeave}
-				className="-top-5 hover:-top-20 relative z-10 h-10 w-full hover:h-40"
+				className="relative -top-5 z-10 h-10 w-full hover:-top-20 hover:h-40"
 			/>
 
 			{/* biome-ignore lint/a11y/noSvgWithoutTitle: hidden for screen readers */}
 			<svg className="pointer-events-none absolute top-[-250px] h-[500px] w-full">
 				<path
 					ref={pathEl}
-					className="fill-none light:stroke-neutral-300 stroke-[1px] stroke-neutral-800 transition-colors duration-300 group-hover:stroke-neutral-700 light:group-hover:stroke-neutral-400"
+					className="fill-none stroke-neutral-800 stroke-[1px] transition-colors duration-300 group-hover:stroke-neutral-700 light:stroke-neutral-300 light:group-hover:stroke-neutral-400"
 				/>
 			</svg>
 		</div>

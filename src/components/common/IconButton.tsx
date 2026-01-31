@@ -29,11 +29,10 @@ export const IconButton = ({
 					size === "medium" && "rounded-full p-4",
 					level === "primary" && "bg-purple text-white",
 					level === "secondary" &&
-						"bg-neutral-900 light:bg-neutral-100 light:text-black text-white light:hover:text-white",
+						"bg-neutral-900 text-white light:bg-neutral-100 light:text-black light:hover:text-white",
 					additionalProps.className,
 				),
-			)}
-		>
+			)}>
 			<div
 				aria-hidden
 				className="absolute z-0 h-[200%] w-[150%] translate-y-full rounded-[50%] bg-purple-700 transition-transform duration-200 ease-out group-hover:translate-y-0 group-[.active]:translate-y-0"
