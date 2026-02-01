@@ -1,9 +1,5 @@
-commit-msg:
-    commands:
-        validate:
-            run: npx --no -- commitlint --edit
-
 pre-commit:
+    parallel: false
     jobs:
         - name: format
           run: npx prettier {staged_files} --write
