@@ -2,12 +2,8 @@ import { ActionError, defineAction } from "astro:actions";
 import { db, inArray, PageViews, sql } from "astro:db";
 import { z } from "astro:schema";
 
-const enrichIdWithEnvironemtInfo = (id: string, hostname: string) => {
-	if (hostname.includes("deploy-preview")) {
-		return `${hostname}/${id}`;
-	}
-
-	return id;
+const enrichIdWithHostnameInfo = (id: string, hostname: string) => {
+	return `${hostname}/${id}`;
 };
 
 export const pageViews = {
@@ -15,7 +11,7 @@ export const pageViews = {
 		input: z.array(z.string()),
 		handler: async (ids, context) => {
 			const idsWithEnvironmentInfo = ids.map((id) =>
-				enrichIdWithEnvironemtInfo(id, context.url.hostname),
+				enrichIdWithHostnameInfo(id, context.url.hostname),
 			);
 
 			try {
@@ -36,7 +32,7 @@ export const pageViews = {
 	increase: defineAction({
 		input: z.string(),
 		handler: async (id, context) => {
-			const idWithEnvironmentInfo = enrichIdWithEnvironemtInfo(
+			const idWithEnvironmentInfo = enrichIdWithHostnameInfo(
 				id,
 				context.url.hostname,
 			);
