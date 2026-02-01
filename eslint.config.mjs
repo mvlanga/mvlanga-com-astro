@@ -1,7 +1,8 @@
+import eslintConfigPrettier from "eslint-config-prettier/flat";
 import eslintAstro from "eslint-plugin-astro";
+import jsxA11y from "eslint-plugin-jsx-a11y";
 import eslintReact from "eslint-plugin-react";
 import globals from "globals";
-import eslintConfigPrettier from "eslint-config-prettier/flat";
 
 export default [
 	...eslintAstro.configs.recommended,
@@ -17,5 +18,6 @@ export default [
 			},
 		},
 	},
+	jsxA11y.flatConfigs.recommended,
 	eslintConfigPrettier,
 ];

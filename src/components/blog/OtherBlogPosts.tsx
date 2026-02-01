@@ -1,8 +1,8 @@
-import type { CollectionEntry } from "astro:content";
-import useEmblaCarousel from "embla-carousel-react";
 import { OtherBlogPost } from "@/components/blog/OtherBlogPost";
 import { useBlogPostsWithViewCount } from "@/components/blog/utils";
 import { Skeleton } from "@/components/common/Skeleton";
+import type { CollectionEntry } from "astro:content";
+import useEmblaCarousel from "embla-carousel-react";
 
 type OtherBlogPostsProps = {
 	blogPosts: CollectionEntry<"blogPosts">[];

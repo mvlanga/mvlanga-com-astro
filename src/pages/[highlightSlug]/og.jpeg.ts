@@ -1,7 +1,7 @@
+import { BackgroundImage, generateOgImage } from "@/utils/og-image/utils.ts";
 import { type CollectionEntry, getCollection } from "astro:content";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { BackgroundImage, generateOgImage } from "@/utils/og-image/utils.ts";
 
 interface Props {
 	params: { highlightSlug: string };

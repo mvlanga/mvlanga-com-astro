@@ -41,7 +41,7 @@ const { type = "regular" } = Astro.props;
 
 	<div
 		class={clsx(
-			"flex flex-wrap items-end justify-between gap-6 text-neutral-500 light:text-neutral-600 light:contrast-more:text-neutral-800 contrast-more:text-neutral-400",
+			"flex flex-wrap items-end justify-between gap-6 text-neutral-500 contrast-more:text-neutral-400 light:text-neutral-600 light:contrast-more:text-neutral-800",
 			type === "regular" && "mt-12",
 		)}>
 		{isProduction ? <CarbonBadge /> : "<CarbonBadge />"}

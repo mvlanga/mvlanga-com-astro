@@ -1,6 +1,6 @@
+import { IconButton } from "@/components/common/IconButton.tsx";
 import { useReducedMotion } from "motion/react";
 import { useEffect, useState } from "react";
-import { IconButton } from "@/components/common/IconButton.tsx";
 
 type Theme = "dark" | "light";
 

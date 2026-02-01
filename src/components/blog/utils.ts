@@ -1,8 +1,8 @@
+import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
+import { useOnMount } from "@/utils/useOnMount.ts";
 import { actions } from "astro:actions";
 import type { CollectionEntry } from "astro:content";
 import { useCallback, useEffect, useState } from "react";
-import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
-import { useOnMount } from "@/utils/useOnMount.ts";
 
 export const getTagsWithCountByPosts = (
 	posts: CollectionEntry<"blogPosts">[],

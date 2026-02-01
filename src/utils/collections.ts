@@ -1,5 +1,5 @@
-import { getCollection } from "astro:content";
 import { sortBlogPosts } from "@/utils/sortCollection.ts";
+import { getCollection } from "astro:content";
 
 const isProduction = import.meta.env.PROD;
 
