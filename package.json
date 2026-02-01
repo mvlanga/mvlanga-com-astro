@@ -37,7 +37,8 @@
 		"@axe-core/playwright": "^4.11.0",
 		"@commitlint/cli": "^20.4.0",
 		"@commitlint/config-conventional": "^20.4.0",
-		"@playwright/test": "^1.58.1",
+      	"@eslint/js": "^9.39.2",
+      	"@playwright/test": "^1.58.1",
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.1.18",
 		"@types/node": "^25.1.0",
@@ -59,6 +60,7 @@
 		"satori": "^0.19.1",
 		"sharp": "^0.34.5",
 		"tailwindcss": "^4.0.5",
-		"typescript": "^5.9.3"
+		"typescript": "^5.9.3",
+		"typescript-eslint": "^8.54.0"
 	}
 }
