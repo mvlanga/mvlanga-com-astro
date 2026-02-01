@@ -4,7 +4,11 @@ export default {
 	tabWidth: 4,
 	bracketSameLine: true,
 	useTabs: true,
-	plugins: ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
+	plugins: [
+		"prettier-plugin-astro",
+		"prettier-plugin-organize-imports",
+		"prettier-plugin-tailwindcss",
+	],
 	overrides: [
 		{
 			files: ["**"],
@@ -27,4 +31,5 @@ export default {
 		},
 	],
 	tailwindStylesheet: "src/styles.css",
+	tailwindFunctions: ["clsx", "twMerge"],
 };

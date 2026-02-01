@@ -1,7 +1,7 @@
-import { mix, useReducedMotion } from "motion/react";
-import { type MouseEvent, useRef } from "react";
 import { useOnMount } from "@/utils/useOnMount.ts";
 import { useOnResize } from "@/utils/useOnResize.ts";
+import { mix, useReducedMotion } from "motion/react";
+import { type MouseEvent, useRef } from "react";
 
 export const PlayfulDivider = () => {
 	const shouldReduceMotion = useReducedMotion();

@@ -1,5 +1,5 @@
-import { type CollectionEntry, getCollection } from "astro:content";
 import { BackgroundImage, generateOgImage } from "@/utils/og-image/utils.ts";
+import { type CollectionEntry, getCollection } from "astro:content";
 
 interface Props {
 	params: { id: string };

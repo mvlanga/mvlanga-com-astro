@@ -1,7 +1,7 @@
-import { motion } from "motion/react";
-import type { PropsWithChildren } from "react";
 import { layoutTransition } from "@/components/blog/BlogPosts.tsx";
 import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
+import { motion } from "motion/react";
+import type { PropsWithChildren } from "react";
 
 type BlogPostProps = {
 	post: BlogPostWithViewCount;

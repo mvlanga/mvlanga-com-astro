@@ -1,11 +1,3 @@
-import { useStore } from "@nanostores/react";
-import {
-	AnimatePresence,
-	LayoutGroup,
-	motion,
-	type Transition,
-} from "motion/react";
-import { useMemo } from "react";
 import { BlogPost } from "@/components/blog/BlogPost";
 import {
 	BLOG_FILTER_TAG_ALL_VALUE,
@@ -17,6 +9,14 @@ import {
 	useBlogPostsWithViewCount,
 } from "@/components/blog/utils";
 import { Skeleton } from "@/components/common/Skeleton";
+import { useStore } from "@nanostores/react";
+import {
+	AnimatePresence,
+	LayoutGroup,
+	motion,
+	type Transition,
+} from "motion/react";
+import { useMemo } from "react";
 
 export const layoutTransition: Transition = {
 	duration: 0.5,
