@@ -1,4 +1,5 @@
 import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
+import { removeHostnameInfoFromPageViewId } from "@/utils/page-views";
 import { useOnMount } from "@/utils/useOnMount.ts";
 import { actions } from "astro:actions";
 import type { CollectionEntry } from "astro:content";
@@ -62,7 +63,14 @@ export const useBlogPostsWithViewCount = (
 		setBlogPostsWithViewCount(
 			blogPosts.map((post) => ({
 				...post,
-				viewCount: data.find(({ id }) => id === post.id)?.count ?? 0,
+				viewCount:
+					data.find(
+						({ id }) =>
+							removeHostnameInfoFromPageViewId(
+								id,
+								window.location.hostname,
+							) === post.id,
+					)?.count ?? 0,
 			})),
 		);
 	};
