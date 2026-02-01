@@ -4,7 +4,7 @@ export const ExperienceItem = ({
 	data: { from, to, role, company, tasks, technologies },
 }: CollectionEntry<"experience">) => {
 	return (
-		<div className="grid gap-8 rounded-xl bg-neutral-900 p-8 md:p-16 lg:grid-cols-3 lg:gap-16 light:bg-neutral-100">
+		<div className="grid gap-6 rounded-xl bg-neutral-900 p-6 md:p-10 lg:grid-cols-3 lg:gap-10 light:bg-neutral-100">
 			<div className="flex flex-col gap-4 lg:col-span-1">
 				<p className="text-neutral-400 light:text-neutral-600">
 					{from}
@@ -28,7 +28,7 @@ export const ExperienceItem = ({
 				</ul>
 				<div className="flex flex-wrap gap-2">
 					{technologies.map((tech) => (
-						<span className="rounded-full bg-neutral-800 px-5 py-2 text-sm text-neutral-400 light:bg-neutral-200 light:text-neutral-800">
+						<span className="rounded-full bg-neutral-800 px-5 py-2 text-sm text-neutral-400 light:bg-purple-100 light:text-neutral-900">
 							{tech}
 						</span>
 					))}

@@ -12,11 +12,15 @@ import { getBlogPosts } from "@/utils/collections";
 import { sortHighlights } from "@/utils/sortCollection";
 import { Skeleton } from "@/components/common/Skeleton";
 import { sortExperience } from "@/utils/sortCollection";
-import { Experiences } from "@/components/experience/Experiences";
+import { ExperienceItem } from "@/components/experience/ExperienceItem";
+import { UnimportantExperienceItems } from "@/components/experience/UnimportantExperienceItems";
+import { ExperienceFilter } from "@/components/experience/ExperienceFilter";
 
 import mvlPortrait from "../assets/img/moriz-von-langa-portrait.avif";
 
 const experience = sortExperience(await getCollection("experience"));
+const importantExperience = experience.filter((item) => item.data.important);
+const unimportantExperience = experience.filter((item) => !item.data.important);
 const highlights = sortHighlights(await getCollection("highlights"));
 const blogPosts = (await getBlogPosts()).slice(0, 3);
 ---
@@ -136,7 +140,25 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 
 		<PlayfulDivider />
 
-		<Experiences experienceItems={experience} client:idle />
+		<div class="flex flex-col gap-8">
+			<div class="flex flex-col gap-4">
+				{
+					importantExperience.map((item) => (
+						<ExperienceItem {...item} />
+					))
+				}
+
+				<div class="flex flex-col gap-4">
+					<UnimportantExperienceItems
+						client:idle
+						items={unimportantExperience}
+					/>
+				</div>
+			</div>
+			<div class="w-full text-end">
+				<ExperienceFilter client:idle />
+			</div>
+		</div>
 	</section>
 
 	<section class="container grid scroll-mt-16 gap-16" id="highlights">

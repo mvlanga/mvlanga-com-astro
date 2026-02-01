@@ -7,10 +7,7 @@ export const ExperienceFilter = () => {
 
 	return (
 		<Button
-			text={{
-				default: "Early career",
-				activeText: "Less please",
-			}}
+			text={$unimportantItemsVisible ? "Less please" : "Early career"}
 			isActive={$unimportantItemsVisible}
 			onClick={() =>
 				experienceUnimportantVisible.set(!$unimportantItemsVisible)

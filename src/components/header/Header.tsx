@@ -132,7 +132,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 				variants={variants}
 				onFocus={() => setIsHeaderHidden(false)}>
 				<a aria-label="Moriz von Langa wordmark" href="/">
-					<Button text="mvlanga" />
+					<Button text="mvlanga" className="shadow-2xl" />
 				</a>
 			</motion.header>
 
@@ -170,6 +170,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 					aria-label={
 						isMenuOpen ? "close main menu" : "open main menu"
 					}
+					className="shadow-2xl"
 				/>
 			</motion.div>
 
