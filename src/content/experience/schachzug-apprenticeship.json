@@ -27,5 +27,6 @@
 		"CSS (Less)",
 		"Javascript",
 		"Grunt"
-	]
+	],
+	"important": false
 }

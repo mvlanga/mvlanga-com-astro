@@ -29,5 +29,6 @@
 		"Jest",
 		"Vitest",
 		"Contentful"
-	]
+	],
+	"important": true
 }
