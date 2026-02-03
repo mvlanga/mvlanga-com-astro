@@ -13,7 +13,7 @@ If you’re using the code **without making major changes** to the structure or 
 ```html
 <a
 	href="https://mvlanga.com"
-	class="transition-colors hover:text-teal-300 light:hover:text-teal-500">
+	class="transition-colors hover:text-purple-300 light:hover:text-purple-500">
 	Designed & developed by mvlanga.com
 </a>
 ```
@@ -23,7 +23,7 @@ Or if you've forked the project with **major modifications**, feel free to use t
 ```html
 <a
 	href="https://mvlanga.com"
-	class="transition-colors hover:text-teal-300 light:hover:text-teal-500">
+	class="transition-colors hover:text-purple-300 light:hover:text-purple-500">
 	Forked from mvlanga.com
 </a>
 ```
