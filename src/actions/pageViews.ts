@@ -11,8 +11,6 @@ export const pageViews = {
 				enrichPageViewIdWithHostnameInfo(id, context.url.hostname),
 			);
 
-			console.log("GET PAGE VIEWS", idsWithEnvironmentInfo);
-
 			try {
 				return await db
 					.select()
@@ -35,8 +33,6 @@ export const pageViews = {
 				id,
 				context.url.hostname,
 			);
-
-			console.log("SET PAGE VIEWS", idWithEnvironmentInfo);
 
 			try {
 				return await db
