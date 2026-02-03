@@ -28,7 +28,7 @@ export const ExperienceItem = ({
 				</ul>
 				<div className="flex flex-wrap gap-2">
 					{technologies.map((tech) => (
-						<span className="rounded-full bg-neutral-800 px-5 py-2 text-sm text-neutral-400 light:bg-neutral-200 light:text-neutral-900">
+						<span className="rounded-full bg-neutral-800 px-5 py-2 text-sm text-neutral-400 light:bg-purple-100 light:text-neutral-900">
 							{tech}
 						</span>
 					))}

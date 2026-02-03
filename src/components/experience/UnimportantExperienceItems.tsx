@@ -15,7 +15,7 @@ export const UnimportantExperienceItems = ({
 
 	return (
 		<motion.div
-			className="relative z-0 flex flex-col gap-4 overflow-hidden"
+			className="relative flex flex-col gap-4 overflow-hidden"
 			variants={{
 				visible: {
 					height: "auto",

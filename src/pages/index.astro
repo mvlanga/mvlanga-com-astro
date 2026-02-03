@@ -141,18 +141,23 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 		<PlayfulDivider />
 
 		<div class="flex flex-col gap-8">
-			<div class="flex flex-col gap-4"></div>
-			{importantExperience.map((item) => <ExperienceItem {...item} />)}
-
 			<div class="flex flex-col gap-4">
-				<UnimportantExperienceItems
-					client:idle
-					items={unimportantExperience}
-				/>
+				{
+					importantExperience.map((item) => (
+						<ExperienceItem {...item} />
+					))
+				}
+
+				<div class="flex flex-col gap-4">
+					<UnimportantExperienceItems
+						client:idle
+						items={unimportantExperience}
+					/>
+				</div>
 			</div>
-		</div>
-		<div class="w-full text-end">
-			<ExperienceFilter client:idle />
+			<div class="w-full text-end">
+				<ExperienceFilter client:idle />
+			</div>
 		</div>
 	</section>
 
@@ -214,7 +219,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 					<span>Latest blog posts</span>
 
 					<a
-						class="inline-block translate-y-1 text-neutral-500 transition-colors hover:text-teal-300 light:text-neutral-600 light:hover:text-teal-500"
+						class="inline-block translate-y-1 text-neutral-500 transition-colors hover:text-purple-300 light:text-neutral-600 light:hover:text-purple-500"
 						href="/blog/rss.xml"
 						aria-label="RSS Feed"
 						target="_blank">

@@ -117,8 +117,7 @@ const { className, footerType = "regular" } = Astro.props;
 		</script>
 	</head>
 
-	<body
-		class="bg-black text-lg text-white light:bg-white light:text-base light:text-black">
+	<body class="bg-black text-white light:bg-white light:text-black">
 		<Header client:idle currentPath={Astro.url.pathname} />
 
 		<main class={twMerge(clsx("flex flex-col gap-64 py-48", className))}>
