@@ -1,9 +1,8 @@
 ---
 import { render } from "astro:content";
 import { ViewCounter } from "@/components/blog/ViewCounter";
-import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
+import { PlayfulDivider } from "@/components/common/PlayfulDivider";
 import Prose from "@/components/common/Prose.astro";
-import { Skeleton } from "@/components/common/Skeleton";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
 
@@ -41,14 +40,12 @@ const { title, description, tags, createdAt } = post.data;
 				<span>{tags.map((tag) => `#${tag}`).join(", ")}</span>
 
 				<div class="flex flex-wrap gap-4">
-					<ViewCounter client:idle id={post.id}>
-						<Skeleton slot="fallback" className="w-[8ch]" />
-					</ViewCounter>
+					<ViewCounter client:idle id={post.id} />
 					<p>{createdAt.toLocaleDateString("en-US")}</p>
 				</div>
 			</div>
 
-			<PlayfulDivider />
+			<PlayfulDivider client:idle />
 		</section>
 
 		<Prose variant="blog">

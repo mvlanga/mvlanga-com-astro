@@ -1,24 +1,18 @@
 import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
-import { type PropsWithChildren, type Ref } from "react";
+import type { PropsWithChildren } from "react";
 
-type BlogPostProps = {
+type BlogPostPreviewContentProps = {
 	post: BlogPostWithViewCount;
-	ref?: Ref<HTMLAnchorElement>;
 } & PropsWithChildren;
 
-export const BlogPost = ({
+export const BlogPostPreviewContent = ({
 	post: {
-		id,
-		data: { title, description, tags, createdAt },
+		data: { title, createdAt, tags, description },
 	},
 	children,
-	ref,
-}: BlogPostProps) => {
+}: BlogPostPreviewContentProps) => {
 	return (
-		<a
-			ref={ref}
-			className="group flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-100 p-6 transition-colors hover:bg-neutral-200 md:p-10"
-			href={`/blog/${id}`}>
+		<>
 			<div className="flex flex-col items-start gap-6">
 				<h2 className="text-lg">{title}</h2>
 				<p className="text-neutral-600">{description}</p>
@@ -37,6 +31,6 @@ export const BlogPost = ({
 					<p>{createdAt.toLocaleDateString("en-US")}</p>
 				</div>
 			</div>
-		</a>
+		</>
 	);
 };
