@@ -19,7 +19,7 @@ export const OtherHighlights = ({ highlights }: OtherHighlightsProps) => {
 							href={`/${id}`}
 							className="group flex flex-col gap-8">
 							<img
-								className="block rounded-3xl bg-neutral-900 transition-opacity group-hover:opacity-50 light:bg-neutral-100 group-hover:light:opacity-75"
+								className="block rounded-3xl bg-neutral-100 transition-opacity group-hover:opacity-75"
 								width={cover.width}
 								height={cover.height}
 								src={cover.src}

@@ -15,20 +15,18 @@ export const OtherBlogPost = ({
 	return (
 		<div className="transform-3d-[0_0_0] min-w-0 flex-[0_0_92%] pl-4 md:flex-[0_0_60%] md:pl-8 lg:flex-[0_0_45%]">
 			<a
-				className="group flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 p-12 transition-colors hover:bg-neutral-800 light:bg-neutral-100 light:hover:bg-neutral-200"
+				className="group flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-100 p-12 transition-colors hover:bg-neutral-200"
 				href={`/blog/${id}`}>
 				<div className="flex flex-col items-start gap-6">
 					<h3 className="text-lg">{title}</h3>
-					<p className="text-neutral-300 light:text-neutral-600 contrast-more:light:text-neutral-800">
-						{description}
-					</p>
+					<p className="text-neutral-600">{description}</p>
 				</div>
 
 				<div className="flex grow items-end">
-					<hr className="w-full border-neutral-800 transition-colors group-hover:border-neutral-700 light:border-neutral-300 group-hover:light:border-neutral-400" />
+					<hr className="w-full border-neutral-300 transition-colors group-hover:border-neutral-400" />
 				</div>
 
-				<div className="flex flex-wrap justify-between gap-4 text-xs text-neutral-400 light:text-neutral-700">
+				<div className="flex flex-wrap justify-between gap-4 text-xs text-neutral-700">
 					<p>{tags.map((tag) => `#${tag}`).join(", ")}</p>
 
 					<div className="flex flex-wrap gap-4">

@@ -31,7 +31,7 @@ const { items, reverseOffset = false } = Astro.props;
 				<figure class="grid h-fit gap-4 text-center md:col-span-3">
 					<img
 						class={clsx(
-							"rounded-4xl bg-neutral-900 light:bg-neutral-100",
+							"rounded-4xl bg-neutral-100",
 							(reverseOffset ? index % 2 === 0 : index % 2) &&
 								"md:mt-32",
 						)}
@@ -43,7 +43,7 @@ const { items, reverseOffset = false } = Astro.props;
 					/>
 
 					{props.description && (
-						<figcaption class="text-neutral-300 light:text-neutral-800">
+						<figcaption class="text-neutral-800">
 							{props.description}
 						</figcaption>
 					)}

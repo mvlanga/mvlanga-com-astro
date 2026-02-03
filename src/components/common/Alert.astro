@@ -14,16 +14,11 @@ const alertClasses = clsx(
 	"rounded-lg border px-8 py-6",
 	"[&_*]:first:mt-0",
 	"[&_*]:last:mb-0",
-	severity === "info" &&
-		"border-purple-800 bg-purple-900 light:border-purple-200 light:bg-purple-100",
-	severity === "neutral" &&
-		"border-neutral-800 bg-neutral-900 light:border-neutral-200 light:bg-neutral-100",
-	severity === "success" &&
-		"border-green-900 bg-green-950 light:border-green-200 light:bg-green-100",
-	severity === "warning" &&
-		"border-orange-900 bg-orange-950 light:border-orange-200 light:bg-orange-100",
-	severity === "error" &&
-		"border-red-900 bg-red-950 light:border-red-200 light:bg-red-100",
+	severity === "info" && "border-purple-200 bg-purple-100",
+	severity === "neutral" && "border-neutral-200 bg-neutral-100",
+	severity === "success" && "border-green-200 bg-green-100",
+	severity === "warning" && "border-orange-200 bg-orange-100",
+	severity === "error" && "border-red-200 bg-red-100",
 	additionalClasses,
 );
 ---

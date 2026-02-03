@@ -37,8 +37,7 @@ const { title, description, tags, createdAt } = post.data;
 		</section>
 
 		<section class="flex flex-col gap-4">
-			<div
-				class="flex flex-wrap justify-between gap-4 text-neutral-500 light:text-neutral-600">
+			<div class="flex flex-wrap justify-between gap-4 text-neutral-600">
 				<span>{tags.map((tag) => `#${tag}`).join(", ")}</span>
 
 				<div class="flex flex-wrap gap-4">
