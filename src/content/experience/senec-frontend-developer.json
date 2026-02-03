@@ -12,11 +12,9 @@
 		"Support cross-functional teams in migrating their applications to enable seamless integration as micro-frontends within our specialist-partner platform.",
 		"Migrate an existing Angular application to React, embedding the rewritten module as micro-frontend.",
 		"Collaborate closely with designers to refine the user experience through iterative feedback and prototyping.",
-		"Extend and maintain a shared UI component library built with React, improving design consistency and reusability across teams.",
-		"Reconfigure Renovatebot to support packages from private registries and collaborate with IT to enable company-wide rollout, improving automation and reducing manual maintenance."
+		"Extend and maintain a shared UI component library built with React, improving design consistency and reusability across teams."
 	],
 	"technologies": [
-		"Renovatebot",
 		"OpenAPI",
 		"Microfrontends (SingleSPA)",
 		"React",
