@@ -24,6 +24,30 @@
 	--color-purple-900: oklch(24.81% 0.143 285.69);
 	--color-purple-950: oklch(20.62% 0.115 288.59);
 
+	--color-teal-50: #fbf8fb;
+	--color-teal-100: #f5f0f7;
+	--color-teal-200: #ebe0ee;
+	--color-teal-300: #dcc7e0;
+	--color-teal-400: #cfb3d4;
+	--color-teal-500: #ac81b4;
+	--color-teal-600: #906297;
+	--color-teal-700: #774f7c;
+	--color-teal-800: #624266;
+	--color-teal-900: #533a55;
+	--color-teal-950: #331e34;
+
+	--color-voodoo-50: #fbf7fc;
+	--color-voodoo-100: #f6eff8;
+	--color-voodoo-200: #ebdef0;
+	--color-voodoo-300: #ddc4e3;
+	--color-voodoo-400: #c8a1d1;
+	--color-voodoo-500: #af7bba;
+	--color-voodoo-600: #935c9d;
+	--color-voodoo-700: #794a81;
+	--color-voodoo-800: #5e3a63;
+	--color-voodoo-900: #553758;
+	--color-voodoo-950: #341b37;
+
 	--color-neutral-500: oklch(68.92% 0.0014 106.44);
 
 	--container-8xl: 120rem;
