@@ -117,10 +117,24 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 			{isHeaderHidden && (
 				<div
 					aria-hidden={true}
-					className="fixed top-0 right-0 left-0 z-50 h-5"
+					className="fixed top-0 right-0 left-0 z-50 h-20"
 					onMouseEnter={() => setIsHeaderHidden(false)}
 				/>
 			)}
+
+			<AnimatePresence>
+				{isMenuOpen && (
+					<motion.div
+						aria-hidden={true}
+						className="fixed top-0 left-0 z-10 h-full w-full bg-black/20"
+						onMouseEnter={() => setIsHeaderHidden(false)}
+						transition={{ duration: 0.15 }}
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+					/>
+				)}
+			</AnimatePresence>
 
 			<motion.header
 				className="fixed top-4 left-4 z-10 sm:top-10 sm:left-10"
@@ -129,7 +143,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 				variants={variants}
 				onFocus={() => setIsHeaderHidden(false)}>
 				<a aria-label="Moriz von Langa wordmark" href="/">
-					<Button text="mvlanga" />
+					<Button text="mvlanga" className="shadow-2xl" />
 				</a>
 			</motion.header>
 
@@ -153,6 +167,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 					aria-label={
 						isMenuOpen ? "close main menu" : "open main menu"
 					}
+					className="shadow-2xl"
 				/>
 			</motion.div>
 
