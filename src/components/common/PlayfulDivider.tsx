@@ -7,7 +7,7 @@ export const PlayfulDivider = () => {
 	const shouldReduceMotion = useReducedMotion();
 
 	return shouldReduceMotion ? (
-		<hr className="border-neutral-800 light:border-neutral-300" />
+		<hr className="border-neutral-300" />
 	) : (
 		<ReactiveLine />
 	);
@@ -103,7 +103,7 @@ const ReactiveLine = () => {
 			<svg className="pointer-events-none absolute top-[-250px] h-[500px] w-full">
 				<path
 					ref={pathEl}
-					className="fill-none stroke-neutral-800 stroke-[1px] transition-colors duration-300 group-hover:stroke-neutral-700 light:stroke-neutral-300 light:group-hover:stroke-neutral-400"
+					className="fill-none stroke-neutral-300 stroke-[1px] transition-colors duration-300 group-hover:stroke-neutral-400"
 				/>
 			</svg>
 		</div>
