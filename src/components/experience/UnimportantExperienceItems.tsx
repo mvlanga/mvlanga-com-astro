@@ -35,7 +35,7 @@ export const UnimportantExperienceItems = ({
 				<div
 					aria-hidden
 					className={clsx(
-						"absolute inset-0 z-10 h-full w-full bg-linear-0 from-white to-transparent opacity-100 transition-opacity duration-150",
+						"absolute inset-0 z-0 h-full w-full bg-linear-0 from-white to-transparent opacity-100 transition-opacity duration-150",
 						isHidden && "opacity-0",
 					)}
 				/>
