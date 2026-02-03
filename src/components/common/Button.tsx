@@ -45,7 +45,7 @@ export const Button = ({
 					"group relative inline-flex items-center justify-center gap-2 overflow-clip",
 					size === "small" && "rounded-2xl px-6 py-3",
 					size === "medium" && "rounded-3xl px-8 py-4",
-					level === "primary" && "bg-purple-500 text-white",
+					level === "primary" && "bg-teal-500 text-white",
 					level === "secondary" &&
 						"bg-neutral-900 text-white light:bg-neutral-100 light:text-black light:hover:text-white light:aria-expanded:text-white",
 					isActive && "active",
@@ -54,7 +54,7 @@ export const Button = ({
 			)}>
 			<div
 				aria-hidden
-				className="absolute z-0 h-[200%] w-[150%] translate-y-full rounded-[50%] bg-purple-700 transition-transform duration-200 ease-out group-hover:translate-y-0 group-[.active]:translate-y-0"
+				className="absolute z-0 h-[200%] w-[150%] translate-y-full rounded-[50%] bg-teal-700 transition-transform duration-200 ease-out group-hover:translate-y-0 group-[.active]:translate-y-0"
 			/>
 
 			<span className="z-10 flex justify-start whitespace-nowrap">
