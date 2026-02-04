@@ -15,7 +15,7 @@ const { highlight } = Astro.props;
 const { Content } = await render(highlight);
 const { title, description, customer } = highlight.data;
 
-import { PlayfulDivider } from "@/components/common/PlayfulDivider";
+import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
 import { OtherHighlights } from "@/components/highlights/OtherHighlights";
 import Layout from "@/layouts/layout.astro";
 import { shuffle } from "@/utils/sortCollection";
@@ -46,7 +46,7 @@ const relatedHighlights = shuffle(
 	<section class="grid gap-16">
 		<h2 class="text-4xl">More highlights you may like</h2>
 
-		<PlayfulDivider client:idle />
+		<PlayfulDivider />
 
 		<OtherHighlights client:visible highlights={relatedHighlights} />
 	</section>

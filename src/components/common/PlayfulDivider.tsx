@@ -3,12 +3,10 @@ import { useOnResize } from "@/utils/useOnResize.ts";
 import { mix, useReducedMotion } from "motion/react";
 import { type MouseEvent, useRef } from "react";
 
-const isSSR = import.meta.env.SSR;
-
 export const PlayfulDivider = () => {
 	const shouldReduceMotion = useReducedMotion();
 
-	return shouldReduceMotion || isSSR ? (
+	return shouldReduceMotion ? (
 		<hr className="border-neutral-300" />
 	) : (
 		<ReactiveLine />

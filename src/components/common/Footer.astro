@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import { clsx } from "clsx";
 import CarbonBadge from "@/components/common/CarbonBadge.astro";
-import { PlayfulDivider } from "@/components/common/PlayfulDivider";
+import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
 
 const year = new Date().getFullYear();
 const isProduction = import.meta.env.PROD;
@@ -22,7 +22,7 @@ const { type = "regular" } = Astro.props;
 		type === "regular" && "gap-24",
 		type === "small" && "gap-12",
 	)}>
-	<PlayfulDivider client:idle />
+	<PlayfulDivider />
 
 	{
 		type === "regular" && (
