@@ -3,7 +3,6 @@ import { render } from "astro:content";
 import { ViewCounter } from "@/components/blog/ViewCounter";
 import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
 import Prose from "@/components/common/Prose.astro";
-import { Skeleton } from "@/components/common/Skeleton";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
 
@@ -37,14 +36,11 @@ const { title, description, tags, createdAt } = post.data;
 		</section>
 
 		<section class="flex flex-col gap-4">
-			<div
-				class="flex flex-wrap justify-between gap-4 text-neutral-500 light:text-neutral-600">
+			<div class="flex flex-wrap justify-between gap-4 text-neutral-600">
 				<span>{tags.map((tag) => `#${tag}`).join(", ")}</span>
 
 				<div class="flex flex-wrap gap-4">
-					<ViewCounter client:idle id={post.id}>
-						<Skeleton slot="fallback" className="w-[8ch]" />
-					</ViewCounter>
+					<ViewCounter client:idle id={post.id} />
 					<p>{createdAt.toLocaleDateString("en-US")}</p>
 				</div>
 			</div>

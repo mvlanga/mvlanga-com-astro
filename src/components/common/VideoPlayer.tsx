@@ -1,3 +1,5 @@
+import { useIsInView } from "@/utils/useIsInView.ts";
+import { useOnMount } from "@/utils/useOnMount.ts";
 import {
 	Controls,
 	FullscreenButton,
@@ -23,8 +25,6 @@ import {
 } from "@vidstack/react/icons";
 import type { ImageMetadata } from "astro";
 import { useEffect, useRef } from "react";
-import { useIsInView } from "@/utils/useIsInView.ts";
-import { useOnMount } from "@/utils/useOnMount.ts";
 
 export type VideoPlayerProps = {
 	src: string;
@@ -72,9 +72,9 @@ export const VideoPlayer = ({
 				aspectRatio={`${poster.width / poster.height}`}
 				className="relative w-full overflow-hidden rounded-4xl"
 				muted={muted}>
-				<MediaProvider className="brightness-75 transition-all duration-200 media-started:brightness-100 light:brightness-[80%]">
+				<MediaProvider className="brightness-[80%] transition-all duration-200 media-started:brightness-100">
 					<Poster
-						className="absolute inset-0 block h-full w-full rounded-md bg-neutral-900 opacity-0 transition-opacity data-[loading]:animate-pulse data-[visible]:opacity-100 light:bg-neutral-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
+						className="absolute inset-0 block h-full w-full rounded-md bg-neutral-100 opacity-0 transition-opacity data-[loading]:animate-pulse data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
 						src={poster.src}
 						alt={alt}
 					/>
@@ -88,7 +88,7 @@ export const VideoPlayer = ({
 			</MediaPlayer>
 
 			{description && (
-				<p className="mt-4 text-center text-neutral-300 light:text-neutral-800">
+				<p className="mt-4 text-center text-neutral-800">
 					{description}
 				</p>
 			)}

@@ -1,10 +1,20 @@
-import eslintAstro from "eslint-plugin-astro";
-import eslintReact from "eslint-plugin-react";
-import globals from "globals";
+import eslint from "@eslint/js";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
+import eslintAstro from "eslint-plugin-astro";
+import jsxA11y from "eslint-plugin-jsx-a11y";
+import eslintReact from "eslint-plugin-react";
+import { defineConfig, globalIgnores } from "eslint/config";
+import globals from "globals";
+import tseslint from "typescript-eslint";
 
-export default [
+const eseslintConfig = defineConfig({
+	files: ["**/*.{ts,tsx}"],
+	extends: [eslint.configs.recommended, tseslint.configs.recommended],
+});
+
+export default defineConfig([
 	...eslintAstro.configs.recommended,
+	...eseslintConfig,
 	{
 		files: ["**/*.{tsx}"],
 		...eslintReact.configs.flat.recommended,
@@ -17,5 +27,16 @@ export default [
 			},
 		},
 	},
+	jsxA11y.flatConfigs.recommended,
 	eslintConfigPrettier,
-];
+	globalIgnores([
+		"**/dist",
+		"**/.astro",
+		"**/.netlify",
+		"**/node_modules",
+		"**/.idea",
+		"**/playwright-report",
+		"**/test-results",
+		"**/static",
+	]),
+]);

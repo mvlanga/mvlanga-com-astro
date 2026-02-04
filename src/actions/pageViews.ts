@@ -1,3 +1,4 @@
+import { enrichPageViewIdWithHostnameInfo } from "@/utils/page-views";
 import { ActionError, defineAction } from "astro:actions";
 import { db, inArray, PageViews, sql } from "astro:db";
 import { z } from "astro:schema";
@@ -5,30 +6,39 @@ import { z } from "astro:schema";
 export const pageViews = {
 	get: defineAction({
 		input: z.array(z.string()),
-		handler: async (ids) => {
+		handler: async (ids, context) => {
+			const idsWithEnvironmentInfo = ids.map((id) =>
+				enrichPageViewIdWithHostnameInfo(id, context.url.hostname),
+			);
+
 			try {
 				return await db
 					.select()
 					.from(PageViews)
-					.where(inArray(PageViews.id, ids));
+					.where(inArray(PageViews.id, idsWithEnvironmentInfo));
 			} catch (e) {
 				console.error(e);
 
 				throw new ActionError({
 					code: "BAD_REQUEST",
-					message: `Error getting "PageViews" with ids "${ids.join(", ")}"`,
+					message: `Error getting "PageViews" with ids "${idsWithEnvironmentInfo.join(", ")}"`,
 				});
 			}
 		},
 	}),
 	increase: defineAction({
 		input: z.string(),
-		handler: async (id) => {
+		handler: async (id, context) => {
+			const idWithEnvironmentInfo = enrichPageViewIdWithHostnameInfo(
+				id,
+				context.url.hostname,
+			);
+
 			try {
 				return await db
 					.insert(PageViews)
 					.values({
-						id,
+						id: idWithEnvironmentInfo,
 					})
 					.onConflictDoUpdate({
 						target: PageViews.id,
@@ -40,7 +50,7 @@ export const pageViews = {
 
 				throw new ActionError({
 					code: "BAD_REQUEST",
-					message: `Error increasing "PageViews" entry with id "${id}"`,
+					message: `Error increasing "PageViews" entry with id "${idWithEnvironmentInfo}"`,
 				});
 			}
 		},

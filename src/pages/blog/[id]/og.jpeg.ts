@@ -1,8 +1,8 @@
+import { BackgroundImage, generateOgImage } from "@/utils/og-image/utils.ts";
+import type { APIRoute } from "astro";
 import { type CollectionEntry, getCollection } from "astro:content";
 import fs from "node:fs/promises";
 import path from "node:path";
-import type { APIRoute } from "astro";
-import { BackgroundImage, generateOgImage } from "@/utils/og-image/utils.ts";
 
 export const GET: APIRoute<{ post: CollectionEntry<"blogPosts"> }> = async ({
 	props,

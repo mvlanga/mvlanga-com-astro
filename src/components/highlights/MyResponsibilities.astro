@@ -13,7 +13,7 @@ const { description, responsibilities } = Astro.props;
 	<div class="grid gap-8">
 		<h2 class="text-4xl">My responsibilities</h2>
 
-		<p class="max-w-prose text-neutral-400 light:text-neutral-700">
+		<p class="max-w-prose text-neutral-700">
 			{description}
 		</p>
 	</div>
@@ -24,7 +24,7 @@ const { description, responsibilities } = Astro.props;
 		<ul class="grid gap-4">
 			{
 				responsibilities.map((responsibility) => (
-					<li class="rounded-3xl bg-neutral-900 p-8 light:bg-neutral-100">
+					<li class="rounded-3xl bg-neutral-100 p-8">
 						{responsibility}
 					</li>
 				))

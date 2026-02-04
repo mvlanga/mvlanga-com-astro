@@ -1,12 +1,13 @@
-import { actions } from "astro:actions";
-import type { CollectionEntry } from "astro:content";
-import { useCallback, useEffect, useState } from "react";
-import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
+import type {
+	BlogPost,
+	BlogPostWithViewCount,
+} from "@/components/blog/types.ts";
+import { removeHostnameInfoFromPageViewId } from "@/utils/page-views";
 import { useOnMount } from "@/utils/useOnMount.ts";
+import { actions } from "astro:actions";
+import { useCallback, useEffect, useState } from "react";
 
-export const getTagsWithCountByPosts = (
-	posts: CollectionEntry<"blogPosts">[],
-) => {
+export const getTagsWithCountByPosts = (posts: BlogPost[]) => {
 	const tagCounts: Record<string, number> = {};
 
 	for (const post of posts) {
@@ -21,7 +22,7 @@ export const getTagsWithCountByPosts = (
 	}));
 };
 
-export const groupPostsByMonth = (posts: CollectionEntry<"blogPosts">[]) => {
+export const groupPostsByMonth = (posts: BlogPost[]) => {
 	return Object.entries(
 		Object.groupBy(posts, ({ data: { createdAt } }) => {
 			const isThisYear =
@@ -35,9 +36,7 @@ export const groupPostsByMonth = (posts: CollectionEntry<"blogPosts">[]) => {
 	);
 };
 
-export const useBlogPostsWithViewCount = (
-	blogPosts: CollectionEntry<"blogPosts">[],
-) => {
+export const useBlogPostsWithViewCount = (blogPosts: BlogPost[]) => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [blogPostsWithViewCount, setBlogPostsWithViewCount] =
 		useState<BlogPostWithViewCount[]>(blogPosts);
@@ -62,7 +61,14 @@ export const useBlogPostsWithViewCount = (
 		setBlogPostsWithViewCount(
 			blogPosts.map((post) => ({
 				...post,
-				viewCount: data.find(({ id }) => id === post.id)?.count ?? 0,
+				viewCount:
+					data.find(
+						({ id }) =>
+							removeHostnameInfoFromPageViewId(
+								id,
+								window.location.hostname,
+							) === post.id,
+					)?.count ?? 0,
 			})),
 		);
 	};

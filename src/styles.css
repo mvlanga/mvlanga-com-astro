@@ -34,8 +34,6 @@
 	--max-width-prose-xl: 112ch;
 }
 
-@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
-
 @layer base {
 	@font-face {
 		font-family: "Averta";
@@ -82,14 +80,8 @@
 		cursor: pointer;
 	}
 
-	html[data-theme="dark"] .astro-code,
-	html[data-theme="dark"] .astro-code span {
-		color: var(--shiki-dark) !important;
-		background-color: var(--shiki-dark-bg) !important;
-	}
-
-	html[data-theme="light"] .astro-code,
-	html[data-theme="light"] .astro-code span {
+	.astro-code,
+	.astro-code span {
 		background-color: var(--color-neutral-100) !important;
 	}
 }
