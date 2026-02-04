@@ -25,6 +25,8 @@ export const layoutTransition: Transition = {
 
 type BlogPostsProps = { blogPosts: BlogPostWithViewCount[] };
 
+const isSSR = import.meta.env.SSR;
+
 export const BlogPosts = ({ blogPosts }: BlogPostsProps) => {
 	const $selectedTag = useStore(blogFilterTag);
 
@@ -74,6 +76,8 @@ type AreaProps = {
 	isLoading: boolean;
 };
 
+const MotionBlogPost = motion.create(BlogPost);
+
 const Area = ({ title, posts, isLoading }: AreaProps) => {
 	return (
 		<motion.div
@@ -83,15 +87,26 @@ const Area = ({ title, posts, isLoading }: AreaProps) => {
 			<motion.p
 				layout
 				className="col-span-full text-2xl"
-				initial={{ opacity: 0 }}
+				initial={{ opacity: isSSR ? 1 : 0 }}
 				animate={{ opacity: 1 }}
 				exit={{ opacity: 0 }}
 				transition={layoutTransition}>
 				{title}
 			</motion.p>
 			<AnimatePresence propagate>
-				{posts?.map((post) => (
-					<BlogPost key={post.id} post={post}>
+				{posts.map((post) => (
+					<MotionBlogPost
+						key={post.id}
+						semanticTitleElement="h2"
+						post={post}
+						layout
+						initial={{
+							opacity: isSSR ? 1 : 0,
+							scale: isSSR ? 1 : 0.8,
+						}}
+						animate={{ opacity: 1, scale: 1 }}
+						exit={{ opacity: 0, scale: 0.8 }}
+						transition={layoutTransition}>
 						{isLoading ? (
 							<Skeleton className="w-[8ch]" />
 						) : (
@@ -99,7 +114,7 @@ const Area = ({ title, posts, isLoading }: AreaProps) => {
 								{post.viewCount?.toLocaleString()} views
 							</p>
 						)}
-					</BlogPost>
+					</MotionBlogPost>
 				))}
 			</AnimatePresence>
 		</motion.div>

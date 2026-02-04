@@ -1,20 +1,12 @@
 ---
 import RssIcon from "@/assets/icons/rss.svg";
 import { BlogFilter } from "@/components/blog/BlogFilter";
-import { BlogPost } from "@/components/blog/BlogPost";
 import { BlogPosts } from "@/components/blog/BlogPosts";
-import {
-	getTagsWithCountByPosts,
-	groupPostsByMonth,
-} from "@/components/blog/utils";
-import { Skeleton } from "@/components/common/Skeleton";
+import { getTagsWithCountByPosts } from "@/components/blog/utils";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
 
 const blogPosts = await getBlogPosts();
-
-const postsGroupedByMonth = groupPostsByMonth(blogPosts);
-
 const availableTags = getTagsWithCountByPosts(blogPosts);
 ---
 
@@ -52,21 +44,5 @@ const availableTags = getTagsWithCountByPosts(blogPosts);
 		<BlogFilter client:load availableTags={availableTags} />
 	</section>
 
-	<BlogPosts client:only="react" blogPosts={blogPosts}>
-		<section slot="fallback" class="grid gap-16">
-			{
-				postsGroupedByMonth.map(([title, posts]) => (
-					<div class="grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
-						<p class="col-span-full text-2xl">{title}</p>
-						{posts &&
-							posts.map((post) => (
-								<BlogPost post={post}>
-									<Skeleton className="w-[8ch]" />
-								</BlogPost>
-							))}
-					</div>
-				))
-			}
-		</section>
-	</BlogPosts>
+	<BlogPosts client:idle blogPosts={blogPosts} />
 </Layout>
