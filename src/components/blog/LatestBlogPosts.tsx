@@ -1,11 +1,11 @@
-import { BlogPost } from "@/components/blog/BlogPost.tsx";
+import { BlogPost } from "@/components/blog/BlogPost";
+import type { BlogPost as BlogPostType } from "@/components/blog/types";
 import { useBlogPostsWithViewCount } from "@/components/blog/utils";
 import { Skeleton } from "@/components/common/Skeleton";
-import type { CollectionEntry } from "astro:content";
 import useEmblaCarousel from "embla-carousel-react";
 
 type LatestBlogPostsProps = {
-	blogPosts: CollectionEntry<"blogPosts">[];
+	blogPosts: BlogPostType[];
 };
 
 export const LatestBlogPosts = ({ blogPosts }: LatestBlogPostsProps) => {
@@ -26,7 +26,7 @@ export const LatestBlogPosts = ({ blogPosts }: LatestBlogPostsProps) => {
 								<Skeleton className="w-[8ch]" />
 							) : (
 								<span>
-									{post.viewCount?.toLocaleString()} views
+									{`${(post.viewCount ?? 0).toLocaleString()} views`}
 								</span>
 							)}
 						</BlogPost>
