@@ -8,7 +8,7 @@ import Ellipsis from "@/components/common/Ellipsis.astro";
 import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
-import { sortHighlights } from "@/utils/sortCollection";
+// import { sortHighlights } from "@/utils/sortCollection";
 import { sortExperience } from "@/utils/sortCollection";
 import { ExperienceItem } from "@/components/experience/ExperienceItem";
 import { UnimportantExperienceItems } from "@/components/experience/UnimportantExperienceItems";
@@ -25,7 +25,7 @@ import flowerTattoo from "@/assets/flowers/flower-tattoo.png";
 const experience = sortExperience(await getCollection("experience"));
 const importantExperience = experience.filter((item) => item.data.important);
 const unimportantExperience = experience.filter((item) => !item.data.important);
-const highlights = sortHighlights(await getCollection("highlights"));
+// const highlights = sortHighlights(await getCollection("highlights"));
 const blogPosts = (await getBlogPosts()).slice(0, 3);
 ---
 
