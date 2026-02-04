@@ -42,12 +42,12 @@ export const Button = ({
 			{...additionalProps}
 			className={twMerge(
 				clsx(
-					"group relative inline-flex items-center justify-center overflow-clip",
+					"group relative inline-flex items-center justify-center gap-2 overflow-clip",
 					size === "small" && "rounded-2xl px-6 py-3",
 					size === "medium" && "rounded-3xl px-8 py-4",
-					level === "primary" && "bg-purple text-white",
+					level === "primary" && "bg-purple-500 text-white",
 					level === "secondary" &&
-						"bg-neutral-900 text-white light:bg-neutral-100 light:text-black light:hover:text-white light:aria-expanded:text-white",
+						"bg-neutral-100 text-black hover:text-white aria-expanded:text-white",
 					isActive && "active",
 					additionalProps.className,
 				),

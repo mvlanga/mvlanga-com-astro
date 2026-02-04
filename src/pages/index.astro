@@ -1,230 +1,245 @@
 ---
-import {Image} from "astro:assets";
-import {getCollection} from "astro:content";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import RssIcon from "@/assets/icons/rss.svg";
-import {OtherBlogPost} from "@/components/blog/OtherBlogPost";
-import {OtherBlogPosts} from "@/components/blog/OtherBlogPosts";
-import {Button} from "@/components/common/Button";
+import { LatestBlogPosts } from "@/components/blog/LatestBlogPosts";
+import { Button } from "@/components/common/Button";
 import Ellipsis from "@/components/common/Ellipsis.astro";
 import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
-import {Skeleton} from "@/components/common/Skeleton";
 import Layout from "@/layouts/layout.astro";
-import {getBlogPosts} from "@/utils/collections";
-import {sortExperience, sortHighlights} from "@/utils/sortCollection";
+import { getBlogPosts } from "@/utils/collections";
+import { sortHighlights } from "@/utils/sortCollection";
+import { sortExperience } from "@/utils/sortCollection";
+import { ExperienceItem } from "@/components/experience/ExperienceItem";
+import { UnimportantExperienceItems } from "@/components/experience/UnimportantExperienceItems";
+import { ExperienceFilter } from "@/components/experience/ExperienceFilter";
 
 import mvlPortrait from "../assets/img/moriz-von-langa-portrait.avif";
 
 const experience = sortExperience(await getCollection("experience"));
+const importantExperience = experience.filter((item) => item.data.important);
+const unimportantExperience = experience.filter((item) => !item.data.important);
 const highlights = sortHighlights(await getCollection("highlights"));
 const blogPosts = (await getBlogPosts()).slice(0, 3);
 ---
 
 <Layout>
-    <title slot="head">Moriz von Langa — Frontend Developer</title>
-    <meta slot="head" name="description"
-          content="I'm a frontend developer who focuses on building solutions that really solve user problems. All while keeping an eye on system architecture and appropriate design."/>
+	<title slot="head">Moriz von Langa — Frontend Developer</title>
+	<meta
+		slot="head"
+		name="description"
+		content="I'm a frontend developer who focuses on building solutions that really solve user problems. All while keeping an eye on system architecture and appropriate design."
+	/>
 
-    <section class="container scroll-mt-96" id="home">
-        <h1 class="mb-10 text-6xl font-bold light:font-semibold leading-snug">
-            Hi, I’m Moriz.
-        </h1>
-        <p class="max-w-prose text-3xl font-light light:font-normal">
-            Frontend developer with full stack expertise based in Leipzig, Germany. On a daily basis, I try to ask a lot
-            of questions with the goal of building solutions that really solve users' problems.
-        </p>
-    </section>
+	<section class="container scroll-mt-96" id="home">
+		<h1 class="mb-10 text-6xl leading-snug font-semibold">
+			Hi, I’m Moriz.
+		</h1>
+		<p class="max-w-prose text-3xl">
+			Frontend developer with full stack expertise based in Leipzig,
+			Germany. On a daily basis, I try to ask a lot of questions with the
+			goal of building solutions that really solve users' problems.
+		</p>
+	</section>
 
-    <section class="relative scroll-mt-16" id="about">
-        <div id="colored-background"
-             class="-z-20 -bottom-32 -top-32 absolute inset-x-0 animate-timeline-[square] bg-neutral-900 light:bg-neutral-100"/>
+	<section class="relative scroll-mt-16" id="about">
+		<div
+			id="colored-background"
+			class="animate-timeline-[square] absolute inset-x-0 -top-32 -bottom-32 -z-20 bg-neutral-100">
+		</div>
 
-        <div class="container grid gap-16">
-            <h2 class="text-5xl">About</h2>
+		<div class="container grid gap-16">
+			<h2 class="text-5xl">About</h2>
 
-            <PlayfulDivider/>
+			<PlayfulDivider />
 
-            <div class="grid md:grid-cols-6 gap-16">
-                <div class="md:col-span-2">
-                    <p class="text-xl max-w-prose">
-                        I love exploring ideas with curiosity and an open mind, all while having the big picture in
-                        mind.
-                    </p>
-                </div>
-                <div class="md:col-span-4">
-                    <div
-                            style={{"aspect-ratio": mvlPortrait.width / mvlPortrait.height}}
-                            class="relative max-h-lvh overflow-clip rounded-2xl md:ml-auto"
-                    >
-                        <Image src={mvlPortrait}
-                               class="-top-48 absolute inset-0 h-[calc(100%+var(--spacing)*32*2)] object-cover"
-                               id="portrait-image"
-                               alt="Portrait of Moriz von Langa"
-                        />
-                    </div>
-                </div>
-            </div>
-            <h2 class="text-4xl">
-                The way I work
-                <Ellipsis/>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-                <div class="flex flex-col gap-6">
-                    <p class="text-neutral-500 contrast-more:text-neutral-400 light:text-neutral-600">01</p>
-                    <hr class="border-neutral-800 light:border-neutral-300"/>
-                    <p class="text-2xl">Curiosity drives deeper solutions</p>
-                    <p class="text-neutral-400 light:text-neutral-700">
-                        I adapt quickly to new systems and enjoy uncovering how they work beneath the surface. Complex
-                        challenges motivate me, especially when I can dig deep to understand what’s really going on.
-                        Rather than treating symptoms, I focus on identifying root causes to develop thoughtful and
-                        lasting solutions. </p>
-                </div>
-                <div class="flex flex-col gap-6">
-                    <p class="text-neutral-500 contrast-more:text-neutral-400 light:text-neutral-600">02</p>
-                    <hr class="border-neutral-800 light:border-neutral-300"/>
-                    <p class="text-2xl">Systems should fit together seamlessly</p>
-                    <p class="text-neutral-400 light:text-neutral-700">
-                        With a solid background in full-stack development, I design with the big picture in mind,
-                        ensuring frontend components integrate smoothly with backend services, micro-frontends, and
-                        broader system architecture. I care about maintainability, performance, and making things easier
-                        for other teams, not just for myself.
-                    </p>
-                </div>
-                <div class="flex flex-col col-span-full lg:col-span-1 gap-6">
-                    <p class="text-neutral-500 contrast-more:text-neutral-400 light:text-neutral-600">03</p>
-                    <hr class="border-neutral-800 light:border-neutral-300"/>
-                    <p class="text-2xl">Design that puts usability first</p>
-                    <p class="text-neutral-400 light:text-neutral-700">
-                        Good UX is not an afterthought, it's a priority. I collaborate closely with designers to shape
-                        intuitive and accessible interfaces, focusing on real user needs and feedback to refine every
-                        interaction and flow.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+			<div class="grid gap-16 md:grid-cols-6">
+				<div class="md:col-span-2">
+					<p class="max-w-prose text-xl">
+						I love exploring ideas with curiosity and an open mind,
+						all while having the big picture in mind.
+					</p>
+				</div>
+				<div class="md:col-span-4">
+					<div
+						style={{
+							"aspect-ratio":
+								mvlPortrait.width / mvlPortrait.height,
+						}}
+						class="relative max-h-lvh overflow-clip rounded-2xl md:ml-auto">
+						<Image
+							src={mvlPortrait}
+							class="absolute inset-0 -top-48 h-[calc(100%+var(--spacing)*32*2)] object-cover"
+							id="portrait-image"
+							alt="Portrait of Moriz von Langa"
+						/>
+					</div>
+				</div>
+			</div>
+			<h2 class="text-4xl">
+				The way I work
+				<Ellipsis />
+			</h2>
+			<div class="grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3">
+				<div class="flex flex-col gap-6">
+					<p class="text-neutral-600">01</p>
+					<hr class="border-neutral-300" />
+					<p class="text-2xl">Curiosity drives deeper solutions</p>
+					<p class="text-neutral-700">
+						I adapt quickly to new systems and enjoy uncovering how
+						they work beneath the surface. Complex challenges
+						motivate me, especially when I can dig deep to
+						understand what’s really going on. Rather than treating
+						symptoms, I focus on identifying root causes to develop
+						thoughtful and lasting solutions.
+					</p>
+				</div>
+				<div class="flex flex-col gap-6">
+					<p class="text-neutral-600">02</p>
+					<hr class="border-neutral-300" />
+					<p class="text-2xl">
+						Systems should fit together seamlessly
+					</p>
+					<p class="text-neutral-700">
+						With a solid background in full-stack development, I
+						design with the big picture in mind, ensuring frontend
+						components integrate smoothly with backend services,
+						micro-frontends, and broader system architecture. I care
+						about maintainability, performance, and making things
+						easier for other teams, not just for myself.
+					</p>
+				</div>
+				<div class="col-span-full flex flex-col gap-6 lg:col-span-1">
+					<p class="text-neutral-600">03</p>
+					<hr class="border-neutral-300" />
+					<p class="text-2xl">Design that puts usability first</p>
+					<p class="text-neutral-700">
+						Good UX is not an afterthought, it's a priority. I
+						collaborate closely with designers to shape intuitive
+						and accessible interfaces, focusing on real user needs
+						and feedback to refine every interaction and flow.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
-    <section class="grid gap-16 container scroll-mt-16" id="experience">
-        <h2 class="text-5xl">Experience</h2>
+	<section class="container grid scroll-mt-16 gap-16" id="experience">
+		<h2 class="text-5xl">Experience</h2>
 
-        <PlayfulDivider/>
+		<PlayfulDivider />
 
-        <div class="flex flex-col gap-8">
-            <div class="flex flex-col gap-8">
-                {
-                    experience.map(({data: {from, to, role, company, tasks, technologies}}) => (
-                            <div class="grid gap-8 rounded-xl bg-neutral-900 light:bg-neutral-100 p-8 md:p-16 lg:grid-cols-3 lg:gap-16">
-                                <div class="flex flex-col gap-4 lg:col-span-1">
-                                    <p class="light:text-neutral-600 text-neutral-400">
-                                        {from}
-                                        {" - "}
-                                        {to}
-                                    </p>
-                                    <h3 class="text-3xl">{role}</h3>
-                                    <p class="light:text-neutral-700 text-neutral-400">
-                                        at <span class="font-semibold">{company.title}</span>,{" "}
-                                        {company.description}
-                                    </p>
-                                </div>
+		<div class="flex flex-col gap-8">
+			<div class="flex flex-col gap-4">
+				{
+					importantExperience.map((item) => (
+						<ExperienceItem {...item} />
+					))
+				}
 
-                                <hr class="border-neutral-800 lg:hidden"/>
+				<div class="flex flex-col gap-4">
+					<UnimportantExperienceItems
+						client:idle
+						items={unimportantExperience}
+					/>
+				</div>
+			</div>
+			<div class="w-full text-end">
+				<ExperienceFilter client:idle />
+			</div>
+		</div>
+	</section>
 
-                                <div class="flex max-w-prose flex-col gap-8 lg:col-span-2">
-                                    <ul class="flex flex-col gap-4 light:text-neutral-700 text-neutral-400">
-                                        {tasks.map((task) => (
-                                                <li>{task}</li>
-                                        ))}
-                                    </ul>
-                                    <div class="flex flex-wrap gap-2">
-                                        {technologies.map((tech) => (
-                                                <span class="rounded-full bg-neutral-800 light:bg-neutral-200 px-5 py-2 light:text-neutral-800 text-neutral-400 text-sm">{tech}</span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                    ))
-                }
-            </div>
-            <div class="w-full text-end">
-                <a href="/moriz-von-langa_resume.pdf" class="w-full md:w-auto" target="_blank"
-                   data-umami-event="link-click" data-umami-event-url="/moriz-von-langa_resume.pdf">
-                    <Button text="See full resume" className="w-full md:w-auto"/>
-                </a>
-            </div>
-        </div>
-    </section>
+	<section class="container grid scroll-mt-16 gap-16" id="highlights">
+		<h2 class="text-5xl">Highlights</h2>
 
-    <section class="container scroll-mt-16 grid gap-16" id="highlights">
-        <h2 class="text-5xl">Highlights</h2>
+		<PlayfulDivider />
 
-        <PlayfulDivider/>
+		<div
+			class="relative grid gap-x-16 gap-y-16 md:grid-cols-5 md:gap-y-0 xl:grid-cols-2">
+			{
+				highlights.map(
+					(
+						{ id, data: { title, customer, cover, coverOnHover } },
+						index,
+					) => (
+						<>
+							<div
+								class="flex flex-col justify-center md:order-none! md:col-span-2 md:py-16 xl:col-span-1"
+								style={`order: ${index + 2}`}>
+								<a href={`/${id}`} class="flex flex-col gap-6">
+									<span class="text-xl text-neutral-700">
+										{customer}
+									</span>
+									<h3 class="text-4xl">
+										<span>{title}</span>
+									</h3>
+								</a>
+							</div>
+							<div
+								class="mt-16 flex items-center md:sticky md:top-0 md:order-none! md:col-span-3 md:mb-0 md:py-16 xl:col-span-1"
+								style={`order: ${index + 1}`}>
+								<a
+									class="relative block aspect-square w-full overflow-hidden rounded-2xl md:aspect-auto md:max-h-[calc(100lvh-var(--spacing)*16*2)]"
+									href={`/${id}`}>
+									<Image
+										class="h-full w-full bg-neutral-900 object-cover"
+										src={cover}
+										alt={title}
+									/>
+									<Image
+										class="absolute inset-0 z-10 h-full w-full bg-neutral-900 object-cover opacity-0 transition-all duration-500 hover:scale-110 hover:opacity-100"
+										src={coverOnHover}
+										alt={title}
+									/>
+								</a>
+							</div>
+						</>
+					),
+				)
+			}
+		</div>
+	</section>
 
-        <div class="relative grid md:grid-cols-5 xl:grid-cols-2 gap-y-16 md:gap-y-0 gap-x-16">
-            {
-                highlights.map(({id, data: {title, customer, cover, coverOnHover}}, index) => (
-                        <div class="flex flex-col md:col-span-2 xl:col-span-1 justify-center md:order-none! md:py-16"
-                             style=`order: ${index + 2}`>
-                            <a href=`/${id}` class="flex flex-col gap-6">
-                                <span class="text-neutral-400 light:text-neutral-700 text-xl">{customer}</span>
-                                <h3 class="text-4xl">
-                                    <span>{title}</span>
-                                </h3>
-                            </a>
-                        </div>
-                        <div class="md:sticky md:top-0 md:col-span-3 xl:col-span-1 flex items-center md:order-none! mt-16 md:mb-0 md:py-16"
-                             style=`order: ${index + 1}`>
-                            <a class="block relative overflow-hidden rounded-2xl w-full aspect-square md:aspect-auto md:max-h-[calc(100lvh-var(--spacing)*16*2)]"
-                               href=`/${id}`>
-                                <Image class="bg-neutral-900 w-full h-full object-cover" src={cover} alt={title}/>
-                                <Image
-                                        class="bg-neutral-900 absolute transition-all object-cover duration-500 opacity-0 inset-0 w-full h-full hover:opacity-100 hover:scale-110 z-10"
-                                        src={coverOnHover}
-                                        alt={title}/>
-                            </a>
-                        </div>
-                ))
-            }
-        </div>
-    </section>
+	<section class="container grid gap-16" id="blogPosts">
+		<div class="grid gap-8">
+			<div class="flex items-center gap-4">
+				<h2 class="text-5xl">
+					<span>Latest blog posts</span>
 
-    <section class="container grid gap-16" id="blogPosts">
-        <div class="grid gap-8">
-            <div class="flex gap-4 items-center">
-                <h2 class="text-5xl">
-                    <span>Latest blog posts</span>
+					<a
+						class="inline-block translate-y-1 text-neutral-600 transition-colors hover:text-purple-500"
+						href="/blog/rss.xml"
+						aria-label="RSS Feed"
+						target="_blank">
+						<RssIcon
+							width="32"
+							height="32"
+							fill="var(--color-neutral-500)"
+						/>
+					</a>
+				</h2>
+			</div>
 
-                    <a class="inline-block text-neutral-500 light:text-neutral-600 transition-colors hover:text-purple-300 light:hover:text-purple-500 translate-y-1"
-                       href="/blog/rss.xml" aria-label="RSS Feed" target="_blank">
-                        <RssIcon width="32" height="32" fill="var(--color-neutral-500)"/>
-                    </a>
-                </h2>
-            </div>
+			<p class="max-w-prose text-neutral-700">
+				Just a few notes and reminders for myself, usually when I've
+				found a solution to something I was struggling with or tried
+				something new.
+			</p>
+		</div>
 
-            <p class="text-neutral-400 light:text-neutral-700 max-w-prose">
-                Just a few notes and reminders for myself, usually when I've found a solution to something I was
-                struggling with or tried something new.
-            </p>
-        </div>
+		<PlayfulDivider />
 
-        <PlayfulDivider/>
+		<LatestBlogPosts client:idle blogPosts={blogPosts} />
 
-        <OtherBlogPosts client:only="react" blogPosts={blogPosts}>
-            <div slot="fallback" class="overflow-hidden">
-                <div class="-ml-4 md:-ml-8 flex touch-pan-y">
-                    {blogPosts.map(
-                        (post) => (
-                                <OtherBlogPost blogPost={post}>
-                                    <Skeleton className="w-[8ch]"/>
-                                </OtherBlogPost>
-                        ),
-                    )}
-                </div>
-            </div>
-        </OtherBlogPosts>
-
-        <div class="w-full text-end">
-            <a href="/blog" class="w-full md:w-auto">
-                <Button className="w-full md:w-auto" text="See all blog posts" level="primary"/>
-            </a>
-        </div>
-    </section>
+		<div class="w-full text-end">
+			<a href="/blog" class="w-full md:w-auto">
+				<Button
+					className="w-full md:w-auto"
+					text="See all blog posts"
+					level="primary"
+				/>
+			</a>
+		</div>
+	</section>
 </Layout>

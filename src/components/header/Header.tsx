@@ -1,3 +1,6 @@
+import { Button } from "@/components/common/Button.tsx";
+import { HeaderNavItem } from "@/components/header/HeaderNavItem";
+import { useEscapeKey } from "@/utils/useEscapeKey";
 import {
 	AnimatePresence,
 	motion,
@@ -7,11 +10,6 @@ import {
 } from "motion/react";
 import { useCallback, useEffect, useState } from "react";
 import { useComponentSize } from "react-use-size";
-import { Button } from "@/components/common/Button.tsx";
-import { HeaderNavItem } from "@/components/header/HeaderNavItem";
-import { ThemeToggleButton } from "@/components/header/ThemeToggleButton";
-import { useEscapeKey } from "@/utils/useEscapeKey";
-import { useIsBreakpointSm } from "@/utils/useMediaQuery.ts";
 
 type NavigationItems = { label: string; url: string }[];
 
@@ -64,7 +62,6 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 		width: menuButtonElementWidth,
 		height: menuButtonElementHeight,
 	} = useComponentSize();
-	const isBreakpointSm = useIsBreakpointSm();
 
 	const { scrollY } = useScroll();
 	const [isHeaderHidden, setIsHeaderHidden] = useState(scrollY.get() >= 100);
@@ -120,10 +117,24 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 			{isHeaderHidden && (
 				<div
 					aria-hidden={true}
-					className="fixed top-0 right-0 left-0 z-50 h-5"
+					className="fixed top-0 right-0 left-0 z-50 h-20"
 					onMouseEnter={() => setIsHeaderHidden(false)}
 				/>
 			)}
+
+			<AnimatePresence>
+				{isMenuOpen && (
+					<motion.div
+						aria-hidden={true}
+						className="fixed top-0 left-0 z-10 h-full w-full bg-black/20"
+						onMouseEnter={() => setIsHeaderHidden(false)}
+						transition={{ duration: 0.15 }}
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+					/>
+				)}
+			</AnimatePresence>
 
 			<motion.header
 				className="fixed top-4 left-4 z-10 sm:top-10 sm:left-10"
@@ -132,7 +143,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 				variants={variants}
 				onFocus={() => setIsHeaderHidden(false)}>
 				<a aria-label="Moriz von Langa wordmark" href="/">
-					<Button text="mvlanga" />
+					<Button text="mvlanga" className="shadow-2xl" />
 				</a>
 			</motion.header>
 
@@ -141,20 +152,6 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 				className="fixed top-4 right-4 z-40 flex gap-2 sm:top-10 sm:right-10"
 				animate={currentVariant}
 				variants={variants}>
-				{isBreakpointSm && (
-					<AnimatePresence>
-						{!isMenuOpen && (
-							<motion.div
-								className="-z-10"
-								initial={{ translateX: "100%", scale: 0.8 }}
-								animate={{ translateX: 0, scale: 1 }}
-								exit={{ translateX: "100%", scale: 0.8 }}>
-								<ThemeToggleButton />
-							</motion.div>
-						)}
-					</AnimatePresence>
-				)}
-
 				<Button
 					ref={menuButtonElement}
 					level="secondary"
@@ -170,20 +167,9 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 					aria-label={
 						isMenuOpen ? "close main menu" : "open main menu"
 					}
+					className="shadow-2xl"
 				/>
 			</motion.div>
-
-			<AnimatePresence>
-				{!isBreakpointSm && !isHeaderHidden && (
-					<motion.div
-						exit={{ opacity: 0, translateY: "100%" }}
-						initial={{ opacity: 0, translateY: "100%" }}
-						animate={{ opacity: 1, translateY: "0" }}
-						className="fixed right-4 bottom-4 z-10">
-						<ThemeToggleButton />
-					</motion.div>
-				)}
-			</AnimatePresence>
 
 			<AnimatePresence>
 				{isMenuOpen && (
@@ -206,7 +192,7 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 						animate="open"
 						exit="closed"
 						aria-label="Main Menu"
-						className="fixed top-2 right-2 left-2 z-30 flex max-h-[calc(100%-1rem)] flex-col gap-10 overflow-y-auto rounded-2xl bg-neutral-900 px-8 py-10 sm:top-5 sm:right-5 sm:left-auto sm:w-72 light:bg-neutral-100"
+						className="fixed top-2 right-2 left-2 z-30 flex max-h-[calc(100%-1rem)] flex-col gap-10 overflow-y-auto rounded-2xl bg-neutral-100 px-8 py-10 sm:top-5 sm:right-5 sm:left-auto sm:w-72"
 						id="main-menu">
 						<div className="flex flex-col gap-4">
 							<motion.p

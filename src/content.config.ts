@@ -1,5 +1,5 @@
-import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
+import { defineCollection, z } from "astro:content";
 
 const experience = defineCollection({
 	loader: glob({
@@ -16,6 +16,7 @@ const experience = defineCollection({
 		role: z.string(),
 		tasks: z.array(z.string()),
 		technologies: z.array(z.string()),
+		important: z.boolean(),
 	}),
 });
 

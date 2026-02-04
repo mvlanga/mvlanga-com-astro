@@ -26,10 +26,10 @@ const { type = "regular" } = Astro.props;
 
 	{
 		type === "regular" && (
-			<div class="flex flex-row flex-wrap justify-between gap-6 text-neutral-200 md:items-end md:gap-12 light:text-black">
+			<div class="flex flex-row flex-wrap justify-between gap-6 text-black md:items-end md:gap-12">
 				<h2 class="text-5xl">Let’s collaborate</h2>
 				<a
-					class="max-w-full overflow-hidden text-3xl text-ellipsis transition-colors hover:text-purple-300 light:hover:text-purple-500"
+					class="max-w-full overflow-hidden text-3xl text-ellipsis transition-colors hover:text-purple-500"
 					href="mailto:morizvlanga@gmail.com"
 					data-umami-event="link-click"
 					data-umami-event-url="mailto:morizvlanga@gmail.com">
@@ -41,7 +41,7 @@ const { type = "regular" } = Astro.props;
 
 	<div
 		class={clsx(
-			"flex flex-wrap items-end justify-between gap-6 text-neutral-500 light:text-neutral-600 light:contrast-more:text-neutral-800 contrast-more:text-neutral-400",
+			"flex flex-wrap items-end justify-between gap-6 text-neutral-600 contrast-more:text-neutral-800",
 			type === "regular" && "mt-12",
 		)}>
 		{isProduction ? <CarbonBadge /> : "<CarbonBadge />"}
@@ -50,7 +50,7 @@ const { type = "regular" } = Astro.props;
 			<a
 				href="https://github.com/mvlanga/mvlanga-com-astro"
 				target="_blank"
-				class="transition-colors hover:text-purple-300 light:hover:text-purple-500"
+				class="transition-colors hover:text-purple-500"
 				data-umami-event="link-click"
 				data-umami-event-url="https://github.com/mvlanga/mvlanga-com-astro">
 				Source code
@@ -59,7 +59,7 @@ const { type = "regular" } = Astro.props;
 				legalPages.map(({ id, data: { title } }) => (
 					<a
 						href={`/legal/${id}`}
-						class="transition-colors hover:text-purple-300 light:hover:text-purple-500">
+						class="transition-colors hover:text-purple-500">
 						{title}
 					</a>
 				))
