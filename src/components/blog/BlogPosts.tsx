@@ -97,6 +97,7 @@ const Area = ({ title, posts, isLoading }: AreaProps) => {
 				{posts.map((post) => (
 					<MotionBlogPost
 						key={post.id}
+						semanticTitleElement="h2"
 						post={post}
 						layout
 						initial={{

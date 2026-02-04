@@ -1,16 +1,30 @@
 import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
-import { type PropsWithChildren, type Ref } from "react";
+import { createElement, type PropsWithChildren, type Ref } from "react";
+
+type SemanticTitleElement = "h2" | "h3";
 
 type BlogPostProps = {
 	post: BlogPostWithViewCount;
+	semanticTitleElement: SemanticTitleElement;
 	ref?: Ref<HTMLAnchorElement>;
 } & PropsWithChildren;
+
+const DynamicTitle = ({
+	element,
+	className,
+	content,
+}: {
+	className: string;
+	element: SemanticTitleElement;
+	content: string;
+}) => createElement(element, { className }, content);
 
 export const BlogPost = ({
 	post: {
 		id,
 		data: { title, description, tags, createdAt },
 	},
+	semanticTitleElement,
 	children,
 	ref,
 }: BlogPostProps) => {
@@ -20,7 +34,11 @@ export const BlogPost = ({
 			className="group flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-100 p-6 transition-colors hover:bg-neutral-200 md:p-10"
 			href={`/blog/${id}`}>
 			<div className="flex flex-col items-start gap-6">
-				<h2 className="text-lg">{title}</h2>
+				<DynamicTitle
+					element={semanticTitleElement}
+					className="text-lg"
+					content={title}
+				/>
 				<p className="text-neutral-600">{description}</p>
 			</div>
 
