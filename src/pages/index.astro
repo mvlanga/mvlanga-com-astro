@@ -13,8 +13,14 @@ import { sortExperience } from "@/utils/sortCollection";
 import { ExperienceItem } from "@/components/experience/ExperienceItem";
 import { UnimportantExperienceItems } from "@/components/experience/UnimportantExperienceItems";
 import { ExperienceFilter } from "@/components/experience/ExperienceFilter";
+import { RotatingFlower } from "@/components/common/RotatingFlower";
 
-import mvlPortrait from "../assets/img/moriz-von-langa-portrait.avif";
+import FlowerIcon from "@/assets/flowers/svgexport-3.svg";
+import FlowerIcon2 from "@/assets/flowers/svgexport-18.svg";
+import FlowerIcon3 from "@/assets/flowers/svgexport-22.svg";
+import FlowerIcon4 from "@/assets/flowers/svgexport-38.svg";
+import mvlPortrait from "@/assets/img/moriz-von-langa-portrait.avif";
+import flowerTattoo from "@/assets/flowers/flower-tattoo.png";
 
 const experience = sortExperience(await getCollection("experience"));
 const importantExperience = experience.filter((item) => item.data.important);
@@ -32,8 +38,11 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 	/>
 
 	<section class="container scroll-mt-96" id="home">
-		<h1 class="mb-10 text-6xl leading-snug font-semibold">
-			Hi, I’m Moriz.
+		<h1
+			class="mb-10 inline-flex items-center gap-4 text-6xl leading-snug font-semibold">
+			Hi, I’m Moriz. <RotatingFlower client:idle
+				><FlowerIcon /></RotatingFlower
+			>
 		</h1>
 		<p class="max-w-prose text-3xl">
 			Frontend developer with full stack expertise based in Leipzig,
@@ -82,7 +91,105 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 			</h2>
 			<div class="grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3">
 				<div class="flex flex-col gap-6">
-					<p class="text-neutral-600">01</p>
+					<div class="flex items-center justify-between gap-6">
+						<p class="text-2xl">
+							Curiosity drives deeper solutions
+						</p>
+						<FlowerIcon2
+							class="h-12! w-12! animate-jump-rotate animation-delay-1200 animation-duration-3600"
+						/>
+					</div>
+					<hr class="border-neutral-300" />
+					<p class="text-neutral-700">
+						I adapt quickly to new systems and enjoy uncovering how
+						they work beneath the surface. Complex challenges
+						motivate me, especially when I can dig deep to
+						understand what’s really going on. Rather than treating
+						symptoms, I focus on identifying root causes to develop
+						thoughtful and lasting solutions.
+					</p>
+				</div>
+				<div class="flex flex-col gap-6">
+					<div class="flex items-center justify-between gap-6">
+						<p class="text-2xl">
+							Systems should fit together seamlessly
+						</p>
+						<FlowerIcon3
+							class="h-12! w-12! animate-jump-rotate animation-delay-50 animation-duration-4100"
+						/>
+					</div>
+					<hr class="border-neutral-300" />
+					<p class="text-neutral-700">
+						With a solid background in full-stack development, I
+						design with the big picture in mind, ensuring frontend
+						components integrate smoothly with backend services,
+						micro-frontends, and broader system architecture. I care
+						about maintainability, performance, and making things
+						easier for other teams, not just for myself.
+					</p>
+				</div>
+				<div class="col-span-full flex flex-col gap-6 lg:col-span-1">
+					<div class="flex items-center justify-between gap-6">
+						<p class="text-2xl">Design that puts usability first</p>
+						<FlowerIcon4
+							class="h-12! w-12! animate-jump-rotate animation-delay-800 animation-duration-5400"
+						/>
+					</div>
+					<hr class="border-neutral-300" />
+					<p class="text-neutral-700">
+						Good UX is not an afterthought, it's a priority. I
+						collaborate closely with designers to shape intuitive
+						and accessible interfaces, focusing on real user needs
+						and feedback to refine every interaction and flow.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="relative scroll-mt-16" id="about">
+		<div
+			id="colored-background"
+			class="animate-timeline-[square] absolute inset-x-0 -top-32 -bottom-32 -z-20 bg-neutral-100">
+		</div>
+
+		<div class="container grid gap-16">
+			<h2 class="text-5xl">About</h2>
+
+			<PlayfulDivider />
+
+			<div class="grid gap-16 md:grid-cols-6">
+				<div class="md:col-span-2">
+					<p class="max-w-prose text-xl">
+						I love exploring ideas with curiosity and an open mind,
+						all while having the big picture in mind.
+					</p>
+				</div>
+				<div class="md:col-span-4">
+					<div
+						style={{
+							"aspect-ratio":
+								mvlPortrait.width / mvlPortrait.height,
+						}}
+						class="relative max-h-lvh overflow-clip rounded-2xl md:ml-auto">
+						<Image
+							src={mvlPortrait}
+							class="absolute inset-0 -top-48 h-[calc(100%+var(--spacing)*32*2)] object-cover"
+							id="portrait-image"
+							alt="Portrait of Moriz von Langa"
+						/>
+					</div>
+				</div>
+			</div>
+			<h2 class="text-4xl">
+				The way I work
+				<Ellipsis />
+			</h2>
+			<div class="grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3">
+				<div class="flex flex-col gap-6">
+					<FlowerIcon2
+						class="h-12! w-12! animate-jump-rotate animation-delay-1200 animation-duration-3600"
+					/>
 					<hr class="border-neutral-300" />
 					<p class="text-2xl">Curiosity drives deeper solutions</p>
 					<p class="text-neutral-700">
@@ -95,7 +202,9 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 					</p>
 				</div>
 				<div class="flex flex-col gap-6">
-					<p class="text-neutral-600">02</p>
+					<FlowerIcon3
+						class="h-12! w-12! animate-jump-rotate animation-delay-50 animation-duration-4100"
+					/>
 					<hr class="border-neutral-300" />
 					<p class="text-2xl">
 						Systems should fit together seamlessly
@@ -110,7 +219,9 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 					</p>
 				</div>
 				<div class="col-span-full flex flex-col gap-6 lg:col-span-1">
-					<p class="text-neutral-600">03</p>
+					<FlowerIcon4
+						class="h-12! w-12! animate-jump-rotate animation-delay-800 animation-duration-5400"
+					/>
 					<hr class="border-neutral-300" />
 					<p class="text-2xl">Design that puts usability first</p>
 					<p class="text-neutral-700">
@@ -124,12 +235,19 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 		</div>
 	</section>
 
-	<section class="container grid scroll-mt-16 gap-16" id="experience">
+	<section
+		class="relative container grid scroll-mt-16 gap-16"
+		id="experience">
 		<h2 class="text-5xl">Experience</h2>
 
 		<PlayfulDivider />
 
 		<div class="flex flex-col gap-8">
+			<Image
+				src={flowerTattoo}
+				class="absolute top-96 -left-28 -z-10 h-lvh w-auto -rotate-15"
+				alt="test"
+			/>
 			<div class="flex flex-col gap-4">
 				{
 					importantExperience.map((item) => (
@@ -150,7 +268,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 		</div>
 	</section>
 
-	<section class="container grid scroll-mt-16 gap-16" id="highlights">
+	<!--<section class="container grid scroll-mt-16 gap-16" id="highlights">
 		<h2 class="text-5xl">Highlights</h2>
 
 		<PlayfulDivider />
@@ -199,7 +317,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 				)
 			}
 		</div>
-	</section>
+	</section>-->
 
 	<section class="container grid gap-16" id="blogPosts">
 		<div class="grid gap-8">
