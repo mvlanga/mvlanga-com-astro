@@ -1,7 +1,7 @@
 ---
 import { render } from "astro:content";
 import { ViewCounter } from "@/components/blog/ViewCounter";
-import { PlayfulDivider } from "@/components/common/PlayfulDivider";
+import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
 import Prose from "@/components/common/Prose.astro";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
@@ -45,7 +45,7 @@ const { title, description, tags, createdAt } = post.data;
 				</div>
 			</div>
 
-			<PlayfulDivider client:idle />
+			<PlayfulDivider />
 		</section>
 
 		<Prose variant="blog">

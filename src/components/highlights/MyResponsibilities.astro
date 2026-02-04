@@ -1,5 +1,5 @@
 ---
-import { PlayfulDivider } from "@/components/common/PlayfulDivider";
+import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
 
 interface Props {
 	description: string;
@@ -18,7 +18,7 @@ const { description, responsibilities } = Astro.props;
 		</p>
 	</div>
 
-	<PlayfulDivider client:idle />
+	<PlayfulDivider />
 
 	<div class="grid gap-8">
 		<ul class="grid gap-4">

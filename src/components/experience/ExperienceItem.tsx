@@ -23,12 +23,14 @@ export const ExperienceItem = ({
 			<div className="flex max-w-prose flex-col gap-8 lg:col-span-2">
 				<ul className="flex flex-col gap-4 text-neutral-700">
 					{tasks.map((task) => (
-						<li>{task}</li>
+						<li key={task}>{task}</li>
 					))}
 				</ul>
 				<div className="flex flex-wrap gap-2">
 					{technologies.map((tech) => (
-						<span className="rounded-full bg-neutral-200 px-5 py-2 text-sm text-neutral-900">
+						<span
+							key={tech}
+							className="rounded-full bg-neutral-200 px-5 py-2 text-sm text-neutral-900">
 							{tech}
 						</span>
 					))}

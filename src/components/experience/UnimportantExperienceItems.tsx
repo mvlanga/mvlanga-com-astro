@@ -41,7 +41,7 @@ export const UnimportantExperienceItems = ({
 				/>
 			)}
 			{items.map((item) => (
-				<ExperienceItem {...item} />
+				<ExperienceItem key={item.id} {...item} />
 			))}
 		</motion.div>
 	);

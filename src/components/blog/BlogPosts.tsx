@@ -9,6 +9,7 @@ import {
 	useBlogPostsWithViewCount,
 } from "@/components/blog/utils";
 import { Skeleton } from "@/components/common/Skeleton";
+import { useIsFirstRender } from "@/utils/useIsFirstRender";
 import { useStore } from "@nanostores/react";
 import {
 	AnimatePresence,
@@ -79,6 +80,10 @@ type AreaProps = {
 const MotionBlogPost = motion.create(BlogPost);
 
 const Area = ({ title, posts, isLoading }: AreaProps) => {
+	const isFirstRender = useIsFirstRender();
+
+	const isFirstRenderOrSSR = isFirstRender || isSSR;
+
 	return (
 		<motion.div
 			layout
@@ -87,7 +92,7 @@ const Area = ({ title, posts, isLoading }: AreaProps) => {
 			<motion.p
 				layout
 				className="col-span-full text-2xl"
-				initial={{ opacity: isSSR ? 1 : 0 }}
+				initial={{ opacity: isFirstRenderOrSSR ? 1 : 0 }}
 				animate={{ opacity: 1 }}
 				exit={{ opacity: 0 }}
 				transition={layoutTransition}>
@@ -101,8 +106,8 @@ const Area = ({ title, posts, isLoading }: AreaProps) => {
 						post={post}
 						layout
 						initial={{
-							opacity: isSSR ? 1 : 0,
-							scale: isSSR ? 1 : 0.8,
+							opacity: isFirstRenderOrSSR ? 1 : 0,
+							scale: isFirstRenderOrSSR ? 1 : 0.8,
 						}}
 						animate={{ opacity: 1, scale: 1 }}
 						exit={{ opacity: 0, scale: 0.8 }}
