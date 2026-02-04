@@ -2,19 +2,23 @@
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import RssIcon from "@/assets/icons/rss.svg";
-import { OtherBlogPost } from "@/components/blog/OtherBlogPost";
-import { OtherBlogPosts } from "@/components/blog/OtherBlogPosts";
+import { LatestBlogPosts } from "@/components/blog/LatestBlogPosts";
 import { Button } from "@/components/common/Button";
 import Ellipsis from "@/components/common/Ellipsis.astro";
 import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
-import { sortExperience, sortHighlights } from "@/utils/sortCollection";
-import { Skeleton } from "@/components/common/Skeleton";
+import { sortHighlights } from "@/utils/sortCollection";
+import { sortExperience } from "@/utils/sortCollection";
+import { ExperienceItem } from "@/components/experience/ExperienceItem";
+import { UnimportantExperienceItems } from "@/components/experience/UnimportantExperienceItems";
+import { ExperienceFilter } from "@/components/experience/ExperienceFilter";
 
 import mvlPortrait from "../assets/img/moriz-von-langa-portrait.avif";
 
 const experience = sortExperience(await getCollection("experience"));
+const importantExperience = experience.filter((item) => item.data.important);
+const unimportantExperience = experience.filter((item) => !item.data.important);
 const highlights = sortHighlights(await getCollection("highlights"));
 const blogPosts = (await getBlogPosts()).slice(0, 3);
 ---
@@ -28,10 +32,10 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 	/>
 
 	<section class="container scroll-mt-96" id="home">
-		<h1 class="mb-10 text-6xl leading-snug font-bold light:font-semibold">
+		<h1 class="mb-10 text-6xl leading-snug font-semibold">
 			Hi, I’m Moriz.
 		</h1>
-		<p class="max-w-prose text-3xl font-light light:font-normal">
+		<p class="max-w-prose text-3xl">
 			Frontend developer with full stack expertise based in Leipzig,
 			Germany. On a daily basis, I try to ask a lot of questions with the
 			goal of building solutions that really solve users' problems.
@@ -41,7 +45,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 	<section class="relative scroll-mt-16" id="about">
 		<div
 			id="colored-background"
-			class="animate-timeline-[square] absolute inset-x-0 -top-32 -bottom-32 -z-20 bg-neutral-900 light:bg-neutral-100">
+			class="animate-timeline-[square] absolute inset-x-0 -top-32 -bottom-32 -z-20 bg-neutral-100">
 		</div>
 
 		<div class="container grid gap-16">
@@ -78,13 +82,10 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 			</h2>
 			<div class="grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3">
 				<div class="flex flex-col gap-6">
-					<p
-						class="text-neutral-500 contrast-more:text-neutral-400 light:text-neutral-600">
-						01
-					</p>
-					<hr class="border-neutral-800 light:border-neutral-300" />
+					<p class="text-neutral-600">01</p>
+					<hr class="border-neutral-300" />
 					<p class="text-2xl">Curiosity drives deeper solutions</p>
-					<p class="text-neutral-400 light:text-neutral-700">
+					<p class="text-neutral-700">
 						I adapt quickly to new systems and enjoy uncovering how
 						they work beneath the surface. Complex challenges
 						motivate me, especially when I can dig deep to
@@ -94,15 +95,12 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 					</p>
 				</div>
 				<div class="flex flex-col gap-6">
-					<p
-						class="text-neutral-500 contrast-more:text-neutral-400 light:text-neutral-600">
-						02
-					</p>
-					<hr class="border-neutral-800 light:border-neutral-300" />
+					<p class="text-neutral-600">02</p>
+					<hr class="border-neutral-300" />
 					<p class="text-2xl">
 						Systems should fit together seamlessly
 					</p>
-					<p class="text-neutral-400 light:text-neutral-700">
+					<p class="text-neutral-700">
 						With a solid background in full-stack development, I
 						design with the big picture in mind, ensuring frontend
 						components integrate smoothly with backend services,
@@ -112,13 +110,10 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 					</p>
 				</div>
 				<div class="col-span-full flex flex-col gap-6 lg:col-span-1">
-					<p
-						class="text-neutral-500 contrast-more:text-neutral-400 light:text-neutral-600">
-						03
-					</p>
-					<hr class="border-neutral-800 light:border-neutral-300" />
+					<p class="text-neutral-600">03</p>
+					<hr class="border-neutral-300" />
 					<p class="text-2xl">Design that puts usability first</p>
-					<p class="text-neutral-400 light:text-neutral-700">
+					<p class="text-neutral-700">
 						Good UX is not an afterthought, it's a priority. I
 						collaborate closely with designers to shape intuitive
 						and accessible interfaces, focusing on real user needs
@@ -135,69 +130,22 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 		<PlayfulDivider />
 
 		<div class="flex flex-col gap-8">
-			<div class="flex flex-col gap-8">
+			<div class="flex flex-col gap-4">
 				{
-					experience.map(
-						({
-							data: {
-								from,
-								to,
-								role,
-								company,
-								tasks,
-								technologies,
-							},
-						}) => (
-							<div class="grid gap-8 rounded-xl bg-neutral-900 p-8 md:p-16 lg:grid-cols-3 lg:gap-16 light:bg-neutral-100">
-								<div class="flex flex-col gap-4 lg:col-span-1">
-									<p class="text-neutral-400 light:text-neutral-600">
-										{from}
-										{" - "}
-										{to}
-									</p>
-									<h3 class="text-3xl">{role}</h3>
-									<p class="text-neutral-400 light:text-neutral-700">
-										at{" "}
-										<span class="font-semibold">
-											{company.title}
-										</span>
-										, {company.description}
-									</p>
-								</div>
-
-								<hr class="border-neutral-800 lg:hidden" />
-
-								<div class="flex max-w-prose flex-col gap-8 lg:col-span-2">
-									<ul class="flex flex-col gap-4 text-neutral-400 light:text-neutral-700">
-										{tasks.map((task) => (
-											<li>{task}</li>
-										))}
-									</ul>
-									<div class="flex flex-wrap gap-2">
-										{technologies.map((tech) => (
-											<span class="rounded-full bg-neutral-800 px-5 py-2 text-sm text-neutral-400 light:bg-neutral-200 light:text-neutral-800">
-												{tech}
-											</span>
-										))}
-									</div>
-								</div>
-							</div>
-						),
-					)
+					importantExperience.map((item) => (
+						<ExperienceItem {...item} />
+					))
 				}
+
+				<div class="flex flex-col gap-4">
+					<UnimportantExperienceItems
+						client:idle
+						items={unimportantExperience}
+					/>
+				</div>
 			</div>
 			<div class="w-full text-end">
-				<a
-					href="/moriz-von-langa_resume.pdf"
-					class="w-full md:w-auto"
-					target="_blank"
-					data-umami-event="link-click"
-					data-umami-event-url="/moriz-von-langa_resume.pdf">
-					<Button
-						text="See full resume"
-						className="w-full md:w-auto"
-					/>
-				</a>
+				<ExperienceFilter client:idle />
 			</div>
 		</div>
 	</section>
@@ -220,7 +168,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 								class="flex flex-col justify-center md:order-none! md:col-span-2 md:py-16 xl:col-span-1"
 								style={`order: ${index + 2}`}>
 								<a href={`/${id}`} class="flex flex-col gap-6">
-									<span class="text-xl text-neutral-400 light:text-neutral-700">
+									<span class="text-xl text-neutral-700">
 										{customer}
 									</span>
 									<h3 class="text-4xl">
@@ -260,7 +208,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 					<span>Latest blog posts</span>
 
 					<a
-						class="inline-block translate-y-1 text-neutral-500 transition-colors hover:text-purple-300 light:text-neutral-600 light:hover:text-purple-500"
+						class="inline-block translate-y-1 text-neutral-600 transition-colors hover:text-purple-500"
 						href="/blog/rss.xml"
 						aria-label="RSS Feed"
 						target="_blank">
@@ -273,7 +221,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 				</h2>
 			</div>
 
-			<p class="max-w-prose text-neutral-400 light:text-neutral-700">
+			<p class="max-w-prose text-neutral-700">
 				Just a few notes and reminders for myself, usually when I've
 				found a solution to something I was struggling with or tried
 				something new.
@@ -282,19 +230,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 
 		<PlayfulDivider />
 
-		<OtherBlogPosts client:only="react" blogPosts={blogPosts}>
-			<div slot="fallback" class="overflow-hidden">
-				<div class="-ml-4 flex touch-pan-y md:-ml-8">
-					{
-						blogPosts.map((post) => (
-							<OtherBlogPost blogPost={post}>
-								<Skeleton className="w-[8ch]" />
-							</OtherBlogPost>
-						))
-					}
-				</div>
-			</div>
-		</OtherBlogPosts>
+		<LatestBlogPosts client:idle blogPosts={blogPosts} />
 
 		<div class="w-full text-end">
 			<a href="/blog" class="w-full md:w-auto">

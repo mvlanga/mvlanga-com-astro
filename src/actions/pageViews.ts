@@ -1,17 +1,14 @@
+import { enrichPageViewIdWithHostnameInfo } from "@/utils/page-views";
 import { ActionError, defineAction } from "astro:actions";
 import { db, inArray, PageViews, sql } from "astro:db";
 import { z } from "astro:schema";
-
-const enrichIdWithHostnameInfo = (id: string, hostname: string) => {
-	return `${hostname}/${id}`;
-};
 
 export const pageViews = {
 	get: defineAction({
 		input: z.array(z.string()),
 		handler: async (ids, context) => {
 			const idsWithEnvironmentInfo = ids.map((id) =>
-				enrichIdWithHostnameInfo(id, context.url.hostname),
+				enrichPageViewIdWithHostnameInfo(id, context.url.hostname),
 			);
 
 			try {
@@ -32,7 +29,7 @@ export const pageViews = {
 	increase: defineAction({
 		input: z.string(),
 		handler: async (id, context) => {
-			const idWithEnvironmentInfo = enrichIdWithHostnameInfo(
+			const idWithEnvironmentInfo = enrichPageViewIdWithHostnameInfo(
 				id,
 				context.url.hostname,
 			);

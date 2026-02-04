@@ -1,20 +1,12 @@
 ---
 import RssIcon from "@/assets/icons/rss.svg";
 import { BlogFilter } from "@/components/blog/BlogFilter";
-import { BlogPost } from "@/components/blog/BlogPost";
 import { BlogPosts } from "@/components/blog/BlogPosts";
-import {
-	getTagsWithCountByPosts,
-	groupPostsByMonth,
-} from "@/components/blog/utils";
-import { Skeleton } from "@/components/common/Skeleton";
+import { getTagsWithCountByPosts } from "@/components/blog/utils";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
 
 const blogPosts = await getBlogPosts();
-
-const postsGroupedByMonth = groupPostsByMonth(blogPosts);
-
 const availableTags = getTagsWithCountByPosts(blogPosts);
 ---
 
@@ -30,7 +22,7 @@ const availableTags = getTagsWithCountByPosts(blogPosts);
 		<div class="flex items-center gap-4">
 			<h1 class="text-4xl leading-snug font-bold">Blog</h1>
 			<a
-				class="translate-y-1 text-neutral-500 transition-colors hover:text-purple-300 light:text-neutral-600 light:hover:text-purple-500"
+				class="translate-y-1 text-neutral-600 transition-colors hover:text-purple-500"
 				href="/blog/rss.xml"
 				aria-label="RSS Feed"
 				target="_blank">
@@ -42,7 +34,7 @@ const availableTags = getTagsWithCountByPosts(blogPosts);
 			</a>
 		</div>
 
-		<p class="max-w-prose text-neutral-400 light:text-neutral-700">
+		<p class="max-w-prose text-neutral-700">
 			A few notes and reminders for myself, usually when I've found a
 			solution to something I was struggling with or tried something new.
 			<br /><br />
@@ -52,21 +44,5 @@ const availableTags = getTagsWithCountByPosts(blogPosts);
 		<BlogFilter client:load availableTags={availableTags} />
 	</section>
 
-	<BlogPosts client:only="react" blogPosts={blogPosts}>
-		<section slot="fallback" class="grid gap-16">
-			{
-				postsGroupedByMonth.map(([title, posts]) => (
-					<div class="grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
-						<p class="col-span-full text-2xl">{title}</p>
-						{posts &&
-							posts.map((post) => (
-								<BlogPost post={post}>
-									<Skeleton className="w-[8ch]" />
-								</BlogPost>
-							))}
-					</div>
-				))
-			}
-		</section>
-	</BlogPosts>
+	<BlogPosts client:idle blogPosts={blogPosts} />
 </Layout>

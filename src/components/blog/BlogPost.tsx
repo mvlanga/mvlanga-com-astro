@@ -1,46 +1,52 @@
-import { layoutTransition } from "@/components/blog/BlogPosts.tsx";
 import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
-import { motion } from "motion/react";
-import type { PropsWithChildren } from "react";
+import { createElement, type PropsWithChildren, type Ref } from "react";
+
+type SemanticTitleElement = "h2" | "h3";
 
 type BlogPostProps = {
 	post: BlogPostWithViewCount;
+	semanticTitleElement: SemanticTitleElement;
+	ref?: Ref<HTMLAnchorElement>;
 } & PropsWithChildren;
 
-const isSSR = import.meta.env.SSR;
+const DynamicTitle = ({
+	element,
+	className,
+	content,
+}: {
+	className: string;
+	element: SemanticTitleElement;
+	content: string;
+}) => createElement(element, { className }, content);
 
 export const BlogPost = ({
 	post: {
 		id,
-		data: { title, createdAt, tags, description },
+		data: { title, description, tags, createdAt },
 	},
+	semanticTitleElement,
 	children,
+	ref,
 }: BlogPostProps) => {
 	return (
-		<motion.a
-			layout
-			initial={{ opacity: isSSR ? 1 : 0, scale: isSSR ? 1 : 0.8 }}
-			animate={{ opacity: 1, scale: 1 }}
-			exit={{ opacity: 0, scale: 0.8 }}
-			transition={layoutTransition}
-			className="group flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-900 p-12 transition-colors hover:bg-neutral-800 light:bg-neutral-100 light:hover:bg-neutral-200"
+		<a
+			ref={ref}
+			className="group flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-100 p-6 transition-colors hover:bg-neutral-200 md:p-10"
 			href={`/blog/${id}`}>
 			<div className="flex flex-col items-start gap-6">
-				<motion.h2 className="text-lg" layout>
-					{title}
-				</motion.h2>
-				<motion.p
-					layout
-					className="text-neutral-300 light:text-neutral-600 contrast-more:light:text-neutral-800">
-					{description}
-				</motion.p>
+				<DynamicTitle
+					element={semanticTitleElement}
+					className="text-lg"
+					content={title}
+				/>
+				<p className="text-neutral-600">{description}</p>
 			</div>
 
 			<div className="flex grow items-end">
-				<hr className="w-full border-neutral-800 transition-colors group-hover:border-neutral-700 light:border-neutral-300 group-hover:light:border-neutral-400" />
+				<hr className="w-full border-neutral-300 transition-colors group-hover:border-neutral-400" />
 			</div>
 
-			<div className="flex flex-wrap justify-between gap-4 text-xs text-neutral-400 light:text-neutral-700">
+			<div className="flex flex-wrap justify-between gap-4 text-xs text-neutral-700">
 				<p>{tags.map((tag) => `#${tag}`).join(", ")}</p>
 
 				<div className="flex flex-wrap gap-4">
@@ -49,6 +55,6 @@ export const BlogPost = ({
 					<p>{createdAt.toLocaleDateString("en-US")}</p>
 				</div>
 			</div>
-		</motion.a>
+		</a>
 	);
 };

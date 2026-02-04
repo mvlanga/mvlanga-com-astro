@@ -15,7 +15,7 @@ const { className, footerType = "regular" } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="relative scroll-smooth text-lg" data-theme="dark">
+<html lang="en" class="relative scroll-smooth text-lg">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -93,31 +93,9 @@ const { className, footerType = "regular" } = Astro.props;
 				}
 			}
 		</style>
-
-		<script is:inline>
-			const userPrefersLightTheme = () => {
-				try {
-					const storedTheme = localStorage.getItem("theme");
-
-					return (
-						storedTheme === "light" ||
-						(storedTheme === null &&
-							window.matchMedia("(prefers-color-scheme: light)")
-								.matches)
-					);
-				} catch {
-					return window.matchMedia("(prefers-color-scheme: light)")
-						.matches;
-				}
-			};
-
-			if (userPrefersLightTheme()) {
-				document.documentElement.setAttribute("data-theme", "light");
-			}
-		</script>
 	</head>
 
-	<body class="bg-black text-white light:bg-white light:text-black">
+	<body class="bg-white text-black">
 		<Header client:idle currentPath={Astro.url.pathname} />
 
 		<main class={twMerge(clsx("flex flex-col gap-64 py-48", className))}>
