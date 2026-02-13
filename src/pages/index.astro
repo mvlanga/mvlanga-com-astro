@@ -3,7 +3,6 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import RssIcon from "@/assets/icons/rss.svg";
 import { LatestBlogPosts } from "@/components/blog/LatestBlogPosts";
-import { Button } from "@/components/common/Button";
 import Ellipsis from "@/components/common/Ellipsis.astro";
 import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
 import Layout from "@/layouts/layout.astro";
@@ -13,6 +12,7 @@ import { sortExperience } from "@/utils/sortCollection";
 import { ExperienceItem } from "@/components/experience/ExperienceItem";
 import { UnimportantExperienceItems } from "@/components/experience/UnimportantExperienceItems";
 import { ExperienceFilter } from "@/components/experience/ExperienceFilter";
+import Button from "@/components/common/Button.vue";
 
 import mvlPortrait from "../assets/img/moriz-von-langa-portrait.avif";
 
