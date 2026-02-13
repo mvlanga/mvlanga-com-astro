@@ -3,8 +3,8 @@ import "@/styles.css";
 
 import { twMerge } from "tailwind-merge";
 import { clsx } from "clsx";
-import Footer from "../components/common/Footer.astro";
-import { Header } from "../components/header/Header";
+import Footer from "@/components/common/Footer.astro";
+import HeaderVue from "@/components/header/Header.vue";
 
 interface Props {
 	className?: string;
@@ -96,7 +96,7 @@ const { className, footerType = "regular" } = Astro.props;
 	</head>
 
 	<body class="bg-white text-black">
-		<Header client:idle currentPath={Astro.url.pathname} />
+		<HeaderVue client:idle currentPath={Astro.url.pathname} />
 
 		<main class={twMerge(clsx("flex flex-col gap-64 py-48", className))}>
 			<slot />
