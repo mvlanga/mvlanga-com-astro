@@ -127,7 +127,6 @@ export const Header = ({ currentPath }: { currentPath: string }) => {
 					<motion.div
 						aria-hidden={true}
 						className="fixed top-0 left-0 z-10 h-full w-full bg-black/20"
-						onMouseEnter={() => setIsHeaderHidden(false)}
 						transition={{ duration: 0.15 }}
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
