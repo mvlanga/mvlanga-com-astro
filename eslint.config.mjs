@@ -38,5 +38,6 @@ export default defineConfig([
 		"**/playwright-report",
 		"**/test-results",
 		"**/static",
+		"**/*.json",
 	]),
 ]);
