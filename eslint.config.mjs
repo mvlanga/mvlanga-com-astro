@@ -7,14 +7,19 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
-const eseslintConfig = defineConfig({
-	files: ["**/*.{ts,tsx}"],
-	extends: [eslint.configs.recommended, tseslint.configs.recommended],
-});
-
 export default defineConfig([
-	...eslintAstro.configs.recommended,
-	...eseslintConfig,
+	{
+		...eslintAstro.configs.recommended,
+		files: ["**/*.astro"],
+	},
+	{
+		files: ["**/*.{ts,tsx}"],
+		extends: [
+			eslint.configs.recommended,
+			tseslint.configs.recommended,
+			jsxA11y.flatConfigs.recommended,
+		],
+	},
 	{
 		files: ["**/*.{tsx}"],
 		...eslintReact.configs.flat.recommended,
@@ -27,17 +32,14 @@ export default defineConfig([
 			},
 		},
 	},
-	jsxA11y.flatConfigs.recommended,
 	eslintConfigPrettier,
 	globalIgnores([
 		"**/dist",
-		"**/.astro",
 		"**/.netlify",
 		"**/node_modules",
 		"**/.idea",
 		"**/playwright-report",
 		"**/test-results",
 		"**/static",
-		"**/*.json",
 	]),
 ]);

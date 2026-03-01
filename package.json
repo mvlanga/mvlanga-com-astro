@@ -11,7 +11,8 @@
 		"lint:fix": "npx eslint . --fix",
 		"preview": "astro preview",
 		"test:e2e:local": "environment=LOCAL playwright test",
-		"test:e2e:production": "environment=PRODUCTION playwright test"
+		"test:e2e:production": "environment=PRODUCTION playwright test",
+		"prepare": "husky install"
 	},
 	"dependencies": {
 		"@astrojs/rss": "^4.0.15",
@@ -51,7 +52,7 @@
 		"eslint-plugin-astro": "^1.6.0",
 		"eslint-plugin-jsx-a11y": "^6.10.2",
 		"eslint-plugin-react": "^7.37.5",
-		"lefthook": "^2.1.1",
+		"globals": "^17.4.0",
 		"prettier": "^3.8.1",
 		"prettier-plugin-astro": "^0.14.1",
 		"prettier-plugin-organize-imports": "^4.3.0",
@@ -62,5 +63,9 @@
 		"tailwindcss": "^4.0.5",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.56.1"
+	},
+	"lint-staged": {
+		"*.{ts,tsx}": "eslint --cache --fix",
+		"*.--write": "prettier --write"
 	}
 }
