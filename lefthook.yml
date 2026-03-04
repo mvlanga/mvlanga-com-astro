@@ -1,7 +1,0 @@
-pre-commit:
-    parallel: false
-    jobs:
-        - name: format
-          run: npx prettier {staged_files} --write
-        - name: lint
-          run: npm run lint:fix -- {staged_files}
