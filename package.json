@@ -64,9 +64,6 @@
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.56.1"
 	},
-	"optionalDependencies": {
-		"@rollup/rollup-linux-x64-gnu": "4.59.0"
-	},
 	"engines" : {
 		"npm" : ">=11",
 		"node" : ">=24"
