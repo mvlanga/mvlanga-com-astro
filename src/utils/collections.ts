@@ -1,9 +1,9 @@
 import { sortBlogPosts } from "@/utils/sortCollection.ts";
 import { getCollection } from "astro:content";
 
-const isProduction = import.meta.env.PROD && !import.meta.env.DEPLOY_PREVIEW;
+const isProduction = import.meta.env.PROD && !import.meta.env.IS_DEPLOY_PREVIEW;
 
-console.log(import.meta.env.DEPLOY_PREVIEW ? "IS PREVIEW" : "IS NOT PREVIEW");
+console.log(import.meta.env.IS_DEPLOY_PREVIEW ? "IS PREVIEW" : "IS NOT PREVIEW");
 
 export const getBlogPosts = async () =>
 	sortBlogPosts(

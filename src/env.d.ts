@@ -1,5 +1,5 @@
 interface ImportMeta {
 	readonly env: ImportMetaEnv & {
-		DEPLOY_PREVIEW?: boolean;
+		IS_DEPLOY_PREVIEW?: boolean;
 	};
 }
