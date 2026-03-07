@@ -32,3 +32,5 @@ pnpm-debug.log*
 /playwright/.cache/
 
 tmp/db
+
+.eslintcache
