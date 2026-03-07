@@ -1,2 +1,5 @@
+[build]
+    command = "npm run build"
+
 [context.deploy-preview.environment]
-DEPLOY_PREVIEW = true
+    command = "DEPLOY_PREVIEW=true npm run build"
