@@ -1,0 +1,2 @@
+[context.deploy-preview.environment]
+  IS_DEPLOY_PREVIEW = "true"
