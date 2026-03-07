@@ -9,9 +9,6 @@ export const sortExperience = <T extends CollectionEntry<"experience">>(
 	);
 };
 
-export const sortHighlights = (highlights: CollectionEntry<"highlights">[]) =>
-	highlights.sort((a, b) => a.data.sortOrder - b.data.sortOrder);
-
 export const sortBlogPosts = <T extends CollectionEntry<"blogPosts">>(
 	blogPosts: T[],
 ) => {

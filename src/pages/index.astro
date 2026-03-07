@@ -8,7 +8,6 @@ import Ellipsis from "@/components/common/Ellipsis.astro";
 import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
-import { sortHighlights } from "@/utils/sortCollection";
 import { sortExperience } from "@/utils/sortCollection";
 import { ExperienceItem } from "@/components/experience/ExperienceItem";
 import { UnimportantExperienceItems } from "@/components/experience/UnimportantExperienceItems";
@@ -19,7 +18,6 @@ import mvlPortrait from "../assets/img/moriz-von-langa-portrait.avif";
 const experience = sortExperience(await getCollection("experience"));
 const importantExperience = experience.filter((item) => item.data.important);
 const unimportantExperience = experience.filter((item) => !item.data.important);
-const highlights = sortHighlights(await getCollection("highlights"));
 const blogPosts = (await getBlogPosts()).slice(0, 3);
 ---
 
@@ -147,57 +145,6 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 			<div class="w-full text-end">
 				<ExperienceFilter client:idle />
 			</div>
-		</div>
-	</section>
-
-	<section class="container grid scroll-mt-16 gap-16" id="highlights">
-		<h2 class="text-5xl">Highlights</h2>
-
-		<PlayfulDivider />
-
-		<div
-			class="relative grid gap-x-16 gap-y-16 md:grid-cols-5 md:gap-y-0 xl:grid-cols-2">
-			{
-				highlights.map(
-					(
-						{ id, data: { title, customer, cover, coverOnHover } },
-						index,
-					) => (
-						<>
-							<div
-								class="flex flex-col justify-center md:order-none! md:col-span-2 md:py-16 xl:col-span-1"
-								style={`order: ${index + 2}`}>
-								<a href={`/${id}`} class="flex flex-col gap-6">
-									<span class="text-xl text-neutral-700">
-										{customer}
-									</span>
-									<h3 class="text-4xl">
-										<span>{title}</span>
-									</h3>
-								</a>
-							</div>
-							<div
-								class="mt-16 flex items-center md:sticky md:top-0 md:order-none! md:col-span-3 md:mb-0 md:py-16 xl:col-span-1"
-								style={`order: ${index + 1}`}>
-								<a
-									class="relative block aspect-square w-full overflow-hidden rounded-2xl md:aspect-auto md:max-h-[calc(100lvh-var(--spacing)*16*2)]"
-									href={`/${id}`}>
-									<Image
-										class="h-full w-full bg-neutral-900 object-cover"
-										src={cover}
-										alt={title}
-									/>
-									<Image
-										class="absolute inset-0 z-10 h-full w-full bg-neutral-900 object-cover opacity-0 transition-all duration-500 hover:scale-110 hover:opacity-100"
-										src={coverOnHover}
-										alt={title}
-									/>
-								</a>
-							</div>
-						</>
-					),
-				)
-			}
 		</div>
 	</section>
 

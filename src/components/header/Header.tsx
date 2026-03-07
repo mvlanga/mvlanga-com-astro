@@ -27,10 +27,6 @@ const navItems: NavigationItems = [
 		url: "/#experience",
 	},
 	{
-		label: "Highlights",
-		url: "/#highlights",
-	},
-	{
 		label: "Blog",
 		url: "/blog",
 	},
