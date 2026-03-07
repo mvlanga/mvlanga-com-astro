@@ -1,5 +1,2 @@
-[build.environment]
-  IS_DEPLOY_PREVIEW = "false"
-
 [context.deploy-preview.environment]
   IS_DEPLOY_PREVIEW = "true"
