@@ -32,6 +32,8 @@
 	--max-width-prose: 64ch;
 	--max-width-prose-l: 84ch;
 	--max-width-prose-xl: 112ch;
+
+	--animate-jump-rotate: jumpRotate 5s steps(1) infinite;
 }
 
 @layer base {
@@ -105,6 +107,36 @@
 
 @utility max-w-prose-xl {
 	@apply w-full;
+}
+
+@utility animation-delay-* {
+	animation-delay: calc(--value(integer) * 1ms);
+}
+
+@utility animation-duration-* {
+	animation-duration: calc(--value(integer) * 1ms);
+}
+
+@keyframes jumpRotate {
+	0% {
+		transform: rotate(28deg);
+	}
+
+	25% {
+		transform: rotate(76deg);
+	}
+
+	50% {
+		transform: rotate(112deg);
+	}
+
+	75% {
+		transform: rotate(186deg);
+	}
+
+	100% {
+		transform: rotate(242deg);
+	}
 }
 
 @supports not (animation-timeline: scroll()) {
