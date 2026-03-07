@@ -1,5 +1,5 @@
 [build.environment]
-    DEPLOY_PREVIEW = false
+  DEPLOY_PREVIEW = false
 
 [context.deploy-preview.environment]
-    DEPLOY_PREVIEW = true
+  DEPLOY_PREVIEW = true
