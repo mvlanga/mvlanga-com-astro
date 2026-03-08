@@ -7,10 +7,11 @@ import {
 } from "motion-v";
 import { useElementSize } from "@/utils/useElementSize.ts";
 import type { Variants } from "motion/react";
-import { ref, useTemplateRef } from "vue";
+import { computed, ref, useTemplateRef } from "vue";
 import type { NavigationItems } from "@/components/header/types.ts";
 import NavigationSection from "@/components/header/NavigationSection.vue";
 import Button from "@/components/common/Button.vue";
+import { headerButtonsVariants } from "@/components/header/utils.ts";
 
 const { isMenuTriggerButtonVisible } = defineProps<{
 	isMenuTriggerButtonVisible: boolean;
@@ -90,13 +91,20 @@ function handleMenuTriggerButtonClick() {
 function handleNavigationItemClick() {
 	isNavigationOpen.value = false;
 }
+
+const currentVariant = computed(() =>
+	isMenuTriggerButtonVisible ? "visible" : "hidden",
+);
 </script>
 
 <template>
-	<div class="fixed top-4 right-4 z-40 sm:top-10 sm:right-10">
+	<motion.div
+		class="fixed top-4 right-4 z-40 sm:top-10 sm:right-10"
+		:variants="headerButtonsVariants"
+		:animate="currentVariant"
+		initial="visible">
 		<Button
 			@click="handleMenuTriggerButtonClick"
-			v-if="isMenuTriggerButtonVisible"
 			ref="navigation-trigger-element"
 			:is-active="isNavigationOpen"
 			:text="{
@@ -105,7 +113,7 @@ function handleNavigationItemClick() {
 			}"
 			class="shadow-2xl"
 			level="secondary" />
-	</div>
+	</motion.div>
 
 	<AnimatePresence>
 		<motion.nav
