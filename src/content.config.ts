@@ -20,25 +20,6 @@ const experience = defineCollection({
 	}),
 });
 
-const highlights = defineCollection({
-	loader: glob({
-		base: "src/content/highlights",
-		pattern: "**/*.mdx",
-	}),
-	schema: ({ image }) =>
-		z.object({
-			sortOrder: z.number(),
-			title: z.string(),
-			description: z.string(),
-			customer: z.string(),
-			cover: image(),
-			coverAlt: z.string(),
-			coverOnHover: image(),
-			coverOnHoverAlt: z.string(),
-			openGraphCover: z.string(),
-		}),
-});
-
 const legalPages = defineCollection({
 	loader: glob({
 		base: "src/content/legal",
@@ -66,7 +47,6 @@ const blogPosts = defineCollection({
 
 export const collections = {
 	experience,
-	highlights,
 	legalPages,
 	blogPosts,
 };
