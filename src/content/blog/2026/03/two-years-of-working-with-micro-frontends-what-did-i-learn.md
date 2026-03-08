@@ -10,7 +10,7 @@ draft: true
 ## Prerequisites
 
 I started working at [SENEC](https://senec.com) in November 2023 in a kinda small team.
-My team developed various microservices which made primarily mass software update rollouts possible.
+We developed various microservices which made primarily mass software updates possible.
 The frontend was built with Angular 17 and Angular Material for its components.
 
 Since the beginning, I always heard that all of SENEC's frontends should be at some point embedded on our new cool portal which should bring the efforts of all teams together and replace various other frontends.
@@ -19,9 +19,9 @@ This initiative was called `newSENEC`.
 The first half year of onboarding and continuous developing of the angular application went by.
 At some point I started asking my self, why the hell do we put so much effort into this angular frontend instead of focusing on embedding as it was **the** main goal for all frontends in our department.
 
-After weeks talking to the team who developed the cool, crazy, large and also a little bit scary new portal I had all information we needed to really start with working on embedding.
+After weeks talking to the team who developed this cool, crazy, large and also a little bit scary new portal I had all information we needed to really start with working on embedding.
 
-### So, what was the setup?
+## What was the given setup?
 
 - [Single SPA](https://single-spa.js.org) for bringing together multiple JavaScript microfrontends into one frontend application
 - A Component Library built with [React](https://react.dev) and [MUI Material](https://mui.com/material-ui)
@@ -30,17 +30,41 @@ After weeks talking to the team who developed the cool, crazy, large and also a 
 - 6 providers (like `auth-provider`)
 - [Shared dependencies](https://single-spa.js.org/docs/recommended-setup/#shared-dependencies) for `react`, `mui/material`, `component-library` and all custom `providers`
 
-### First lessons
+### Architectural decisions
 
-Now, two years later, we can already extract some first lessons out of this information.
+#### Sharing dependencies
 
-#### Regarding shared dependencies
+Shared dependencies are very nice in theory with the largest benefit that the client doesn't need to load all the dependencies multiple times (in fact, one time for each microfrontend). To be honest, I didnt notice any other benefits in practise after working with a setup like this.
 
-Shared dependencies are very nice in theory, the largest benefit is that the client doesn't need to load all the dependencies multiple times (in fact, one time for each microfrontend). To be honest, no other benefit which I noticed by working with them comes into my mind right now.
+The problem with that: Updating dependencies will be hard, in our case it was almost impossible because everything was so tangeled together. You may ask, why not untangle it to improve the maintainability. The answer is simple: time & priorities which are most of the time not defined by the developers and people who work closely at the products (which may not be even a bad thing).
 
-The problem with that: How the hell should you update major dependencies
+So for me, this large downside definitely outweigh the file size aspect and in the future, if I will have the luck to plan & create a setup like this from the ground, I would try to focus on other things in order to boost performance for our clients, which could be the follwoing:
 
-# Problems
+- Make sure the component library really supports tree shaking
+- Think about how far we can go with lazy loading, in fact, we already have that in place for some components in our current library like Icons, Illustrations and Flags
+
+
+#### Choosing a specific framework for utilities, providers and a Component Library
+
+When you read about microfrontends, you will stumble upon one large benefit: You can sew multiple frontends together, even when they are not using the same framework (e.g. Angular, Vue, React).
+
+In practise, you may find your self creating framework agnostic components, utilities and providers just because it feels easier and faster.
+
+In my opinion, its ok to follow that route and to choose one framework as **the** framework with which future frontends will be built with. Personally, I am not a big fan of team autonomy in that case because I think in todays available frontend stack there is not that big of a difference when choosing between React, Vue and Angular. I think 90% of the time, all of those frameworks will get the job done.
+
+That may change in the future, but for now I really think deciding on one stack gives a company so many benefits:
+
+- Knowledge sharing between teams, switching teams or only supporting other teams for a temporal period of time as a developer could be so much easier
+- Resource sharing between teams (One Component Library, One set of utils and providers)
+- Fear of contact will get way less between teams as they already need to talk to each other because of shared resources
+
+#### What should be global, what should be scoped on per microfrontend basis?
+
+As we were using MUI Material
+
+### Technical problems we encoutered
+
+#### Problems
 
 - Shared emotion cache
 - Global styling?
