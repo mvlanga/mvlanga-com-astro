@@ -46,10 +46,10 @@ const styleObject = reactive({
 	"rounded-2xl px-6 py-3": size.value === "small",
 	"rounded-3xl px-8 py-4": size.value === "medium",
 	"bg-purple-500 text-white": level.value === "primary",
-	"bg-neutral-100 text-black hover:text-white aria-expanded:text-white":
+	"bg-neutral-100 text-black hover:text-white":
 		level.value === "secondary",
-	active: isActive,
-	className: Boolean(className),
+	"active text-white": isActive,
+	[className.value ?? ""]: Boolean(className.value),
 });
 </script>
 
@@ -63,7 +63,7 @@ const styleObject = reactive({
 			aria-hidden="true"
 			class="absolute z-0 h-[200%] w-[150%] translate-y-full rounded-[50%] bg-purple-700 transition-transform duration-200 ease-out group-hover:translate-y-0 group-[.active]:translate-y-0" />
 
-		<span class="z-index flex justify-items-start whitespace-nowrap">
+		<span class="z-10 flex justify-items-start whitespace-nowrap">
 			<span>
 				<span
 					v-for="(char, index) in defaultText.split('')"

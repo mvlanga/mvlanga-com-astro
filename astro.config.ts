@@ -6,6 +6,7 @@ import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { visualizer } from "rollup-plugin-visualizer";
+import { EnumChangefreq } from "sitemap";
 import vue from "@astrojs/vue";
 
 export default defineConfig({
