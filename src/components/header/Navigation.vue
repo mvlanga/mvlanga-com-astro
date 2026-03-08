@@ -7,15 +7,17 @@ import {
 } from "motion-v";
 import { useElementSize } from "@/utils/useElementSize.ts";
 import type { Variants } from "motion/react";
-import { computed, ref, useTemplateRef } from "vue";
+import { ref, useTemplateRef } from "vue";
 import type { NavigationItems } from "@/components/header/types.ts";
 import NavigationSection from "@/components/header/NavigationSection.vue";
 import Button from "@/components/common/Button.vue";
-import { headerButtonsVariants } from "@/components/header/utils.ts";
+import { useEscapeKey } from "@/utils/useEscapeKey.ts";
 
 const { isMenuTriggerButtonVisible } = defineProps<{
 	isMenuTriggerButtonVisible: boolean;
 }>();
+
+defineEmits(["menuTriggerButtonFocus"]);
 
 const isNavigationOpen = ref(false);
 
@@ -66,6 +68,10 @@ useMotionValueEvent(scrollY, "change", () => {
 	isNavigationOpen.value = false;
 });
 
+useEscapeKey(() => {
+	isNavigationOpen.value = false;
+});
+
 const { width: menuButtonElementWidth, height: menuButtonElementHeight } =
 	useElementSize(navigationTriggerElement);
 
@@ -91,20 +97,15 @@ function handleMenuTriggerButtonClick() {
 function handleNavigationItemClick() {
 	isNavigationOpen.value = false;
 }
-
-const currentVariant = computed(() =>
-	isMenuTriggerButtonVisible ? "visible" : "hidden",
-);
 </script>
 
 <template>
-	<motion.div
-		class="fixed top-4 right-4 z-40 sm:top-10 sm:right-10"
-		:variants="headerButtonsVariants"
-		:animate="currentVariant"
-		initial="visible">
+	<div
+		class="aria-hidden:pointer-none fixed top-4 right-4 z-40 translate-y-0 opacity-100 transition-all duration-150 ease-out aria-hidden:-translate-y-full aria-hidden:opacity-0 sm:top-10 sm:right-10"
+		:aria-hidden="!isMenuTriggerButtonVisible">
 		<Button
 			@click="handleMenuTriggerButtonClick"
+			@focus="$emit('menuTriggerButtonFocus')"
 			ref="navigation-trigger-element"
 			:is-active="isNavigationOpen"
 			:text="{
@@ -113,7 +114,7 @@ const currentVariant = computed(() =>
 			}"
 			class="shadow-2xl"
 			level="secondary" />
-	</motion.div>
+	</div>
 
 	<AnimatePresence>
 		<motion.nav
