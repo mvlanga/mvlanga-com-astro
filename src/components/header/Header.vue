@@ -16,7 +16,7 @@ useMotionValueEvent(scrollY, "change", (latest) => {
 	const diff = latest - (scrollY.getPrevious() ?? 0);
 	const direction = diff > 0 ? "down" : "up";
 
-	isHeaderHidden.value = direction === "down" && scrollY.get() >= 100;
+	isHeaderHidden.value = direction === "down" && scrollY.get() >= 300;
 });
 
 function handleMouseEnterHeaderZone() {

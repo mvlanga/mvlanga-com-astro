@@ -5,19 +5,21 @@ import {
 	useMotionValueEvent,
 	useScroll,
 } from "motion-v";
+import type { Variants } from "motion-v";
 import { useElementSize } from "@/utils/useElementSize.ts";
-import type { Variants } from "motion/react";
-import { ref, useTemplateRef } from "vue";
+import { ref, toRefs, useTemplateRef, watch } from "vue";
 import type { NavigationItems } from "@/components/header/types.ts";
 import NavigationSection from "@/components/header/NavigationSection.vue";
 import Button from "@/components/common/Button.vue";
 import { useEscapeKey } from "@/utils/useEscapeKey.ts";
 
-const { isMenuTriggerButtonVisible } = defineProps<{
+const props = defineProps<{
 	isMenuTriggerButtonVisible: boolean;
 }>();
 
 defineEmits(["menuTriggerButtonFocus"]);
+
+const { isMenuTriggerButtonVisible } = toRefs(props);
 
 const isNavigationOpen = ref(false);
 
@@ -29,6 +31,7 @@ const navItems: NavigationItems = [
 	{
 		label: "Home",
 		url: "/#home",
+		isActive: true,
 	},
 	{
 		label: "About",
@@ -65,7 +68,7 @@ const socialItems: NavigationItems = [
 const { scrollY } = useScroll();
 
 useMotionValueEvent(scrollY, "change", () => {
-	isNavigationOpen.value = false;
+	closeNavigation();
 });
 
 useEscapeKey(() => {
@@ -90,11 +93,11 @@ const navigationVariants = {
 	},
 } satisfies Variants;
 
-function handleMenuTriggerButtonClick() {
+function triggerNavigation() {
 	isNavigationOpen.value = !isNavigationOpen.value;
 }
 
-function handleNavigationItemClick() {
+function closeNavigation() {
 	isNavigationOpen.value = false;
 }
 </script>
@@ -104,7 +107,7 @@ function handleNavigationItemClick() {
 		class="aria-hidden:pointer-none fixed top-4 right-4 z-40 translate-y-0 opacity-100 transition-all duration-150 ease-out aria-hidden:-translate-y-full aria-hidden:opacity-0 sm:top-10 sm:right-10"
 		:aria-hidden="!isMenuTriggerButtonVisible">
 		<Button
-			@click="handleMenuTriggerButtonClick"
+			@click="triggerNavigation"
 			@focus="$emit('menuTriggerButtonFocus')"
 			ref="navigation-trigger-element"
 			:is-active="isNavigationOpen"
@@ -115,6 +118,18 @@ function handleNavigationItemClick() {
 			class="shadow-2xl"
 			level="secondary" />
 	</div>
+
+	<AnimatePresence>
+		<motion.div
+			v-if="isNavigationOpen"
+			@click="closeNavigation"
+			aria-hidden="true"
+			class="fixed top-0 left-0 z-20 h-full w-full bg-black/20"
+			:transition="{ duration: 0.15 }"
+			:initial="{ opacity: 0 }"
+			:animate="{ opacity: 1 }"
+			:exit="{ opacity: 0 }" />
+	</AnimatePresence>
 
 	<AnimatePresence>
 		<motion.nav
@@ -130,7 +145,7 @@ function handleNavigationItemClick() {
 				<NavigationSection
 					title="Navigation"
 					:navigationItems="navItems"
-					@clickNavItem="handleNavigationItemClick" />
+					@clickNavItem="closeNavigation" />
 			</div>
 
 			<div class="flex flex-col gap-4">
@@ -138,7 +153,7 @@ function handleNavigationItemClick() {
 					title="Socials"
 					:navigationItems="socialItems"
 					:external="true"
-					@clickNavItem="handleNavigationItemClick" />
+					@clickNavItem="closeNavigation" />
 			</div>
 		</motion.nav>
 	</AnimatePresence>
