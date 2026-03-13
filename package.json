@@ -71,5 +71,6 @@
 	"lint-staged": {
 		"*.{ts,tsx}": "eslint --cache --fix",
 		"*--write": "prettier --write"
-	}
+	},
+	"packageManager": "pnpm@10.32.1"
 }
