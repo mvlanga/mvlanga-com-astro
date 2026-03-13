@@ -31,13 +31,13 @@ to [mvlanga.com](https://mvlanga.com). Thanks!
 2. Install dependencies
 
     ```sh
-    npm install
+    pnpm install
     ```
 
 3. Start the development server
 
     ```sh
-    npm run dev
+    pnpm run dev
     ```
 
 ## Prepare database for deploying to production
@@ -57,7 +57,7 @@ For hosting this hybrid Astro app, I chose [Netlify](https://www.netlify.com/).
 1. Generate the hybrid production build
 
     ```sh
-    npm run build
+    pnpm run build
     ```
 
 ## ⏲️ Previous iterations

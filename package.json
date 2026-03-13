@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"build": "npm run check && astro build --remote",
+		"build": "pnpm run check && astro build --remote",
 		"check": "astro check",
 		"dev": "astro dev",
 		"format": "prettier . --write",
@@ -12,7 +12,7 @@
 		"preview": "astro preview",
 		"test:e2e:local": "environment=LOCAL playwright test",
 		"test:e2e:production": "environment=PRODUCTION playwright test",
-		"prepare": "husky install"
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"@astrojs/rss": "^4.0.15",
@@ -65,7 +65,7 @@
 		"typescript-eslint": "^8.56.1"
 	},
 	"engines": {
-		"npm": ">=11",
+		"pnpm": ">=10",
 		"node": ">=24"
 	},
 	"lint-staged": {

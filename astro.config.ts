@@ -2,11 +2,10 @@ import db from "@astrojs/db";
 import mdx from "@astrojs/mdx";
 import netlify from "@astrojs/netlify";
 import react from "@astrojs/react";
-import sitemap from "@astrojs/sitemap";
+import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { visualizer } from "rollup-plugin-visualizer";
-import { EnumChangefreq } from "sitemap";
 
 export default defineConfig({
 	prefetch: {
@@ -24,25 +23,25 @@ export default defineConfig({
 		sitemap({
 			serialize(item) {
 				if (item.url === "https://mvlanga.com/") {
-					item.changefreq = EnumChangefreq.MONTHLY;
+					item.changefreq = ChangeFreqEnum.MONTHLY;
 					item.lastmod = new Date().toDateString();
 					item.priority = 1;
 				}
 
 				if (/legal/.test(item.url)) {
-					item.changefreq = EnumChangefreq.YEARLY;
+					item.changefreq = ChangeFreqEnum.YEARLY;
 					item.lastmod = new Date().toDateString();
 					item.priority = 0.2;
 				}
 
 				if (/cariad|skoda|fujitsu/.test(item.url)) {
-					item.changefreq = EnumChangefreq.MONTHLY;
+					item.changefreq = ChangeFreqEnum.MONTHLY;
 					item.lastmod = new Date().toDateString();
 					item.priority = 0.9;
 				}
 
 				if (/blog/.test(item.url)) {
-					item.changefreq = EnumChangefreq.MONTHLY;
+					item.changefreq = ChangeFreqEnum.MONTHLY;
 					item.lastmod = new Date().toDateString();
 					item.priority = 0.8;
 				}
