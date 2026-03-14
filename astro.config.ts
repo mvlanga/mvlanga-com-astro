@@ -3,11 +3,10 @@ import mdx from "@astrojs/mdx";
 import netlify from "@astrojs/netlify";
 import react from "@astrojs/react";
 import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
+import vue from "@astrojs/vue";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { visualizer } from "rollup-plugin-visualizer";
-import { EnumChangefreq } from "sitemap";
-import vue from "@astrojs/vue";
 
 export default defineConfig({
 	prefetch: {
@@ -42,30 +41,35 @@ export default defineConfig({
 					item.priority = 0.8;
 				}
 
-            return item;
-        },
-		}), mdx(), react(), db(), vue()],
-    vite: {
-        plugins: [
-            tailwindcss(),
-            visualizer({
-                emitFile: true,
-                filename: "stats.html",
-            }),
-        ],
-    },
-    adapter: netlify(),
-    redirects: {
-        "/:lang/personal-projects": "/",
-        "/:lang/about-me": "/#about",
-        "/assets/resume/*": "/moriz-von-langa_resume.pdf",
+				return item;
+			},
+		}),
+		mdx(),
+		react(),
+		db(),
+		vue(),
+	],
+	vite: {
+		plugins: [
+			tailwindcss(),
+			visualizer({
+				emitFile: true,
+				filename: "stats.html",
+			}),
+		],
+	},
+	adapter: netlify(),
+	redirects: {
+		"/:lang/personal-projects": "/",
+		"/:lang/about-me": "/#about",
+		"/assets/resume/*": "/moriz-von-langa_resume.pdf",
 
-        "/:lang/legal/:slug": "/legal/:slug",
+		"/:lang/legal/:slug": "/legal/:slug",
 
-        "/en": "/",
-        "/de": "/",
+		"/en": "/",
+		"/de": "/",
 
-        "/blog/how-to-build-a-page-view-counter-with-astro-db-and-server-side-islands":
-            "/blog/how-to-build-a-page-view-counter-with-astro-db-actions-and-server-side-islands",
-    },
+		"/blog/how-to-build-a-page-view-counter-with-astro-db-and-server-side-islands":
+			"/blog/how-to-build-a-page-view-counter-with-astro-db-actions-and-server-side-islands",
+	},
 });
