@@ -1,6 +1,6 @@
+import { z } from "astro/zod";
 import { ActionError, defineAction } from "astro:actions";
 import { db, inArray, PageViews, sql } from "astro:db";
-import { z } from "astro:schema";
 
 export const pageViews = {
 	get: defineAction({
