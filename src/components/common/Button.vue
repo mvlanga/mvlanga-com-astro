@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { computed, toRefs, useAttrs } from "vue";
+import { computed, toRefs, useAttrs, useTemplateRef } from "vue";
 
-const getTransitionDelayByIndex = (index: number) => `${index * 3}ms`;
+const buttonElement = useTemplateRef<HTMLButtonElement>("button-element");
 
 defineOptions({
 	inheritAttrs: false,
+});
+
+defineExpose({
+	buttonElement,
 });
 
 interface Props {
@@ -55,10 +59,13 @@ const styleObject = computed(() => ({
 	"active text-white": Boolean(isActive.value),
 	[className.value ?? ""]: Boolean(className.value),
 }));
+
+const getTransitionDelayByIndex = (index: number) => `${index * 3}ms`;
 </script>
 
 <template>
 	<button
+		ref="button-element"
 		v-bind="additionalProps"
 		type="button"
 		:aria-label="buttonLabel"

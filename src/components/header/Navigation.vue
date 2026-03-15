@@ -7,7 +7,7 @@ import {
 } from "motion-v";
 import type { Variants } from "motion-v";
 import { useElementSize } from "@/utils/useElementSize.ts";
-import { ref, toRefs, useTemplateRef } from "vue";
+import { computed, ref, toRefs, useTemplateRef } from "vue";
 import NavigationMainSection from "@/components/header/NavigationMainSection.vue";
 import NavigationSocialSection from "@/components/header/NavigationSocialSection.vue";
 import Button from "@/components/common/Button.vue";
@@ -24,10 +24,6 @@ const { initialPath, isMenuTriggerButtonVisible } = toRefs(props);
 
 const isNavigationOpen = ref(false);
 
-const navigationTriggerElement = useTemplateRef<HTMLButtonElement>(
-	"navigation-trigger-element",
-);
-
 const { scrollY } = useScroll();
 
 useMotionValueEvent(scrollY, "change", () => {
@@ -38,23 +34,32 @@ useEscapeKey(() => {
 	isNavigationOpen.value = false;
 });
 
-const { width: menuButtonElementWidth, height: menuButtonElementHeight } =
-	useElementSize(navigationTriggerElement);
+const navigationButtonComponentRef =
+	useTemplateRef<InstanceType<typeof Button>>("nav-trigger-button");
+const navigationButtonElement = computed(
+	() => navigationButtonComponentRef.value?.buttonElement ?? null,
+);
 
-const navigationVariants = {
-	initial: {
-		opacity: 0,
-		clipPath: `inset(1.25rem 1.25rem calc(100% - ${menuButtonElementHeight.value}px - 1.25rem) calc(100% - ${menuButtonElementWidth.value}px - 1.25rem) round 1rem)`,
-	},
-	closed: {
-		opacity: 0,
-		clipPath: `inset(1.25rem 1.25rem calc(100% - ${menuButtonElementHeight.value}px - 1.25rem) calc(100% - ${menuButtonElementWidth.value}px - 1.25rem) round 1rem)`,
-	},
-	open: {
-		opacity: 1,
-		clipPath: "inset(0% 0% 0% 0% round 1rem)",
-	},
-} satisfies Variants;
+const { width: menuButtonElementWidth, height: menuButtonElementHeight } =
+	useElementSize(navigationButtonElement);
+
+const navigationVariants = computed(
+	() =>
+		({
+			initial: {
+				opacity: 0,
+				clipPath: `inset(1.25rem 1.25rem calc(100% - ${menuButtonElementHeight.value}px - 1.25rem) calc(100% - ${menuButtonElementWidth.value}px - 1.25rem) round 1rem)`,
+			},
+			closed: {
+				opacity: 0,
+				clipPath: `inset(1.25rem 1.25rem calc(100% - ${menuButtonElementHeight.value}px - 1.25rem) calc(100% - ${menuButtonElementWidth.value}px - 1.25rem) round 1rem)`,
+			},
+			open: {
+				opacity: 1,
+				clipPath: "inset(0% 0% 0% 0% round 1rem)",
+			},
+		}) satisfies Variants,
+);
 
 function triggerNavigation() {
 	isNavigationOpen.value = !isNavigationOpen.value;
@@ -67,12 +72,16 @@ function closeNavigation() {
 
 <template>
 	<div
-		class="aria-hidden:pointer-none fixed top-4 right-4 z-40 translate-y-0 opacity-100 transition-all duration-150 ease-out aria-hidden:-translate-y-full aria-hidden:opacity-0 sm:top-10 sm:right-10"
-		:aria-hidden="!isMenuTriggerButtonVisible">
+		:class="[
+			'fixed top-4 right-4 z-40 transition-all duration-150 ease-out sm:top-10 sm:right-10',
+			isMenuTriggerButtonVisible
+				? 'translate-y-0 opacity-100'
+				: 'pointer-none -translate-y-full opacity-0',
+		]">
 		<Button
+			ref="nav-trigger-button"
 			@click="triggerNavigation"
 			@focus="$emit('menuTriggerButtonFocus')"
-			ref="navigation-trigger-element"
 			:is-active="isNavigationOpen"
 			:text="{
 				default: 'menu',

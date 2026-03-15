@@ -16,9 +16,7 @@ useMotionValueEvent(scrollY, "change", (latest) => {
 	const diff = latest - (scrollY.getPrevious() ?? 0);
 	const direction = diff > 0 ? "down" : "up";
 
-	if (direction === "down" && scrollY.get() >= 300) {
-		isHeaderHidden.value = true;
-	}
+	isHeaderHidden.value = direction === "down" && scrollY.get() >= 300;
 });
 
 function handleMouseEnterHeaderZone() {
@@ -37,8 +35,12 @@ function handleHeaderButtonFocus() {
 		@mouseenter="handleMouseEnterHeaderZone" />
 
 	<header
-		:aria-hidden="isHeaderHidden"
-		class="aria-hidden:pointer-none fixed top-4 left-4 z-40 translate-y-0 opacity-100 transition-all duration-150 ease-out aria-hidden:-translate-y-full aria-hidden:opacity-0 sm:top-10 sm:left-10"
+		:class="[
+			'fixed top-4 left-4 z-40 transition-all duration-150 ease-out sm:top-10 sm:left-10',
+			isHeaderHidden
+				? 'pointer-none -translate-y-full opacity-0'
+				: 'translate-y-0 opacity-100',
+		]"
 		@focus="handleHeaderButtonFocus">
 		<a aria-label="Moriz von Langa home page" href="/">
 			<Button text="mvlanga" class="shadow-2xl" />
