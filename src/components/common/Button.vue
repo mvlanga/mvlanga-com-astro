@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, toRefs, useAttrs } from "vue";
+import { computed, toRefs, useAttrs } from "vue";
 
 const getTransitionDelayByIndex = (index: number) => `${index * 3}ms`;
 
@@ -29,28 +29,32 @@ const { text, level, size, className, isActive } = toRefs(props);
 
 const additionalProps = useAttrs();
 
-const defaultText =
-	typeof text.value === "string" ? text.value : text.value.default;
-const activeText =
-	typeof text.value === "string" ? text.value : text.value.activeText;
-const buttonLabel =
+const defaultText = computed(() =>
+	typeof text.value === "string" ? text.value : text.value.default,
+);
+
+const activeText = computed(() =>
+	typeof text.value === "string" ? text.value : text.value.activeText,
+);
+
+const buttonLabel = computed(() =>
 	(additionalProps["aria-label"] ?? !isActive.value)
-		? defaultText
-		: activeText;
+		? defaultText.value
+		: activeText.value,
+);
 
 const showActiveTextOnHover =
 	typeof text.value === "string" || text.value.activeText === undefined;
 
-const styleObject = reactive({
+const styleObject = computed(() => ({
 	"group relative inline-flex items-center justify-center gap-2 overflow-clip": true,
 	"rounded-2xl px-6 py-3": size.value === "small",
 	"rounded-3xl px-8 py-4": size.value === "medium",
 	"bg-purple-500 text-white": level.value === "primary",
-	"bg-neutral-100 text-black hover:text-white":
-		level.value === "secondary",
-	"active text-white": isActive,
+	"bg-neutral-100 text-black hover:text-white": level.value === "secondary",
+	"active text-white": Boolean(isActive.value),
 	[className.value ?? ""]: Boolean(className.value),
-});
+}));
 </script>
 
 <template>

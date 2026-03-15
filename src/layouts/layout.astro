@@ -96,7 +96,7 @@ const { className, footerType = "regular" } = Astro.props;
 	</head>
 
 	<body class="bg-white text-black">
-		<HeaderVue client:idle currentPath={Astro.url.pathname} />
+		<HeaderVue client:load initial-path={Astro.url.pathname} />
 
 		<main class={twMerge(clsx("flex flex-col gap-64 py-48", className))}>
 			<slot />

@@ -7,63 +7,26 @@ import {
 } from "motion-v";
 import type { Variants } from "motion-v";
 import { useElementSize } from "@/utils/useElementSize.ts";
-import { ref, toRefs, useTemplateRef, watch } from "vue";
-import type { NavigationItems } from "@/components/header/types.ts";
-import NavigationSection from "@/components/header/NavigationSection.vue";
+import { ref, toRefs, useTemplateRef } from "vue";
+import NavigationMainSection from "@/components/header/NavigationMainSection.vue";
+import NavigationSocialSection from "@/components/header/NavigationSocialSection.vue";
 import Button from "@/components/common/Button.vue";
 import { useEscapeKey } from "@/utils/useEscapeKey.ts";
 
 const props = defineProps<{
+	initialPath: string;
 	isMenuTriggerButtonVisible: boolean;
 }>();
 
 defineEmits(["menuTriggerButtonFocus"]);
 
-const { isMenuTriggerButtonVisible } = toRefs(props);
+const { initialPath, isMenuTriggerButtonVisible } = toRefs(props);
 
 const isNavigationOpen = ref(false);
 
 const navigationTriggerElement = useTemplateRef<HTMLButtonElement>(
 	"navigation-trigger-element",
 );
-
-const navItems: NavigationItems = [
-	{
-		label: "Home",
-		url: "/#home",
-		isActive: true,
-	},
-	{
-		label: "About",
-		url: "/#about",
-	},
-	{
-		label: "Experience",
-		url: "/#experience",
-	},
-	{
-		label: "Blog",
-		url: "/blog",
-	},
-	{
-		label: "Contact",
-		url: "mailto:morizvlanga@gmail.com",
-	},
-];
-const socialItems: NavigationItems = [
-	{
-		label: "LinkedIn",
-		url: "https://www.linkedin.com/in/mvlanga",
-	},
-	{
-		label: "GitHub",
-		url: "https://github.com/mvlanga",
-	},
-	{
-		label: "Mastodon",
-		url: "https://mastodon.social/@mvlanga",
-	},
-];
 
 const { scrollY } = useScroll();
 
@@ -142,18 +105,13 @@ function closeNavigation() {
 			class="fixed top-2 right-2 left-2 z-30 flex max-h-[calc(100%-1rem)] flex-col gap-10 overflow-y-auto rounded-2xl bg-neutral-100 px-8 py-10 sm:top-5 sm:right-5 sm:left-auto sm:w-72"
 			id="main-menu">
 			<div class="flex flex-col gap-4">
-				<NavigationSection
-					title="Navigation"
-					:navigationItems="navItems"
-					@clickNavItem="closeNavigation" />
+				<NavigationMainSection
+					:initial-path="initialPath"
+					@click-nav-item="closeNavigation" />
 			</div>
 
 			<div class="flex flex-col gap-4">
-				<NavigationSection
-					title="Socials"
-					:navigationItems="socialItems"
-					:external="true"
-					@clickNavItem="closeNavigation" />
+				<NavigationSocialSection @click-nav-item="closeNavigation" />
 			</div>
 		</motion.nav>
 	</AnimatePresence>

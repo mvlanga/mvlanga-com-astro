@@ -1,0 +1,29 @@
+<script setup lang="ts">
+import type { NavigationItem } from "@/components/header/types.ts";
+import { computed, toRefs } from "vue";
+
+const props = defineProps<{
+	navigationItem: NavigationItem;
+	isActive: boolean;
+}>();
+
+defineEmits(["clickNavItem"]);
+
+const { isActive } = toRefs(props);
+
+const indicatorClasses = computed(() => ({
+	"absolute right-full h-1 w-8 place-self-center rounded-full bg-purple-300 transition-transform duration-100": true,
+	"-translate-x-4": isActive.value,
+	"-translate-x-full": !isActive.value,
+}));
+</script>
+
+<template>
+	<span :class="indicatorClasses" aria-hidden="true" />
+	<a
+		@click="$emit('clickNavItem')"
+		:href="props.navigationItem.url"
+		class="inline-block">
+		{{ props.navigationItem.label }}
+	</a>
+</template>

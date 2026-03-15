@@ -4,8 +4,8 @@ import Button from "@/components/common/Button.vue";
 import { useScroll, useMotionValueEvent } from "motion-v";
 import Navigation from "@/components/header/Navigation.vue";
 
-const props = defineProps<{
-	currentPath: string;
+const { initialPath } = defineProps<{
+	initialPath: string;
 }>();
 
 const isHeaderHidden = ref(false);
@@ -16,7 +16,9 @@ useMotionValueEvent(scrollY, "change", (latest) => {
 	const diff = latest - (scrollY.getPrevious() ?? 0);
 	const direction = diff > 0 ? "down" : "up";
 
-	isHeaderHidden.value = direction === "down" && scrollY.get() >= 300;
+	if (direction === "down" && scrollY.get() >= 300) {
+		isHeaderHidden.value = true;
+	}
 });
 
 function handleMouseEnterHeaderZone() {
@@ -44,6 +46,7 @@ function handleHeaderButtonFocus() {
 	</header>
 
 	<Navigation
+		:initial-path="initialPath"
 		:is-menu-trigger-button-visible="!isHeaderHidden"
 		@menu-trigger-button-focus="handleHeaderButtonFocus" />
 </template>
