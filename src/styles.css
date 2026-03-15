@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@config "../tailwind.config.cjs";
-
 @plugin "@tailwindcss/typography";
 
 @theme {

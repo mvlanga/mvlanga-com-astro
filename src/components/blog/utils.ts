@@ -1,10 +1,4 @@
-import type {
-	BlogPost,
-	BlogPostWithViewCount,
-} from "@/components/blog/types.ts";
-import { useOnMount } from "@/utils/useOnMount.ts";
-import { actions } from "astro:actions";
-import { useCallback, useEffect, useState } from "react";
+import type { BlogPost } from "@/components/blog/types.ts";
 
 export const getTagsWithCountByPosts = (posts: BlogPost[]) => {
 	const tagCounts: Record<string, number> = {};
@@ -35,6 +29,7 @@ export const groupPostsByMonth = (posts: BlogPost[]) => {
 	);
 };
 
+/*
 export const useBlogPostsWithViewCount = (blogPosts: BlogPost[]) => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [blogPostsWithViewCount, setBlogPostsWithViewCount] =
@@ -74,40 +69,4 @@ export const useBlogPostsWithViewCount = (blogPosts: BlogPost[]) => {
 		blogPostsWithViewCount,
 	};
 };
-
-export const useViewCount = (id: string) => {
-	const [isLoading, setIsLoading] = useState(true);
-	const [error, setError] = useState<null | unknown>(null);
-	const [viewCount, setViewCount] = useState<null | number>(null);
-
-	const fetchData = useCallback(async () => {
-		const { data, error } = await actions.pageViews.increase(id);
-
-		setIsLoading(false);
-
-		if (error) {
-			throw new Error("Unable to run `pageViews.increase` action");
-		}
-
-		if (data === undefined || data[0] === undefined) {
-			throw new Error(
-				"Returned data of `pageViews.increase` action is unusable",
-			);
-		}
-
-		setViewCount(data[0].count);
-	}, [id]);
-
-	useEffect(() => {
-		fetchData().catch((error) => {
-			console.error(error);
-			setError(error);
-		});
-	}, [fetchData]);
-
-	return {
-		isLoading,
-		error,
-		viewCount,
-	};
-};
+*/

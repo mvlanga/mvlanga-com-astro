@@ -1,7 +1,7 @@
 ---
 import RssIcon from "@/assets/icons/rss.svg";
-import { BlogFilter } from "@/components/blog/BlogFilter";
-import { BlogPosts } from "@/components/blog/BlogPosts";
+import BlogFilter from "@/components/blog/BlogFilter.vue";
+import BlogPosts from "@/components/blog/BlogPosts.vue";
 import { getTagsWithCountByPosts } from "@/components/blog/utils";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
@@ -41,7 +41,7 @@ const availableTags = getTagsWithCountByPosts(blogPosts);
 			It's just great to have a place to go back to.
 		</p>
 
-		<BlogFilter client:load availableTags={availableTags} />
+		<BlogFilter client:idle availableTags={availableTags} />
 	</section>
 
 	<BlogPosts client:idle blogPosts={blogPosts} />

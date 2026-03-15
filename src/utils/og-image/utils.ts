@@ -1,6 +1,5 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import type { ReactNode } from "react";
 import satori from "satori";
 import sharp from "sharp";
 
@@ -34,7 +33,7 @@ export const BackgroundImage = async (brightness = 0.6) => {
 	};
 };
 
-export const generateOgImage = async (content: ReactNode) => {
+export const generateOgImage = async (content: unknown) => {
 	const avertaRegularData = await fs.readFile(
 		path.resolve("./public/fonts/averta-regular.woff"),
 	);
