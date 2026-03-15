@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { motion } from "motion-v";
 import type { NavigationItems } from "@/components/header/types.ts";
-
-defineEmits(["clickNavItem"]);
+import { headerStore } from "@/components/header/headerStore.ts";
 
 const socialItems: NavigationItems = [
 	{
@@ -18,6 +17,10 @@ const socialItems: NavigationItems = [
 		url: "https://mastodon.social/@mvlanga",
 	},
 ];
+
+function handleNavItemClick() {
+	headerStore.isNavigationOpen = false;
+}
 </script>
 
 <template>
@@ -47,19 +50,20 @@ const socialItems: NavigationItems = [
 		class="flex flex-wrap gap-4">
 		<motion.li
 			v-for="{ url, label } in socialItems"
+			:key="url"
 			:variants="{
 				initial: { opacity: 0 },
 				closed: { opacity: 0 },
 				open: { opacity: 1 },
 			}">
 			<a
-				@click="$emit('clickNavItem')"
 				:href="url"
 				referrerpolicy="no-referrer"
 				target="_blank"
 				rel="noreferrer"
 				data-umami-event="link-click"
-				:data-umami-event-url="url">
+				:data-umami-event-url="url"
+				@click="handleNavItemClick">
 				{{ label }}
 			</a>
 		</motion.li>

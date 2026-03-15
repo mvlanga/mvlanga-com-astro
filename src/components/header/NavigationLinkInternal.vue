@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import type { NavigationItem } from "@/components/header/types.ts";
 import { computed, toRefs } from "vue";
+import { headerStore } from "@/components/header/headerStore.ts";
 
 const props = defineProps<{
 	navigationItem: NavigationItem;
 	isActive: boolean;
 }>();
-
-defineEmits(["clickNavItem"]);
 
 const { isActive } = toRefs(props);
 
@@ -16,14 +15,18 @@ const indicatorClasses = computed(() => ({
 	"-translate-x-4": isActive.value,
 	"-translate-x-full": !isActive.value,
 }));
+
+function handleNavItemClick() {
+	headerStore.isNavigationOpen = false;
+}
 </script>
 
 <template>
 	<span :class="indicatorClasses" aria-hidden="true" />
 	<a
-		@click="$emit('clickNavItem')"
 		:href="props.navigationItem.url"
-		class="inline-block">
+		class="inline-block"
+		@click="handleNavItemClick">
 		{{ props.navigationItem.label }}
 	</a>
 </template>

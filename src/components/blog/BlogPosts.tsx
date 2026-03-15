@@ -8,7 +8,7 @@ import {
 	groupPostsByMonth,
 	useBlogPostsWithViewCount,
 } from "@/components/blog/utils";
-import { Skeleton } from "@/components/common/Skeleton";
+import { Skeleton } from "@/components/common/SkeletonLoader.vue";
 import { useIsFirstRender } from "@/utils/useIsFirstRender";
 import { useStore } from "@nanostores/react";
 import {

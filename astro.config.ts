@@ -1,7 +1,6 @@
 import db from "@astrojs/db";
 import mdx from "@astrojs/mdx";
 import netlify from "@astrojs/netlify";
-import react from "@astrojs/react";
 import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
 import vue from "@astrojs/vue";
 import tailwindcss from "@tailwindcss/vite";
@@ -45,7 +44,6 @@ export default defineConfig({
 			},
 		}),
 		mdx(),
-		react(),
 		db(),
 		vue(),
 	],

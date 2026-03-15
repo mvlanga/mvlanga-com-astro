@@ -1,5 +1,5 @@
 import { useViewCount } from "@/components/blog/utils";
-import { Skeleton } from "@/components/common/Skeleton";
+import { Skeleton } from "@/components/common/SkeletonLoader.vue";
 
 const isSSR = import.meta.env.SSR;
 

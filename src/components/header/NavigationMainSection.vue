@@ -10,8 +10,6 @@ const props = defineProps<{
 
 const { initialPath } = toRefs(props);
 
-defineEmits(["clickNavItem"]);
-
 const navigationItems: NavigationItems = [
 	{
 		label: "Home",
@@ -95,6 +93,7 @@ onMounted(() => {
 		class="flex flex-col gap-5">
 		<motion.li
 			v-for="item in navigationItems"
+			:key="item.url"
 			:variants="{
 				initial: {
 					opacity: 0,
@@ -112,8 +111,7 @@ onMounted(() => {
 			class="group relative text-2xl">
 			<NavigationLinkInternal
 				:navigation-item="item"
-				:is-active="activeSection === item.url.replace('/#', '')"
-				@click-nav-item="$emit('clickNavItem')" />
+				:is-active="activeSection === item.url.replace('/#', '')" />
 		</motion.li>
 	</motion.ul>
 </template>

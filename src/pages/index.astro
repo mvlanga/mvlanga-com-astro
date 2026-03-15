@@ -8,9 +8,9 @@ import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
 import { sortExperience } from "@/utils/sortCollection";
-import { ExperienceItem } from "@/components/experience/ExperienceItem";
-import { UnimportantExperienceItems } from "@/components/experience/UnimportantExperienceItems";
-import { ExperienceFilter } from "@/components/experience/ExperienceFilter";
+import ExperienceItem from "@/components/experience/ExperienceItem.vue";
+import UnimportantExperienceItems from "@/components/experience/UnimportantExperienceItems.vue";
+import ExperienceFilter from "@/components/experience/ExperienceFilter.vue";
 import Button from "@/components/common/Button.vue";
 
 import mvlPortrait from "../assets/img/moriz-von-langa-portrait.avif";
@@ -131,7 +131,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 			<div class="flex flex-col gap-4">
 				{
 					importantExperience.map((item) => (
-						<ExperienceItem {...item} />
+						<ExperienceItem item={item} />
 					))
 				}
 

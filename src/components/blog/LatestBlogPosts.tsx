@@ -1,7 +1,7 @@
 import { BlogPost } from "@/components/blog/BlogPost";
 import type { BlogPost as BlogPostType } from "@/components/blog/types";
 import { useBlogPostsWithViewCount } from "@/components/blog/utils";
-import { Skeleton } from "@/components/common/Skeleton";
+import { Skeleton } from "@/components/common/SkeletonLoader.vue";
 import useEmblaCarousel from "embla-carousel-react";
 
 type LatestBlogPostsProps = {

@@ -7,22 +7,19 @@ import {
 } from "motion-v";
 import type { Variants } from "motion-v";
 import { useElementSize } from "@/utils/useElementSize.ts";
-import { computed, ref, toRefs, useTemplateRef } from "vue";
+import { computed, toRefs, useTemplateRef } from "vue";
 import NavigationMainSection from "@/components/header/NavigationMainSection.vue";
 import NavigationSocialSection from "@/components/header/NavigationSocialSection.vue";
 import Button from "@/components/common/Button.vue";
 import { useEscapeKey } from "@/utils/useEscapeKey.ts";
+import { headerStore } from "@/components/header/headerStore.ts";
 
 const props = defineProps<{
 	initialPath: string;
 	isMenuTriggerButtonVisible: boolean;
 }>();
 
-defineEmits(["menuTriggerButtonFocus"]);
-
 const { initialPath, isMenuTriggerButtonVisible } = toRefs(props);
-
-const isNavigationOpen = ref(false);
 
 const { scrollY } = useScroll();
 
@@ -31,7 +28,7 @@ useMotionValueEvent(scrollY, "change", () => {
 });
 
 useEscapeKey(() => {
-	isNavigationOpen.value = false;
+	headerStore.isNavigationOpen = false;
 });
 
 const navigationButtonComponentRef =
@@ -62,11 +59,15 @@ const navigationVariants = computed(
 );
 
 function triggerNavigation() {
-	isNavigationOpen.value = !isNavigationOpen.value;
+	headerStore.isNavigationOpen = !headerStore.isNavigationOpen;
 }
 
 function closeNavigation() {
-	isNavigationOpen.value = false;
+	headerStore.isNavigationOpen = false;
+}
+
+function handleNavButtonFocus() {
+	headerStore.isHeaderHidden = true;
 }
 </script>
 
@@ -80,43 +81,41 @@ function closeNavigation() {
 		]">
 		<Button
 			ref="nav-trigger-button"
-			@click="triggerNavigation"
-			@focus="$emit('menuTriggerButtonFocus')"
-			:is-active="isNavigationOpen"
+			:is-active="headerStore.isNavigationOpen"
 			:text="{
 				default: 'menu',
 				activeText: 'close',
 			}"
 			class="shadow-2xl"
-			level="secondary" />
+			level="secondary"
+			@click="triggerNavigation"
+			@focus="handleNavButtonFocus" />
 	</div>
 
 	<AnimatePresence>
 		<motion.div
-			v-if="isNavigationOpen"
-			@click="closeNavigation"
+			v-if="headerStore.isNavigationOpen"
 			aria-hidden="true"
 			class="fixed top-0 left-0 z-20 h-full w-full bg-black/20"
 			:transition="{ duration: 0.15 }"
 			:initial="{ opacity: 0 }"
 			:animate="{ opacity: 1 }"
-			:exit="{ opacity: 0 }" />
+			:exit="{ opacity: 0 }"
+			@click="closeNavigation" />
 	</AnimatePresence>
 
 	<AnimatePresence>
 		<motion.nav
-			v-if="isNavigationOpen"
+			v-if="headerStore.isNavigationOpen"
+			id="main-menu"
 			:variants="navigationVariants"
 			initial="initial"
 			animate="open"
 			exit="closed"
 			aria-label="Main Menu"
-			class="fixed top-2 right-2 left-2 z-30 flex max-h-[calc(100%-1rem)] flex-col gap-10 overflow-y-auto rounded-2xl bg-neutral-100 px-8 py-10 sm:top-5 sm:right-5 sm:left-auto sm:w-72"
-			id="main-menu">
+			class="fixed top-2 right-2 left-2 z-30 flex max-h-[calc(100%-1rem)] flex-col gap-10 overflow-y-auto rounded-2xl bg-neutral-100 px-8 py-10 sm:top-5 sm:right-5 sm:left-auto sm:w-72">
 			<div class="flex flex-col gap-4">
-				<NavigationMainSection
-					:initial-path="initialPath"
-					@click-nav-item="closeNavigation" />
+				<NavigationMainSection :initial-path="initialPath" />
 			</div>
 
 			<div class="flex flex-col gap-4">

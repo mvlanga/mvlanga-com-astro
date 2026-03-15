@@ -11,23 +11,24 @@ defineExpose({
 	buttonElement,
 });
 
-interface Props {
-	text:
-		| string
-		| {
-				default: string;
-				activeText: string;
-		  };
-	className?: string;
-	level?: "primary" | "secondary";
-	size?: "small" | "medium";
-	isActive?: boolean;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-	level: "primary",
-	size: "medium",
-});
+const props = withDefaults(
+	defineProps<{
+		text:
+			| string
+			| {
+					default: string;
+					activeText: string;
+			  };
+		className?: string;
+		level?: "primary" | "secondary";
+		size?: "small" | "medium";
+		isActive?: boolean;
+	}>(),
+	{
+		level: "primary",
+		size: "medium",
+	},
+);
 
 const { text, level, size, className, isActive } = toRefs(props);
 
