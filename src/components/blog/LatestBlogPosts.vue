@@ -19,7 +19,7 @@ const [emblaRef] = useEmblaCarousel();
 				:key="post.id"
 				class="transform-3d-[0_0_0] min-w-0 flex-[0_0_92%] pl-3 md:flex-[0_0_60%] md:pl-6 lg:flex-[0_0_45%]">
 				<BlogPost :post="post">
-					<SkeletonLoader class-name="w-[8ch]" />
+					<SkeletonLoader />
 				</BlogPost>
 			</div>
 		</div>

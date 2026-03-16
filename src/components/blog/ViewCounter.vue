@@ -40,9 +40,7 @@ onMounted(() => {
 
 <template>
 	<template v-if="!error">
-		<SkeletonLoader
-			v-if="isSSR || isLoading || viewCount === null"
-			class-name="w-[8ch]" />
+		<SkeletonLoader v-if="isSSR || isLoading || viewCount === null" />
 
 		<p v-else>{{ `${viewCount.toLocaleString()} views` }}</p>
 	</template>

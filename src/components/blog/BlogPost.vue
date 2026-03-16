@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { Motion } from "motion-v";
 import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
 import { computed } from "vue";
+import ViewCounter from "@/components/blog/ViewCounter.vue";
 
 const props = defineProps<{
 	post: BlogPostWithViewCount;
@@ -15,9 +17,10 @@ const combinedTags = computed(() => tags.map((tag) => `#${tag}`).join(", "));
 </script>
 
 <template>
-	<a
+	<Motion
+		as="a"
 		class="group flex h-full w-full flex-col justify-between gap-8 rounded-4xl bg-neutral-100 p-6 transition-colors hover:bg-neutral-200 md:p-10"
-		:href="`/blog/${{ id }}`">
+		:href="`/blog/${id}`">
 		<div class="flex flex-col items-start gap-6">
 			<h2 class="text-lg">{{ title }}</h2>
 			<p class="text-neutral-600">{{ description }}</p>
@@ -35,8 +38,9 @@ const combinedTags = computed(() => tags.map((tag) => `#${tag}`).join(", "));
 			</p>
 
 			<div class="flex flex-wrap gap-4">
+				<ViewCounter :id="id" />
 				<p>{{ createdAt.toLocaleDateString("en-US") }}</p>
 			</div>
 		</div>
-	</a>
+	</Motion>
 </template>
