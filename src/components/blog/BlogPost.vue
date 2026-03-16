@@ -2,7 +2,6 @@
 import { Motion } from "motion-v";
 import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
 import { computed } from "vue";
-import ViewCounter from "@/components/blog/ViewCounter.vue";
 
 const props = defineProps<{
 	post: BlogPostWithViewCount;
@@ -38,7 +37,6 @@ const combinedTags = computed(() => tags.map((tag) => `#${tag}`).join(", "));
 			</p>
 
 			<div class="flex flex-wrap gap-4">
-				<ViewCounter :id="id" />
 				<p>{{ createdAt.toLocaleDateString("en-US") }}</p>
 			</div>
 		</div>
