@@ -8,6 +8,7 @@ import { defineConfig } from "astro/config";
 import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
+	output: "server",
 	prefetch: {
 		prefetchAll: true,
 	},

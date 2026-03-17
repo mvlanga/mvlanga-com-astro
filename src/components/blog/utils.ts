@@ -29,44 +29,4 @@ export const groupPostsByMonth = (posts: BlogPost[]) => {
 	);
 };
 
-/*
-export const useBlogPostsWithViewCount = (blogPosts: BlogPost[]) => {
-	const [isLoading, setIsLoading] = useState(true);
-	const [blogPostsWithViewCount, setBlogPostsWithViewCount] =
-		useState<BlogPostWithViewCount[]>(blogPosts);
-
-	const fetchData = async () => {
-		const { data, error } = await actions.pageViews.get(
-			blogPosts.map((post) => post.id),
-		);
-
-		setIsLoading(false);
-
-		if (error) {
-			throw new Error("Unable to run `blogPostViews` action");
-		}
-
-		if (data === undefined) {
-			throw new Error(
-				"Returned data of `blogPostViews` action is unusable",
-			);
-		}
-
-		setBlogPostsWithViewCount(
-			blogPosts.map((post) => ({
-				...post,
-				viewCount: data.find(({ id }) => id === post.id)?.count ?? 0,
-			})),
-		);
-	};
-
-	useOnMount(() => {
-		fetchData().catch(console.error);
-	});
-
-	return {
-		isLoading,
-		blogPostsWithViewCount,
-	};
-};
-*/
+export const getViewCount = () => {};
