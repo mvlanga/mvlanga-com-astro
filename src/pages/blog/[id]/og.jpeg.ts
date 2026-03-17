@@ -4,6 +4,8 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import fs from "node:fs/promises";
 import path from "node:path";
 
+export const prerender = true;
+
 export const GET: APIRoute<{ post: CollectionEntry<"blogPosts"> }> = async ({
 	props,
 }) => {

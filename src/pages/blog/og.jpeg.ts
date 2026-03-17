@@ -1,5 +1,7 @@
 import { BackgroundImage, generateOgImage } from "@/utils/og-image/utils.ts";
 
+export const prerender = true;
+
 export const GET = async () => {
 	return await generateOgImage({
 		type: "div",

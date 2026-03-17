@@ -1,6 +1,8 @@
 import { BackgroundImage, generateOgImage } from "@/utils/og-image/utils.ts";
 import { type CollectionEntry, getCollection } from "astro:content";
 
+export const prerender = true;
+
 interface Props {
 	params: { id: string };
 	props: { legalPage: CollectionEntry<"legalPages"> };
