@@ -1,4 +1,7 @@
-import type { BlogPost } from "@/components/blog/types.ts";
+import type {
+	BlogPost,
+	BlogPostWithViewCount,
+} from "@/components/blog/types.ts";
 
 export const getTagsWithCountByPosts = (posts: BlogPost[]) => {
 	const tagCounts: Record<string, number> = {};
@@ -15,7 +18,7 @@ export const getTagsWithCountByPosts = (posts: BlogPost[]) => {
 	}));
 };
 
-export const groupPostsByMonth = (posts: BlogPost[]) => {
+export const groupPostsByMonth = (posts: BlogPostWithViewCount[]) => {
 	return Object.entries(
 		Object.groupBy(posts, ({ data: { createdAt } }) => {
 			const isThisYear =

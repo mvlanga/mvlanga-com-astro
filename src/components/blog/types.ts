@@ -6,5 +6,5 @@ export type BlogPost = {
 };
 
 export type BlogPostWithViewCount = BlogPost & {
-	viewCount?: number;
+	viewCount: number;
 };

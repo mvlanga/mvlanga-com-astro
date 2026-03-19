@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import BaseSkeletonLoader from "@/components/common/BaseSkeletonLoader.vue";
-import { useIncreaseViewCount } from "@/components/blog/useIncreaseViewCount.ts";
 
-const props = defineProps<{
-	id: string;
+const { isLoading, viewCount, error } = defineProps<{
+	isLoading: boolean;
+	viewCount: number;
+	error: unknown;
 }>();
-
-const { isLoading, error, viewCount } = useIncreaseViewCount(props.id);
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 import { actions } from "astro:actions";
-import { onMounted, ref, watch } from "vue";
+import { onMounted, ref } from "vue";
 
-export function useViewCount(id: string) {
+export function useIncreaseViewCount(id: string) {
 	const isLoading = ref(true);
 	const error = ref<unknown | null>(null);
 	const viewCount = ref<number | null>(null);
@@ -33,9 +33,6 @@ export function useViewCount(id: string) {
 	};
 
 	onMounted(fetchData);
-
-	// Optional: refetch if id changes
-	watch(() => id, fetchData);
 
 	return {
 		isLoading,

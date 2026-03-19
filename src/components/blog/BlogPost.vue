@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { Motion } from "motion-v";
-import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
+import type { BlogPost } from "@/components/blog/types.ts";
 import { computed } from "vue";
 
 const props = defineProps<{
-	post: BlogPostWithViewCount;
+	post: BlogPost;
 }>();
 
 const {
@@ -37,6 +37,8 @@ const combinedTags = computed(() => tags.map((tag) => `#${tag}`).join(", "));
 			</p>
 
 			<div class="flex flex-wrap gap-4">
+				<slot name="viewCount" />
+
 				<p>{{ createdAt.toLocaleDateString("en-US") }}</p>
 			</div>
 		</div>

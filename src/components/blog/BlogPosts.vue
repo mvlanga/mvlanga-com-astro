@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { BlogPostWithViewCount } from "@/components/blog/types.ts";
+import type { BlogPost as BlogPostType } from "@/components/blog/types.ts";
 import BlogPost from "@/components/blog/BlogPost.vue";
 import { computed } from "vue";
 import { groupPostsByMonth } from "@/components/blog/utils.ts";
@@ -13,17 +13,24 @@ import {
 	type Transition,
 	LayoutGroup,
 } from "motion-v";
+import { useBlogPostsWithViewCount } from "@/components/blog/useBlogPostsWithViewCount.ts";
+import ViewCountViewer from "@/components/blog/ViewCountViewer.vue";
 
-const { blogPosts } = defineProps<{
-	blogPosts: BlogPostWithViewCount[];
+const props = defineProps<{
+	blogPosts: BlogPostType[];
 }>();
 
-const blogPostsFiltered = computed(() =>
-	blogPosts.filter(
-		(post) =>
-			blogFilterStore.value === BLOG_FILTER_TAG_ALL_VALUE ||
-			post.data.tags.includes(blogFilterStore.value),
-	),
+const { isLoading, error, blogPostsWithViewCount } = useBlogPostsWithViewCount(
+	props.blogPosts,
+);
+
+const blogPostsFiltered = computed(
+	() =>
+		blogPostsWithViewCount.value?.filter(
+			(post) =>
+				blogFilterStore.value === BLOG_FILTER_TAG_ALL_VALUE ||
+				post.data.tags.includes(blogFilterStore.value),
+		) ?? [],
 );
 
 const blogPostsGrouped = computed(() =>
@@ -65,7 +72,14 @@ const MotionBlogPost = motion.create(BlogPost, { forwardMotionProps: true });
 								:transition="transition"
 								:exit="{ opacity: 0 }"
 								:initial="{ opacity: 0, y: '4rem' }"
-								:animate="{ opacity: 1, y: '0' }" />
+								:animate="{ opacity: 1, y: '0' }">
+								<template #viewCount>
+									<ViewCountViewer
+										:error="error"
+										:is-loading="isLoading"
+										:view-count="post.viewCount" />
+								</template>
+							</MotionBlogPost>
 						</AnimatePresence>
 					</motion.div>
 				</template>
