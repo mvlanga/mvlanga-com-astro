@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Button from "@/components/common/Button.vue";
+import BaseButton from "@/components/common/BaseButton.vue";
 import {
 	BLOG_FILTER_TAG_ALL_VALUE,
 	blogFilterStore,
@@ -12,7 +12,7 @@ const { availableTags } = defineProps<{
 
 <template>
 	<div class="flex flex-wrap gap-2">
-		<Button
+		<BaseButton
 			text="All"
 			size="small"
 			:level="
@@ -24,7 +24,7 @@ const { availableTags } = defineProps<{
 				() => (blogFilterStore.value = BLOG_FILTER_TAG_ALL_VALUE)
 			" />
 
-		<Button
+		<BaseButton
 			v-for="{ name, count } in availableTags"
 			:key="name"
 			size="small"

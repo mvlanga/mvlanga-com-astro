@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Button from "@/components/common/Button.vue";
+import BaseButton from "@/components/common/BaseButton.vue";
 import { useScroll, useMotionValueEvent } from "motion-v";
-import Navigation from "@/components/header/Navigation.vue";
+import GlobalNavigation from "@/components/header/GlobalNavigation.vue";
 import { headerStore } from "@/components/header/headerStore.ts";
 
 const { initialPath } = defineProps<{
@@ -38,15 +38,16 @@ function handleHeaderButtonFocus() {
 			headerStore.isHeaderHidden
 				? 'pointer-none -translate-y-full opacity-0'
 				: 'translate-y-0 opacity-100',
-		]"
-		@focus="handleHeaderButtonFocus">
-		<a aria-label="Moriz von Langa home page" href="/">
-			<Button text="mvlanga" class="shadow-2xl" />
+		]">
+		<a aria-label="Moriz von Langa home page" href="/" tabindex="-1">
+			<BaseButton
+				text="mvlanga"
+				class="shadow-2xl"
+				@focus="handleHeaderButtonFocus" />
 		</a>
 	</header>
 
-	<Navigation
+	<GlobalNavigation
 		:initial-path="initialPath"
-		:is-menu-trigger-button-visible="!headerStore.isHeaderHidden"
-		@menu-trigger-button-focus="handleHeaderButtonFocus" />
+		:is-menu-trigger-button-visible="!headerStore.isHeaderHidden" />
 </template>

@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import SkeletonLoader from "@/components/common/SkeletonLoader.vue";
+import BaseSkeletonLoader from "@/components/common/BaseSkeletonLoader.vue";
 import { useViewCount } from "@/components/blog/useViewCount.ts";
-
-const isSSR = import.meta.env.SSR;
 
 const props = defineProps<{
 	id: string;
@@ -13,7 +11,7 @@ const { isLoading, error, viewCount } = useViewCount(props.id);
 
 <template>
 	<template v-if="!error">
-		<SkeletonLoader v-if="isSSR || isLoading || viewCount === null" />
+		<BaseSkeletonLoader v-if="isLoading || viewCount === null" />
 
 		<p v-else>{{ `${viewCount.toLocaleString()} views` }}</p>
 	</template>

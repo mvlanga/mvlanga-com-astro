@@ -5,15 +5,15 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import RssIcon from "@/assets/icons/rss.svg";
 import LatestBlogPosts from "@/components/blog/LatestBlogPosts.vue";
-import Ellipsis from "@/components/common/Ellipsis.astro";
-import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
+import Ellipsis from "@/components/about/Ellipsis.astro";
+import Divider from "@/components/common/Divider.astro";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
 import { sortExperience } from "@/utils/sortCollection";
 import ExperienceItem from "@/components/experience/ExperienceItem.vue";
 import UnimportantExperienceItems from "@/components/experience/UnimportantExperienceItems.vue";
 import ExperienceFilter from "@/components/experience/ExperienceFilter.vue";
-import Button from "@/components/common/Button.vue";
+import BaseButton from "@/components/common/BaseButton.vue";
 
 import mvlPortrait from "../assets/img/moriz-von-langa-portrait.avif";
 
@@ -51,7 +51,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 		<div class="container grid gap-16">
 			<h2 class="text-5xl">About</h2>
 
-			<PlayfulDivider />
+			<Divider />
 
 			<div class="grid gap-16 md:grid-cols-6">
 				<div class="md:col-span-2">
@@ -127,7 +127,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 	<section class="container grid scroll-mt-16 gap-16" id="experience">
 		<h2 class="text-5xl">Experience</h2>
 
-		<PlayfulDivider />
+		<Divider />
 
 		<div class="flex flex-col gap-8">
 			<div class="flex flex-col gap-4">
@@ -177,13 +177,13 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 			</p>
 		</div>
 
-		<PlayfulDivider />
+		<Divider />
 
 		<LatestBlogPosts client:idle blogPosts={blogPosts} />
 
 		<div class="w-full text-end">
 			<a href="/blog" class="w-full md:w-auto">
-				<Button
+				<BaseButton
 					className="w-full md:w-auto"
 					text="See all blog posts"
 					level="primary"

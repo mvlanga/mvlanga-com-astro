@@ -10,7 +10,7 @@ import { useElementSize } from "@/utils/useElementSize.ts";
 import { computed, toRefs, useTemplateRef } from "vue";
 import NavigationMainSection from "@/components/header/NavigationMainSection.vue";
 import NavigationSocialSection from "@/components/header/NavigationSocialSection.vue";
-import Button from "@/components/common/Button.vue";
+import BaseButton from "@/components/common/BaseButton.vue";
 import { useEscapeKey } from "@/utils/useEscapeKey.ts";
 import { headerStore } from "@/components/header/headerStore.ts";
 
@@ -32,7 +32,7 @@ useEscapeKey(() => {
 });
 
 const navigationButtonComponentRef =
-	useTemplateRef<InstanceType<typeof Button>>("nav-trigger-button");
+	useTemplateRef<InstanceType<typeof BaseButton>>("nav-trigger-button");
 const navigationButtonElement = computed(
 	() => navigationButtonComponentRef.value?.buttonElement ?? null,
 );
@@ -67,7 +67,7 @@ function closeNavigation() {
 }
 
 function handleNavButtonFocus() {
-	headerStore.isHeaderHidden = true;
+	headerStore.isHeaderHidden = false;
 }
 </script>
 
@@ -79,7 +79,7 @@ function handleNavButtonFocus() {
 				? 'translate-y-0 opacity-100'
 				: 'pointer-none -translate-y-full opacity-0',
 		]">
-		<Button
+		<BaseButton
 			ref="nav-trigger-button"
 			:is-active="headerStore.isNavigationOpen"
 			:text="{
@@ -119,7 +119,7 @@ function handleNavButtonFocus() {
 			</div>
 
 			<div class="flex flex-col gap-4">
-				<NavigationSocialSection @click-nav-item="closeNavigation" />
+				<NavigationSocialSection />
 			</div>
 		</motion.nav>
 	</AnimatePresence>

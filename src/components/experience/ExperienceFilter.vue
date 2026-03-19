@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import Button from "@/components/common/Button.vue";
+import BaseButton from "@/components/common/BaseButton.vue";
 import { experienceFilterStore } from "@/components/experience/experienceFilterStore.ts";
 </script>
 
 <template>
-	<Button
+	<BaseButton
 		:text="
 			experienceFilterStore.experienceUnimportantVisible
 				? 'Less please'

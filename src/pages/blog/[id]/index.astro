@@ -3,7 +3,7 @@ export const prerender = true;
 
 import { render } from "astro:content";
 import ViewCounter from "@/components/blog/ViewCounter.vue";
-import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
+import Divider from "@/components/common/Divider.astro";
 import Prose from "@/components/common/Prose.astro";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
@@ -47,7 +47,7 @@ const { title, description, tags, createdAt } = post.data;
 				</div>
 			</div>
 
-			<PlayfulDivider />
+			<Divider />
 		</section>
 
 		<Prose>
