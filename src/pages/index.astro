@@ -1,17 +1,19 @@
 ---
+export const prerender = true;
+
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import RssIcon from "@/assets/icons/rss.svg";
-import { LatestBlogPosts } from "@/components/blog/LatestBlogPosts";
-import { Button } from "@/components/common/Button";
-import Ellipsis from "@/components/common/Ellipsis.astro";
-import PlayfulDivider from "@/components/common/PlayfulDivider.astro";
+import Ellipsis from "@/components/about/Ellipsis.astro";
+import Divider from "@/components/common/Divider.astro";
 import Layout from "@/layouts/layout.astro";
-import { getBlogPosts } from "@/utils/collections";
-import { sortExperience } from "@/utils/sortCollection";
-import { ExperienceItem } from "@/components/experience/ExperienceItem";
-import { UnimportantExperienceItems } from "@/components/experience/UnimportantExperienceItems";
-import { ExperienceFilter } from "@/components/experience/ExperienceFilter";
+import { getBlogPosts } from "@/utils/collections/utils";
+import { sortExperience } from "@/utils/collections/utils";
+import VExperienceItem from "@/components/experience/VExperienceItem.vue";
+import VUnimportantVExperienceItems from "@/components/experience/VUnimportantExperienceItems.vue";
+import VExperienceFilter from "@/components/experience/VExperienceFilter.vue";
+import VButton from "@/components/common/VButton.vue";
+import VLatestBlogPosts from "@/components/blog/VLatestBlogPosts.vue";
 
 import mvlPortrait from "../assets/img/moriz-von-langa-portrait.avif";
 
@@ -49,7 +51,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 		<div class="container grid gap-16">
 			<h2 class="text-5xl">About</h2>
 
-			<PlayfulDivider />
+			<Divider />
 
 			<div class="grid gap-16 md:grid-cols-6">
 				<div class="md:col-span-2">
@@ -125,25 +127,25 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 	<section class="container grid scroll-mt-16 gap-16" id="experience">
 		<h2 class="text-5xl">Experience</h2>
 
-		<PlayfulDivider />
+		<Divider />
 
 		<div class="flex flex-col gap-8">
 			<div class="flex flex-col gap-4">
 				{
 					importantExperience.map((item) => (
-						<ExperienceItem {...item} />
+						<VExperienceItem item={item} />
 					))
 				}
 
 				<div class="flex flex-col gap-4">
-					<UnimportantExperienceItems
+					<VUnimportantVExperienceItems
 						client:idle
 						items={unimportantExperience}
 					/>
 				</div>
 			</div>
 			<div class="w-full text-end">
-				<ExperienceFilter client:idle />
+				<VExperienceFilter client:idle />
 			</div>
 		</div>
 	</section>
@@ -175,13 +177,13 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 			</p>
 		</div>
 
-		<PlayfulDivider />
+		<Divider />
 
-		<LatestBlogPosts client:idle blogPosts={blogPosts} />
+		<VLatestBlogPosts client:idle blogPosts={blogPosts} />
 
 		<div class="w-full text-end">
 			<a href="/blog" class="w-full md:w-auto">
-				<Button
+				<VButton
 					className="w-full md:w-auto"
 					text="See all blog posts"
 					level="primary"

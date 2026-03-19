@@ -4,6 +4,8 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import fs from "node:fs/promises";
 import path from "node:path";
 
+export const prerender = true;
+
 export const GET: APIRoute<{ post: CollectionEntry<"blogPosts"> }> = async ({
 	props,
 }) => {
@@ -14,106 +16,96 @@ export const GET: APIRoute<{ post: CollectionEntry<"blogPosts"> }> = async ({
 			path.resolve(`${process.cwd()}/${post.data.openGraphCover}`),
 		);
 
-		return await generateOgImage(
-			// @ts-expect-error: Astro currently does not support endpoints with tsx file format
-			// because of that, we need to use react-elements-like objects
-			// satori still expects valid JSX elements, that's why we get typescript errors here
-			{
-				type: "div",
-				props: {
-					style: {
-						display: "flex",
-						width: "100%",
-						height: "100%",
-						color: "white",
-						backgroundColor: "black",
-						padding: "80px",
-						gap: "80px",
-					},
-					children: [
-						await BackgroundImage(0.2),
-						{
-							type: "img",
-							props: {
-								src: postCoverImage.buffer,
-								style: {
-									width: "400px",
-									height: "100%",
-									objectFit: "cover",
-								},
-								tw: "rounded-3xl",
-							},
-						},
-						{
-							type: "div",
-							props: {
-								style: {
-									width: "600px",
-									display: "flex",
-									flexDirection: "column",
-									justifyContent: "center",
-								},
-								children: [
-									{
-										type: "h1",
-										props: {
-											children: post.data.title,
-											tw: "text-6xl leading-snug",
-										},
-									},
-									{
-										type: "p",
-										props: {
-											children: "Moriz von Langa | Blog",
-											tw: "text-5xl leading-snug text-neutral-100 font-normal",
-										},
-									},
-								],
-							},
-						},
-					],
-				},
-			},
-		);
-	}
-
-	return await generateOgImage(
-		// @ts-expect-error: Astro currently does not support endpoints with tsx file format
-		// because of that, we need to use react-elements-like objects
-		// satori still expects valid JSX elements, that's why we get typescript errors here
-		{
+		return await generateOgImage({
 			type: "div",
 			props: {
 				style: {
 					display: "flex",
-					flexDirection: "column",
 					width: "100%",
 					height: "100%",
 					color: "white",
 					backgroundColor: "black",
 					padding: "80px",
-					justifyContent: "flex-end",
+					gap: "80px",
 				},
 				children: [
-					await BackgroundImage(),
+					await BackgroundImage(0.2),
 					{
-						type: "h1",
+						type: "img",
 						props: {
-							children: post.data.title,
-							tw: "text-6xl leading-snug",
+							src: postCoverImage.buffer,
+							style: {
+								width: "400px",
+								height: "100%",
+								objectFit: "cover",
+							},
+							tw: "rounded-3xl",
 						},
 					},
 					{
-						type: "p",
+						type: "div",
 						props: {
-							children: "Moriz von Langa | Blog",
-							tw: "text-5xl leading-snug text-neutral-100 font-normal",
+							style: {
+								width: "600px",
+								display: "flex",
+								flexDirection: "column",
+								justifyContent: "center",
+							},
+							children: [
+								{
+									type: "h1",
+									props: {
+										children: post.data.title,
+										tw: "text-6xl leading-snug",
+									},
+								},
+								{
+									type: "p",
+									props: {
+										children: "Moriz von Langa | Blog",
+										tw: "text-5xl leading-snug text-neutral-100 font-normal",
+									},
+								},
+							],
 						},
 					},
 				],
 			},
+		});
+	}
+
+	return await generateOgImage({
+		type: "div",
+		props: {
+			style: {
+				display: "flex",
+				flexDirection: "column",
+				width: "100%",
+				height: "100%",
+				color: "white",
+				backgroundColor: "black",
+				padding: "80px",
+				justifyContent: "flex-end",
+			},
+			children: [
+				await BackgroundImage(),
+				{
+					type: "h1",
+					props: {
+						children: post.data.title,
+						tw: "text-6xl leading-snug",
+					},
+				},
+				{
+					type: "p",
+					props: {
+						children: "Moriz von Langa | Blog",
+						tw: "text-5xl leading-snug text-neutral-100 font-normal",
+					},
+				},
+			],
 		},
-	);
+	});
 };
 
 export async function getStaticPaths() {

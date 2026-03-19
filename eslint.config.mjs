@@ -1,29 +1,32 @@
 import eslint from "@eslint/js";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
 import eslintPluginAstro from "eslint-plugin-astro";
-import jsxA11y from "eslint-plugin-jsx-a11y";
-import eslintReact from "eslint-plugin-react";
+import eslintPluginVue from "eslint-plugin-vue";
 import { defineConfig, globalIgnores } from "eslint/config";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default defineConfig([
-	eslint.configs.recommended,
-	tseslint.configs.recommended,
-	eslintPluginAstro.configs.recommended,
 	{
-		files: ["**/*.{ts,tsx}"],
-		...eslintReact.configs.flat.recommended,
-		...eslintReact.configs.flat["jsx-runtime"],
+		files: ["**/*.{astro}"],
+		extends: [eslintPluginAstro.configs.recommended],
+	},
+	{
+		extends: [
+			eslint.configs.recommended,
+			...tseslint.configs.recommended,
+			...eslintPluginVue.configs["flat/recommended"],
+		],
+		files: ["**/*.{ts,collections}"],
 		languageOptions: {
-			...eslintReact.configs.flat.recommended.languageOptions,
-			globals: {
-				...globals.serviceworker,
-				...globals.browser,
+			ecmaVersion: "latest",
+			sourceType: "module",
+			globals: globals.browser,
+			parserOptions: {
+				parser: tseslint.parser,
 			},
 		},
 	},
-	jsxA11y.flatConfigs.recommended,
 	eslintConfigPrettier,
 	globalIgnores([
 		"**/dist",
@@ -34,6 +37,6 @@ export default defineConfig([
 		"**/playwright-report",
 		"**/test-results",
 		"**/static",
-		"**/*.json"
+		"**/*.json",
 	]),
 ]);

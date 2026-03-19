@@ -3,6 +3,7 @@ title: Optimizing Images from Contentful in Astro (So Editors Don’t Have To)
 slug: optimizing-images-from-contentful-in-astro
 description: "Are unoptimised images affecting your site's performance? Learn how to use Contentful’s Images API to automatically resize, compress and convert images. In this post, we’ll create a lightweight Astro component that provides optimised, layout-stable images."
 createdAt: 2025-06-02
+updatedAt: 2025-06-08
 tags: ["astro", "contentful"]
 ---
 

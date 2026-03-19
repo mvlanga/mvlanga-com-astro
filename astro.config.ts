@@ -1,13 +1,14 @@
 import db from "@astrojs/db";
 import mdx from "@astrojs/mdx";
 import netlify from "@astrojs/netlify";
-import react from "@astrojs/react";
 import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
+import vue from "@astrojs/vue";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
+	output: "server",
 	prefetch: {
 		prefetchAll: true,
 	},
@@ -24,25 +25,19 @@ export default defineConfig({
 			serialize(item) {
 				if (item.url === "https://mvlanga.com/") {
 					item.changefreq = ChangeFreqEnum.MONTHLY;
-					item.lastmod = new Date().toDateString();
+					item.lastmod = new Date().toISOString();
 					item.priority = 1;
 				}
 
 				if (/legal/.test(item.url)) {
 					item.changefreq = ChangeFreqEnum.YEARLY;
-					item.lastmod = new Date().toDateString();
+					item.lastmod = new Date().toISOString();
 					item.priority = 0.2;
-				}
-
-				if (/cariad|skoda|fujitsu/.test(item.url)) {
-					item.changefreq = ChangeFreqEnum.MONTHLY;
-					item.lastmod = new Date().toDateString();
-					item.priority = 0.9;
 				}
 
 				if (/blog/.test(item.url)) {
 					item.changefreq = ChangeFreqEnum.MONTHLY;
-					item.lastmod = new Date().toDateString();
+					item.lastmod = new Date().toISOString();
 					item.priority = 0.8;
 				}
 
@@ -50,8 +45,8 @@ export default defineConfig({
 			},
 		}),
 		mdx(),
-		react(),
 		db(),
+		vue(),
 	],
 	vite: {
 		plugins: [
@@ -67,12 +62,6 @@ export default defineConfig({
 		"/:lang/personal-projects": "/",
 		"/:lang/about-me": "/#about",
 		"/assets/resume/*": "/moriz-von-langa_resume.pdf",
-
-		"/:lang/skoda-enyaq-coupe": "/skoda-enyaq-coupe",
-		"/:lang/fujitsu-cx-lab": "/fujitsu-cx-lab",
-		"/:lang/cariad-iaa": "/cariad-iaa",
-		"/:lang/skoda-fabia": "/skoda-fabia",
-		"/:lang/fujitsu-smart-city": "/fujitsu-smart-city",
 
 		"/:lang/legal/:slug": "/legal/:slug",
 
