@@ -48,8 +48,9 @@ const buttonLabel = computed(() =>
 		: activeText.value,
 );
 
-const showActiveTextOnHover =
-	typeof text.value === "string" || text.value.activeText === undefined;
+const showActiveTextOnHover = computed(
+	() => typeof text.value === "string" || text.value.activeText === undefined,
+);
 
 const styleObject = computed(() => ({
 	"group relative inline-flex items-center justify-center gap-2 overflow-clip": true,

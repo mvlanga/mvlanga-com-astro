@@ -95,6 +95,7 @@ function handleNavButtonFocus() {
 	<AnimatePresence>
 		<motion.div
 			v-if="headerStore.isNavigationOpen"
+			key="main-menu-backdrop"
 			aria-hidden="true"
 			class="fixed top-0 left-0 z-20 h-full w-full bg-black/20"
 			:transition="{ duration: 0.15 }"
@@ -108,6 +109,7 @@ function handleNavButtonFocus() {
 		<motion.nav
 			v-if="headerStore.isNavigationOpen"
 			id="main-menu"
+			key="main-menu"
 			:variants="navigationVariants"
 			initial="initial"
 			animate="open"

@@ -25,19 +25,19 @@ export default defineConfig({
 			serialize(item) {
 				if (item.url === "https://mvlanga.com/") {
 					item.changefreq = ChangeFreqEnum.MONTHLY;
-					item.lastmod = new Date().toDateString();
+					item.lastmod = new Date().toISOString();
 					item.priority = 1;
 				}
 
 				if (/legal/.test(item.url)) {
 					item.changefreq = ChangeFreqEnum.YEARLY;
-					item.lastmod = new Date().toDateString();
+					item.lastmod = new Date().toISOString();
 					item.priority = 0.2;
 				}
 
 				if (/blog/.test(item.url)) {
 					item.changefreq = ChangeFreqEnum.MONTHLY;
-					item.lastmod = new Date().toDateString();
+					item.lastmod = new Date().toISOString();
 					item.priority = 0.8;
 				}
 

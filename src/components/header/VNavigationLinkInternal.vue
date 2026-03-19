@@ -38,6 +38,8 @@ function handleNavItemClick(event: MouseEvent) {
 	<a
 		:href="props.navigationItem.url"
 		class="inline-block"
+		data-umami-event="link-click"
+		:data-umami-event-url="props.navigationItem.url"
 		@click="handleNavItemClick">
 		{{ props.navigationItem.label }}
 	</a>
