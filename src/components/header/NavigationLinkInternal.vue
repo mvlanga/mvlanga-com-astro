@@ -16,8 +16,20 @@ const indicatorClasses = computed(() => ({
 	"-translate-x-full": !isActive.value,
 }));
 
-function handleNavItemClick() {
+function handleNavItemClick(event: MouseEvent) {
 	headerStore.isNavigationOpen = false;
+
+	const href = props.navigationItem.url;
+
+	if (href.startsWith("/#")) {
+		const el = document.querySelector(href.replace("/#", "#"));
+
+		if (el) {
+			event.preventDefault();
+
+			el.scrollIntoView({ behavior: "smooth", block: "start" });
+		}
+	}
 }
 </script>
 
