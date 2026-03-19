@@ -39,12 +39,12 @@ function handleHeaderButtonFocus() {
 				? 'pointer-none -translate-y-full opacity-0'
 				: 'translate-y-0 opacity-100',
 		]">
-		<a aria-label="Moriz von Langa home page" href="/" tabindex="-1">
-			<VButton
-				text="mvlanga"
-				class="shadow-2xl"
-				@focus="handleHeaderButtonFocus" />
-		</a>
+		<VButton
+			href="/"
+			text="mvlanga"
+			class="shadow-2xl"
+			aria-label="Moriz von Langa home page"
+			@focus="handleHeaderButtonFocus" />
 	</header>
 
 	<VNavigation

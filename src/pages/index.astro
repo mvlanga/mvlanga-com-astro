@@ -182,13 +182,12 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 		<VLatestBlogPosts client:idle blogPosts={blogPosts} />
 
 		<div class="w-full text-end">
-			<a href="/blog" class="w-full md:w-auto">
-				<VButton
-					className="w-full md:w-auto"
-					text="See all blog posts"
-					level="primary"
-				/>
-			</a>
+			<VButton
+				href="/blog"
+				className="w-full md:w-auto"
+				text="See all blog posts"
+				level="primary"
+			/>
 		</div>
 	</section>
 </Layout>
