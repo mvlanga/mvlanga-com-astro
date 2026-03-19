@@ -1,14 +1,10 @@
 <script setup lang="ts">
-import { computed, toRefs, useAttrs, useTemplateRef } from "vue";
+import { computed, toRefs, useTemplateRef } from "vue";
 
-const buttonElement = useTemplateRef<HTMLButtonElement>("button-element");
-
-defineOptions({
-	inheritAttrs: false,
-});
+const element = useTemplateRef<HTMLButtonElement | HTMLLinkElement>("element");
 
 defineExpose({
-	buttonElement,
+	element,
 });
 
 const props = withDefaults(
@@ -23,6 +19,7 @@ const props = withDefaults(
 		level?: "primary" | "secondary";
 		size?: "small" | "medium";
 		isActive?: boolean;
+		href?: string;
 	}>(),
 	{
 		level: "primary",
@@ -30,9 +27,7 @@ const props = withDefaults(
 	},
 );
 
-const { text, level, size, className, isActive } = toRefs(props);
-
-const additionalProps = useAttrs();
+const { text, level, size, className, isActive, href } = toRefs(props);
 
 const defaultText = computed(() =>
 	typeof text.value === "string" ? text.value : text.value.default,
@@ -43,16 +38,14 @@ const activeText = computed(() =>
 );
 
 const buttonLabel = computed(() =>
-	(additionalProps["aria-label"] ?? !isActive.value)
-		? defaultText.value
-		: activeText.value,
+	isActive.value ? activeText.value : defaultText.value,
 );
 
 const showActiveTextOnHover = computed(
 	() => typeof text.value === "string" || text.value.activeText === undefined,
 );
 
-const styleObject = computed(() => ({
+const elementStyles = computed(() => ({
 	"group relative inline-flex items-center justify-center gap-2 overflow-clip": true,
 	"rounded-2xl px-6 py-3": size.value === "small",
 	"rounded-3xl px-8 py-4": size.value === "medium",
@@ -66,12 +59,12 @@ const getTransitionDelayByIndex = (index: number) => `${index * 3}ms`;
 </script>
 
 <template>
-	<button
-		ref="button-element"
-		v-bind="additionalProps"
-		type="button"
+	<component
+		ref="element"
+		:is="href ? 'a' : 'button'"
+		:href="href"
 		:aria-label="buttonLabel"
-		:class="styleObject">
+		:class="elementStyles">
 		<div
 			aria-hidden="true"
 			class="absolute z-0 h-[200%] w-[150%] translate-y-full rounded-[50%] bg-purple-700 transition-transform duration-200 ease-out group-hover:translate-y-0 group-[.active]:translate-y-0" />
@@ -115,5 +108,5 @@ const getTransitionDelayByIndex = (index: number) => `${index * 3}ms`;
 				</span>
 			</span>
 		</span>
-	</button>
+	</component>
 </template>

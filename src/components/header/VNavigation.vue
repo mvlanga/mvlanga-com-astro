@@ -34,7 +34,7 @@ useEscapeKey(() => {
 const navigationButtonComponentRef =
 	useTemplateRef<InstanceType<typeof VButton>>("nav-trigger-button");
 const navigationButtonElement = computed(
-	() => navigationButtonComponentRef.value?.buttonElement ?? null,
+	() => navigationButtonComponentRef.value?.element ?? null,
 );
 
 const { width: menuButtonElementWidth, height: menuButtonElementHeight } =
