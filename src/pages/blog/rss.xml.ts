@@ -1,4 +1,4 @@
-import { getBlogPosts } from "@/utils/collections.ts";
+import { getBlogPosts } from "@/utils/collections/collections.ts";
 import rss from "@astrojs/rss";
 import type { APIRoute } from "astro";
 

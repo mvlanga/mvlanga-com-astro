@@ -17,7 +17,7 @@ export default defineConfig([
 			...tseslint.configs.recommended,
 			...eslintPluginVue.configs["flat/recommended"],
 		],
-		files: ["**/*.{ts,vue}"],
+		files: ["**/*.{ts,collections}"],
 		languageOptions: {
 			ecmaVersion: "latest",
 			sourceType: "module",

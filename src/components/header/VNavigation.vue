@@ -6,12 +6,12 @@ import {
 	useScroll,
 } from "motion-v";
 import type { Variants } from "motion-v";
-import { useElementSize } from "@/utils/useElementSize.ts";
+import { useElementSize } from "@/utils/ui/useElementSize.ts";
 import { computed, toRefs, useTemplateRef } from "vue";
 import VNavigationMainSection from "@/components/header/VNavigationMainSection.vue";
 import VNavigationSocialSection from "@/components/header/VNavigationSocialSection.vue";
 import VButton from "@/components/common/VButton.vue";
-import { useEscapeKey } from "@/utils/useEscapeKey.ts";
+import { useEscapeKey } from "@/utils/ui/useEscapeKey.ts";
 import { headerStore } from "@/components/header/headerStore.ts";
 
 const props = defineProps<{
