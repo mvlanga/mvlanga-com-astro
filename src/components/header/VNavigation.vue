@@ -8,9 +8,9 @@ import {
 import type { Variants } from "motion-v";
 import { useElementSize } from "@/utils/useElementSize.ts";
 import { computed, toRefs, useTemplateRef } from "vue";
-import NavigationMainSection from "@/components/header/NavigationMainSection.vue";
-import NavigationSocialSection from "@/components/header/NavigationSocialSection.vue";
-import BaseButton from "@/components/common/BaseButton.vue";
+import VNavigationMainSection from "@/components/header/VNavigationMainSection.vue";
+import VNavigationSocialSection from "@/components/header/VNavigationSocialSection.vue";
+import VButton from "@/components/common/VButton.vue";
 import { useEscapeKey } from "@/utils/useEscapeKey.ts";
 import { headerStore } from "@/components/header/headerStore.ts";
 
@@ -32,7 +32,7 @@ useEscapeKey(() => {
 });
 
 const navigationButtonComponentRef =
-	useTemplateRef<InstanceType<typeof BaseButton>>("nav-trigger-button");
+	useTemplateRef<InstanceType<typeof VButton>>("nav-trigger-button");
 const navigationButtonElement = computed(
 	() => navigationButtonComponentRef.value?.buttonElement ?? null,
 );
@@ -79,7 +79,7 @@ function handleNavButtonFocus() {
 				? 'translate-y-0 opacity-100'
 				: 'pointer-none -translate-y-full opacity-0',
 		]">
-		<BaseButton
+		<VButton
 			ref="nav-trigger-button"
 			:is-active="headerStore.isNavigationOpen"
 			:text="{
@@ -115,11 +115,11 @@ function handleNavButtonFocus() {
 			aria-label="Main Menu"
 			class="fixed top-2 right-2 left-2 z-30 flex max-h-[calc(100%-1rem)] flex-col gap-10 overflow-y-auto rounded-2xl bg-neutral-100 px-8 py-10 sm:top-5 sm:right-5 sm:left-auto sm:w-72">
 			<div class="flex flex-col gap-4">
-				<NavigationMainSection :initial-path="initialPath" />
+				<VNavigationMainSection :initial-path="initialPath" />
 			</div>
 
 			<div class="flex flex-col gap-4">
-				<NavigationSocialSection />
+				<VNavigationSocialSection />
 			</div>
 		</motion.nav>
 	</AnimatePresence>

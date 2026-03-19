@@ -4,7 +4,7 @@ import "@/styles.css";
 import { twMerge } from "tailwind-merge";
 import { clsx } from "clsx";
 import Footer from "@/components/footer/Footer.astro";
-import GlobalHeader from "@/components/header/GlobalHeader.vue";
+import VHeader from "@/components/header/VHeader.vue";
 
 interface Props {
 	className?: string;
@@ -96,7 +96,7 @@ const { className, footerType = "regular" } = Astro.props;
 	</head>
 
 	<body class="bg-white text-black">
-		<GlobalHeader client:load initialPath={Astro.url.pathname} />
+		<VHeader client:load initialPath={Astro.url.pathname} />
 
 		<main class={twMerge(clsx("flex flex-col gap-64 py-48", className))}>
 			<slot />

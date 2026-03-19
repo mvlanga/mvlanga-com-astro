@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { BlogPost as BlogPostType } from "@/components/blog/types.ts";
-import BlogPost from "@/components/blog/BlogPost.vue";
+import VBlogPost from "@/components/blog/VBlogPost.vue";
 import { computed } from "vue";
 import { groupPostsByMonth } from "@/components/blog/utils.ts";
 import {
@@ -14,7 +14,7 @@ import {
 	LayoutGroup,
 } from "motion-v";
 import { useBlogPostsWithViewCount } from "@/components/blog/useBlogPostsWithViewCount.ts";
-import ViewCountViewer from "@/components/blog/ViewCountViewer.vue";
+import VViewCountViewer from "@/components/blog/VViewCountViewer.vue";
 
 const props = defineProps<{
 	blogPosts: BlogPostType[];
@@ -42,7 +42,7 @@ const transition: Transition = {
 	ease: [0.27, 0.99, 0.25, 0.99],
 };
 
-const MotionBlogPost = motion.create(BlogPost, { forwardMotionProps: true });
+const MotionBlogPost = motion.create(VBlogPost, { forwardMotionProps: true });
 </script>
 
 <template>
@@ -74,7 +74,7 @@ const MotionBlogPost = motion.create(BlogPost, { forwardMotionProps: true });
 								:initial="{ opacity: 0, y: '4rem' }"
 								:animate="{ opacity: 1, y: '0' }">
 								<template #viewCount>
-									<ViewCountViewer
+									<VViewCountViewer
 										:error="error"
 										:is-loading="isLoading"
 										:view-count="post.viewCount" />

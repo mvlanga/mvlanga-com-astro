@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BaseSkeletonLoader from "@/components/common/BaseSkeletonLoader.vue";
+import VSkeletonLoader from "@/components/common/VSkeletonLoader.vue";
 import { useIncreaseViewCount } from "@/components/blog/useIncreaseViewCount.ts";
 
 const props = defineProps<{
@@ -11,7 +11,7 @@ const { isLoading, error, viewCount } = useIncreaseViewCount(props.id);
 
 <template>
 	<template v-if="!error">
-		<BaseSkeletonLoader v-if="isLoading || viewCount === null" />
+		<VSkeletonLoader v-if="isLoading || viewCount === null" />
 
 		<p v-else>{{ `${viewCount.toLocaleString()} views` }}</p>
 	</template>

@@ -2,7 +2,7 @@
 import { motion } from "motion-v";
 import type { Variants } from "motion-v";
 import { experienceFilterStore } from "@/components/experience/experienceFilterStore.ts";
-import ExperienceItem from "@/components/experience/ExperienceItem.vue";
+import VExperienceItem from "@/components/experience/VExperienceItem.vue";
 import type { CollectionEntry } from "astro:content";
 
 const props = defineProps<{
@@ -42,7 +42,7 @@ const containerVariants: Variants = {
 					? 'opacity-0'
 					: 'opacity-100',
 			]" />
-		<ExperienceItem
+		<VExperienceItem
 			v-for="item in props.items"
 			:key="`${item.data.company}_${item.data.role}`"
 			:item="item" />

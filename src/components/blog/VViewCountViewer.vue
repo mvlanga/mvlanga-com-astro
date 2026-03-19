@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BaseSkeletonLoader from "@/components/common/BaseSkeletonLoader.vue";
+import VSkeletonLoader from "@/components/common/VSkeletonLoader.vue";
 
 const { isLoading, viewCount, error } = defineProps<{
 	isLoading: boolean;
@@ -10,7 +10,7 @@ const { isLoading, viewCount, error } = defineProps<{
 
 <template>
 	<template v-if="!error">
-		<BaseSkeletonLoader v-if="isLoading || viewCount === null" />
+		<VSkeletonLoader v-if="isLoading || viewCount === null" />
 
 		<p v-else>{{ `${viewCount.toLocaleString()} views` }}</p>
 	</template>

@@ -2,7 +2,7 @@
 import { motion } from "motion-v";
 import type { NavigationItems } from "@/components/header/types";
 import { onMounted, ref, toRefs } from "vue";
-import NavigationLinkInternal from "@/components/header/NavigationLinkInternal.vue";
+import VNavigationLinkInternal from "@/components/header/VNavigationLinkInternal.vue";
 
 const props = defineProps<{
 	initialPath: string;
@@ -109,7 +109,7 @@ onMounted(() => {
 				},
 			}"
 			class="group relative text-2xl">
-			<NavigationLinkInternal
+			<VNavigationLinkInternal
 				:navigation-item="item"
 				:is-active="activeSection === item.url.replace('/#', '')" />
 		</motion.li>

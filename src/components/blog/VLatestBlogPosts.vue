@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import useEmblaCarousel from "embla-carousel-vue";
 import type { BlogPost as BlogPostType } from "@/components/blog/types.ts";
-import BlogPost from "@/components/blog/BlogPost.vue";
-import ViewCountViewer from "@/components/blog/ViewCountViewer.vue";
+import VBlogPost from "@/components/blog/VBlogPost.vue";
+import VViewCountViewer from "@/components/blog/VViewCountViewer.vue";
 import { useBlogPostsWithViewCount } from "@/components/blog/useBlogPostsWithViewCount.ts";
 
 const props = defineProps<{
@@ -23,14 +23,14 @@ const { isLoading, error, blogPostsWithViewCount } = useBlogPostsWithViewCount(
 				v-for="post in blogPostsWithViewCount"
 				:key="post.id"
 				class="transform-3d-[0_0_0] min-w-0 flex-[0_0_92%] pl-3 md:flex-[0_0_60%] md:pl-6 lg:flex-[0_0_45%]">
-				<BlogPost :post="post">
+				<VBlogPost :post="post">
 					<template #viewCount>
-						<ViewCountViewer
+						<VViewCountViewer
 							:error="error"
 							:is-loading="isLoading"
 							:view-count="post.viewCount" />
 					</template>
-				</BlogPost>
+				</VBlogPost>
 			</div>
 		</div>
 	</div>

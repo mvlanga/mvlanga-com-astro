@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import BaseButton from "@/components/common/BaseButton.vue";
+import VButton from "@/components/common/VButton.vue";
 import { useScroll, useMotionValueEvent } from "motion-v";
-import GlobalNavigation from "@/components/header/GlobalNavigation.vue";
+import VNavigation from "@/components/header/VNavigation.vue";
 import { headerStore } from "@/components/header/headerStore.ts";
 
 const { initialPath } = defineProps<{
@@ -40,14 +40,14 @@ function handleHeaderButtonFocus() {
 				: 'translate-y-0 opacity-100',
 		]">
 		<a aria-label="Moriz von Langa home page" href="/" tabindex="-1">
-			<BaseButton
+			<VButton
 				text="mvlanga"
 				class="shadow-2xl"
 				@focus="handleHeaderButtonFocus" />
 		</a>
 	</header>
 
-	<GlobalNavigation
+	<VNavigation
 		:initial-path="initialPath"
 		:is-menu-trigger-button-visible="!headerStore.isHeaderHidden" />
 </template>

@@ -2,8 +2,8 @@
 export const prerender = true;
 
 import RssIcon from "@/assets/icons/rss.svg";
-import BlogFilter from "@/components/blog/BlogFilter.vue";
-import BlogPosts from "@/components/blog/BlogPosts.vue";
+import VBlogFilter from "@/components/blog/VBlogFilter.vue";
+import VBlogPosts from "@/components/blog/VBlogPosts.vue";
 import { getTagsWithCountByPosts } from "@/components/blog/utils";
 import Layout from "@/layouts/layout.astro";
 import { getBlogPosts } from "@/utils/collections";
@@ -43,8 +43,8 @@ const availableTags = getTagsWithCountByPosts(blogPosts);
 			It's just great to have a place to go back to.
 		</p>
 
-		<BlogFilter client:idle availableTags={availableTags} />
+		<VBlogFilter client:idle availableTags={availableTags} />
 	</section>
 
-	<BlogPosts client:idle blogPosts={blogPosts} />
+	<VBlogPosts client:idle blogPosts={blogPosts} />
 </Layout>

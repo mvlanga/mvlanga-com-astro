@@ -2,7 +2,7 @@
 export const prerender = true;
 
 import { render } from "astro:content";
-import ViewCounter from "@/components/blog/ViewCounter.vue";
+import VViewCounter from "@/components/blog/VViewCounter.vue";
 import Divider from "@/components/common/Divider.astro";
 import Prose from "@/components/common/Prose.astro";
 import Layout from "@/layouts/layout.astro";
@@ -42,7 +42,7 @@ const { title, description, tags, createdAt, updatedAt } = post.data;
 				<span>{tags.map((tag) => `#${tag}`).join(", ")}</span>
 
 				<div class="flex flex-wrap gap-4">
-					<ViewCounter client:idle id={post.id} />
+					<VViewCounter client:idle id={post.id} />
 
 					<p>
 						<span class={updatedAt ? "line-through" : undefined}>
