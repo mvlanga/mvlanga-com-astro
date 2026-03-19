@@ -2,11 +2,11 @@
 export const prerender = true;
 
 import RssIcon from "@/assets/icons/rss.svg";
-import VBlogFilter from "@/components/blog/VBlogFilter.collections";
-import VBlogPosts from "@/components/blog/VBlogPosts.collections";
+import VBlogFilter from "@/components/blog/VBlogFilter.vue";
+import VBlogPosts from "@/components/blog/VBlogPosts.vue";
 import { getTagsWithCountByPosts } from "@/components/blog/utils";
 import Layout from "@/layouts/layout.astro";
-import { getBlogPosts } from "@/utils/collections";
+import { getBlogPosts } from "@/utils/collections/utils";
 
 const blogPosts = await getBlogPosts();
 const availableTags = getTagsWithCountByPosts(blogPosts);

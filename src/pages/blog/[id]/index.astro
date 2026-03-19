@@ -2,11 +2,11 @@
 export const prerender = true;
 
 import { render } from "astro:content";
-import VViewCounter from "@/components/blog/VViewCounter.collections";
+import VViewCounter from "@/components/blog/VViewCounter.vue";
 import Divider from "@/components/common/Divider.astro";
 import Prose from "@/components/common/Prose.astro";
 import Layout from "@/layouts/layout.astro";
-import { getBlogPosts } from "@/utils/collections";
+import { getBlogPosts } from "@/utils/collections/utils";
 
 export async function getStaticPaths() {
 	const blogPosts = await getBlogPosts();

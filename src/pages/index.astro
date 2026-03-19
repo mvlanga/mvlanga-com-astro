@@ -7,13 +7,13 @@ import RssIcon from "@/assets/icons/rss.svg";
 import Ellipsis from "@/components/about/Ellipsis.astro";
 import Divider from "@/components/common/Divider.astro";
 import Layout from "@/layouts/layout.astro";
-import { getBlogPosts } from "@/utils/collections";
-import { sortExperience } from "@/utils/sortCollection";
-import VExperienceItem from "@/components/experience/VExperienceItem.collections";
-import VUnimportantVExperienceItems from "@/components/experience/VUnimportantExperienceItems.collections";
-import VExperienceFilter from "@/components/experience/VExperienceFilter.collections";
-import VButton from "@/components/common/VButton.collections";
-import VLatestBlogPosts from "@/components/blog/VLatestBlogPosts.collections";
+import { getBlogPosts } from "@/utils/collections/utils";
+import { sortExperience } from "@/utils/collections/utils";
+import VExperienceItem from "@/components/experience/VExperienceItem.vue";
+import VUnimportantVExperienceItems from "@/components/experience/VUnimportantExperienceItems.vue";
+import VExperienceFilter from "@/components/experience/VExperienceFilter.vue";
+import VButton from "@/components/common/VButton.vue";
+import VLatestBlogPosts from "@/components/blog/VLatestBlogPosts.vue";
 
 import mvlPortrait from "../assets/img/moriz-von-langa-portrait.avif";
 
