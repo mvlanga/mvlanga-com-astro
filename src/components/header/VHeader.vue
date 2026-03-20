@@ -34,7 +34,7 @@ function handleHeaderButtonFocus() {
 
 	<header
 		:class="[
-			'fixed top-4 left-4 z-40 transition-all duration-150 ease-out sm:top-10 sm:left-10',
+			'fixed top-4 left-4 z-30 transition-all duration-200 ease-out sm:top-10 sm:left-10',
 			headerStore.isHeaderHidden
 				? 'pointer-none -translate-y-full opacity-0'
 				: 'translate-y-0 opacity-100',

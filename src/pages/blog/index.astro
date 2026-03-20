@@ -43,8 +43,8 @@ const availableTags = getTagsWithCountByPosts(blogPosts);
 			It's just great to have a place to go back to.
 		</p>
 
-		<VBlogFilter client:idle availableTags={availableTags} />
+		<VBlogFilter client:load availableTags={availableTags} />
 	</section>
 
-	<VBlogPosts client:idle blogPosts={blogPosts} />
+	<VBlogPosts client:load blogPosts={blogPosts} />
 </Layout>

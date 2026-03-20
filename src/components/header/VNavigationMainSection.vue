@@ -108,7 +108,7 @@ onMounted(() => {
 					translateY: '0px',
 				},
 			}"
-			class="group relative text-2xl">
+			class="group relative flex items-center justify-start text-2xl">
 			<VNavigationLinkInternal
 				:navigation-item="item"
 				:is-active="activeSection === item.url.replace('/#', '')" />

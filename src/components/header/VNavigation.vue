@@ -74,7 +74,7 @@ function handleNavButtonFocus() {
 <template>
 	<div
 		:class="[
-			'fixed top-4 right-4 z-40 transition-all duration-150 ease-out sm:top-10 sm:right-10',
+			'fixed top-4 right-4 z-40 transition-all duration-200 ease-out sm:top-10 sm:right-10',
 			isMenuTriggerButtonVisible
 				? 'translate-y-0 opacity-100'
 				: 'pointer-none -translate-y-full opacity-0',
