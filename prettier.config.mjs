@@ -31,5 +31,5 @@ export default {
 		},
 	],
 	tailwindStylesheet: "src/styles.css",
-	tailwindFunctions: ["clsx", "twMerge"],
+	tailwindFunctions: ["clsx", "twMerge", "computed"],
 };

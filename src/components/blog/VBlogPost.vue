@@ -12,7 +12,7 @@ const {
 	data: { title, description, tags, createdAt },
 } = props.post;
 
-const combinedTags = computed(() => tags.map((tag) => `#${tag}`).join(", "));
+const combinedTags = computed(() => tags.map((tag) => `#${tag}`).join(","));
 </script>
 
 <template>

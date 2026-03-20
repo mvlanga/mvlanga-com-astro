@@ -1,21 +1,20 @@
 ---
 export const prerender = true;
 
-import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import { getBlogPosts } from "@/utils/collections/utils";
+import { sortExperience } from "@/utils/collections/utils";
 import RssIcon from "@/assets/icons/rss.svg";
 import Ellipsis from "@/components/about/Ellipsis.astro";
 import Divider from "@/components/common/Divider.astro";
 import Layout from "@/layouts/layout.astro";
-import { getBlogPosts } from "@/utils/collections/utils";
-import { sortExperience } from "@/utils/collections/utils";
+import PortraitImage from "@/components/about/PortraitImage.astro";
+import ColoredBackground from "@/components/about/ColoredBackground.astro";
 import VExperienceItem from "@/components/experience/VExperienceItem.vue";
 import VUnimportantVExperienceItems from "@/components/experience/VUnimportantExperienceItems.vue";
 import VExperienceFilter from "@/components/experience/VExperienceFilter.vue";
 import VButton from "@/components/common/VButton.vue";
 import VLatestBlogPosts from "@/components/blog/VLatestBlogPosts.vue";
-
-import mvlPortrait from "../assets/img/moriz-von-langa-portrait.avif";
 
 const experience = sortExperience(await getCollection("experience"));
 const importantExperience = experience.filter((item) => item.data.important);
@@ -43,10 +42,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 	</section>
 
 	<section class="relative scroll-mt-16" id="about">
-		<div
-			id="colored-background"
-			class="animate-timeline-[square] absolute inset-x-0 -top-32 -bottom-32 -z-20 bg-neutral-100">
-		</div>
+		<ColoredBackground />
 
 		<div class="container grid gap-16">
 			<h2 class="text-5xl">About</h2>
@@ -61,19 +57,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 					</p>
 				</div>
 				<div class="md:col-span-4">
-					<div
-						style={{
-							"aspect-ratio":
-								mvlPortrait.width / mvlPortrait.height,
-						}}
-						class="relative max-h-lvh overflow-clip rounded-2xl md:ml-auto">
-						<Image
-							src={mvlPortrait}
-							class="absolute inset-0 -top-48 h-[calc(100%+var(--spacing)*32*2)] object-cover"
-							id="portrait-image"
-							alt="Portrait of Moriz von Langa"
-						/>
-					</div>
+					<PortraitImage />
 				</div>
 			</div>
 			<h2 class="text-4xl">

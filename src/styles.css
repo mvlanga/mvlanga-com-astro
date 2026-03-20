@@ -73,14 +73,22 @@
 		font-display: swap;
 	}
 
-	button:not(:disabled),
-	[role="button"]:not(:disabled) {
-		cursor: pointer;
-	}
-
 	.astro-code,
 	.astro-code span {
 		background-color: var(--color-neutral-100) !important;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply text-balance;
+	}
+
+	p {
+		@apply text-pretty;
 	}
 }
 
@@ -103,46 +111,4 @@
 
 @utility max-w-prose-xl {
 	@apply w-full;
-}
-
-@supports not (animation-timeline: scroll()) {
-	#colored-background {
-		display: none;
-	}
-}
-
-@supports (animation-timeline: scroll()) {
-	#colored-background {
-		animation-name: fadeIn;
-		animation-timeline: view(block 50% 100%);
-		animation-timing-function: linear;
-		animation-fill-mode: both;
-	}
-
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
-		}
-
-		to {
-			opacity: 1;
-		}
-	}
-
-	#portrait-image {
-		animation-name: portraitParallax;
-		animation-timeline: view(block);
-		animation-timing-function: linear;
-		animation-fill-mode: both;
-	}
-
-	@keyframes portraitParallax {
-		from {
-			transform: translateY(calc(var(--spacing) * 24));
-		}
-
-		to {
-			transform: translateY(calc(var(--spacing) * -24));
-		}
-	}
 }
