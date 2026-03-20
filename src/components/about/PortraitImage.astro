@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets";
+
+import mvlPortrait from "../../assets/img/moriz-von-langa-portrait.avif";
+
+---
+
+<style is:inline>
+    @supports (animation-timeline: scroll()) {
+        #portrait-image {
+            animation-name: portraitParallax;
+            animation-timeline: view(block);
+            animation-timing-function: linear;
+            animation-fill-mode: both;
+        }
+
+        @keyframes portraitParallax {
+            from {
+                transform: translateY(calc(var(--spacing) * 24));
+            }
+
+            to {
+                transform: translateY(calc(var(--spacing) * -24));
+            }
+        }
+    }
+
+</style>
+
+<Image
+	src={mvlPortrait}
+	class="absolute inset-0 -top-48 h-[calc(100%+var(--spacing)*32*2)] object-cover"
+	id="portrait-image"
+	alt="Portrait of Moriz von Langa"
+/>

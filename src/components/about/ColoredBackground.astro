@@ -1,0 +1,48 @@
+<style is:inline>
+    @supports not (animation-timeline: scroll()) {
+        #colored-background {
+            display: none;
+        }
+    }
+
+    @supports (animation-timeline: scroll()) {
+        #colored-background {
+            animation-name: fadeIn;
+            animation-timeline: view(block 50% 100%);
+            animation-timing-function: linear;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #portrait-image {
+            animation-name: portraitParallax;
+            animation-timeline: view(block);
+            animation-timing-function: linear;
+            animation-fill-mode: both;
+        }
+
+        @keyframes portraitParallax {
+            from {
+                transform: translateY(calc(var(--spacing) * 24));
+            }
+
+            to {
+                transform: translateY(calc(var(--spacing) * -24));
+            }
+        }
+    }
+</style>
+
+<div
+	id="colored-background"
+	class="animate-timeline-[square] absolute inset-x-0 -top-32 -bottom-32 -z-20 bg-neutral-100">
+</div>
