@@ -25,9 +25,15 @@ import mvlPortrait from "../../assets/img/moriz-von-langa-portrait.avif";
 	}
 </style>
 
-<Image
-	src={mvlPortrait}
-	class="absolute inset-0 -top-48 h-[calc(100%+var(--spacing)*32*2)] object-cover"
-	id="portrait-image"
-	alt="Portrait of Moriz von Langa"
-/>
+<div
+	style={{
+		"aspect-ratio": mvlPortrait.width / mvlPortrait.height,
+	}}
+	class="relative max-h-lvh overflow-clip rounded-2xl md:ml-auto">
+	<Image
+		src={mvlPortrait}
+		class="absolute inset-0 -top-48 h-[calc(100%+var(--spacing)*32*2)] object-cover"
+		id="portrait-image"
+		alt="Portrait of Moriz von Langa"
+	/>
+</div>

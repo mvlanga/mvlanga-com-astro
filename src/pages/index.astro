@@ -57,14 +57,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 					</p>
 				</div>
 				<div class="md:col-span-4">
-					<div
-						style={{
-							"aspect-ratio":
-								mvlPortrait.width / mvlPortrait.height,
-						}}
-						class="relative max-h-lvh overflow-clip rounded-2xl md:ml-auto">
-						<PortraitImage />
-					</div>
+					<PortraitImage />
 				</div>
 			</div>
 			<h2 class="text-4xl">
