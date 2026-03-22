@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { BlogPost as BlogPostType } from "@/components/blog/types.ts";
 import VBlogPost from "@/components/blog/VBlogPost.vue";
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { groupPostsByMonth } from "@/components/blog/utils.ts";
 import {
 	BLOG_FILTER_TAG_ALL_VALUE,
@@ -43,17 +43,10 @@ const transition: Transition = {
 };
 
 const MotionBlogPost = motion.create(VBlogPost, { forwardMotionProps: true });
-
-const isAnimating = ref(false);
 </script>
 
 <template>
-	<section
-		class="grid gap-16"
-		:style="{
-			filter: isAnimating ? 'blur(6px)' : 'blur(0px)',
-			transition: 'filter 0.2s ease',
-		}">
+	<section class="grid gap-16">
 		<LayoutGroup :id="'blog-posts'">
 			<AnimatePresence :initial="false">
 				<template
@@ -79,9 +72,7 @@ const isAnimating = ref(false);
 								:transition="transition"
 								:exit="{ opacity: 0 }"
 								:initial="{ opacity: 0, y: '4rem' }"
-								:animate="{ opacity: 1, y: '0' }"
-								@layoutAnimationStart="isAnimating = true"
-								@layoutAnimationComplete="isAnimating = false">
+								:animate="{ opacity: 1, y: '0' }">
 								<template #viewCount>
 									<VViewCountViewer
 										:error="error"
