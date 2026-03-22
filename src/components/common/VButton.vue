@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, toRefs, useTemplateRef } from "vue";
+import { useReducedMotion } from "motion-v";
 
 const element = useTemplateRef<HTMLButtonElement | HTMLLinkElement>("element");
 
@@ -28,6 +29,8 @@ const props = withDefaults(
 );
 
 const { text, level, size, className, isActive, href } = toRefs(props);
+
+const shouldReduceMotion = useReducedMotion();
 
 const defaultText = computed(() =>
 	typeof text.value === "string" ? text.value : text.value.default,
@@ -69,44 +72,59 @@ const getTransitionDelayByIndex = (index: number) => `${index * 3}ms`;
 			aria-hidden="true"
 			class="absolute z-0 h-[200%] w-[150%] translate-y-full rounded-[50%] bg-purple-700 transition-transform duration-200 ease-out group-hover:translate-y-0 group-[.active]:translate-y-0" />
 
-		<span class="z-10 flex justify-items-start whitespace-nowrap">
-			<span>
-				<span
-					v-for="(char, index) in defaultText.split('')"
-					:key="`default_text_${char}_${index}`"
-					:class="{
-						'transition-all duration-200 ease-out': true,
-						'group-hover:-translate-y-full group-hover:opacity-0':
-							showActiveTextOnHover,
-						'group-[.active]:-translate-y-full group-[.active]:opacity-0':
-							!showActiveTextOnHover,
-						'inline-block': char !== ' ',
-					}"
-					:style="{
-						'transition-delay': getTransitionDelayByIndex(index),
-					}">
-					{{ char }}
-				</span>
-			</span>
+		<template v-if="shouldReduceMotion">
+			<span
+				class="z-10 opacity-100 transition-opacity group-[.active]:opacity-0"
+				>{{ defaultText }}</span
+			>
+			<span
+				class="absolute opacity-0 transition-opacity group-[.active]:opacity-100"
+				>{{ activeText }}</span
+			>
+		</template>
 
-			<span class="absolute">
-				<span
-					v-for="(char, index) in activeText.split('')"
-					:key="`active_text_${char}_${index}`"
-					:class="{
-						'translate-y-full opacity-0 transition-all duration-200 ease-out': true,
-						'group-hover:translate-y-0 group-hover:opacity-100':
-							showActiveTextOnHover,
-						'group-[.active]:translate-y-0 group-[.active]:opacity-100':
-							!showActiveTextOnHover,
-						'inline-block': char !== ' ',
-					}"
-					:style="{
-						'transition-delay': getTransitionDelayByIndex(index),
-					}">
-					{{ char }}
+		<template v-else>
+			<span class="z-10 flex justify-items-start whitespace-nowrap">
+				<span>
+					<span
+						v-for="(char, index) in defaultText.split('')"
+						:key="`default_text_${char}_${index}`"
+						:class="{
+							'transition-all duration-200 ease-out': true,
+							'group-hover:-translate-y-full group-hover:opacity-0':
+								showActiveTextOnHover,
+							'group-[.active]:-translate-y-full group-[.active]:opacity-0':
+								!showActiveTextOnHover,
+							'inline-block': char !== ' ',
+						}"
+						:style="{
+							'transition-delay':
+								getTransitionDelayByIndex(index),
+						}">
+						{{ char }}
+					</span>
+				</span>
+
+				<span class="absolute">
+					<span
+						v-for="(char, index) in activeText.split('')"
+						:key="`active_text_${char}_${index}`"
+						:class="{
+							'translate-y-full opacity-0 transition-all duration-200 ease-out': true,
+							'group-hover:translate-y-0 group-hover:opacity-100':
+								showActiveTextOnHover,
+							'group-[.active]:translate-y-0 group-[.active]:opacity-100':
+								!showActiveTextOnHover,
+							'inline-block': char !== ' ',
+						}"
+						:style="{
+							'transition-delay':
+								getTransitionDelayByIndex(index),
+						}">
+						{{ char }}
+					</span>
 				</span>
 			</span>
-		</span>
+		</template>
 	</component>
 </template>
