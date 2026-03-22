@@ -32,7 +32,7 @@ function handleNavItemClick() {
 		<li
 			v-for="({ url, label }, index) in socialItems"
 			:key="url"
-			class="opacity-100 transition-opacity duration-150 ease-out starting:opacity-0"
+			class="opacity-100 transition-opacity duration-250 ease-out starting:opacity-0"
 			:style="{ 'transition-delay': `${50 * (index + 1) + 250}ms` }">
 			<a
 				:href="url"
