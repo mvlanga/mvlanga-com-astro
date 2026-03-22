@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { motion } from "motion-v";
 import type { NavigationItems } from "@/components/header/types";
 import { onMounted, ref, toRefs } from "vue";
 import VNavigationLinkInternal from "@/components/header/VNavigationLinkInternal.vue";
@@ -67,51 +66,20 @@ onMounted(() => {
 </script>
 
 <template>
-	<motion.p
-		:variants="{
-			initial: { opacity: 0 },
-			closed: { opacity: 0 },
-			open: {
-				opacity: 1,
-				transition: { delay: 0.2 },
-			},
-		}"
-		class="text-sm">
+	<p
+		class="text-sm opacity-100 transition-opacity delay-200 duration-150 ease-out starting:opacity-0">
 		Navigation
-	</motion.p>
+	</p>
 
-	<motion.ul
-		:variants="{
-			open: {
-				transition: {
-					when: 'beforeChildren',
-					staggerChildren: 0.05,
-					delayChildren: 0.25,
-				},
-			},
-		}"
-		class="flex flex-col gap-5">
-		<motion.li
-			v-for="item in navigationItems"
+	<ul class="flex flex-col gap-5">
+		<li
+			v-for="(item, index) in navigationItems"
 			:key="item.url"
-			:variants="{
-				initial: {
-					opacity: 0,
-					translateY: '50%',
-				},
-				closed: {
-					opacity: 0,
-					translateY: '0px',
-				},
-				open: {
-					opacity: 1,
-					translateY: '0px',
-				},
-			}"
-			class="group relative flex items-center justify-start text-2xl">
+			class="group relative flex translate-y-0 items-center justify-start text-2xl opacity-100 transition-all duration-200 ease-overshoot-out starting:opacity-0 motion-safe:starting:translate-y-1/2"
+			:style="{ 'transition-delay': `${50 * index + 1 + 200}ms` }">
 			<VNavigationLinkInternal
 				:navigation-item="item"
 				:is-active="activeSection === item.url.replace('/#', '')" />
-		</motion.li>
-	</motion.ul>
+		</li>
+	</ul>
 </template>

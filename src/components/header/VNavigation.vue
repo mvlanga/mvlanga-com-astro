@@ -3,6 +3,7 @@ import {
 	AnimatePresence,
 	motion,
 	useMotionValueEvent,
+	useReducedMotion,
 	useScroll,
 } from "motion-v";
 import type { Variants } from "motion-v";
@@ -21,6 +22,7 @@ const props = defineProps<{
 
 const { initialPath, isMenuTriggerButtonVisible } = toRefs(props);
 
+const shouldReduceMotion = useReducedMotion();
 const { scrollY } = useScroll();
 
 useMotionValueEvent(scrollY, "change", () => {
@@ -45,15 +47,25 @@ const navigationVariants = computed(
 		({
 			initial: {
 				opacity: 0,
-				clipPath: `inset(1.25rem 1.25rem calc(100% - ${menuButtonElementHeight.value}px - 1.25rem) calc(100% - ${menuButtonElementWidth.value}px - 1.25rem) round 1rem)`,
+				...(shouldReduceMotion.value
+					? {}
+					: {
+							clipPath: `inset(1.25rem 1.25rem calc(100% - ${menuButtonElementHeight.value}px - 1.25rem) calc(100% - ${menuButtonElementWidth.value}px - 1.25rem) round 1rem)`,
+						}),
 			},
 			closed: {
 				opacity: 0,
-				clipPath: `inset(1.25rem 1.25rem calc(100% - ${menuButtonElementHeight.value}px - 1.25rem) calc(100% - ${menuButtonElementWidth.value}px - 1.25rem) round 1rem)`,
+				...(shouldReduceMotion.value
+					? {}
+					: {
+							clipPath: `inset(1.25rem 1.25rem calc(100% - ${menuButtonElementHeight.value}px - 1.25rem) calc(100% - ${menuButtonElementWidth.value}px - 1.25rem) round 1rem)`,
+						}),
 			},
 			open: {
 				opacity: 1,
-				clipPath: "inset(0% 0% 0% 0% round 1rem)",
+				...(shouldReduceMotion.value
+					? {}
+					: { clipPath: "inset(0% 0% 0% 0% round 1rem)" }),
 			},
 		}) satisfies Variants,
 );
@@ -76,8 +88,8 @@ function handleNavButtonFocus() {
 		:class="[
 			'fixed top-4 right-4 z-40 transition-all duration-200 ease-out sm:top-10 sm:right-10',
 			isMenuTriggerButtonVisible
-				? 'translate-y-0 opacity-100'
-				: 'pointer-none -translate-y-full opacity-0',
+				? 'translate-y-0 opacity-100 blur-none'
+				: 'pointer-none -translate-y-full opacity-0 blur-sm',
 		]">
 		<VButton
 			ref="nav-trigger-button"
