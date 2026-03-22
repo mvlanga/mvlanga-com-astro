@@ -89,7 +89,7 @@ function handleNavButtonFocus() {
 			'fixed top-4 right-4 z-40 transition-all duration-200 ease-out sm:top-10 sm:right-10',
 			isMenuTriggerButtonVisible
 				? 'translate-y-0 opacity-100 blur-none'
-				: 'pointer-none -translate-y-full opacity-0 blur-sm',
+				: 'pointer-events-none -translate-y-full opacity-0 blur-sm',
 		]">
 		<VButton
 			ref="nav-trigger-button"
