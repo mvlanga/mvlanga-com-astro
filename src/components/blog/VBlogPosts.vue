@@ -33,7 +33,7 @@ const blogPostsGrouped = computed(() =>
 </script>
 
 <template>
-	<TransitionGroup tag="section" class="grid gap-16" moveClass="opacity-0">
+	<TransitionGroup name="blog-posts" tag="section" class="grid gap-16">
 		<template v-for="[title, posts] in blogPostsGrouped" :key="title">
 			<div
 				class="grid gap-8 duration-150 ease-out sm:grid-cols-2 xl:grid-cols-2">
@@ -41,7 +41,7 @@ const blogPostsGrouped = computed(() =>
 					{{ title }}
 				</p>
 
-				<TransitionGroup moveClass="blur-lg">
+				<TransitionGroup name="blog-posts-area">
 					<VBlogPost
 						v-for="post in posts"
 						:key="post.id"
