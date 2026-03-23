@@ -104,7 +104,7 @@
 	.blog-posts-enter-from,
 	.blog-posts-leave-to {
 		opacity: 0;
-		transform: translateX(30px);
+		transform: translateY(50px);
 	}
 
 	.blog-posts-leave-active {
@@ -120,7 +120,7 @@
 	.blog-posts-area-enter-from,
 	.blog-posts-area-leave-to {
 		opacity: 0;
-		transform: translateX(30px);
+		transform: translateY(50px);
 	}
 
 	.blog-posts-area-leave-active {
