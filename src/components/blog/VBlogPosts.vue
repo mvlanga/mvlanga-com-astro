@@ -30,6 +30,10 @@ const blogPostsFiltered = computed(
 const blogPostsGrouped = computed(() =>
 	groupPostsByMonth(blogPostsFiltered.value),
 );
+
+console.log(blogPostsFiltered.value);
+
+console.log(blogPostsGrouped.value);
 </script>
 
 <template>
