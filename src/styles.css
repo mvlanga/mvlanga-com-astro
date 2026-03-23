@@ -94,38 +94,6 @@
 	p {
 		@apply text-pretty;
 	}
-
-	.blog-posts-move,
-	.blog-posts-enter-active,
-	.blog-posts-leave-active {
-		transition: all 5s;
-	}
-
-	.blog-posts-enter-from,
-	.blog-posts-leave-to {
-		opacity: 0;
-		transform: translateY(50px);
-	}
-
-	.blog-posts-leave-active {
-		position: absolute;
-	}
-
-	.blog-posts-area-move,
-	.blog-posts-area-enter-active,
-	.blog-posts-area-leave-active {
-		transition: all 5s;
-	}
-
-	.blog-posts-area-enter-from,
-	.blog-posts-area-leave-to {
-		opacity: 0;
-		transform: translateY(50px);
-	}
-
-	.blog-posts-area-leave-active {
-		position: absolute;
-	}
 }
 
 @utility container {

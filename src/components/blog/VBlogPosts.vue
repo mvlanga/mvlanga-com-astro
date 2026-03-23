@@ -33,33 +33,37 @@ const blogPostsGrouped = computed(() =>
 </script>
 
 <template>
-	<TransitionGroup
-		name="blog-posts"
-		tag="section"
-		class="grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
-		<template
-			v-for="item in blogPostsGrouped"
-			:key="
-				typeof item === 'string'
-					? item
-					: item?.map((i) => i.id).join(',')
-			">
-			<template v-if="typeof item === 'string'">
-				<p class="col-span-full text-2xl">
-					{{ item }}
-				</p>
-			</template>
+	<section class="grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
+		<TransitionGroup
+			class="duration-150 ease-out"
+			enter-from-class="opacity-0"
+			enter-to-class="opacity-100"
+			leave-from-class="opacity-100"
+			leave-to-class="opacity-0">
+			<template
+				v-for="item in blogPostsGrouped"
+				:key="
+					typeof item === 'string'
+						? item
+						: item?.map((i) => i.id).join(',')
+				">
+				<template v-if="typeof item === 'string'">
+					<p class="col-span-full text-2xl">
+						{{ item }}
+					</p>
+				</template>
 
-			<template v-else>
-				<VBlogPost v-for="post in item" :key="post.id" :post="post">
-					<template #viewCount>
-						<VViewCountViewer
-							:error="error"
-							:is-loading="isLoading"
-							:view-count="post.viewCount" />
-					</template>
-				</VBlogPost>
+				<template v-else>
+					<VBlogPost v-for="post in item" :key="post.id" :post="post">
+						<template #viewCount>
+							<VViewCountViewer
+								:error="error"
+								:is-loading="isLoading"
+								:view-count="post.viewCount" />
+						</template>
+					</VBlogPost>
+				</template>
 			</template>
-		</template>
-	</TransitionGroup>
+		</TransitionGroup>
+	</section>
 </template>
