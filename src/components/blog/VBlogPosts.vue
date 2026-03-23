@@ -45,7 +45,7 @@ console.log(blogPostsGrouped.value);
 					{{ title }}
 				</p>
 
-				<TransitionGroup tag="div" name="blog-posts-area">
+				<TransitionGroup name="blog-posts-area">
 					<VBlogPost
 						v-for="post in posts"
 						:key="post.id"
