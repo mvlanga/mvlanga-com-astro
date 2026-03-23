@@ -98,7 +98,7 @@
 	.blog-posts-move,
 	.blog-posts-enter-active,
 	.blog-posts-leave-active {
-		transition: all 1s;
+		transition: all 5s;
 	}
 
 	.blog-posts-enter-from,
@@ -114,7 +114,7 @@
 	.blog-posts-area-move,
 	.blog-posts-area-enter-active,
 	.blog-posts-area-leave-active {
-		transition: all 1s;
+		transition: all 5s;
 	}
 
 	.blog-posts-area-enter-from,
