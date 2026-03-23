@@ -28,37 +28,38 @@ const blogPostsFiltered = computed(
 );
 
 const blogPostsGrouped = computed(() =>
-	groupPostsByMonth(blogPostsFiltered.value),
+	groupPostsByMonth(blogPostsFiltered.value).flat(),
 );
-
-console.log(blogPostsFiltered.value);
-
-console.log(blogPostsGrouped.value);
 </script>
 
 <template>
-	<TransitionGroup name="blog-posts" tag="section" class="grid gap-16">
-		<template v-for="[title, posts] in blogPostsGrouped" :key="title">
-			<div
-				class="grid gap-8 duration-150 ease-out sm:grid-cols-2 xl:grid-cols-2">
+	<TransitionGroup
+		name="blog-posts"
+		tag="section"
+		class="grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
+		<template
+			v-for="item in blogPostsGrouped"
+			:key="
+				typeof item === 'string'
+					? item
+					: item?.map((i) => i.id).join(',')
+			">
+			<template v-if="typeof item === 'string'">
 				<p class="col-span-full text-2xl">
-					{{ title }}
+					{{ item }}
 				</p>
+			</template>
 
-				<TransitionGroup name="blog-posts-area">
-					<VBlogPost
-						v-for="post in posts"
-						:key="post.id"
-						:post="post">
-						<template #viewCount>
-							<VViewCountViewer
-								:error="error"
-								:is-loading="isLoading"
-								:view-count="post.viewCount" />
-						</template>
-					</VBlogPost>
-				</TransitionGroup>
-			</div>
+			<template v-else>
+				<VBlogPost v-for="post in item" :key="post.id" :post="post">
+					<template #viewCount>
+						<VViewCountViewer
+							:error="error"
+							:is-loading="isLoading"
+							:view-count="post.viewCount" />
+					</template>
+				</VBlogPost>
+			</template>
 		</template>
 	</TransitionGroup>
 </template>
