@@ -35,7 +35,7 @@ const blogPostsGrouped = computed(() =>
 <template>
 	<section class="grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
 		<TransitionGroup
-			class="duration-2000 ease-out"
+			move-class="duration-2000"
 			enter-from-class="opacity-0"
 			enter-to-class="opacity-100"
 			leave-from-class="opacity-100"
