@@ -41,7 +41,7 @@ const blogPostsGrouped = computed(() =>
 					{{ title }}
 				</p>
 
-				<TransitionGroup name="blog-posts-area">
+				<TransitionGroup tag="div" name="blog-posts-area">
 					<VBlogPost
 						v-for="post in posts"
 						:key="post.id"
