@@ -34,8 +34,8 @@ const blogPostsGrouped = computed(() =>
 
 <template>
 	<section class="grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
-		<TransitionGroup
-			move-class="duration-2000"
+		<Transition
+			class="duration-2000"
 			enter-from-class="opacity-0"
 			enter-to-class="opacity-100"
 			leave-from-class="opacity-100"
@@ -65,6 +65,6 @@ const blogPostsGrouped = computed(() =>
 					</VBlogPost>
 				</template>
 			</template>
-		</TransitionGroup>
+		</Transition>
 	</section>
 </template>
