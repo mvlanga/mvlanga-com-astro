@@ -34,11 +34,31 @@ const blogPostsGrouped = computed(() =>
 console.log(blogPostsGrouped);
 </script>
 
+<style>
+.blog-posts-move, /* apply transition to moving elements */
+.blog-posts-enter-active,
+.blog-posts-leave-active {
+	transition: all 2000ms ease-in-out;
+}
+
+.blog-posts-enter-from,
+.blog-posts-leave-to {
+	opacity: 0;
+	transform: translateX(30px);
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.blog-posts-leave-active {
+	position: absolute;
+}
+</style>
+
 <template>
 	<TransitionGroup
+		name="blog-posts"
 		tag="section"
-		class="grid gap-8 transition-all duration-2000 ease-in-out sm:grid-cols-2 xl:grid-cols-2"
-		moveClass="opacity-0">
+		class="grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
 		<template
 			v-for="item in blogPostsGrouped"
 			:key="
