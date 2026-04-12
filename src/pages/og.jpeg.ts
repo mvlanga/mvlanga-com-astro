@@ -28,7 +28,8 @@ export const GET = async () => {
 				{
 					type: "p",
 					props: {
-						children: "Frontend Developer based in Leipzig.",
+						children:
+							"Full Stack Developer with frontend focus based in Leipzig.",
 						tw: "text-5xl leading-snug text-neutral-100 font-normal",
 					},
 				},
