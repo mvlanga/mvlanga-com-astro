@@ -23,10 +23,10 @@ const { Content } = await render(post);
 const { title, description, tags, createdAt, updatedAt } = post.data;
 ---
 
-<title slot="head">{title} — Moriz von Langa</title>
-<meta slot="head" name="description" content={description} />
-
 <Layout className="container gap-32">
+	<title slot="head">{title} — Moriz von Langa</title>
+	<meta slot="head" name="description" content={description} />
+
 	<article class="mx-auto flex max-w-prose flex-col gap-16">
 		<section>
 			<h1 class="mb-8 text-4xl leading-snug font-bold">
