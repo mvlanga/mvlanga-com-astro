@@ -10,16 +10,16 @@
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"preview": "astro preview",
-		"test:e2e:local": "environment=LOCAL playwright test",
-		"test:e2e:production": "environment=PRODUCTION playwright test",
+        "test:e2e:local": "cross-env environment=LOCAL playwright test",
+        "test:e2e:production": "cross-env environment=PRODUCTION playwright test",
 		"prepare": "husky"
 	},
 	"dependencies": {
 		"clsx": "^2.1.1",
 		"embla-carousel-vue": "^8.6.0",
-		"motion-v": "^2.1.0",
+		"motion-v": "^2.2.1",
 		"tailwind-merge": "^3.5.0",
-		"vue": "^3.5.30"
+		"vue": "^3.5.32"
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.9.8",
@@ -37,6 +37,7 @@
 		"@types/node": "^25.6.0",
 		"@typescript-eslint/parser": "^8.58.1",
 		"astro": "6.1.5",
+		"cross-env": "^10.1.0",
 		"eslint": "^10.2.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-astro": "^1.7.0",
