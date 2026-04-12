@@ -12,14 +12,10 @@ const blogPosts = await getBlogPosts();
 const availableTags = getTagsWithCountByPosts(blogPosts);
 ---
 
-<Layout className="container gap-32">
-	<title slot="head">Blog — Moriz von Langa</title>
-	<meta
-		slot="head"
-		name="description"
-		content="A few notes and reminders for myself, usually when I've found a solution to something I was struggling with, discovered a good solution to a channeling problem, or tried something new."
-	/>
-
+<Layout
+	title="Blog — Moriz von Langa"
+	description="A few notes and reminders for myself, usually when I've found a solution to something I was struggling with, discovered a good solution to a channeling problem, or tried something new."
+	className="container gap-32">
 	<section class="grid max-w-prose-l gap-8">
 		<div class="flex items-center gap-4">
 			<h1 class="text-4xl leading-snug font-bold">Blog</h1>

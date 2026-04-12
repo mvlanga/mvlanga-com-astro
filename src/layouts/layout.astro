@@ -6,12 +6,38 @@ import { clsx } from "clsx";
 import Footer from "@/components/footer/Footer.astro";
 import VHeader from "@/components/header/VHeader.vue";
 
+import mvlPortrait from "@/assets/img/moriz-von-langa-portrait.avif";
+
 interface Props {
+	title: string;
+	description?: string;
 	className?: string;
 	footerType?: "regular" | "small";
 }
 
-const { className, footerType = "regular" } = Astro.props;
+const { title, description, className, footerType = "regular" } = Astro.props;
+
+const ldJson = {
+	"@context": "https://schema.org/",
+	"@type": "WebPage",
+	name: "Moriz von Langa",
+	mainEntity: {
+		"@type": "Person",
+		name: "Moriz von Langa",
+		email: "mailto:morizvlanga@gmail.com",
+		nationality: "German",
+		knowsLanguage: ["de-DE", "en-US"],
+		jobTitle: "Full Stack Developer",
+		worksFor: {
+			"@type": "Organization",
+			name: "SENEC",
+			url: "https://senec.com/de",
+		},
+		workLocation: "Leipzig",
+		image: mvlPortrait.src,
+		url: "https://mvlanga.com",
+	},
+};
 ---
 
 <!doctype html>
@@ -21,36 +47,21 @@ const { className, footerType = "regular" } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 
-		<link rel="sitemap" href="/sitemap-index.xml" />
-
-		<script is:inline type="application/ld+json">
-			{
-				"@context": "https://schema.org/",
-				"@type": "WebPage",
-				"name": "Moriz von Langa",
-				"mainEntity": {
-					"@type": "Person",
-					"name": "Moriz von Langa",
-					"email": "mailto:morizvlanga@gmail.com",
-					"nationality": "German",
-					"knowsLanguage": ["de-DE", "en-US"],
-					"jobTitle": "Frontend Developer",
-					"worksFor": {
-						"@type": "Organization",
-						"name": "SENEC",
-						"url": "https://senec.com/de"
-					},
-					"workLocation": "Leipzig",
-					"image": "https://mvlanga.com/moriz-von-langa-portrait.webp",
-					"url": "https://mvlanga.com"
-				}
-			}
-		</script>
-
 		<slot name="head" />
 
+		<title>{title}</title>
+
+		{description && <meta name="description" content={description} />}
+
+		<link rel="sitemap" href="/sitemap-index.xml" />
+
+		<script
+			is:inline
+			set:html={JSON.stringify(ldJson)}
+			type="application/ld+json"
+		/>
+
 		<meta
-			slot="head"
 			property="og:image"
 			content={`${import.meta.env.SITE}${Astro.url.pathname}og.jpeg`}
 		/>

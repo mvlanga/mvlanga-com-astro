@@ -22,22 +22,17 @@ const unimportantExperience = experience.filter((item) => !item.data.important);
 const blogPosts = (await getBlogPosts()).slice(0, 3);
 ---
 
-<Layout>
-	<title slot="head">Moriz von Langa — Frontend Developer</title>
-	<meta
-		slot="head"
-		name="description"
-		content="I'm a frontend developer who focuses on building solutions that really solve user problems. All while keeping an eye on system architecture and appropriate design."
-	/>
-
+<Layout
+	title="Moriz von Langa — Full Stack Developer"
+	description="I am a Full Stack Developer with frontend focus based in Leipzig, Germany. On a daily basis, I try to ask a lot of questions with the goal of building solutions that really solve users problems.">
 	<section class="container scroll-mt-96" id="home">
 		<h1 class="mb-10 text-6xl leading-snug font-semibold">
 			Hi, I’m Moriz.
 		</h1>
 		<p class="max-w-prose text-3xl">
-			Frontend developer with full stack expertise based in Leipzig,
-			Germany. On a daily basis, I try to ask a lot of questions with the
-			goal of building solutions that really solve users' problems.
+			Full Stack Developer with frontend focus based in Leipzig, Germany.
+			On a daily basis, I try to ask a lot of questions with the goal of
+			building solutions that really solve users problems.
 		</p>
 	</section>
 
