@@ -24,7 +24,7 @@ function handleNavItemClick() {
 
 <template>
 	<p
-		class="text-sm opacity-100 transition-opacity delay-200 duration-150 ease-out starting:opacity-0">
+		class="text-sm opacity-100 transition-opacity delay-150 duration-150 ease-out motion-safe:starting:opacity-0">
 		Social
 	</p>
 
@@ -32,8 +32,8 @@ function handleNavItemClick() {
 		<li
 			v-for="({ url, label }, index) in socialItems"
 			:key="url"
-			class="opacity-100 transition-opacity duration-250 ease-out starting:opacity-0"
-			:style="{ 'transition-delay': `${50 * (index + 1) + 250}ms` }">
+			class="opacity-100 transition-opacity duration-250 ease-out motion-safe:starting:opacity-0"
+			:style="{ 'transition-delay': `${50 * (index + 1) + 150}ms` }">
 			<a
 				:href="url"
 				referrerpolicy="no-referrer"

@@ -7,12 +7,6 @@ import {
 	BLOG_FILTER_TAG_ALL_VALUE,
 	blogFilterStore,
 } from "@/components/blog/blogFilterStore.ts";
-import {
-	motion,
-	AnimatePresence,
-	type Transition,
-	LayoutGroup,
-} from "motion-v";
 import { useBlogPostsWithViewCount } from "@/components/blog/useBlogPostsWithViewCount.ts";
 import VViewCountViewer from "@/components/blog/VViewCountViewer.vue";
 
@@ -34,56 +28,60 @@ const blogPostsFiltered = computed(
 );
 
 const blogPostsGrouped = computed(() =>
-	groupPostsByMonth(blogPostsFiltered.value),
+	groupPostsByMonth(blogPostsFiltered.value).flat(),
 );
 
-const transition: Transition = {
-	duration: 0.4,
-	ease: [0.27, 0.99, 0.25, 0.99],
-};
-
-const MotionBlogPost = motion.create(VBlogPost, { forwardMotionProps: true });
+console.log(blogPostsGrouped);
 </script>
 
-<template>
-	<section class="grid gap-16">
-		<LayoutGroup :id="'blog-posts'">
-			<AnimatePresence :initial="false">
-				<template
-					v-for="[title, posts] in blogPostsGrouped"
-					:key="title">
-					<motion.div
-						layout="position"
-						:transition="transition"
-						:exit="{ opacity: 0 }"
-						:initial="{ opacity: 0 }"
-						:animate="{ opacity: 1 }"
-						class="grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
-						<p class="col-span-full text-2xl">
-							{{ title }}
-						</p>
+<style>
+.blog-posts-move, /* apply transition to moving elements */
+.blog-posts-enter-active,
+.blog-posts-leave-active {
+	transition: all 2000ms ease-in-out;
+}
 
-						<AnimatePresence :initial="false">
-							<MotionBlogPost
-								v-for="post in posts"
-								:key="post.id"
-								:post="post"
-								layout
-								:transition="transition"
-								:exit="{ opacity: 0 }"
-								:initial="{ opacity: 0, y: '4rem' }"
-								:animate="{ opacity: 1, y: '0' }">
-								<template #viewCount>
-									<VViewCountViewer
-										:error="error"
-										:is-loading="isLoading"
-										:view-count="post.viewCount" />
-								</template>
-							</MotionBlogPost>
-						</AnimatePresence>
-					</motion.div>
-				</template>
-			</AnimatePresence>
-		</LayoutGroup>
-	</section>
+.blog-posts-enter-from,
+.blog-posts-leave-to {
+	opacity: 0;
+	transform: translateX(30px);
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.blog-posts-leave-active {
+	position: absolute;
+}
+</style>
+
+<template>
+	<TransitionGroup
+		name="blog-posts"
+		tag="section"
+		class="grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
+		<template
+			v-for="item in blogPostsGrouped"
+			:key="
+				typeof item === 'string'
+					? item
+					: item?.map((i) => i.id).join(',')
+			">
+			<template v-if="typeof item === 'string'">
+				<p class="col-span-full text-2xl">
+					{{ item }}
+				</p>
+			</template>
+
+			<template v-else>
+				<VBlogPost v-for="post in item" :key="post.id" :post="post">
+					<template #viewCount>
+						<VViewCountViewer
+							:error="error"
+							:is-loading="isLoading"
+							:view-count="post.viewCount" />
+					</template>
+				</VBlogPost>
+			</template>
+		</template>
+	</TransitionGroup>
 </template>
