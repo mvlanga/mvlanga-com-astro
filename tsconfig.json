@@ -11,6 +11,7 @@
 		},
 		"strictNullChecks": true,
 		"allowJs": true,
-		"exactOptionalPropertyTypes": false
+		"exactOptionalPropertyTypes": false,
+		"types": ["vitest/globals"]
 	}
 }
