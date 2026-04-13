@@ -10,8 +10,9 @@
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"preview": "astro preview",
-        "test:e2e:local": "cross-env environment=LOCAL playwright test",
-        "test:e2e:production": "cross-env environment=PRODUCTION playwright test",
+		"test": "concurrently 'pnpm run test:unit' 'pnpm run test:e2e'",
+		"test:unit": "vitest run",
+		"test:e2e": "playwright test",
 		"prepare": "husky"
 	},
 	"dependencies": {
@@ -34,15 +35,19 @@
 		"@playwright/test": "^1.59.1",
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.2.2",
+		"@testing-library/jest-dom": "^6.9.1",
+		"@testing-library/vue": "^8.1.0",
 		"@types/node": "^25.6.0",
 		"@typescript-eslint/parser": "^8.58.1",
+		"@vitejs/plugin-vue": "^6.0.6",
 		"astro": "6.1.5",
-		"cross-env": "^10.1.0",
+		"concurrently": "^9.2.1",
 		"eslint": "^10.2.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-astro": "^1.7.0",
 		"eslint-plugin-vue": "^10.8.0",
 		"globals": "^17.5.0",
+		"happy-dom": "^20.8.9",
 		"husky": "^9.1.7",
 		"lint-staged": "^16.4.0",
 		"prettier": "^3.8.2",
@@ -54,7 +59,9 @@
 		"sharp": "^0.34.5",
 		"tailwindcss": "^4.2.2",
 		"typescript": "^6.0.2",
-		"typescript-eslint": "^8.58.1"
+		"typescript-eslint": "^8.58.1",
+		"vite-tsconfig-paths": "^6.1.1",
+		"vitest": "^4.1.4"
 	},
 	"engines": {
 		"pnpm": ">=10",
