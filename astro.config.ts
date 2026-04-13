@@ -6,7 +6,6 @@ import vue from "@astrojs/vue";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { visualizer } from "rollup-plugin-visualizer";
-import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
 	output: "server",
@@ -51,21 +50,12 @@ export default defineConfig({
 	],
 	vite: {
 		plugins: [
-			tsconfigPaths(),
 			tailwindcss(),
 			visualizer({
 				emitFile: true,
 				filename: "stats.html",
 			}),
 		],
-		optimizeDeps: {
-			exclude: [
-				"playwright",
-				"playwright-core",
-				"fsevents",
-				"chromium-bidi",
-			],
-		},
 	},
 	adapter: netlify(),
 	redirects: {
