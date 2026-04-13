@@ -75,7 +75,7 @@ onMounted(() => {
 		<li
 			v-for="(item, index) in navigationItems"
 			:key="item.url"
-			class="group relative flex translate-y-0 items-center justify-start text-2xl opacity-100 transition-all duration-200 ease-overshoot-out starting:opacity-0 motion-safe:starting:translate-y-1/2"
+			class="group relative flex transform-[translateY(0)] items-center justify-start text-2xl opacity-100 transition-all duration-200 ease-overshoot-out starting:opacity-0 motion-safe:starting:transform-[translateY(50%)]"
 			:style="{ 'transition-delay': `${50 * (index + 1) + 200}ms` }">
 			<VNavigationLinkInternal
 				:navigation-item="item"
