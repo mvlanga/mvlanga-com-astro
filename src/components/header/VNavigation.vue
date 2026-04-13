@@ -80,7 +80,8 @@ function handleNavButtonFocus() {
 	</div>
 
 	<Transition
-		class="duration-150 ease-out"
+		enter-active-class="duration-150 ease-out"
+		enter-leave-class="duration-150 ease-in"
 		enter-from-class="opacity-0"
 		enter-to-class="opacity-100"
 		leave-from-class="opacity-100"
@@ -94,9 +95,8 @@ function handleNavButtonFocus() {
 	</Transition>
 
 	<Transition
-		class="duration-300 ease-out"
-		enter-active-class="transition-[opacity,clip-path]"
-		leave-active-class="transition-[opacity,clip-path]"
+		enter-active-class="transition-[opacity,clip-path] duration-300 ease-out"
+		leave-active-class="transition-[opacity,clip-path] duration-300 ease-out"
 		enter-from-class="opacity-0 [clip-path:var(--nav-closed-clip)]"
 		enter-to-class="opacity-100 [clip-path:inset(0%_0%_0%_0%_round_1rem)]"
 		leave-from-class="opacity-100 [clip-path:inset(0%_0%_0%_0%_round_1rem)]"
