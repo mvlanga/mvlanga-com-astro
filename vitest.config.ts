@@ -5,8 +5,9 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
 	plugins: [vue(), tsconfigPaths()],
 	test: {
-		globals: true,
 		include: ["src/**/*.test.ts"],
 		environment: "happy-dom",
+		globals: true,
+		mockReset: true,
 	},
 });
