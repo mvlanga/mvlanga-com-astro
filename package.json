@@ -13,6 +13,7 @@
 		"test": "concurrently \"pnpm run test:unit\" \"pnpm run test:e2e\"",
 		"test:unit": "vitest run",
 		"test:e2e": "playwright test",
+		"test:e2e:serve": "cross-env E2E=true pnpm run dev",
 		"prepare": "husky"
 	},
 	"dependencies": {
@@ -43,6 +44,7 @@
 		"@vitejs/plugin-vue": "^6.0.6",
 		"astro": "6.1.5",
 		"concurrently": "^9.2.1",
+		"cross-env": "^10.1.0",
 		"eslint": "^10.2.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-astro": "^1.7.0",
