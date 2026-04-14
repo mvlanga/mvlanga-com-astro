@@ -11,9 +11,10 @@ const props = defineProps<{
 const { isActive } = toRefs(props);
 
 const indicatorClasses = computed(() => ({
-	"absolute right-full h-1 w-8 rounded-full bg-purple-300 transition-transform duration-100": true,
+	"absolute right-full h-1 w-8 rounded-full bg-purple-300 transition-transform duration-100 ease-in-out": true,
 	"-translate-x-4": isActive.value,
-	"-translate-x-full": !isActive.value,
+	"-translate-x-full peer-hover:-translate-x-6 peer-focus:-translate-x-6":
+		!isActive.value,
 }));
 
 function handleNavItemClick(event: MouseEvent) {
@@ -34,13 +35,13 @@ function handleNavItemClick(event: MouseEvent) {
 </script>
 
 <template>
-	<span :class="indicatorClasses" aria-hidden="true" />
 	<a
 		:href="props.navigationItem.url"
-		class="inline-block"
+		class="peer inline-block"
 		data-umami-event="link-click"
 		:data-umami-event-url="props.navigationItem.url"
 		@click="handleNavItemClick">
 		{{ props.navigationItem.label }}
 	</a>
+	<span :class="indicatorClasses" aria-hidden="true" />
 </template>
