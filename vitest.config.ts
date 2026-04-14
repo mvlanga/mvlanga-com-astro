@@ -8,6 +8,5 @@ export default defineConfig({
 		globals: true,
 		include: ["src/**/*.test.ts"],
 		environment: "happy-dom",
-		setupFiles: ["@testing-library/jest-dom/vitest"],
 	},
 });
