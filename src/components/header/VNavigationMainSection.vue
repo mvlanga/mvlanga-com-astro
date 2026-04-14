@@ -36,38 +36,36 @@ const navigationItems: NavigationItems = [
 const activeSection = ref<null | string>(null);
 
 onMounted(() => {
-	if (initialPath.value === "/") {
-		const sections = document.querySelectorAll("section");
-
-		const observer = new IntersectionObserver(
-			(entries) => {
-				let mostVisible = entries
-					.filter((e) => e.isIntersecting)
-					.sort(
-						(a, b) => b.intersectionRatio - a.intersectionRatio,
-					)[0];
-
-				if (mostVisible) {
-					activeSection.value = mostVisible.target.id;
-				}
-			},
-			{
-				threshold: [0.25, 0.5, 0.75],
-			},
-		);
-
-		sections.forEach((section) => observer.observe(section));
+	if (initialPath.value !== "/") {
+		activeSection.value = initialPath.value;
 
 		return;
 	}
 
-	activeSection.value = initialPath.value;
+	const sections = document.querySelectorAll("section");
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			const mostVisible = entries
+				.filter((e) => e.isIntersecting)
+				.sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+			if (mostVisible) {
+				activeSection.value = mostVisible.target.id;
+			}
+		},
+		{
+			threshold: [0.25, 0.5, 0.75],
+		},
+	);
+
+	sections.forEach((section) => observer.observe(section));
 });
 </script>
 
 <template>
 	<p
-		class="text-sm opacity-100 transition-opacity delay-200 duration-150 ease-out starting:opacity-0">
+		class="text-sm opacity-100 transition-opacity delay-100 duration-150 ease-out starting:opacity-0">
 		Navigation
 	</p>
 
@@ -75,8 +73,8 @@ onMounted(() => {
 		<li
 			v-for="(item, index) in navigationItems"
 			:key="item.url"
-			class="group relative flex transform-[translateY(0)] items-center justify-start text-2xl opacity-100 transition-all duration-200 ease-overshoot-out starting:opacity-0 motion-safe:starting:transform-[translateY(50%)]"
-			:style="{ 'transition-delay': `${50 * (index + 1) + 200}ms` }">
+			class="relative flex transform-[translateY(0)] items-center justify-start text-2xl opacity-100 transition-all duration-200 ease-overshoot-out starting:opacity-0 motion-safe:starting:transform-[translateY(50%)]"
+			:style="{ 'transition-delay': `${50 * (index + 1) + 100}ms` }">
 			<VNavigationLinkInternal
 				:navigation-item="item"
 				:is-active="activeSection === item.url.replace('/#', '')" />
