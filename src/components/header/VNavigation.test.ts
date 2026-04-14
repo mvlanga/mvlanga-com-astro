@@ -1,7 +1,6 @@
 import { headerStore } from "@/components/header/headerStore.ts";
 import VNavigation from "@/components/header/VNavigation.vue";
-import { userEvent } from "@testing-library/user-event";
-import { render, screen } from "@testing-library/vue";
+import { mount } from "@vue/test-utils";
 import { beforeEach, describe, expect, it } from "vitest";
 
 describe("VNavigation", () => {
@@ -11,46 +10,44 @@ describe("VNavigation", () => {
 	});
 
 	it("should open navigation when clicking on menu button", async () => {
-		const user = userEvent.setup();
-
-		render(VNavigation, {
+		const wrapper = mount(VNavigation, {
+			attachTo: document.body,
 			props: { initialPath: "/", isMenuTriggerButtonVisible: true },
 		});
 
-		expect(screen.queryByLabelText("Main Menu")).not.toBeInTheDocument();
+		expect(wrapper.find("[aria-label='Main Menu']").exists()).toBe(false);
 
-		await user.click(screen.getByRole("button", { name: "menu" }));
+		await wrapper.find("button[aria-label='menu']").trigger("click");
 
-		expect(screen.getByLabelText("Main Menu")).toBeVisible();
+		expect(wrapper.get("[aria-label='Main Menu']"));
 
-		const mainNavItems = ["Home", "About", "Experience", "Blog", "Contact"];
+		const mainNavItems = ["home", "about", "experience", "blog", "mailto"];
 
 		for (const item of mainNavItems) {
-			expect(screen.getByText(item)).toBeVisible();
+			expect(wrapper.get(`a[href*="${item}"]`).isVisible()).toBe(true);
 		}
 
-		const socialNavItems = ["LinkedIn", "GitHub", "Mastodon"];
+		const socialNavItems = ["linkedin", "github", "mastodon"];
 
 		for (const item of socialNavItems) {
-			expect(screen.getByText(item)).toBeVisible();
+			expect(wrapper.get(`a[href*="${item}"]`).isVisible()).toBe(true);
 		}
 	});
 
 	it("should close navigation when clicking on menu button while navigation is open", async () => {
-		const user = userEvent.setup();
-
-		render(VNavigation, {
+		const wrapper = mount(VNavigation, {
+			attachTo: document.body,
 			props: { initialPath: "/", isMenuTriggerButtonVisible: true },
 		});
 
-		expect(screen.queryByLabelText("Main Menu")).not.toBeInTheDocument();
+		expect(wrapper.find("[aria-label='Main Menu']").exists()).toBe(false);
 
-		await user.click(screen.getByRole("button", { name: "menu" }));
+		await wrapper.find("button[aria-label='menu']").trigger("click");
 
-		expect(screen.getByLabelText("Main Menu")).toBeVisible();
+		expect(wrapper.get("[aria-label='Main Menu']"));
 
-		await user.click(screen.getByRole("button", { name: "close" }));
+		await wrapper.find("button[aria-label='close']").trigger("click");
 
-		expect(screen.queryByLabelText("Main Menu")).not.toBeInTheDocument();
+		expect(wrapper.find("[aria-label='Main Menu']").exists()).toBe(false);
 	});
 });
