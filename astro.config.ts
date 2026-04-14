@@ -7,10 +7,15 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { visualizer } from "rollup-plugin-visualizer";
 
+const isE2E = process.env.E2E === "true";
+
 export default defineConfig({
 	output: "server",
 	prefetch: {
 		prefetchAll: true,
+	},
+	devToolbar: {
+		enabled: !isE2E,
 	},
 	markdown: {
 		shikiConfig: {

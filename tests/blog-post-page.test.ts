@@ -12,7 +12,7 @@ const blogPages: string[] = [
 
 test.describe("blog-post-page", () => {
 	for (const route of blogPages) {
-		test.describe(`${route}`, () => {
+		test.describe(route, () => {
 			testAutomaticallyDetectableA11nIssuesByRoute(route);
 		});
 	}
