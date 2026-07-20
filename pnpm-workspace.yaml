@@ -1,7 +1,7 @@
 allowBuilds:
-  '@parcel/watcher': set this to true or false
-  esbuild: set this to true or false
-  sharp: set this to true or false
+  '@parcel/watcher': true
+  esbuild: true
+  sharp: true
 minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   - astro@7.1.2
