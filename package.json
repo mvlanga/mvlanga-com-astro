@@ -73,5 +73,12 @@
 		"*.{ts,tsx}": "eslint --cache --fix",
 		"*--write": "prettier --write"
 	},
-	"packageManager": "pnpm@11.15.1"
+	"packageManager": "pnpm@11.15.1",
+	"pnpm": {
+		"allowedBuiltDependencies": [
+			"@parcel/watcher",
+			"esbuild",
+			"sharp"
+		]
+	}
 }
