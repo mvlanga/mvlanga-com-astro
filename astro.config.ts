@@ -1,4 +1,3 @@
-import db from "@astrojs/db";
 import mdx from "@astrojs/mdx";
 import netlify from "@astrojs/netlify";
 import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
@@ -50,7 +49,6 @@ export default defineConfig({
 			},
 		}),
 		mdx(),
-		db(),
 		vue(),
 	],
 	vite: {

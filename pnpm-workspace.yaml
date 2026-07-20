@@ -1,0 +1,11 @@
+allowBuilds:
+  '@parcel/watcher': set this to true or false
+  esbuild: set this to true or false
+  sharp: set this to true or false
+minimumReleaseAge: 4320
+minimumReleaseAgeExclude:
+  - astro@7.1.2
+  - eslint-plugin-vue@10.10.0
+  - happy-dom@20.11.0
+  - lint-staged@17.1.0
+  - satori@0.28.1
