@@ -1,11 +1,9 @@
 import vue from "@vitejs/plugin-vue";
+import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
-	plugins: [vue()],
-	resolve: {
-		tsconfigPaths: true,
-	},
+	plugins: [vue(), tsconfigPaths()],
 	test: {
 		include: ["src/**/*.test.ts"],
 		environment: "happy-dom",

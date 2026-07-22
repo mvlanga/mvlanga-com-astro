@@ -52,9 +52,6 @@ export default defineConfig({
 		vue(),
 	],
 	vite: {
-		resolve: {
-			tsconfigPaths: true,
-		},
 		plugins: [
 			tailwindcss(),
 			visualizer({
