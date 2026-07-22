@@ -1,11 +1,6 @@
 {
   "extends": "astro/tsconfigs/strictest",
-  "include": [
-    "src/**/*.astro",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue"
-  ],
+  "include": [".astro/types.d.ts", "**/*"],
   "exclude": [
     "dist"
   ],
