@@ -11,9 +11,6 @@ importers:
       '@libsql/client':
         specifier: ^0.17.4
         version: 0.17.4
-      '@vue/test-utils':
-        specifier: ^2.4.11
-        version: 2.4.11(@vue/compiler-dom@3.5.40)(@vue/server-renderer@3.5.40)(vue@3.5.40(typescript@6.0.3))
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -75,6 +72,9 @@ importers:
       '@vitejs/plugin-vue':
         specifier: ^6.0.8
         version: 6.0.8(vite@8.1.5(@types/node@26.1.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))(vue@3.5.40(typescript@6.0.3))
+      '@vue/test-utils':
+        specifier: ^2.4.11
+        version: 2.4.11(@vue/compiler-dom@3.5.40)(@vue/server-renderer@3.5.40)(vue@3.5.40(typescript@6.0.3))
       astro:
         specifier: 7.1.2
         version: 7.1.2(@astrojs/markdown-remark@7.2.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@netlify/blobs@10.7.9(supports-color@10.2.2))(@types/node@26.1.1)(jiti@2.7.0)(yaml@2.9.0)
