@@ -7,10 +7,22 @@ export const PageViews = sqliteTable("PageViews", {
 	count: integer("count").notNull().default(1),
 });
 
-export function getDb() {
+const globalForDb = globalThis as typeof globalThis & {
+	__mvlangaDb?: ReturnType<typeof drizzle>;
+};
+
+function createDb() {
 	const client = createClient({
 		url: import.meta.env.ASTRO_DB_REMOTE_URL,
 		authToken: import.meta.env.ASTRO_DB_APP_TOKEN,
 	});
 	return drizzle(client);
+}
+
+export function getDb() {
+	if (!globalForDb.__mvlangaDb) {
+		globalForDb.__mvlangaDb = createDb();
+	}
+
+	return globalForDb.__mvlangaDb;
 }
