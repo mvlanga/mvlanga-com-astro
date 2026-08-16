@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"build": "pnpm run check && astro build --remote",
+		"build": "pnpm run check && astro build",
 		"check": "astro check",
 		"dev": "astro dev",
 		"format": "prettier . --write",
@@ -17,8 +17,10 @@
 		"prepare": "husky"
 	},
 	"dependencies": {
+		"@libsql/client": "^0.17.4",
 		"@vue/test-utils": "^2.4.11",
 		"clsx": "^2.1.1",
+		"drizzle-orm": "^0.45.2",
 		"embla-carousel-vue": "^8.6.0",
 		"motion-v": "^2.4.0",
 		"tailwind-merge": "^3.6.0",
@@ -26,7 +28,6 @@
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.9.10",
-		"@astrojs/db": "^0.21.3",
 		"@astrojs/mdx": "7.0.5",
 		"@astrojs/netlify": "^8.2.1",
 		"@astrojs/rss": "^4.0.19",

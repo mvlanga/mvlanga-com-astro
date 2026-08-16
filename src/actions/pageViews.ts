@@ -1,6 +1,8 @@
+import { db } from "@/db.ts";
 import { z } from "astro/zod";
 import { ActionError, defineAction } from "astro:actions";
-import { db, inArray, PageViews, sql } from "astro:db";
+import { inArray, sql } from "drizzle-orm";
+import { PageViews } from "src/db";
 
 export const pageViews = {
 	get: defineAction({
