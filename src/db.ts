@@ -12,10 +12,16 @@ const globalForDb = globalThis as typeof globalThis & {
 };
 
 function createDb() {
-	const client = createClient({
-		url: import.meta.env.ASTRO_DB_REMOTE_URL,
-		authToken: import.meta.env.ASTRO_DB_APP_TOKEN,
-	});
+	const url = import.meta.env.ASTRO_DB_REMOTE_URL;
+	const authToken = import.meta.env.ASTRO_DB_APP_TOKEN;
+
+	if (!url) {
+		throw new Error(
+			"ASTRO_DB_REMOTE_URL is not set. Please configure the environment variable.",
+		);
+	}
+
+	const client = createClient({ url, authToken });
 	return drizzle(client);
 }
 

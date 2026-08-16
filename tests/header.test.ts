@@ -16,7 +16,7 @@ test.describe("header", () => {
 		await expect(menuButtonElement(page)).toHaveCSS("opacity", "1");
 
 		await page.evaluate(() => window.scrollBy(0, 500));
-		await page.waitForFunction(() => window.scrollY > 0);
+		await page.waitForFunction(() => window.scrollY >= 500);
 
 		await expect(mvlangaButtonElement(page)).toHaveCSS("opacity", "0");
 		await expect(menuButtonElement(page)).toHaveCSS("opacity", "0");
@@ -34,7 +34,7 @@ test.describe("header", () => {
 		await page.goto("/");
 
 		await page.evaluate(() => window.scrollBy(0, 500));
-		await page.waitForFunction(() => window.scrollY > 0);
+		await page.waitForFunction(() => window.scrollY >= 500);
 
 		await expect(mvlangaButtonElement(page)).toHaveCSS("opacity", "0");
 		await expect(menuButtonElement(page)).toHaveCSS("opacity", "0");
