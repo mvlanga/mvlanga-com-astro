@@ -8,7 +8,7 @@ export const PageViews = sqliteTable("PageViews", {
 });
 
 const globalForDb = globalThis as typeof globalThis & {
-	__mvlangaDb?: ReturnType<typeof drizzle>;
+	mvlangaDb?: ReturnType<typeof drizzle>;
 };
 
 function createDb() {
@@ -20,9 +20,9 @@ function createDb() {
 }
 
 export function getDb() {
-	if (!globalForDb.__mvlangaDb) {
-		globalForDb.__mvlangaDb = createDb();
+	if (!globalForDb.mvlangaDb) {
+		globalForDb.mvlangaDb = createDb();
 	}
 
-	return globalForDb.__mvlangaDb;
+	return globalForDb.mvlangaDb;
 }
