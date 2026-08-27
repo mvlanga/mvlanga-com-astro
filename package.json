@@ -2,7 +2,8 @@
 	"name": "mvlanga-com",
 	"version": "0.0.1",
 	"type": "module",
-	"scripts": {
+	"packageManager": "pnpm@11.24.0",
+		"scripts": {
 		"build": "pnpm run check && astro build --remote",
 		"check": "astro check",
 		"dev": "astro dev",
