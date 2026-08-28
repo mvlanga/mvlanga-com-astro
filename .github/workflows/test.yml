@@ -12,6 +12,9 @@ permissions:
 jobs:
     test:
         runs-on: ubuntu-latest
+        env:
+          ASTRO_DB_REMOTE_URL: ${{ vars.ASTRO_DB_REMOTE_URL }}
+          ASTRO_DB_APP_TOKEN: ${{ secrets.ASTRO_DB_APP_TOKEN }}
         steps:
             - uses: actions/checkout@v7
             - uses: pnpm/setup@v2
