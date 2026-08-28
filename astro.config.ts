@@ -1,14 +1,15 @@
 import mdx from "@astrojs/mdx";
-import netlify from "@astrojs/netlify";
 import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
 import vue from "@astrojs/vue";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { visualizer } from "rollup-plugin-visualizer";
+import cloudflare from "@astrojs/cloudflare";
 
 const isE2E = process.env.E2E === "true";
 
 export default defineConfig({
+	adapter: cloudflare(),
 	output: "server",
 	prefetch: {
 		prefetchAll: true,
@@ -60,7 +61,6 @@ export default defineConfig({
 			}),
 		],
 	},
-	adapter: netlify(),
 	redirects: {
 		"/:lang/personal-projects": "/",
 		"/:lang/about-me": "/#about",
