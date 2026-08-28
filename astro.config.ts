@@ -10,7 +10,7 @@ const isE2E = process.env.E2E === "true";
 
 export default defineConfig({
 	adapter: cloudflare({
-		imageService: 'passthrough'
+		prerenderEnvironment: "node",
 	}),
 	output: "server",
 	prefetch: {
