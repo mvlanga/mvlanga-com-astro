@@ -8,6 +8,8 @@ export const testAutomaticallyDetectableA11nIssuesByRoute = (route: string) => {
 		async ({ page }) => {
 			await page.goto(route);
 			await expect(page.url()).toContain(route);
+			await page.waitForLoadState("domcontentloaded");
+			await page.waitForLoadState("networkidle");
 
 			const accessibilityScanResults = await new AxeBuilder({
 				page,
