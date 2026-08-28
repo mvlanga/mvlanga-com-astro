@@ -11,6 +11,7 @@ permissions:
 
 jobs:
     test:
+        environment: actions
         runs-on: ubuntu-latest
         env:
           ASTRO_DB_REMOTE_URL: ${{ vars.ASTRO_DB_REMOTE_URL }}
