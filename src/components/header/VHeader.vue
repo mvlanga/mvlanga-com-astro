@@ -48,6 +48,7 @@ function handleHeaderButtonFocus() {
 		]"
 		data-testid="header"
 		:data-mounted="isMounted">
+		<div v-if="isMounted">test123</div>
 		<VButton
 			href="/"
 			text="mvlanga"
