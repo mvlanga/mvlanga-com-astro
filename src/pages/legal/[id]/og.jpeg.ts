@@ -25,7 +25,7 @@ export const GET = async ({ props }: Props) => {
 				justifyContent: "flex-end",
 			},
 			children: [
-				await BackgroundImage(),
+				BackgroundImage(),
 				{
 					type: "h1",
 					props: {

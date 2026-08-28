@@ -29,7 +29,7 @@ export const GET: APIRoute<{ post: CollectionEntry<"blogPosts"> }> = async ({
 					gap: "80px",
 				},
 				children: [
-					await BackgroundImage(0.2),
+					BackgroundImage(0.2),
 					{
 						type: "img",
 						props: {
@@ -88,7 +88,7 @@ export const GET: APIRoute<{ post: CollectionEntry<"blogPosts"> }> = async ({
 				justifyContent: "flex-end",
 			},
 			children: [
-				await BackgroundImage(),
+				BackgroundImage(),
 				{
 					type: "h1",
 					props: {
