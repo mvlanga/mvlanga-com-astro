@@ -40,11 +40,6 @@ export default defineConfig({
 	webServer: {
 		command: "pnpm run test:e2e:serve",
 		url: "http://localhost:4321",
-		env: {
-			...process.env,
-			ASTRO_DB_REMOTE_URL: process.env.ASTRO_DB_REMOTE_URL ?? "file:./.astro/playwright.db",
-			ASTRO_DB_APP_TOKEN: process.env.ASTRO_DB_APP_TOKEN ?? "",
-		},
 		reuseExistingServer: !process.env.CI,
 	},
 });

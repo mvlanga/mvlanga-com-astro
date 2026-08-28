@@ -1,4 +1,4 @@
-import { createClient } from "@libsql/client/node";
+import { createClient } from "@libsql/client/web";
 import { drizzle } from "drizzle-orm/libsql";
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
@@ -18,6 +18,12 @@ function createDb() {
 	if (!url) {
 		throw new Error(
 			"ASTRO_DB_REMOTE_URL is not set. Please configure the environment variable.",
+		);
+	}
+
+	if (!authToken) {
+		throw new Error(
+			"ASTRO_DB_APP_TOKEN is not set. Please configure the environment variable.",
 		);
 	}
 

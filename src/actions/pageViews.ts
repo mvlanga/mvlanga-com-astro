@@ -7,13 +7,6 @@ export const pageViews = {
 	get: defineAction({
 		input: z.array(z.string()),
 		handler: async (ids) => {
-			if (ids.length === 0) {
-				throw new ActionError({
-					code: "BAD_REQUEST",
-					message: "ids cannot be empty"
-				});
-			}
-
 			try {
 				return await getDb()
 					.select()
