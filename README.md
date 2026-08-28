@@ -2,9 +2,7 @@
 
 The second iteration of <a href="https://mvlanga.com" target="_blank">mvlanga.com</a> built
 with <a href="https://astro.build/" target="_blank">Astro</a> and hosted
-on <a href="https://www.netlify.com/" target="_blank">Netlify</a>.
-
-<img src="https://api.netlify.com/api/v1/badges/8b628505-b368-4637-94db-d3819513e55e/deploy-status" alt="Netlify Status" />
+on <a href="https://cloudflare.com/" target="_blank">Cloudflare</a>.
 
 ## 🚨 Forking this repo
 
@@ -52,7 +50,7 @@ variables.
 
 ## 🚀 Building and running for production
 
-For hosting this hybrid Astro app, I chose [Netlify](https://www.netlify.com/).
+For hosting this hybrid Astro app, I chose [Cloudflare](https://cloudflare.com/).
 
 1. Generate the hybrid production build
 
