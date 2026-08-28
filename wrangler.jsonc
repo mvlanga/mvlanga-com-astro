@@ -1,4 +1,5 @@
 {
+  "compatibility_date": "2026-08-28",
   "compatibility_flags": [
     "nodejs_compat",
     "nodejs_compat_v2"
