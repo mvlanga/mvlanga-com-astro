@@ -20,12 +20,12 @@ test.describe("header", () => {
 		await expect(mvlangaButtonElement(page)).toHaveCSS("opacity", "1");
 		await expect(menuButtonElement(page)).toHaveCSS("opacity", "1");
 
-		await page.evaluate(() => window.scrollBy(0, 500));
+		await page.mouse.wheel(0, 500);
 
 		await expect(mvlangaButtonElement(page)).toHaveCSS("opacity", "0");
 		await expect(menuButtonElement(page)).toHaveCSS("opacity", "0");
 
-		await page.evaluate(() => window.scrollBy(0, -100));
+		await page.mouse.wheel(0, -100);
 
 		await expect(mvlangaButtonElement(page)).toHaveCSS("opacity", "1");
 		await expect(menuButtonElement(page)).toHaveCSS("opacity", "1");
@@ -41,7 +41,7 @@ test.describe("header", () => {
 			"true",
 		);
 
-		await page.evaluate(() => window.scrollBy(0, 500));
+		await page.mouse.wheel(0, 500);
 
 		await expect(mvlangaButtonElement(page)).toHaveCSS("opacity", "0");
 		await expect(menuButtonElement(page)).toHaveCSS("opacity", "0");
