@@ -9,7 +9,12 @@ import cloudflare from "@astrojs/cloudflare";
 const isE2E = process.env.E2E === "true";
 
 export default defineConfig({
-	adapter: cloudflare(),
+	adapter: cloudflare({
+		imageService: {
+			build: "compile",
+			runtime: "cloudflare-binding"
+		}
+	}),
 	output: "server",
 	prefetch: {
 		prefetchAll: true,
