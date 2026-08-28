@@ -2,7 +2,7 @@ import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
 	testDir: "./tests",
-	fullyParallel: true,
+	fullyParallel: false,
 	forbidOnly: !!process.env.CI,
 	timeout: 10_000,
 	retries: 0,
@@ -29,12 +29,12 @@ export default defineConfig({
 		{
 			name: "Mobile Chrome",
 			grepInvert: /@a11n/,
-			use: { ...devices["Pixel 5"] },
+			use: { ...devices["Pixel 8"] },
 		},
 		{
 			name: "Mobile Safari",
 			grepInvert: /@a11n/,
-			use: { ...devices["iPhone 12"] },
+			use: { ...devices["iPhone 14"] },
 		},
 	],
 	webServer: {

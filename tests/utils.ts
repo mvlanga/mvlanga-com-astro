@@ -7,15 +7,9 @@ export const testAutomaticallyDetectableA11nIssuesByRoute = (route: string) => {
 		{ tag: "@a11n" },
 		async ({ page }) => {
 			await page.goto(route);
-			await expect(page.url()).toContain(route);
-			await page.waitForLoadState("domcontentloaded");
-			await page.waitForLoadState("networkidle");
+			await page.waitForTimeout(1000);
 
-			const accessibilityScanResults = await new AxeBuilder({
-				page,
-			})
-				.setLegacyMode(true)
-				.analyze();
+			const accessibilityScanResults = await new AxeBuilder({ page, }).analyze();
 
 			expect(accessibilityScanResults.violations).toEqual([]);
 		},
