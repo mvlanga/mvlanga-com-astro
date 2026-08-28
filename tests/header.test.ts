@@ -12,6 +12,11 @@ test.describe("header", () => {
 	}) => {
 		await page.goto("/");
 
+		await expect(page.locator('[data-testid="header"]')).toHaveAttribute(
+			"data-mounted",
+			"true",
+		);
+
 		await expect(mvlangaButtonElement(page)).toHaveCSS("opacity", "1");
 		await expect(menuButtonElement(page)).toHaveCSS("opacity", "1");
 
@@ -30,6 +35,11 @@ test.describe("header", () => {
 		page,
 	}) => {
 		await page.goto("/");
+
+		await expect(page.locator('[data-testid="header"]')).toHaveAttribute(
+			"data-mounted",
+			"true",
+		);
 
 		await page.evaluate(() => window.scrollBy(0, 500));
 
