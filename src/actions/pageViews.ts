@@ -37,7 +37,7 @@ export const pageViews = {
 					})
 					.onConflictDoUpdate({
 						target: PageViews.id,
-						set: { count: sql`${PageViews.count} + 1` },
+						set: { count: sql`count + 1` },
 					})
 					.returning();
 			} catch (e) {
