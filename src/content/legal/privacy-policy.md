@@ -85,7 +85,7 @@ We are using the following host:
 Cloudflare, Inc. 101 Townsend St, San Francisco, CA 94107 USA
 \
 \
-For more information about Cloudflares’s privacy practices, please visit: https://www.cloudflare.com/privacypolicy/.
+For more information about Cloudflare's privacy practices, please visit: https://www.cloudflare.com/privacypolicy/.
 
 ## General information and mandatory information
 
