@@ -10,10 +10,7 @@ const isE2E = process.env.E2E === "true";
 
 export default defineConfig({
 	adapter: cloudflare({
-		imageService: {
-			build: "compile",
-			runtime: "cloudflare-binding"
-		}
+		imageService: 'passthrough'
 	}),
 	output: "server",
 	prefetch: {
