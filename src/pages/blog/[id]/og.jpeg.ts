@@ -1,7 +1,7 @@
 import { BackgroundImage, generateOgImage } from "@/utils/og-image/utils.ts";
 import type { APIRoute } from "astro";
 import { type CollectionEntry, getCollection } from "astro:content";
-import fs from "node:fs/promises";
+import { readFileSync } from "node:fs";
 import path from "node:path";
 
 export const prerender = true;
@@ -12,7 +12,7 @@ export const GET: APIRoute<{ post: CollectionEntry<"blogPosts"> }> = async ({
 	const { post } = props;
 
 	if (post.data.openGraphCover) {
-		const postCoverImage = await fs.readFile(
+		const postCoverImage = readFileSync(
 			path.resolve(`${process.cwd()}/${post.data.openGraphCover}`),
 		);
 

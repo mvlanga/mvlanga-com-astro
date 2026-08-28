@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+import { readFileSync } from "node:fs";
 import path from "node:path";
 import satori from "satori";
 import sharp from "sharp";
@@ -9,8 +9,8 @@ const backgroundImages = [
 	"og-background-03.png",
 ];
 
-export const BackgroundImage = async (brightness = 0.6) => {
-	const backgroundImage = await fs.readFile(
+export const BackgroundImage = (brightness = 0.6) => {
+	const backgroundImage = readFileSync(
 		path.resolve(
 			`./public/img/${backgroundImages[Math.floor(Math.random() * backgroundImages.length)]}`,
 		),
@@ -34,16 +34,16 @@ export const BackgroundImage = async (brightness = 0.6) => {
 };
 
 export const generateOgImage = async (content: unknown) => {
-	const avertaRegularData = await fs.readFile(
+	const avertaRegularData = readFileSync(
 		path.resolve("./public/fonts/averta-regular.woff"),
 	);
-	const avertaLightData = await fs.readFile(
+	const avertaLightData = readFileSync(
 		path.resolve("./public/fonts/averta-light.woff"),
 	);
-	const avertaSemiboldData = await fs.readFile(
+	const avertaSemiboldData = readFileSync(
 		path.resolve("./public/fonts/averta-semibold.woff"),
 	);
-	const avertaBoldData = await fs.readFile(
+	const avertaBoldData = readFileSync(
 		path.resolve("./public/fonts/averta-bold.woff"),
 	);
 
