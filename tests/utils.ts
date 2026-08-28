@@ -7,7 +7,6 @@ export const testAutomaticallyDetectableA11nIssuesByRoute = (route: string) => {
 		{ tag: "@a11n" },
 		async ({ page }) => {
 			await page.goto(route);
-			await page.waitForTimeout(1000);
 
 			const accessibilityScanResults = await new AxeBuilder({ page, }).analyze();
 

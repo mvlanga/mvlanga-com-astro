@@ -6,8 +6,6 @@ import { defineConfig } from "astro/config";
 import { visualizer } from "rollup-plugin-visualizer";
 import cloudflare from "@astrojs/cloudflare";
 
-const isE2E = process.env.E2E === "true";
-
 export default defineConfig({
 	adapter: cloudflare({
 		prerenderEnvironment: "node",
@@ -17,7 +15,7 @@ export default defineConfig({
 		prefetchAll: true,
 	},
 	devToolbar: {
-		enabled: !isE2E,
+		enabled: true,
 	},
 	markdown: {
 		shikiConfig: {

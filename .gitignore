@@ -34,3 +34,5 @@ pnpm-debug.log*
 tmp/db
 
 .eslintcache
+
+.wrangler

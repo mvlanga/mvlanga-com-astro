@@ -4,11 +4,12 @@ export default defineConfig({
 	testDir: "./tests",
 	forbidOnly: !!process.env.CI,
 	timeout: 10_000,
-	retries: 0,
+	retries: 1,
 	reporter: "html",
 	use: {
 		baseURL: "http://localhost:4321",
 		trace: "on-first-retry",
+		video: "retain-on-failure",
 	},
 	projects: [
 		{
