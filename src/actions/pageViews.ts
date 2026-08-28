@@ -7,6 +7,10 @@ export const pageViews = {
 	get: defineAction({
 		input: z.array(z.string()),
 		handler: async (ids) => {
+			if (ids.length === 0) {
+				return [];
+			}
+
 			try {
 				return await getDb()
 					.select()
