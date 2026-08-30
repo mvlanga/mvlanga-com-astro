@@ -11,6 +11,7 @@ const experience = defineCollection({
 		company: z.object({
 			title: z.string(),
 			description: z.string(),
+			url: z.url()
 		}),
 		from: z.string(),
 		to: z.string(),

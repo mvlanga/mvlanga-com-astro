@@ -1,7 +1,8 @@
 {
 	"company": {
 		"title": "SENEC",
-		"description": "a company in the energy sector that develops its own energy storage products for the European market."
+		"description": "a company in the energy sector that develops its own energy storage products for the European market.",
+		"url": "https://senec.com"
 	},
 	"from": "2023",
 	"to": "now",

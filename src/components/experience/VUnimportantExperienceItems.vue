@@ -45,6 +45,9 @@ const containerVariants: Variants = {
 		<VExperienceItem
 			v-for="item in props.items"
 			:key="`${item.data.company}_${item.data.role}`"
-			:item="item" />
+			:item="item"
+			:is-item-visible="
+				experienceFilterStore.experienceUnimportantVisible
+			" />
 	</motion.div>
 </template>

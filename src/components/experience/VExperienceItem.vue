@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content";
 
 const props = defineProps<{
 	item: CollectionEntry<"experience">;
+	isItemVisible: boolean;
 }>();
 
 const { from, to, role, company, tasks, technologies } = props.item.data;
@@ -15,15 +16,24 @@ const { from, to, role, company, tasks, technologies } = props.item.data;
 			<p class="text-neutral-600">{{ from }} {{ " - " }} {{ to }}</p>
 			<h3 class="text-3xl">{{ role }}</h3>
 			<p class="text-neutral-700">
-				at <span class="font-semibold">{{ company.title }}</span
-				>,{{ " " }}
-				{{ company.description }}
+				<span>at&nbsp;</span>
+				<a
+					:tabindex="isItemVisible ? '0' : '-1'"
+					:href="company.url"
+					class="font-semibold underline-offset-3 hover:underline"
+					target="_blank"
+					rel="noreferrer"
+					>{{ company.title }}</a
+				>
+				<span>,&nbsp;</span>
+				<span>{{ company.description }}</span>
 			</p>
 		</div>
 
 		<hr class="border-neutral-800 lg:hidden" />
 
-		<div class="flex max-w-prose flex-col gap-8 lg:col-span-2">
+		<div
+			class="flex max-w-prose flex-col justify-between gap-8 lg:col-span-2">
 			<ul class="flex flex-col gap-4 text-neutral-700">
 				<li v-for="task in tasks" :key="task">{{ task }}</li>
 			</ul>

@@ -1,0 +1,23 @@
+{
+	"company": {
+		"title": "Ecosia \uD83C\uDF31",
+		"description": "the search engine and web browser that uses 100% of its profits to pursue environmental goals.",
+		"url": "https://www.ecosia.org"
+	},
+	"from": "2026",
+	"to": "now",
+	"role": "Full Stack Developer",
+	"tasks": [
+		"Still exploring..."
+	],
+	"technologies": [
+		"Typescript",
+		"Astro",
+		"Vue.js",
+		"Vite",
+		"Vitest",
+		"Playwright",
+		"Cloudflare"
+	],
+	"important": true
+}

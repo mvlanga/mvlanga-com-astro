@@ -1,7 +1,8 @@
 {
 	"company": {
 		"title": "BeBrand",
-		"description": "a small advertising agency."
+		"description": "a small advertising agency.",
+		"url": "https://bebrand.de"
 	},
 	"from": "2016",
 	"to": "2017",
