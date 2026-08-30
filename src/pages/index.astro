@@ -112,7 +112,7 @@ const blogPosts = (await getBlogPosts()).slice(0, 3);
 			<div class="flex flex-col gap-4">
 				{
 					importantExperience.map((item) => (
-						<VExperienceItem item={item} />
+						<VExperienceItem item={item} isItemVisible={true} />
 					))
 				}
 

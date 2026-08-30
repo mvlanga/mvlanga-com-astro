@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content";
 
 const props = defineProps<{
 	item: CollectionEntry<"experience">;
+	isItemVisible: boolean;
 }>();
 
 const { from, to, role, company, tasks, technologies } = props.item.data;
@@ -17,6 +18,7 @@ const { from, to, role, company, tasks, technologies } = props.item.data;
 			<p class="text-neutral-700">
 				<span>at&nbsp;</span>
 				<a
+					:tabindex="isItemVisible ? '0' : '-1'"
 					:href="company.url"
 					class="font-semibold underline-offset-3 hover:underline"
 					target="_blank"
