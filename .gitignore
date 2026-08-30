@@ -23,7 +23,7 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-.netlify
+.wrangler
 
 # Playwright
 /test-results/
@@ -34,5 +34,3 @@ pnpm-debug.log*
 tmp/db
 
 .eslintcache
-
-.wrangler

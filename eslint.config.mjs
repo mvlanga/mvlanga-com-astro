@@ -31,7 +31,7 @@ export default defineConfig([
 	globalIgnores([
 		"**/dist",
 		"**/.astro",
-		"**/.netlify",
+		"**/.wrangler",
 		"**/node_modules",
 		"**/.idea",
 		"**/playwright-report",
