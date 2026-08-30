@@ -1,4 +1,5 @@
 import { expect, type Page, test } from "@playwright/test";
+import { disableAnimations } from "./utils.ts";
 
 const mvlangaButtonElement = (page: Page) =>
 	page.getByRole("link", { name: "Moriz von Langa home page" }).locator("..");
@@ -10,6 +11,8 @@ test.describe("header", () => {
 	test("should be visible/hidden depending on the scroll position", async ({
 		page,
 	}) => {
+		await disableAnimations(page);
+
 		await page.goto("/");
 
 		await expect(page.locator('[data-testid="header"]')).toHaveAttribute(
@@ -20,14 +23,12 @@ test.describe("header", () => {
 		await expect(mvlangaButtonElement(page)).toHaveCSS("opacity", "1");
 		await expect(menuButtonElement(page)).toHaveCSS("opacity", "1");
 
-		await page.getByText("The way I work").scrollIntoViewIfNeeded();
-		await page.waitForTimeout(500);
+		await page.evaluate(() => window.scrollBy(0, 500));
 
 		await expect(mvlangaButtonElement(page)).toHaveCSS("opacity", "0");
 		await expect(menuButtonElement(page)).toHaveCSS("opacity", "0");
 
-		await page.getByText("I love exploring ideas").scrollIntoViewIfNeeded();
-		await page.waitForTimeout(500);
+		await page.evaluate(() => window.scrollBy(0, -100));
 
 		await expect(mvlangaButtonElement(page)).toHaveCSS("opacity", "1");
 		await expect(menuButtonElement(page)).toHaveCSS("opacity", "1");
@@ -36,6 +37,8 @@ test.describe("header", () => {
 	test("should be visible when mouse enters top of the page", async ({
 		page,
 	}) => {
+		await disableAnimations(page);
+
 		await page.goto("/");
 
 		await expect(page.locator('[data-testid="header"]')).toHaveAttribute(
@@ -43,14 +46,12 @@ test.describe("header", () => {
 			"true",
 		);
 
-		await page.getByText("The way I work").scrollIntoViewIfNeeded();
-		await page.waitForTimeout(500);
+		await page.evaluate(() => window.scrollBy(0, 500));
 
 		await expect(mvlangaButtonElement(page)).toHaveCSS("opacity", "0");
 		await expect(menuButtonElement(page)).toHaveCSS("opacity", "0");
 
 		await page.mouse.move(0, 0);
-		await page.waitForTimeout(500);
 
 		await expect(mvlangaButtonElement(page)).toHaveCSS("opacity", "1");
 		await expect(menuButtonElement(page)).toHaveCSS("opacity", "1");

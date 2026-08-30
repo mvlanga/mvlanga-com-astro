@@ -19,9 +19,13 @@ onMounted(() => {
 
 useMotionValueEvent(scrollY, "change", (latest) => {
 	const diff = latest - (scrollY.getPrevious() ?? 0);
+
+	// Ignore subpixel jitter
+	if (Math.abs(diff) < 10) return;
+
 	const direction = diff > 0 ? "down" : "up";
 
-	headerStore.isHeaderHidden = direction === "down" && scrollY.get() >= 300;
+	headerStore.isHeaderHidden = direction === "down" && latest >= 300;
 });
 
 function handleMouseEnterHeaderZone() {

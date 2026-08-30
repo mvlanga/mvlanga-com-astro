@@ -7,8 +7,10 @@ export default defineConfig({
 	retries: 1,
 	reporter: "html",
 	use: {
+		headless: true,
 		baseURL: "http://localhost:4321",
 		trace: "on-first-retry",
+		screenshot: "only-on-failure",
 		video: "retain-on-failure",
 	},
 	projects: [
