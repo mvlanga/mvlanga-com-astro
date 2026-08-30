@@ -1,21 +1,21 @@
-import db from "@astrojs/db";
 import mdx from "@astrojs/mdx";
-import netlify from "@astrojs/netlify";
 import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
 import vue from "@astrojs/vue";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { visualizer } from "rollup-plugin-visualizer";
-
-const isE2E = process.env.E2E === "true";
+import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
+	adapter: cloudflare({
+		prerenderEnvironment: "node",
+	}),
 	output: "server",
 	prefetch: {
 		prefetchAll: true,
 	},
 	devToolbar: {
-		enabled: !isE2E,
+		enabled: true,
 	},
 	markdown: {
 		shikiConfig: {
@@ -50,7 +50,6 @@ export default defineConfig({
 			},
 		}),
 		mdx(),
-		db(),
 		vue(),
 	],
 	vite: {
@@ -62,7 +61,6 @@ export default defineConfig({
 			}),
 		],
 	},
-	adapter: netlify(),
 	redirects: {
 		"/:lang/personal-projects": "/",
 		"/:lang/about-me": "/#about",

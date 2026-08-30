@@ -11,16 +11,24 @@ permissions:
 
 jobs:
     test:
+        environment: actions
         runs-on: ubuntu-latest
+        env:
+          ASTRO_DB_REMOTE_URL: ${{ vars.ASTRO_DB_REMOTE_URL }}
+          ASTRO_DB_APP_TOKEN: ${{ secrets.ASTRO_DB_APP_TOKEN }}
         steps:
-            - uses: actions/checkout@v4
-            - uses: pnpm/action-setup@v4
-              with:
-                  version: 10
-            - uses: actions/setup-node@v4
+            - uses: actions/checkout@v7
+            - uses: pnpm/setup@v2
+            - uses: actions/setup-node@v7
               with:
                   node-version-file: ".nvmrc"
                   cache: pnpm
             - run: pnpm install --frozen-lockfile
             - run: pnpm exec playwright install --with-deps
             - run: pnpm run test
+            - uses: actions/upload-artifact@v5
+              if: ${{ !cancelled() }}
+              with:
+                name: playwright-report
+                path: playwright-report/
+                retention-days: 3

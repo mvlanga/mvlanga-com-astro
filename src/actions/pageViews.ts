@@ -1,13 +1,18 @@
+import { getDb, PageViews } from "@/db";
 import { z } from "astro/zod";
 import { ActionError, defineAction } from "astro:actions";
-import { db, inArray, PageViews, sql } from "astro:db";
+import { inArray, sql } from "drizzle-orm";
 
 export const pageViews = {
 	get: defineAction({
 		input: z.array(z.string()),
 		handler: async (ids) => {
+			if (ids.length === 0) {
+				return [];
+			}
+
 			try {
-				return await db
+				return await getDb()
 					.select()
 					.from(PageViews)
 					.where(inArray(PageViews.id, ids));
@@ -25,7 +30,7 @@ export const pageViews = {
 		input: z.string(),
 		handler: async (id) => {
 			try {
-				return await db
+				return await getDb()
 					.insert(PageViews)
 					.values({
 						id,

@@ -2,6 +2,7 @@
 import type { NavigationItem } from "@/components/header/types.ts";
 import { computed, toRefs } from "vue";
 import { headerStore } from "@/components/header/headerStore.ts";
+import { useReducedMotion } from "motion-v";
 
 const props = defineProps<{
 	navigationItem: NavigationItem;
@@ -10,8 +11,10 @@ const props = defineProps<{
 
 const { isActive } = toRefs(props);
 
+const shouldReduceMotion = useReducedMotion();
+
 const indicatorClasses = computed(() => ({
-	"absolute right-full h-1 w-8 rounded-full bg-purple-300 transition-transform duration-100 ease-in-out": true,
+	"absolute right-full h-1 w-8 rounded-full bg-purple-300 transition-transform duration-100 ease-in-out motion-reduce:transition-none": true,
 	"-translate-x-4": isActive.value,
 	"-translate-x-full peer-hover:-translate-x-6 peer-focus:-translate-x-6":
 		!isActive.value,
@@ -28,7 +31,10 @@ function handleNavItemClick(event: MouseEvent) {
 		if (el) {
 			event.preventDefault();
 
-			el.scrollIntoView({ behavior: "smooth", block: "start" });
+			el.scrollIntoView({
+				behavior: shouldReduceMotion ? "instant" : "smooth",
+				block: "start",
+			});
 		}
 	}
 }

@@ -30,8 +30,8 @@ describe("generateOgImage", () => {
 			size: jpegBuffer.length,
 		}).toMatchInlineSnapshot(`
 			{
-			  "digest": "994d0ea8fed88a352ca462f8c2cbd74ca7fc69a5dd6a1e240e9c29264acbaa60",
-			  "size": 5589,
+			  "digest": "bd37c23185da224514046ead2d5f71e57bd1c9b6012b89cd015ce6a3398e1ed5",
+			  "size": 5591,
 			}
 		`);
 	});

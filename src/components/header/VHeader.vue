@@ -3,18 +3,26 @@ import VButton from "@/components/common/VButton.vue";
 import { useScroll, useMotionValueEvent } from "motion-v";
 import VNavigation from "@/components/header/VNavigation.vue";
 import { headerStore } from "@/components/header/headerStore.ts";
+import { onMounted, ref } from "vue";
 
 const { initialPath } = defineProps<{
 	initialPath: string;
 }>();
 
+const isMounted = ref<boolean>(false);
+
 const { scrollY } = useScroll();
+
+onMounted(() => {
+	isMounted.value = true;
+});
 
 useMotionValueEvent(scrollY, "change", (latest) => {
 	const diff = latest - (scrollY.getPrevious() ?? 0);
+
 	const direction = diff > 0 ? "down" : "up";
 
-	headerStore.isHeaderHidden = direction === "down" && scrollY.get() >= 300;
+	headerStore.isHeaderHidden = direction === "down" && latest >= 300;
 });
 
 function handleMouseEnterHeaderZone() {
@@ -34,11 +42,13 @@ function handleHeaderButtonFocus() {
 
 	<header
 		:class="[
-			'fixed top-4 left-4 z-30 transition-all duration-300 ease-out sm:top-10 sm:left-10',
+			'transition-all motion-reduce:transition-none fixed top-4 left-4 z-30 duration-300 ease-out sm:top-10 sm:left-10',
 			headerStore.isHeaderHidden
 				? 'pointer-events-none -translate-y-32 scale-75 opacity-0 blur-xs'
 				: 'translate-y-0 scale-100 opacity-100 blur-none',
-		]">
+		]"
+		data-testid="header"
+		:data-mounted="isMounted">
 		<VButton
 			href="/"
 			text="mvlanga"

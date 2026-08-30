@@ -23,7 +23,7 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-.netlify
+.wrangler
 
 # Playwright
 /test-results/

@@ -8,9 +8,7 @@ export const testAutomaticallyDetectableA11nIssuesByRoute = (route: string) => {
 		async ({ page }) => {
 			await page.goto(route);
 
-			const accessibilityScanResults = await new AxeBuilder({
-				page,
-			}).analyze();
+			const accessibilityScanResults = await new AxeBuilder({ page, }).analyze();
 
 			expect(accessibilityScanResults.violations).toEqual([]);
 		},

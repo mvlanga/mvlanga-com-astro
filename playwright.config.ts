@@ -2,14 +2,19 @@ import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
 	testDir: "./tests",
-	fullyParallel: true,
 	forbidOnly: !!process.env.CI,
-	retries: process.env.CI ? 2 : 0,
-	workers: process.env.CI ? 1 : undefined,
+	timeout: 10_000,
+	retries: 1,
 	reporter: "html",
 	use: {
+		headless: true,
 		baseURL: "http://localhost:4321",
 		trace: "on-first-retry",
+		screenshot: "only-on-failure",
+		video: "retain-on-failure",
+		contextOptions: {
+			reducedMotion: "reduce"
+		}
 	},
 	projects: [
 		{
@@ -29,12 +34,12 @@ export default defineConfig({
 		{
 			name: "Mobile Chrome",
 			grepInvert: /@a11n/,
-			use: { ...devices["Pixel 5"] },
+			use: { ...devices["Pixel 8"] },
 		},
 		{
 			name: "Mobile Safari",
 			grepInvert: /@a11n/,
-			use: { ...devices["iPhone 12"] },
+			use: { ...devices["iPhone 14"] },
 		},
 	],
 	webServer: {

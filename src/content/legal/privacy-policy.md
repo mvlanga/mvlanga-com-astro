@@ -82,10 +82,10 @@ instructions with respect to such data.
 We are using the following host:
 \
 \
-Netlify Inc., 2325 3rd Street, Suite 29, San Francisco, CA 94104, USA.
+Cloudflare, Inc. 101 Townsend St, San Francisco, CA 94107 USA
 \
 \
-For more information about Netlify’s privacy practices, please visit: https://www.netlify.com/privacy/.
+For more information about Cloudflare's privacy practices, please visit: https://www.cloudflare.com/privacypolicy/.
 
 ## General information and mandatory information
 

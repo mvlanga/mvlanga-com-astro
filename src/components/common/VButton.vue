@@ -70,15 +70,15 @@ const getTransitionDelayByIndex = (index: number) => `${index * 3}ms`;
 		:class="elementStyles">
 		<div
 			aria-hidden="true"
-			class="absolute z-0 h-[200%] w-[150%] translate-y-full rounded-[50%] bg-purple-700 transition-transform duration-200 ease-out group-hover:translate-y-0 group-[.active]:translate-y-0" />
+			class="motion-reduce:transition-none absolute z-0 h-[200%] w-[150%] translate-y-full rounded-[50%] bg-purple-700 transition-transform duration-200 ease-out group-hover:translate-y-0 group-[.active]:translate-y-0" />
 
 		<template v-if="shouldReduceMotion">
 			<span
-				class="z-10 opacity-100 transition-opacity group-[.active]:opacity-0"
+				class="z-10 opacity-100 group-[.active]:opacity-0"
 				>{{ defaultText }}</span
 			>
 			<span
-				class="absolute opacity-0 transition-opacity group-[.active]:opacity-100"
+				class="absolute opacity-0 group-[.active]:opacity-100"
 				>{{ activeText }}</span
 			>
 		</template>

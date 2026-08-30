@@ -15,7 +15,7 @@ export default {
 			excludeFiles: [
 				"**/dist",
 				"**/.astro",
-				"**/.netlify",
+				"**/.wrangler",
 				"**/node_modules",
 				"**/.idea",
 				"**/playwright-report",

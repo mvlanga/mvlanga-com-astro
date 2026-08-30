@@ -61,7 +61,7 @@ function handleNavButtonFocus() {
 <template>
 	<div
 		:class="[
-			'fixed top-4 right-4 z-40 transition-all duration-300 ease-out sm:top-10 sm:right-10',
+			'motion-reduce:transition-none fixed top-4 right-4 z-40 transition-all duration-300 ease-out sm:top-10 sm:right-10',
 			isMenuTriggerButtonVisible
 				? 'translate-y-0 scale-100 opacity-100 blur-none'
 				: 'pointer-events-none -translate-y-32 scale-75 opacity-0 blur-xs',
@@ -90,7 +90,7 @@ function handleNavButtonFocus() {
 			v-if="headerStore.isNavigationOpen"
 			key="main-menu-backdrop"
 			aria-hidden="true"
-			class="fixed top-0 left-0 z-20 h-full w-full bg-black/20"
+			class="fixed top-0 left-0 z-20 h-full w-full bg-black/20 motion-reduce:transition-none"
 			@click="closeNavigation" />
 	</Transition>
 
@@ -105,7 +105,7 @@ function handleNavButtonFocus() {
 			v-if="headerStore.isNavigationOpen"
 			id="main-menu"
 			:style="navigationStyles"
-			class="fixed top-2 right-2 left-2 z-30 flex max-h-[calc(100%-1rem)] flex-col gap-10 overflow-y-auto rounded-2xl bg-neutral-100 px-8 py-10 sm:top-5 sm:right-5 sm:left-auto sm:w-72"
+			class="fixed top-2 right-2 left-2 z-30 flex max-h-[calc(100%-1rem)] flex-col gap-10 overflow-y-auto rounded-2xl bg-neutral-100 px-8 py-10 motion-reduce:transition-none sm:top-5 sm:right-5 sm:left-auto sm:w-72"
 			aria-label="Main Menu">
 			<div class="flex flex-col gap-4">
 				<VNavigationMainSection :initial-path="initialPath" />
