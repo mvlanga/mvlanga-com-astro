@@ -1,5 +1,5 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, type Page, test } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 export const testAutomaticallyDetectableA11nIssuesByRoute = (route: string) => {
 	return test(
@@ -14,16 +14,3 @@ export const testAutomaticallyDetectableA11nIssuesByRoute = (route: string) => {
 		},
 	);
 };
-
-export const disableAnimations = async (page: Page) => {
-	return await page.addStyleTag({
-		content: `
-    *,
-    *::before,
-    *::after {
-      transition: none !important;
-      animation: none !important;
-    }
-  `,
-	});
-}

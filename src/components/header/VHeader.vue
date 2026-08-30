@@ -20,9 +20,6 @@ onMounted(() => {
 useMotionValueEvent(scrollY, "change", (latest) => {
 	const diff = latest - (scrollY.getPrevious() ?? 0);
 
-	// Ignore subpixel jitter
-	if (Math.abs(diff) < 10) return;
-
 	const direction = diff > 0 ? "down" : "up";
 
 	headerStore.isHeaderHidden = direction === "down" && latest >= 300;
@@ -45,14 +42,13 @@ function handleHeaderButtonFocus() {
 
 	<header
 		:class="[
-			'fixed top-4 left-4 z-30 transition-all duration-300 ease-out sm:top-10 sm:left-10',
+			'transition-all motion-reduce:transition-none fixed top-4 left-4 z-30 duration-300 ease-out sm:top-10 sm:left-10',
 			headerStore.isHeaderHidden
 				? 'pointer-events-none -translate-y-32 scale-75 opacity-0 blur-xs'
 				: 'translate-y-0 scale-100 opacity-100 blur-none',
 		]"
 		data-testid="header"
 		:data-mounted="isMounted">
-		<div v-if="isMounted">test123</div>
 		<VButton
 			href="/"
 			text="mvlanga"

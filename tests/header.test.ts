@@ -1,5 +1,4 @@
 import { expect, type Page, test } from "@playwright/test";
-import { disableAnimations } from "./utils.ts";
 
 const mvlangaButtonElement = (page: Page) =>
 	page.getByRole("link", { name: "Moriz von Langa home page" }).locator("..");
@@ -11,8 +10,6 @@ test.describe("header", () => {
 	test("should be visible/hidden depending on the scroll position", async ({
 		page,
 	}) => {
-		await disableAnimations(page);
-
 		await page.goto("/");
 
 		await expect(page.locator('[data-testid="header"]')).toHaveAttribute(
@@ -37,8 +34,6 @@ test.describe("header", () => {
 	test("should be visible when mouse enters top of the page", async ({
 		page,
 	}) => {
-		await disableAnimations(page);
-
 		await page.goto("/");
 
 		await expect(page.locator('[data-testid="header"]')).toHaveAttribute(

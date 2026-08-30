@@ -65,7 +65,7 @@ onMounted(() => {
 
 <template>
 	<p
-		class="text-sm opacity-100 transition-opacity delay-100 duration-150 ease-out starting:opacity-0">
+		class="motion-reduce:transition-none text-sm opacity-100 transition-opacity delay-100 duration-150 ease-out starting:opacity-0">
 		Navigation
 	</p>
 
@@ -73,7 +73,7 @@ onMounted(() => {
 		<li
 			v-for="(item, index) in navigationItems"
 			:key="item.url"
-			class="relative flex transform-[translateY(0)] items-center justify-start text-2xl opacity-100 transition-all duration-200 ease-overshoot-out starting:opacity-0 motion-safe:starting:transform-[translateY(50%)]"
+			class="relative flex transform-[translateY(0)] items-center justify-start text-2xl opacity-100 transition-all duration-200 ease-overshoot-out motion-reduce:transition-none starting:opacity-0 motion-safe:starting:transform-[translateY(50%)]"
 			:style="{ 'transition-delay': `${50 * (index + 1) + 100}ms` }">
 			<VNavigationLinkInternal
 				:navigation-item="item"
