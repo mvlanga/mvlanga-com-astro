@@ -63,7 +63,8 @@
 		"typescript": "^6.0.3",
 		"typescript-eslint": "^8.68.0",
 		"vite-tsconfig-paths": "^6.1.1",
-		"vitest": "^4.1.11"
+		"vitest": "^4.1.11",
+		"wrangler": "^4.127.0"
 	},
 	"engines": {
 		"pnpm": ">=11",
