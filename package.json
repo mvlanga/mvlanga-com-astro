@@ -19,13 +19,13 @@
 	},
 	"dependencies": {
 		"@libsql/client": "^0.18.0",
-		"@vue/test-utils": "^2.5.0",
+		"@vue/test-utils": "^2.5.1",
 		"clsx": "^2.1.1",
-		"drizzle-orm": "^0.45.2",
+		"drizzle-orm": "^0.45.3",
 		"embla-carousel-vue": "^8.6.0",
-		"motion-v": "^2.4.0",
-		"tailwind-merge": "^3.6.0",
-		"vue": "^3.5.42"
+		"motion-v": "^2.4.4",
+		"tailwind-merge": "^3.7.0",
+		"vue": "^3.5.43"
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.9.10",
