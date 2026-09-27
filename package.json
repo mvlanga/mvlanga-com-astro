@@ -42,7 +42,7 @@
 		"@types/node": "^26.4.0",
 		"@typescript-eslint/parser": "^8.68.0",
 		"@vitejs/plugin-vue": "^6.0.8",
-		"astro": "7.2.6",
+		"astro": "7.2.8",
 		"concurrently": "^10.0.5",
 		"eslint": "^10.9.1",
 		"eslint-config-prettier": "^10.1.8",
