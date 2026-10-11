@@ -2,12 +2,26 @@
 title: "A Quiet Room for people with ME/CFS: Sound Isolation with a mobile AC"
 slug: a-quiet-room-for-people-with-me-cfs-sound-isolation-with-a-mobile-ac
 description: "ABC"
+draft: true
 createdAt: 2026-09-01
 tags: ["offwork", "me/cfs"]
 openGraphCover: "src/content/blog/2026/09/a-quiet-room for-me-cfs-sound-isolation-without-sacrificing-ac/outer_02.jpg"
 ---
 
-test 123
+## Wofür?
+
+Meine Partnerin ist vor ca. 5 Jahren an ME/CFS erkrankt. Erst war sie mild, dann moderat betroffen.
+Im März dieses Jahres gab es eine plötzliche Verschlechterung ihrer Symptome, wir hielten es erst für einen normalen Crash, in Woche 2 haben wir dann aber realisiert, dass es heftiger ist als sonst.
+Sie ist seitdem schwer betroffen, kann das Haus nicht mehr verlassen und ist auf eine 24/7 Pflege angewiesen.
+Schon von Anfang dieses Crashes konnte ihr Körper ihre temperatur nicht mehr richtig regulieren, ihr Kopf haben geglüht während der rest von ihrem Körper total kalt war.
+Nach ein paar intensiven Wochen des Wärmflasche wechselns, tiefgekühlte Migräne-Masken Dauerversorgung und eines 2 Ventilatoren-Setups um ihren Kopf herum habe ich dann eine mobile Klimaanlage besorgt, der **game changer** für sie.
+
+Wir haben uns eine Midea Porta Split geholt, mit der Lüfter-Geschwindigkeit auf 1% und dem "Outdoor silent mode" aktiviert ist die Lautstärke aushaltbar für Laura. Die Klimaanlage läuft seit Monaten dauerhaft und kühlt den Raum auf tatsächliche 19 Grad runter (Brr halt, aber für sie ist es perfekt).
+Die Stromkosten lagen jetzt bei uns z. B. im August bei ca. 30 €.
+
+## Super, ein Problem weniger, oder warte... Jetzt hört man alles von draußen
+
+
 
 ![A starry night sky.](inner_02.jpg)
 
