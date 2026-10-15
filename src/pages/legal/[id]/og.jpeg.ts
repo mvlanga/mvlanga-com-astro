@@ -12,36 +12,32 @@ export const GET = async ({ props }: Props) => {
 	const { legalPage } = props;
 
 	return await generateOgImage({
-		type: "div",
-		props: {
-			style: {
-				display: "flex",
-				flexDirection: "column",
-				width: "100%",
-				height: "100%",
-				color: "white",
-				backgroundColor: "black",
-				padding: "80px",
-				justifyContent: "flex-end",
-			},
-			children: [
-				BackgroundImage(),
-				{
-					type: "h1",
-					props: {
-						children: legalPage.data.title,
-						tw: "text-9xl leading-snug",
-					},
-				},
-				{
-					type: "p",
-					props: {
-						children: "Moriz von Langa | Legal",
-						tw: "text-4xl text-neutral-100 font-normal",
-					},
-				},
-			],
+		type: "container",
+		style: {
+			display: "flex",
+			flexDirection: "column",
+			width: "100%",
+			height: "100%",
+			color: "white",
+			backgroundColor: "black",
+			padding: "80px",
+			justifyContent: "flex-end",
 		},
+		children: [
+			BackgroundImage(),
+			{
+				type: "text",
+				style: { position: "relative", zIndex: 1 },
+				text: legalPage.data.title,
+				tw: "text-9xl leading-snug font-bold mb-8",
+			},
+			{
+				type: "text",
+				style: { position: "relative", zIndex: 1 },
+				text: "Moriz von Langa | Legal",
+				tw: "text-4xl text-neutral-100 font-normal",
+			},
+		],
 	});
 };
 
