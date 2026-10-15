@@ -17,94 +17,86 @@ export const GET: APIRoute<{ post: CollectionEntry<"blogPosts"> }> = async ({
 		);
 
 		return await generateOgImage({
-			type: "div",
-			props: {
-				style: {
-					display: "flex",
-					width: "100%",
-					height: "100%",
-					color: "white",
-					backgroundColor: "black",
-					padding: "80px",
-					gap: "80px",
-				},
-				children: [
-					BackgroundImage(0.2),
-					{
-						type: "img",
-						props: {
-							src: postCoverImage.buffer,
-							style: {
-								width: "400px",
-								height: "100%",
-								objectFit: "cover",
-							},
-							tw: "rounded-3xl",
-						},
-					},
-					{
-						type: "div",
-						props: {
-							style: {
-								width: "600px",
-								display: "flex",
-								flexDirection: "column",
-								justifyContent: "center",
-							},
-							children: [
-								{
-									type: "h1",
-									props: {
-										children: post.data.title,
-										tw: "text-6xl leading-snug",
-									},
-								},
-								{
-									type: "p",
-									props: {
-										children: "Moriz von Langa | Blog",
-										tw: "text-5xl leading-snug text-neutral-100 font-normal",
-									},
-								},
-							],
-						},
-					},
-				],
-			},
-		});
-	}
-
-	return await generateOgImage({
-		type: "div",
-		props: {
+			type: "container",
 			style: {
 				display: "flex",
-				flexDirection: "column",
 				width: "100%",
 				height: "100%",
 				color: "white",
 				backgroundColor: "black",
 				padding: "80px",
-				justifyContent: "flex-end",
+				gap: "80px",
 			},
 			children: [
-				BackgroundImage(),
+				BackgroundImage(0.2),
 				{
-					type: "h1",
-					props: {
-						children: post.data.title,
-						tw: "text-6xl leading-snug",
+					type: "image",
+					src: postCoverImage,
+					style: {
+						position: "relative",
+						zIndex: 1,
+						width: "400px",
+						height: "100%",
+						objectFit: "cover",
+						flexShrink: 0,
 					},
+					tw: "rounded-3xl",
 				},
 				{
-					type: "p",
-					props: {
-						children: "Moriz von Langa | Blog",
-						tw: "text-5xl leading-snug text-neutral-100 font-normal",
+					type: "container",
+					style: {
+						position: "relative",
+						zIndex: 1,
+						flex: 1,
+						minWidth: 0,
+						display: "flex",
+						flexDirection: "column",
+						justifyContent: "center",
 					},
+					children: [
+						{
+							type: "text",
+							text: post.data.title,
+							tw: "text-6xl leading-snug font-bold mb-8",
+						},
+						{
+							type: "text",
+							text: "Moriz von Langa | Blog",
+							tw: "text-5xl leading-snug text-neutral-100 font-normal",
+						},
+					],
 				},
 			],
+		});
+	}
+
+	return await generateOgImage({
+		type: "container",
+		style: {
+			display: "flex",
+			flexDirection: "column",
+			width: "100%",
+			height: "100%",
+			color: "white",
+			backgroundColor: "black",
+			padding: "80px",
+			justifyContent: "flex-end",
 		},
+		children: [
+			BackgroundImage(),
+			{
+				type: "text",
+				style: { position: "relative", zIndex: 1 },
+				text: post.data.title,
+				tw: "text-6xl leading-snug font-bold mb-8",
+			},
+			{
+				type: "text",
+				style: { position: "relative", zIndex: 1 },
+				text: "Moriz von Langa | Blog",
+				tw: "text-5xl leading-snug text-neutral-100 font-normal",
+			},
+		],
 	});
 };
 

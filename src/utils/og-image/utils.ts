@@ -1,7 +1,6 @@
+import { type ImageNode, type Node, Renderer } from "@takumi-rs/core";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import satori from "satori";
-import sharp from "sharp";
 
 const backgroundImages = [
 	"og-background-01.png",
@@ -9,7 +8,7 @@ const backgroundImages = [
 	"og-background-03.png",
 ];
 
-export const BackgroundImage = (brightness = 0.6) => {
+export const BackgroundImage = (brightness = 0.6): ImageNode => {
 	const backgroundImage = readFileSync(
 		path.resolve(
 			`./public/img/${backgroundImages[Math.floor(Math.random() * backgroundImages.length)]}`,
@@ -17,73 +16,49 @@ export const BackgroundImage = (brightness = 0.6) => {
 	);
 
 	return {
-		type: "img",
-		props: {
-			src: backgroundImage.buffer,
-			style: {
-				position: "absolute",
-				width: "1200px",
-				height: "630px",
-				left: 0,
-				top: 0,
-				objectFit: "cover",
-				filter: `brightness(${brightness})`,
-			},
+		type: "image",
+		src: backgroundImage,
+		style: {
+			position: "absolute",
+			width: "1200px",
+			height: "630px",
+			left: 0,
+			top: 0,
+			objectFit: "cover",
+			filter: `brightness(${brightness})`,
 		},
 	};
 };
 
-export const generateOgImage = async (content: unknown) => {
-	const avertaRegularData = readFileSync(
-		path.resolve("./public/fonts/averta-regular.woff"),
-	);
-	const avertaLightData = readFileSync(
-		path.resolve("./public/fonts/averta-light.woff"),
-	);
-	const avertaSemiboldData = readFileSync(
-		path.resolve("./public/fonts/averta-semibold.woff"),
-	);
-	const avertaBoldData = readFileSync(
-		path.resolve("./public/fonts/averta-bold.woff"),
-	);
+const renderer = new Renderer();
+const fontsReady = Promise.all(
+	[
+		{ file: "light", weight: 300 },
+		{ file: "regular", weight: 400 },
+		{ file: "semibold", weight: 600 },
+		{ file: "bold", weight: 700 },
+	].map(({ file, weight }) =>
+		renderer.registerFont({
+			name: "Averta",
+			data: readFileSync(
+				path.resolve(`./public/fonts/averta-${file}.woff`),
+			),
+			weight,
+			style: "normal",
+		}),
+	),
+);
 
-	const svg = await satori(content, {
+export const generateOgImage = async (content: Node) => {
+	await fontsReady;
+
+	const jpeg = await renderer.render(content, {
 		width: 1200,
 		height: 630,
-		debug: false,
-		fonts: [
-			{
-				name: "Averta",
-				data: avertaLightData,
-				weight: 300,
-				style: "normal",
-			},
-			{
-				name: "Averta",
-				data: avertaRegularData,
-				weight: 400,
-				style: "normal",
-			},
-			{
-				name: "Averta",
-				data: avertaSemiboldData,
-				weight: 600,
-				style: "normal",
-			},
-			{
-				name: "Averta",
-				data: avertaBoldData,
-				weight: 700,
-				style: "normal",
-			},
-		],
+		format: "jpeg",
+		quality: 60,
+		fontFamilies: ["Averta"],
 	});
-
-	const jpeg = await sharp(Buffer.from(svg))
-		.jpeg({
-			quality: 60,
-		})
-		.toBuffer();
 
 	return new Response(new Uint8Array(jpeg), {
 		headers: {
